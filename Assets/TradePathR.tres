@@ -1,6 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://db8paawsrirx3"]
-
-[ext_resource type="Shader" uid="uid://dlcxlmga5tk4f" path="res://Assets/TradePathR.gdshader" id="1_w3fgw"]
-
-[resource]
-shader = ExtResource("1_w3fgw")

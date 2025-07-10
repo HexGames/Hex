@@ -9,7 +9,7 @@ namespace Data
         private List<Def.Tile> _DeckTiles = new List<Def.Tile>();
 
         public Decks()
-        {
+        { 
         }
 
         public void AddTile(Def.Tile tileDef)

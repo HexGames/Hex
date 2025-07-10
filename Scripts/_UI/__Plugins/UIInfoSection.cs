@@ -18,7 +18,7 @@ namespace GodotUI
             }
         }
 
-        private Array<UIInfoBlock> _UIInfoBlocks = new Array<UIInfoBlock>();
+        private List<UIInfoBlock> _UIInfoBlocks = new List<UIInfoBlock>();
 
         public override void _Ready()
         {

@@ -1,13 +1,15 @@
 ﻿using Godot;
+using System.Collections.Generic;
 
 namespace Godot3D
 {
     public partial class MapMain : Node3D
     {
         [Export]
-        private CursorTile _TileCursor = null;
+        private CursorTile _TileCursor;
         [Export]
-        private Godot.Collections.Array<BenefitPopUp> BenefitPopUpPool;
+        private BenefitPopUp benefitPopUpPrototype;
+        private List<BenefitPopUp> BenefitPopUpPool;
 
         private readonly System.Collections.Generic.Dictionary<Data.HexCoord, Node3D> _PlacedTiles = new();
 
@@ -16,6 +18,7 @@ namespace Godot3D
         
         public override void _Ready()
         {
+            BenefitPopUpPool.Add(benefitPopUpPrototype);
         }
 
         public void Refresh()

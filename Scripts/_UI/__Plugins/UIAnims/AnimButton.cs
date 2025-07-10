@@ -9,9 +9,9 @@ namespace GodotUI
         [Signal]
         public delegate void LeftClickEventHandler();
 
-        [Export] public Array<Control> HoverOverlays = new Array<Control>();
-        [Export] public Array<Control> PressedOverlays = new Array<Control>();
-        [Export] public Array<Control> ActionOverlays = new Array<Control>();
+        [Export] public Control[] HoverOverlays;
+        [Export] public Control[] PressedOverlays;
+        [Export] public Control[] ActionOverlays;
         [Export] public Control Offset;
 
         private Vector2 DefaultOffest;

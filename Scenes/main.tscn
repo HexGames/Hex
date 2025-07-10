@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=63 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -56,7 +56,6 @@
 [ext_resource type="Script" uid="uid://87jashoccc5b" path="res://Scripts/_Map/MapMain.cs" id="41_54nrm"]
 [ext_resource type="Script" uid="uid://vy14xyr5lq67" path="res://Scripts/_Map/CursorTile.cs" id="47_2060n"]
 [ext_resource type="PackedScene" uid="uid://bs7yko67yp2jm" path="res://Scenes/UI/goals.tscn" id="47_f6rfp"]
-[ext_resource type="PackedScene" uid="uid://cik4ml5k52xm4" path="res://Scenes/UI/win_event.tscn" id="47_r7bbj"]
 [ext_resource type="PackedScene" uid="uid://b5hdpfit2r5so" path="res://Scenes/UI/Draft.tscn" id="49_55jeb"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="49_xdkp6"]
 [ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="50_54nrm"]
@@ -124,11 +123,11 @@ TexturesIcons = Dictionary[String, Texture2D]({
 "Worker_Busy.png": ExtResource("40_55idt")
 })
 
-[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_TileCursor", "BenefitPopUpPool")]
+[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_TileCursor", "benefitPopUpPrototype")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0690838, 0)
 script = ExtResource("41_54nrm")
 _TileCursor = NodePath("Origin/CursorOrigin/Cursor")
-BenefitPopUpPool = [NodePath("../UI/PopUps/BenefitPopUp_0")]
+benefitPopUpPrototype = NodePath("../UI/PopUps/BenefitPopUp_0")
 
 [node name="Camera3D" type="Camera3D" parent="3D"]
 transform = Transform3D(0.707107, 0.640856, -0.298836, 0, 0.422618, 0.906308, 0.707107, -0.640856, 0.298836, -5, 15, 5)
@@ -177,10 +176,6 @@ offset_top = 1.0
 offset_bottom = 1.0
 
 [node name="GoalsUI" parent="UI" instance=ExtResource("47_f6rfp")]
-visible = false
-layout_mode = 1
-
-[node name="Win_Event" parent="UI" instance=ExtResource("47_r7bbj")]
 visible = false
 layout_mode = 1
 

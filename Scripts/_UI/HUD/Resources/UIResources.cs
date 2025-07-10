@@ -14,9 +14,16 @@ namespace GodotUI
         }
 
         [Export]
-        private Array<UIResourcesItem> Res;
+        private UIResourcesItem ResPrototype;
+        private List<UIResourcesItem> Res = new List<UIResourcesItem>();
+
 
         private List<ItemData> _ItemsData = new List<ItemData>();
+
+        public override void _Ready()
+        {
+            Res.Add(ResPrototype);
+        }
 
         public void Refresh(List<Data.Res> stockpile, List<Data.Res> income)
         {

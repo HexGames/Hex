@@ -19,7 +19,7 @@ namespace GodotUI
         }
 
         [Export]
-        public Array<UITooltip> Tooltips;
+        public UITooltip[] Tooltips;
 
         public override void _Ready()
         {

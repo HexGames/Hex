@@ -1,0 +1,543 @@
+[gd_scene load_steps=12 format=3 uid="uid://cik4ml5k52xm4"]
+
+[ext_resource type="Script" uid="uid://c55ybg8d4m7j7" path="res://Scripts/_UI/Windows/Event/UIEvent.cs" id="1_fei16"]
+[ext_resource type="Texture2D" uid="uid://cyfa5s28giq1" path="res://Assets/Events/4.jpg" id="1_hlkro"]
+[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/__Plugins/UIAnims/AnimBase.cs" id="2_66pc8"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="2_fei16"]
+[ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="2_xt5mq"]
+[ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="3_c8wiw"]
+[ext_resource type="Texture2D" uid="uid://c5o8ojra7rt61" path="res://Assets/Icons/Close.png" id="4_vqbx6"]
+[ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/__Plugins/UIAnims/AnimButton.cs" id="7_66pc8"]
+[ext_resource type="Texture2D" uid="uid://bhsvghvmob0t3" path="res://Assets/Button/shadow.png" id="8_d3yeq"]
+[ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="9_lnv0f"]
+[ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="10_dgsrf"]
+
+[node name="Win_EventUI" type="Control" node_paths=PackedStringArray("Title", "Description")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fei16")
+Title = NodePath("Panel/Title/Text")
+Description = NodePath("Panel/SubTitle/Description")
+
+[node name="Panel" type="Control" parent="."]
+custom_minimum_size = Vector2(1280, 848)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_66pc8")
+EntryAnimation = 3
+
+[node name="BG" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.2, 0.215686, 0.878431)
+
+[node name="Border" type="NinePatchRect" parent="Panel"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xt5mq")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+custom_minimum_size = Vector2(1200, 528)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -600.0
+offset_top = 80.0
+offset_right = 600.0
+offset_bottom = 620.0
+grow_horizontal = 2
+texture = ExtResource("1_hlkro")
+expand_mode = 1
+script = ExtResource("2_66pc8")
+EntryAnimation = 3
+
+[node name="Border" type="NinePatchRect" parent="Panel/TextureRect"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xt5mq")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Close" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 64.0
+grow_horizontal = 0
+focus_mode = 0
+theme = ExtResource("3_c8wiw")
+theme_type_variation = &"ButtonRound"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Close"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vqbx6")
+expand_mode = 1
+
+[node name="Title" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = -32.0
+offset_right = 240.0
+offset_bottom = 32.0
+grow_horizontal = 2
+script = ExtResource("2_66pc8")
+
+[node name="BG" type="ColorRect" parent="Panel/Title"]
+layout_mode = 2
+color = Color(0.34902, 0.196078, 0.184314, 1)
+
+[node name="Border" type="NinePatchRect" parent="Panel/Title"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 2
+texture = ExtResource("2_xt5mq")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Text" type="RichTextLabel" parent="Panel/Title"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Grow Venice[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="SubTitle" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(800, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 64.0
+offset_right = 400.0
+offset_bottom = 128.0
+grow_horizontal = 2
+script = ExtResource("2_66pc8")
+
+[node name="BG" type="ColorRect" parent="Panel/SubTitle"]
+layout_mode = 2
+color = Color(0.129412, 0.2, 0.215686, 0.878431)
+
+[node name="Border" type="NinePatchRect" parent="Panel/SubTitle"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 2
+texture = ExtResource("2_xt5mq")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Description" type="RichTextLabel" parent="Panel/SubTitle"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Venice must grow from a small fishing village to a propsperous trading city.[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="Choice_8" type="Button" parent="Panel/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 2
+theme = ExtResource("3_c8wiw")
+theme_type_variation = &"ButtonEvent"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Choice_8"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Text3" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+bbcode_enabled = true
+text = "[center]Goal[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Text" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]20 Population[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Gap_1" type="Control" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(196, 2)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Gap_2" type="Control" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Text4" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.752941, 1, 0.752941, 1)
+bbcode_enabled = true
+text = "[center]Reward[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Text2" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_8/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Enable Trade[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Choice_0" type="Control" parent="Panel/HBoxContainer" node_paths=PackedStringArray("Offset")]
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("7_66pc8")
+Offset = NodePath("Offset")
+
+[node name="Shadow" type="NinePatchRect" parent="Panel/HBoxContainer/Choice_0"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_d3yeq")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Offset" type="Control" parent="Panel/HBoxContainer/Choice_0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="NinePatchRect" parent="Panel/HBoxContainer/Choice_0/Offset"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_lnv0f")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="BgColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34902, 0.196078, 0.184314, 1)
+
+[node name="PressedColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.8, 0, 0.25098)
+
+[node name="ActionColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Border" type="NinePatchRect" parent="Panel/HBoxContainer/Choice_0/Offset"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_dgsrf")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="BgColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HoverColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 0.8, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_0/Offset"]
+visible = false
+clip_children = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/bold_font_size = 22
+bbcode_enabled = true
+text = "[center][b]Start[/b][/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="BgColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Text"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HoverColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 0.8, 0, 1)
+
+[node name="PressedColor" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Choice_0/Offset"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Text3" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+bbcode_enabled = true
+text = "[center]Goal[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Text" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]20 Population[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Gap_1" type="Control" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(196, 2)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Gap_2" type="Control" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Text4" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.752941, 1, 0.752941, 1)
+bbcode_enabled = true
+text = "[center]Reward[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[node name="Text2" type="RichTextLabel" parent="Panel/HBoxContainer/Choice_0/Offset/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Enable Trade[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_fei16")
+
+[connection signal="pressed" from="Panel/Close" to="." method="OnClose"]
+[connection signal="pressed" from="Panel/HBoxContainer/Choice_8" to="." method="OnChoice_0"]
+[connection signal="LeftClick" from="Panel/HBoxContainer/Choice_0" to="." method="OnChoice_0"]

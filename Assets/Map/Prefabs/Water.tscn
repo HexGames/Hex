@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=4 uid="uid://b7w4jk7lnrj7w"]
+
+[ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="1_v1nun"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ub1ic"]
+resource_name = "colormap"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_v1nun")
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_djqsh"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.57735, 1, 0.1, 1.1547),
+"format": 34359742465,
+"index_count": 60,
+"index_data": PackedByteArray("AAAHAAIAAwACAAcABwAAAAEAAQADAAcAAQAAAAgAAgADAAkABAACAAkAAwAEAAkAAgAEAAAAAwABAAoABAADAAoAAQAIAAUABQAKAAEAAAALAAgACwAAAAQACwAFAAgABAAKAAsACgAFAAYABQALAAYACwAKAAYA"),
+"lods": [0.18762, PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAgADAAQAAQAAAAUABAADAAYAAwABAAYABgAAAAQABQAGAAEAAAAGAAUA")],
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("mN0PKs3MzD06zRM/hA0Pqs3MzD06zRO/AAAAP83MzD06zZM+AAAAPwAAAAA6zZO+mN0PKgAAAAA6zRM/AAAAv83MzD06zZO+AAAAvwAAAAA6zZO+AAAAP83MzD06zZO+AAAAv83MzD06zZM+AAAAPwAAAAA6zZM+hA0PqgAAAAA6zRO/AAAAvwAAAAA6zZM+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ttnrp"]
+resource_name = "Scene"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.57735, 1, 0.1, 1.1547),
+"attribute_data": PackedByteArray("AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/AAAgPgAAYD8AACA+AABgPwAAID4AAGA/"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AAAOAAIADgAAAAEAAQAAAA8AAQAPAAMACgAQAAgAEAAKABEABQAEABIABAAFAAYAEwAUABUAFAATABYABwAXABgAFwAHABkAGgAbABwAGwAaAAkAHQAeAB8AHgAdACAADAALACEACwAMACIACwAiACMAIwAiAA0A"),
+"lods": [0.18762, PackedByteArray("AAABAAIAAQAAAAMABAAFAAYABAAHAAUACAAGAAUABwAEAAkABwAJAAgABgAIAAoACgAIAAkACwAMAA0A")],
+"material": SubResource("StandardMaterial3D_ub1ic"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("mN0PKs3MzD06zRM/hA0Pqs3MzD06zRO/AAAAP83MzD06zZM+AAAAv83MzD06zZO+AAAAP83MzD06zZM+mN0PKgAAAAA6zRM/mN0PKs3MzD06zRM/AAAAPwAAAAA6zZO+AAAAvwAAAAA6zZO+hA0Pqs3MzD06zRO/AAAAv83MzD06zZO+mN0PKgAAAAA6zRM/AAAAPwAAAAA6zZO+AAAAvwAAAAA6zZO+AAAAP83MzD06zZO+AAAAv83MzD06zZM+AAAAvwAAAAA6zZM+AAAAv83MzD06zZM+AAAAPwAAAAA6zZM+AAAAvwAAAAA6zZM+mN0PKs3MzD06zRM/mN0PKgAAAAA6zRM/AAAAv83MzD06zZM+AAAAP83MzD06zZM+AAAAP83MzD06zZO+AAAAPwAAAAA6zZM+hA0PqgAAAAA6zRO/AAAAv83MzD06zZO+AAAAvwAAAAA6zZO+AAAAPwAAAAA6zZO+hA0Pqs3MzD06zRO/hA0PqgAAAAA6zRO/AAAAP83MzD06zZO+AAAAPwAAAAA6zZM+hA0PqgAAAAA6zRO/AAAAvwAAAAA6zZM+/3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7/Zrv9///9s19mu/3///2zX2a7/f///bNf///9//////wAA/3//f/+/AAAl0dku/78AAP9//3//v/9/AAD///+//38AAP///7//fwAA////v/9///8AAP+//3///wAA/78AAP9//3//vwAA/3//f/+/2a7/f///bNclUf9/JdH/vyVR/38l0f+/JVH/fyXR/78lUf9/JdH/v////3//////////f/////////9//////wAAJdHZLv+/AAAl0dku/78AACXR2S7/v///JdEAAGzX//8l0QAAbNf//yXRAABs1///JdEAAGzX/38AAP///7//fwAA////v/9/AAD///+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_djqsh")
+
+[node name="water" type="Node3D"]
+
+[node name="water" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_ttnrp")
+skeleton = NodePath("")

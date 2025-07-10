@@ -1,0 +1,170 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs7yko67yp2jm"]
+
+[ext_resource type="Texture2D" uid="uid://hcwb6ofpsaos" path="res://Assets/Icons/Happiness.png" id="1_tatne"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="3_tatne"]
+[ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="4_ixe4q"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="5_afojl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2nl5"]
+bg_color = Color(0.366775, 0.193396, 0.198517, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.752941, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+
+[node name="GoalsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Happiness" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
+offset_left = 54.0
+offset_top = 32.0
+offset_right = 182.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2nl5")
+
+[node name="Control" type="Control" parent="Happiness"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Happiness/Control"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+texture = ExtResource("1_tatne")
+expand_mode = 1
+
+[node name="Value" type="RichTextLabel" parent="Happiness/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("5_afojl")
+
+[node name="Income" type="RichTextLabel" parent="Happiness/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("5_afojl")
+
+[node name="Tooltip" type="Control" parent="Happiness/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_tatne")
+
+[node name="Goal" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(128, 90)
+layout_mode = 0
+offset_left = 208.0
+offset_top = 52.0
+offset_right = 530.0
+offset_bottom = 142.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2nl5")
+
+[node name="Control2" type="Control" parent="Goal"]
+custom_minimum_size = Vector2(512, 80)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="Goal/Control2"]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Goal/Control2/HBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_ixe4q")
+expand_mode = 1
+
+[node name="Gap_1" type="Control" parent="Goal/Control2/HBox"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Goal/Control2/HBox"]
+custom_minimum_size = Vector2(368, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[left]$[/left]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("5_afojl")
+
+[node name="ValueBg" type="VBoxContainer" parent="Goal/Control2/HBox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Value" type="RichTextLabel" parent="Goal/Control2/HBox/ValueBg"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("5_afojl")
+
+[node name="Tooltip" type="Control" parent="Goal/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_tatne")
+
+[connection signal="mouse_entered" from="Happiness/Control/Tooltip" to="Happiness/Control/Tooltip" method="OnHoverEnter"]
+[connection signal="mouse_exited" from="Happiness/Control/Tooltip" to="Happiness/Control/Tooltip" method="OnHoverExit"]
+[connection signal="mouse_entered" from="Goal/Control2/Tooltip" to="Goal/Control2/Tooltip" method="OnHoverEnter"]
+[connection signal="mouse_exited" from="Goal/Control2/Tooltip" to="Goal/Control2/Tooltip" method="OnHoverExit"]

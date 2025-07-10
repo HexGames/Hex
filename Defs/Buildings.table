@@ -1,0 +1,50 @@
+Building,UI,Data,Data
+,Title,Benefit,Workers
+,,,
+House_I,Small House,Population:3,
+House_II,City House,Population:6,
+House_III,Villa,Population:10,
+FishingBoat,Fishing Boat,Food:+1,Population_Used:1
+Brickworks_I,Brickworks I,Bricks:+1,Population_Used:2
+Brickworks_II,Brickworks II,Bricks:+2,Population_Used:3
+Brickworks_III,Brickworks III,Bricks:+3,Population_Used:4
+Saltflats_I,Saltflats I,Salt:+1,Population_Used:2
+Saltflats_II,Saltflats II,Salt:+2,Population_Used:3
+Saltflats_III,Saltflats III,Salt:+3,Population_Used:4
+Glassblower_I,Glassblower I,Glass:+1,Population_Used:2
+Glassblower_II,Glassblower II,Glass:+2,Population_Used:3
+Glassblower_III,Glassblower III,Glass:+3,Population_Used:4
+Clothmaker_I,Clothmaker I,Cloth:+1,Population_Used:2
+Clothmaker_II,Clothmaker II,Cloth:+2,Population_Used:3
+Clothmaker_III,Clothmaker III,Cloth:+3,Population_Used:4
+Armory_I,Armory I,Weapons:+1,Population_Used:2
+Armory_II,Armory II,Weapons:+2,Population_Used:3
+Armory_III,Armory III,Weapons:+3,Population_Used:4
+Weaver_I,Weaver I,Garments:+1,Population_Used:2
+Weaver_II,Weaver II,Garments:+2,Population_Used:3
+Weaver_III,Weaver III,Garments:+3,Population_Used:4
+Jeweler_I,Jeweler I,Jewelry:+1,Population_Used:2
+Jeweler_II,Jeweler II,Jewelry:+2,Population_Used:3
+Jeweler_III,Jeweler III,Jewelry:+3,Population_Used:4
+Church_I,Small Church,Happiness:+2,Population_Used:3
+Church_II,Large Church,Happiness:+5,Population_Used:5
+Tavern_I,Small Tavern,Happiness:+2,Population_Used:2
+Tavern_II,Large Tavern,Happiness:+4,Population_Used:4
+Market_I,Small Plazza,,
+Market_II,City Plazza,,
+Market_III,Grand City Plazza,,
+Cathedral_I,Small Cathedral,,
+Cathedral_II,Large Cathedral,,
+Cathedral_III,Grand Cathedral,,
+Palace_I,Small Palace,,
+Palace_II,Central Palace,,
+Palace_III,Grand Palace,,
+Arsenal_I,Shikpyard,,
+Arsenal_II,Large Shipyard,,
+Arsenal_III,Arsenal,,
+University_I,Small University,,
+University_II,University,,
+University_III,Grand University,,
+Port_I,Small Port,,
+Port_II,Large Port,,
+Port_III,Grand Port,,

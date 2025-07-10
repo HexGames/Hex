@@ -1,0 +1,13 @@
+Tile,Data,Data,Map,UI,UI,UI,Data,Data,Data,Data,Data,Data,Data,Data,Data
+,Level,Rarity,Prefab,Title,ToolTip,ToolTip,Tags,Tags,PlaceCondition,PlaceCondition,DraftCondition,DraftCondition,Effect,Effect,Effect
+,,,,,Title,Description,,,,,,,,,
+Grass,0,9,Grass,Grass,Grass,Some grass.,Grass,Empty,,,,,,,
+House,1,1,House,House,House,It's a house.,House,Building,Empty,Nature,,,OnPlaceSelf:Gain:Population:3,PerTurn:TransformX1-Food:Gold:1,
+Forest,1,1,Forest,Forest,Forest,It's a forest.,Forest,Nature,Empty,,,,PerTurn:PerAdjacent-House:Wood:1,,
+Castle,2,3,Castle,Castle,Castle,It's a castle.,Castle,,Empty,Nature,House,Farm,PerTurn:PerAdjacent-House:Gold:1,OnDestroySelf:Gain:Fame:3,
+Farm,1,1,Farm,Farm,Farm,It's a farm.,Farm,Nature,Empty,,,,PerTurn:IfAdjacent-House:Food:1,,
+Overgrowth,2,1,Overgrowth,Overgrowth,Overgrowth,Abandon it.,Overgrowth,,Building,,,,OnPlaceSelf:Gain:Fame:1,,
+Ruin,3,1,Ruin,Ruin,Ruin,Ruin it.,Ruin,,Castle,,,,OnPlaceSelf:Gain:Fame:3,,
+Clear,2,2,Clear,Clear,Clear,Clear the tile.,Action,,Overgrowth,Ruin,,,OnPlaceSelf:Cost:Gold:1,,
+Monument,3,2,Monument,Monument,Monument,It's a monument.,Monument,Building,Empty,Nature,,,OnPlaceSelf:TransformAll-Fame:Gold:1,,
+NobleHouse,1,3,NobleHouse,Noble House,Noble House,It's a noble house.,House,Building,House,,,,PerTurn:PerAdjacent-House:Gold:1,OnPlaceOther:PerAdjacent-Farm:Gold:5,

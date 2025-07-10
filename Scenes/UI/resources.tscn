@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://wy385bgugdla"]
+
+[ext_resource type="Script" uid="uid://s3083hh8eefj" path="res://Scripts/_UI/HUD/Resources/UIResources.cs" id="1_pi4xh"]
+[ext_resource type="Script" uid="uid://c8gwbntfi77c2" path="res://Scripts/_UI/HUD/Resources/UIResourcesItem.cs" id="2_nx35g"]
+[ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="3_p0406"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="4_wjcy2"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="5_ealah"]
+[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/__Plugins/UIAnims/AnimBase.cs" id="7_pi4xh"]
+[ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="8_nx35g"]
+[ext_resource type="Script" uid="uid://bry1kq1yl6fp4" path="res://Scripts/_UI/__Plugins/UIAnims/AnimPulse.cs" id="9_nx35g"]
+
+[node name="ResourcesUI" type="Control" node_paths=PackedStringArray("Res")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_pi4xh")
+Res = [NodePath("Panel2/VBoxContainer/VBoxContainer/Resource_0")]
+
+[node name="Panel2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = -64.0
+grow_vertical = 2
+script = ExtResource("7_pi4xh")
+EntryAnimation = 1
+
+[node name="BG" type="ColorRect" parent="Panel2"]
+layout_mode = 2
+color = Color(0.129412, 0.2, 0.215686, 0.878431)
+
+[node name="Border" type="NinePatchRect" parent="Panel2"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 2
+texture = ExtResource("8_nx35g")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2"]
+layout_mode = 2
+
+[node name="Gap1" type="Control" parent="Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("7_pi4xh")
+EntryAnimation = 1
+
+[node name="Resource_0" type="Control" parent="Panel2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("2_nx35g")
+
+[node name="PulseContainer" type="HBoxContainer" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_nx35g")
+
+[node name="Icon" type="TextureRect" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0/PulseContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_p0406")
+expand_mode = 1
+
+[node name="Value" type="RichTextLabel" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0/PulseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_wjcy2")
+
+[node name="PerTurn" type="RichTextLabel" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0/PulseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_wjcy2")
+
+[node name="Tooltip" type="Control" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_ealah")
+CanBeHovered = false
+Direction = 3
+Width = 320
+
+[node name="Gap2" type="Control" parent="Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[connection signal="mouse_entered" from="Panel2/VBoxContainer/VBoxContainer/Resource_0/Tooltip" to="Panel2/VBoxContainer/VBoxContainer/Resource_0/Tooltip" method="OnHoverEnter"]
+[connection signal="mouse_exited" from="Panel2/VBoxContainer/VBoxContainer/Resource_0/Tooltip" to="Panel2/VBoxContainer/VBoxContainer/Resource_0/Tooltip" method="OnHoverExit"]

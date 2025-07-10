@@ -1,0 +1,365 @@
+[gd_scene load_steps=64 format=3 uid="uid://cejyfoxfw42kv"]
+
+[ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
+[ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
+[ext_resource type="Script" uid="uid://cirbujwcxbq6o" path="res://Scripts/AssetsLib/AssetLib.cs" id="3_k12tt"]
+[ext_resource type="PackedScene" uid="uid://bg1h5q0cyc74v" path="res://Assets/Map/Prefabs/Castle.tscn" id="4_1semv"]
+[ext_resource type="Texture2D" uid="uid://6tmmbf0y7cao" path="res://Assets/Icons/Alert.png" id="4_54nrm"]
+[ext_resource type="Texture2D" uid="uid://cyg028oigyayh" path="res://Assets/Icons/Arsenale.png" id="5_55jeb"]
+[ext_resource type="PackedScene" uid="uid://cjero1x3je5ga" path="res://Assets/Map/Prefabs/Farm.tscn" id="5_2060n"]
+[ext_resource type="PackedScene" uid="uid://bm5x6siil0ty5" path="res://Assets/Map/Prefabs/Forest.tscn" id="6_6ml46"]
+[ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="6_21xkr"]
+[ext_resource type="Texture2D" uid="uid://bob0j02gv3ysp" path="res://Assets/Icons/Bricks.png" id="6_gsvbx"]
+[ext_resource type="Texture2D" uid="uid://bbpxkyr3fumj" path="res://Assets/Icons/Cathedral.png" id="7_bv80c"]
+[ext_resource type="Script" uid="uid://banf0f6481pf2" path="res://Scripts/_UI/UIMain.cs" id="7_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://dhu36gjaq7wkp" path="res://Assets/Map/Prefabs/Grass.tscn" id="7_qax2n"]
+[ext_resource type="Texture2D" uid="uid://c5o8ojra7rt61" path="res://Assets/Icons/Close.png" id="8_ptfg5"]
+[ext_resource type="PackedScene" uid="uid://bj82taqgao0mw" path="res://Assets/Map/Prefabs/House.tscn" id="8_y86h7"]
+[ext_resource type="Texture2D" uid="uid://nie6v76v0fy8" path="res://Assets/Icons/Cloth.png" id="9_2daye"]
+[ext_resource type="PackedScene" uid="uid://dcujexjsspq5a" path="res://Scenes/UI/tooltip.tscn" id="9_6iyac"]
+[ext_resource type="PackedScene" uid="uid://y0rbfhcw04i7" path="res://Assets/Map/Prefabs/NobleHouse.tscn" id="9_y86h7"]
+[ext_resource type="Texture2D" uid="uid://bkxnqyvityx6r" path="res://Assets/Icons/Draft.png" id="10_1semv"]
+[ext_resource type="PackedScene" uid="uid://b7w4jk7lnrj7w" path="res://Assets/Map/Prefabs/Water.tscn" id="10_my4ki"]
+[ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="11_2060n"]
+[ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="12_6ml46"]
+[ext_resource type="Texture2D" uid="uid://cjn6wuhwjno5e" path="res://Assets/Icons/Faith.png" id="13_qax2n"]
+[ext_resource type="Texture2D" uid="uid://sq70sl800s21" path="res://Assets/Icons/Food.png" id="14_y86h7"]
+[ext_resource type="Script" uid="uid://b4ljhy6ehe2sl" path="res://Scripts/_UI/Menu/Victory/UIVictory.cs" id="15_fevyy"]
+[ext_resource type="Texture2D" uid="uid://deio43uwyww2e" path="res://Assets/Icons/Galleys.png" id="15_my4ki"]
+[ext_resource type="Texture2D" uid="uid://bnretra6j2jkj" path="res://Assets/Icons/Garments.png" id="16_lx3vj"]
+[ext_resource type="Texture2D" uid="uid://cbqdtt8qt6rs2" path="res://Assets/Icons/Glass.png" id="17_ynmfv"]
+[ext_resource type="Texture2D" uid="uid://hcwb6ofpsaos" path="res://Assets/Icons/Happiness.png" id="18_cblf0"]
+[ext_resource type="Texture2D" uid="uid://r1suuw47slhk" path="res://Assets/Icons/Influence.png" id="19_nay3j"]
+[ext_resource type="Texture2D" uid="uid://clm278l8i7xq4" path="res://Assets/Icons/Iron.png" id="20_ovafv"]
+[ext_resource type="Texture2D" uid="uid://c4avwaemudv7c" path="res://Assets/Icons/Jewelry.png" id="21_owhal"]
+[ext_resource type="Texture2D" uid="uid://fxw8348cecp0" path="res://Assets/Icons/Marketplace.png" id="22_uv6w5"]
+[ext_resource type="Texture2D" uid="uid://c2chtt6pf1gtm" path="res://Assets/Icons/Fame.png" id="23_r7bbj"]
+[ext_resource type="Texture2D" uid="uid://bb3qd0msgftik" path="res://Assets/Icons/Population.png" id="24_e5peh"]
+[ext_resource type="Texture2D" uid="uid://dqtufxuyw2j8w" path="res://Assets/Icons/PopulationBusy.png" id="25_f6rfp"]
+[ext_resource type="Texture2D" uid="uid://c0lrd2wdwmbj7" path="res://Assets/Icons/PopulationUsed.png" id="26_sasc4"]
+[ext_resource type="Texture2D" uid="uid://dybin35wniqa5" path="res://Assets/Icons/Port.png" id="27_pfx1i"]
+[ext_resource type="Texture2D" uid="uid://bwv5ux3y584iy" path="res://Assets/Icons/Production.png" id="28_fg68e"]
+[ext_resource type="Texture2D" uid="uid://b23itoc6qfvvr" path="res://Assets/Icons/Salt.png" id="29_jekl6"]
+[ext_resource type="Texture2D" uid="uid://dxut7ywfbpr0s" path="res://Assets/Icons/Science.png" id="30_v1mrv"]
+[ext_resource type="PackedScene" uid="uid://cpbrlpqjj5dwf" path="res://Scenes/UI/menu.tscn" id="31_2daye"]
+[ext_resource type="Texture2D" uid="uid://cwq7kmv2nl55t" path="res://Assets/Icons/ShipRound.png" id="31_fd3ed"]
+[ext_resource type="Texture2D" uid="uid://bcxttp8f3vk7l" path="res://Assets/Icons/Spices.png" id="32_qnggo"]
+[ext_resource type="PackedScene" uid="uid://wy385bgugdla" path="res://Scenes/UI/resources.tscn" id="33_2060n"]
+[ext_resource type="Texture2D" uid="uid://be4riswedvy81" path="res://Assets/Icons/Turn.png" id="33_tab3y"]
+[ext_resource type="Texture2D" uid="uid://b58palwwn6686" path="res://Assets/Icons/University.png" id="34_1tvlp"]
+[ext_resource type="Texture2D" uid="uid://rfeew4dfblsh" path="res://Assets/Icons/Weapons.png" id="35_wl4bb"]
+[ext_resource type="Texture2D" uid="uid://dtoui662aqmxn" path="res://Assets/Icons/Wine.png" id="36_6h1fc"]
+[ext_resource type="Texture2D" uid="uid://c4u2rpqgm4iup" path="res://Assets/Icons/Wood.png" id="37_vxl7x"]
+[ext_resource type="Texture2D" uid="uid://c2iwv3m332rwu" path="res://Assets/Icons/Wool.png" id="38_ihvwq"]
+[ext_resource type="Texture2D" uid="uid://dy3rfcbvulven" path="res://Assets/Icons/Work.png" id="39_k8rh3"]
+[ext_resource type="Texture2D" uid="uid://cab32uwuekq5m" path="res://Assets/Icons/Worker_Busy.png" id="40_55idt"]
+[ext_resource type="Script" uid="uid://87jashoccc5b" path="res://Scripts/_Map/MapMain.cs" id="41_54nrm"]
+[ext_resource type="Script" uid="uid://vy14xyr5lq67" path="res://Scripts/_Map/CursorTile.cs" id="47_2060n"]
+[ext_resource type="PackedScene" uid="uid://bs7yko67yp2jm" path="res://Scenes/UI/goals.tscn" id="47_f6rfp"]
+[ext_resource type="PackedScene" uid="uid://cik4ml5k52xm4" path="res://Scenes/UI/win_event.tscn" id="47_r7bbj"]
+[ext_resource type="PackedScene" uid="uid://b5hdpfit2r5so" path="res://Scenes/UI/Draft.tscn" id="49_55jeb"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="49_xdkp6"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="50_54nrm"]
+[ext_resource type="PackedScene" uid="uid://cy04tkuafexhs" path="res://Scenes/UI/turn.tscn" id="55_e5peh"]
+[ext_resource type="PackedScene" uid="uid://hgnollckll75" path="res://Scenes/UI/TileInfo.tscn" id="55_qax2n"]
+[ext_resource type="Script" uid="uid://bdirxous68e33" path="res://Scripts/_Map/BenefitPopUp.cs" id="56_6ml46"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("Assets", "MapInstance", "UIInstance")]
+script = ExtResource("2_v2nl5")
+Assets = NodePath("AssetsLib")
+MapInstance = NodePath("3D")
+UIInstance = NodePath("UI")
+
+[node name="Autorun" type="Node" parent="."]
+script = ExtResource("1_kry3j")
+
+[node name="AssetsLib" type="Node" parent="."]
+script = ExtResource("3_k12tt")
+PrefabTiles = Dictionary[String, PackedScene]({
+"Castle.tscn": ExtResource("4_1semv"),
+"Farm.tscn": ExtResource("5_2060n"),
+"Forest.tscn": ExtResource("6_6ml46"),
+"Grass.tscn": ExtResource("7_qax2n"),
+"House.tscn": ExtResource("8_y86h7"),
+"NobleHouse.tscn": ExtResource("9_y86h7"),
+"Water.tscn": ExtResource("10_my4ki")
+})
+TexturesIcons = Dictionary[String, Texture2D]({
+"Alert.png": ExtResource("4_54nrm"),
+"Arsenale.png": ExtResource("5_55jeb"),
+"Bricks.png": ExtResource("6_gsvbx"),
+"Cathedral.png": ExtResource("7_bv80c"),
+"Close.png": ExtResource("8_ptfg5"),
+"Cloth.png": ExtResource("9_2daye"),
+"Draft.png": ExtResource("10_1semv"),
+"Event.png": ExtResource("12_6ml46"),
+"Faith.png": ExtResource("13_qax2n"),
+"Fame.png": ExtResource("23_r7bbj"),
+"Food.png": ExtResource("14_y86h7"),
+"Galleys.png": ExtResource("15_my4ki"),
+"Garments.png": ExtResource("16_lx3vj"),
+"Glass.png": ExtResource("17_ynmfv"),
+"Gold.png": ExtResource("11_2060n"),
+"Happiness.png": ExtResource("18_cblf0"),
+"Influence.png": ExtResource("19_nay3j"),
+"Iron.png": ExtResource("20_ovafv"),
+"Jewelry.png": ExtResource("21_owhal"),
+"Marketplace.png": ExtResource("22_uv6w5"),
+"Population.png": ExtResource("24_e5peh"),
+"PopulationBusy.png": ExtResource("25_f6rfp"),
+"PopulationUsed.png": ExtResource("26_sasc4"),
+"Port.png": ExtResource("27_pfx1i"),
+"Production.png": ExtResource("28_fg68e"),
+"Salt.png": ExtResource("29_jekl6"),
+"Science.png": ExtResource("30_v1mrv"),
+"ShipRound.png": ExtResource("31_fd3ed"),
+"Spices.png": ExtResource("32_qnggo"),
+"Turn.png": ExtResource("33_tab3y"),
+"University.png": ExtResource("34_1tvlp"),
+"Weapons.png": ExtResource("35_wl4bb"),
+"Wine.png": ExtResource("36_6h1fc"),
+"Wood.png": ExtResource("37_vxl7x"),
+"Wool.png": ExtResource("38_ihvwq"),
+"Work.png": ExtResource("39_k8rh3"),
+"Worker_Busy.png": ExtResource("40_55idt")
+})
+
+[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_TileCursor", "BenefitPopUpPool")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0690838, 0)
+script = ExtResource("41_54nrm")
+_TileCursor = NodePath("Origin/CursorOrigin/Cursor")
+BenefitPopUpPool = [NodePath("../UI/PopUps/BenefitPopUp_0")]
+
+[node name="Camera3D" type="Camera3D" parent="3D"]
+transform = Transform3D(0.707107, 0.640856, -0.298836, 0, 0.422618, 0.906308, 0.707107, -0.640856, 0.298836, -5, 15, 5)
+cull_mask = 1
+fov = 30.0
+far = 250.0
+
+[node name="Origin" type="Node3D" parent="3D"]
+
+[node name="CursorOrigin" type="Node3D" parent="3D/Origin"]
+
+[node name="Cursor" type="Node3D" parent="3D/Origin/CursorOrigin"]
+script = ExtResource("47_2060n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
+transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
+light_cull_mask = 4293918721
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "Draft", "Resoruces", "Turn", "WVictory", "DebugText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("6_21xkr")
+script = ExtResource("7_jkdf5")
+Menu = NodePath("MenuUI")
+TileInfo = NodePath("TileInfoUI")
+Draft = NodePath("DraftUI")
+Resoruces = NodePath("ResourcesUI")
+Turn = NodePath("TurnUI")
+WVictory = NodePath("Win_VictoryUI")
+DebugText = NodePath("_debug_text")
+
+[node name="MenuUI" parent="UI" instance=ExtResource("31_2daye")]
+visible = false
+layout_mode = 1
+
+[node name="ResourcesUI" parent="UI" instance=ExtResource("33_2060n")]
+layout_mode = 1
+offset_top = 1.0
+offset_bottom = 1.0
+
+[node name="GoalsUI" parent="UI" instance=ExtResource("47_f6rfp")]
+visible = false
+layout_mode = 1
+
+[node name="Win_Event" parent="UI" instance=ExtResource("47_r7bbj")]
+visible = false
+layout_mode = 1
+
+[node name="TurnUI" parent="UI" instance=ExtResource("55_e5peh")]
+visible = false
+layout_mode = 1
+
+[node name="TileInfoUI" parent="UI" instance=ExtResource("55_qax2n")]
+layout_mode = 1
+
+[node name="DraftUI" parent="UI" instance=ExtResource("49_55jeb")]
+visible = false
+layout_mode = 1
+
+[node name="PopUps" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BenefitPopUp_0" type="Control" parent="UI/PopUps"]
+anchors_preset = 0
+script = ExtResource("56_6ml46")
+
+[node name="Text" type="RichTextLabel" parent="UI/PopUps/BenefitPopUp_0"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -12.5
+offset_right = 22.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("49_xdkp6")
+
+[node name="Win_VictoryUI" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_fevyy")
+
+[node name="VictoryPanel" type="Panel" parent="UI/Win_VictoryUI"]
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -96.0
+offset_right = 128.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Win_VictoryUI/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -22.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center][b]Victory![/b][/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("49_xdkp6")
+
+[node name="Gap" type="Control" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BackToMenu" type="Button" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+
+[node name="Text" type="RichTextLabel" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center][b]Back to Menu[/b][/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("49_xdkp6")
+
+[node name="Tooltip" type="Control" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -94.0
+offset_right = -64.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("50_54nrm")
+
+[node name="Tooltips" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UITooltip" parent="UI/Tooltips" instance=ExtResource("9_6iyac")]
+visible = false
+z_index = 220
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 256.0
+offset_bottom = 0.0
+theme = null
+script = null
+
+[node name="_debug_text" type="RichTextLabel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.229
+anchor_right = 0.5
+anchor_bottom = 0.229
+offset_left = -344.0
+offset_top = -3.32002
+offset_right = 338.0
+offset_bottom = 35.68
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "[center][b]$[/b][/center]"
+fit_content = true
+scroll_active = false
+script = ExtResource("49_xdkp6")
+
+[connection signal="pressed" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" to="UI/Win_VictoryUI" method="OnBackToMenu"]
+[connection signal="mouse_entered" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverEnter"]
+[connection signal="mouse_exited" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverExit"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg1h5q0cyc74v"]
+
+[ext_resource type="PackedScene" uid="uid://drbnvi6dq5oa2" path="res://Assets/Map/HexKit/building-castle.fbx" id="1_vyady"]
+
+[node name="building-castle" instance=ExtResource("1_vyady")]

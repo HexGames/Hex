@@ -1,0 +1,175 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcujexjsspq5a"]
+
+[ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="2_wahaa"]
+[ext_resource type="Script" uid="uid://nd2axteya2cl" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltip.cs" id="2_xdy0g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10q71"]
+bg_color = Color(0, 0, 0, 0.878431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ixe2"]
+bg_color = Color(0.380392, 0.14902, 0.109804, 0.752941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uoqy0"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 0.752941)
+
+[node name="UITooltip" type="PanelContainer"]
+custom_minimum_size = Vector2(256, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1664.0
+offset_bottom = -1044.0
+size_flags_vertical = 0
+theme = ExtResource("2_wahaa")
+theme_override_styles/panel = SubResource("StyleBoxFlat_10q71")
+script = ExtResource("2_xdy0g")
+
+[node name="Container" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TitleBG" type="Panel" parent="Container"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ixe2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/TitleBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="Title" type="RichTextLabel" parent="Container/TitleBG/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_wahaa")
+theme_type_variation = &"Title"
+bbcode_enabled = true
+text = "$value"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Rows" type="VBoxContainer" parent="Container/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Left_1" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "$value
+"
+fit_content = true
+scroll_active = false
+
+[node name="Right_1" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "[right]$value[/right]"
+fit_content = true
+scroll_active = false
+
+[node name="Line_1" type="Panel" parent="Container/MarginContainer/Rows"]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uoqy0")
+
+[node name="Left_2" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "$value"
+fit_content = true
+scroll_active = false
+
+[node name="Right_2" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "[right]$value[/right]"
+fit_content = true
+scroll_active = false
+
+[node name="Line_2" type="Panel" parent="Container/MarginContainer/Rows"]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uoqy0")
+
+[node name="Left_3" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "$value
+"
+fit_content = true
+scroll_active = false
+
+[node name="Right_3" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_wahaa")
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "[right]$value[/right]"
+fit_content = true
+scroll_active = false
+
+[connection signal="mouse_entered" from="." to="." method="OnHoverEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnHoverExit"]

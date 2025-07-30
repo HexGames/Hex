@@ -9,7 +9,7 @@ namespace Def
         public string ID = "";
 
         public int Data_Level = 0; // unused for now
-        public int Data_Rarity = 0; // unused for now
+        public int Data_Weight = 0; // unused for now
         public List<string> Data_Tags = new List<string>();
         // PlaceConditions
         // DraftConditions
@@ -31,7 +31,7 @@ namespace Def
             if (targetData.HasSub("Data") != false)
             {
                 Data_Level = targetData.GetSubValueI("Data", "Level");
-                Data_Rarity = targetData.GetSubValueI("Data", "Rarity");
+                Data_Weight = targetData.GetSubValueI("Data", "Weight");
 
                 Data_Tags.Clear();
                 List<Save.Block> tagsData = targetData.GetSub("Data").GetSubs("Tags");

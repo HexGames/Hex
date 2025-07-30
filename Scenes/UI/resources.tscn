@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://s3083hh8eefj" path="res://Scripts/_UI/HUD/Resources/UIResources.cs" id="1_pi4xh"]
 [ext_resource type="Script" uid="uid://c8gwbntfi77c2" path="res://Scripts/_UI/HUD/Resources/UIResourcesItem.cs" id="2_nx35g"]
 [ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="3_p0406"]
-[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="4_wjcy2"]
-[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="5_ealah"]
-[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/__Plugins/UIAnims/AnimBase.cs" id="7_pi4xh"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_wjcy2"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="5_ealah"]
+[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="7_pi4xh"]
 [ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="8_nx35g"]
-[ext_resource type="Script" uid="uid://bry1kq1yl6fp4" path="res://Scripts/_UI/__Plugins/UIAnims/AnimPulse.cs" id="9_nx35g"]
+[ext_resource type="Script" uid="uid://bry1kq1yl6fp4" path="res://Scripts/_UI/_Base/UIAnims/AnimPulse.cs" id="9_nx35g"]
 
 [node name="ResourcesUI" type="Control" node_paths=PackedStringArray("ResPrototype")]
 layout_mode = 3

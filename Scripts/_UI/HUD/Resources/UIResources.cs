@@ -22,6 +22,7 @@ namespace GodotUI
 
         public override void _Ready()
         {
+            base._Ready();
             Res.Add(ResPrototype);
         }
 

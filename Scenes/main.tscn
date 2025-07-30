@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=69 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://6tmmbf0y7cao" path="res://Assets/Icons/Alert.png" id="4_54nrm"]
 [ext_resource type="Texture2D" uid="uid://cyg028oigyayh" path="res://Assets/Icons/Arsenale.png" id="5_55jeb"]
 [ext_resource type="PackedScene" uid="uid://cjero1x3je5ga" path="res://Assets/Map/Prefabs/Farm.tscn" id="5_2060n"]
+[ext_resource type="PackedScene" uid="uid://bjo3a42ebvevw" path="res://Assets/Map/Prefabs/Desert.tscn" id="5_ovafv"]
 [ext_resource type="PackedScene" uid="uid://bm5x6siil0ty5" path="res://Assets/Map/Prefabs/Forest.tscn" id="6_6ml46"]
 [ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bob0j02gv3ysp" path="res://Assets/Icons/Bricks.png" id="6_gsvbx"]
 [ext_resource type="Texture2D" uid="uid://bbpxkyr3fumj" path="res://Assets/Icons/Cathedral.png" id="7_bv80c"]
 [ext_resource type="Script" uid="uid://banf0f6481pf2" path="res://Scripts/_UI/UIMain.cs" id="7_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://nm3c27g1cext" path="res://Assets/Map/Prefabs/FishingBoats.tscn" id="7_owhal"]
 [ext_resource type="PackedScene" uid="uid://dhu36gjaq7wkp" path="res://Assets/Map/Prefabs/Grass.tscn" id="7_qax2n"]
 [ext_resource type="Texture2D" uid="uid://c5o8ojra7rt61" path="res://Assets/Icons/Close.png" id="8_ptfg5"]
 [ext_resource type="PackedScene" uid="uid://bj82taqgao0mw" path="res://Assets/Map/Prefabs/House.tscn" id="8_y86h7"]
@@ -21,9 +23,13 @@
 [ext_resource type="Texture2D" uid="uid://bkxnqyvityx6r" path="res://Assets/Icons/Draft.png" id="10_1semv"]
 [ext_resource type="PackedScene" uid="uid://b7w4jk7lnrj7w" path="res://Assets/Map/Prefabs/Water.tscn" id="10_my4ki"]
 [ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="11_2060n"]
+[ext_resource type="PackedScene" uid="uid://du1vdihkbb0h" path="res://Assets/Map/Prefabs/Mill.tscn" id="11_uv6w5"]
 [ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="12_6ml46"]
+[ext_resource type="PackedScene" uid="uid://c704ey2w2ir71" path="res://Assets/Map/Prefabs/Mine.tscn" id="12_r7bbj"]
+[ext_resource type="PackedScene" uid="uid://dmlyxakqxpjaa" path="res://Assets/Map/Prefabs/Mountain.tscn" id="13_e5peh"]
 [ext_resource type="Texture2D" uid="uid://cjn6wuhwjno5e" path="res://Assets/Icons/Faith.png" id="13_qax2n"]
 [ext_resource type="Texture2D" uid="uid://sq70sl800s21" path="res://Assets/Icons/Food.png" id="14_y86h7"]
+[ext_resource type="PackedScene" uid="uid://hpx0qnyra4j8" path="res://Assets/Map/Prefabs/Tower.tscn" id="15_f6rfp"]
 [ext_resource type="Script" uid="uid://b4ljhy6ehe2sl" path="res://Scripts/_UI/Menu/Victory/UIVictory.cs" id="15_fevyy"]
 [ext_resource type="Texture2D" uid="uid://deio43uwyww2e" path="res://Assets/Icons/Galleys.png" id="15_my4ki"]
 [ext_resource type="Texture2D" uid="uid://bnretra6j2jkj" path="res://Assets/Icons/Garments.png" id="16_lx3vj"]
@@ -57,8 +63,8 @@
 [ext_resource type="Script" uid="uid://vy14xyr5lq67" path="res://Scripts/_Map/CursorTile.cs" id="47_2060n"]
 [ext_resource type="PackedScene" uid="uid://bs7yko67yp2jm" path="res://Scenes/UI/goals.tscn" id="47_f6rfp"]
 [ext_resource type="PackedScene" uid="uid://b5hdpfit2r5so" path="res://Scenes/UI/Draft.tscn" id="49_55jeb"]
-[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="49_xdkp6"]
-[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="50_54nrm"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="49_xdkp6"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="50_54nrm"]
 [ext_resource type="PackedScene" uid="uid://cy04tkuafexhs" path="res://Scenes/UI/turn.tscn" id="55_e5peh"]
 [ext_resource type="PackedScene" uid="uid://hgnollckll75" path="res://Scenes/UI/TileInfo.tscn" id="55_qax2n"]
 [ext_resource type="Script" uid="uid://bdirxous68e33" path="res://Scripts/_Map/BenefitPopUp.cs" id="56_6ml46"]
@@ -76,11 +82,17 @@ script = ExtResource("1_kry3j")
 script = ExtResource("3_k12tt")
 PrefabTiles = Dictionary[String, PackedScene]({
 "Castle.tscn": ExtResource("4_1semv"),
+"Desert.tscn": ExtResource("5_ovafv"),
 "Farm.tscn": ExtResource("5_2060n"),
+"FishingBoats.tscn": ExtResource("7_owhal"),
 "Forest.tscn": ExtResource("6_6ml46"),
 "Grass.tscn": ExtResource("7_qax2n"),
 "House.tscn": ExtResource("8_y86h7"),
+"Mill.tscn": ExtResource("11_uv6w5"),
+"Mine.tscn": ExtResource("12_r7bbj"),
+"Mountain.tscn": ExtResource("13_e5peh"),
 "NobleHouse.tscn": ExtResource("9_y86h7"),
+"Tower.tscn": ExtResource("15_f6rfp"),
 "Water.tscn": ExtResource("10_my4ki")
 })
 TexturesIcons = Dictionary[String, Texture2D]({

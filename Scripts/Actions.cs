@@ -142,6 +142,8 @@ public static partial class Actions
         UI.Resources_Refresh(Game.Player.Stockpile, Game.Player.Income);
 
         ShowDraftWindow();
+
+        Debug.Log($"OnStartTurn {Game.TurnNo}");
     }
 
     // ---------------------------------------------------------------------------------------------------
@@ -159,6 +161,6 @@ public static partial class Actions
     {
         UI.WDraft_Refresh(false);
 
-        UI.Turn_Refresh(true);
+        //UI.Turn_Refresh(true);
     }
 }

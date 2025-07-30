@@ -9,7 +9,7 @@ namespace Godot3D
         private CursorTile _TileCursor;
         [Export]
         private BenefitPopUp benefitPopUpPrototype;
-        private List<BenefitPopUp> BenefitPopUpPool;
+        private List<BenefitPopUp> BenefitPopUpPool = new List<BenefitPopUp>();
 
         private readonly System.Collections.Generic.Dictionary<Data.HexCoord, Node3D> _PlacedTiles = new();
 

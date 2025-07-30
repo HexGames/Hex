@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://hgnollckll75"]
 
 [ext_resource type="Script" uid="uid://cic8n052mxlg5" path="res://Scripts/_UI/HUD/TileInfo/UITileInfo.cs" id="1_ldrw6"]
-[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/__Plugins/UIAnims/AnimBase.cs" id="2_tkfwc"]
+[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
 [ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="3_ifsaa"]
-[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="4_ukdo0"]
-[ext_resource type="Script" uid="uid://b62yyvssf5j5" path="res://Scripts/_UI/__Plugins/UIInfoSection.cs" id="5_hbkke"]
-[ext_resource type="Script" uid="uid://bfr74daucxw7e" path="res://Scripts/_UI/__Plugins/UIInfoBlock.cs" id="6_tre6b"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_ukdo0"]
+[ext_resource type="Script" uid="uid://b62yyvssf5j5" path="res://Scripts/_UI/_Base/UIInfoSection.cs" id="5_hbkke"]
+[ext_resource type="Script" uid="uid://bfr74daucxw7e" path="res://Scripts/_UI/_Base/UIInfoBlock.cs" id="6_tre6b"]
 
 [node name="TileInfoUI" type="Control" node_paths=PackedStringArray("_Title", "_Type", "_InfoSection")]
 layout_mode = 3

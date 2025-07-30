@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nm3c27g1cext"]
+
+[ext_resource type="PackedScene" uid="uid://b0x5ixinjcpmw" path="res://Assets/Map/HexKit/water.fbx" id="1_pn6gj"]
+[ext_resource type="PackedScene" uid="uid://ba436ghofy1mw" path="res://Assets/Map/HexKit/unit-ship.fbx" id="2_lf7qh"]
+
+[node name="FishingBoats" instance=ExtResource("1_pn6gj")]
+
+[node name="unit-ship" parent="." index="1" instance=ExtResource("2_lf7qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0719218, 0)

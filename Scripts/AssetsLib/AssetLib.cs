@@ -28,7 +28,7 @@ public partial class AssetLib : Node
 
     public override void _Ready()
     {
-        LoadAll();
+        //LoadAll();
     }
 
     private void LoadAll()
@@ -44,9 +44,10 @@ public partial class AssetLib : Node
         string[] filePaths = DirAccess.GetFilesAt(dirPath);
         for (int idx = 0; idx < filePaths.Length; idx++)
         {
-            if (filePaths[idx].EndsWith("png"))
+            string path = filePaths[idx].Replace(".remap", "");
+            if (path.EndsWith(".png"))
             {
-                textures.Add(filePaths[idx], GD.Load<Texture2D>(dirPath + filePaths[idx]));
+                textures.Add(path, GD.Load<Texture2D>(dirPath + path));
             }
         }
     }
@@ -56,7 +57,7 @@ public partial class AssetLib : Node
         string file = path + ".png";
         if (TexturesIcons.ContainsKey(file) == false)
         {
-            GD.PrintErr("Unable to find texture2D " + file);
+            GD.PrintErr("Unable to find icon texture2D " + file);
             return null;
         }
         return TexturesIcons[file];
@@ -68,9 +69,10 @@ public partial class AssetLib : Node
         string[] filePaths = DirAccess.GetFilesAt(dirPath);
         for (int idx = 0; idx < filePaths.Length; idx++)
         {
-            if (filePaths[idx].EndsWith("tscn"))
+            string path = filePaths[idx].Replace(".remap", "");
+            if (path.EndsWith(".tscn"))
             {
-                prefabs.Add(filePaths[idx], GD.Load<PackedScene>(dirPath + filePaths[idx]));
+                prefabs.Add(path, GD.Load<PackedScene>(dirPath + path));
             }
         }
     }
@@ -79,7 +81,7 @@ public partial class AssetLib : Node
         string file = path + ".tscn";
         if (PrefabTiles.ContainsKey(file) == false)
         {
-            GD.PrintErr("Unable to find texture2D " + file);
+            GD.PrintErr("Unable to find tile texture2D " + file);
             return null;
         }
         return PrefabTiles[file];

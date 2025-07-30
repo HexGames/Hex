@@ -1,5 +1,0 @@
-Goal,Type,TurnMin,UI,UI,UI,UI,Data,Data,Data,Data,Data
-,,,Title,Description,Goal,Reward,Goal,Goal,Goal,Reward,Reward
-,,,,,,,Have,Gain,Spend,Res,Unlock
-Start,ResourceCheck,0,Grow Population,Grow to 20 Population.,20 Population,Enable Trading,Population:20,,,,Trade
-StMark,Project,20,Build Doge's Chapel ,Build a chapel for the Doge.,,,,,,,

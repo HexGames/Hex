@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs7yko67yp2jm"]
 
 [ext_resource type="Texture2D" uid="uid://hcwb6ofpsaos" path="res://Assets/Icons/Happiness.png" id="1_tatne"]
-[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/__Plugins/UITooltips/UITooltipTrigger.cs" id="3_tatne"]
+[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="3_tatne"]
 [ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="4_ixe4q"]
-[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/__Plugins/UIText.cs" id="5_afojl"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="5_afojl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2nl5"]
 bg_color = Color(0.366775, 0.193396, 0.198517, 1)

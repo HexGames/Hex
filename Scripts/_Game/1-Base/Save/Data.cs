@@ -470,10 +470,26 @@ namespace Save
             Block data = CreateData(tableHeadRow_1[0] + "s");
 
             List<string> words = new List<string>();
+            List<string[]> extraRows = new List<string[]>();
             for (int idx = 3; idx < rows.Length; idx++)
             {
                 string[] wordsOnRow = rows[idx].Split(',');
                 if (wordsOnRow[0] == "") continue;
+
+                if (wordsOnRow[0] == "-") continue;
+                extraRows.Clear();
+                for (int extraRowIdx = idx + 1; extraRowIdx < rows.Length; extraRowIdx++)
+                {
+                    string[] wordsOnExtraRow = rows[extraRowIdx].Split(',');
+                    if (wordsOnExtraRow[0] == "-")
+                    {
+                        extraRows.Add(wordsOnExtraRow);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
 
                 Block item = AddData(data, tableHeadRow_1[0], wordsOnRow[0]);
 
@@ -490,43 +506,61 @@ namespace Save
                             Block level2 = level1.GetSub(tableHeadRow_2[colIdx], false);
                             if (level2 == null) level2 = AddData(level1, tableHeadRow_2[colIdx]);
 
-                            int i = 0;
-                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out i);
-                            if (isInt) AddData(level2, tableHeadRow_3[colIdx], i);
-                            else AddData(level2, tableHeadRow_3[colIdx], wordsOnRow[colIdx]);
-
-                            //if (System.Char.IsLetter(wordsOnRow[colIdx][0])) AddData(level2, tableHeadRow_3[colIdx], wordsOnRow[colIdx]);
-                            //else AddData(level2, tableHeadRow_3[colIdx], wordsOnRow[colIdx].ToInt());
-
+                            Block level3 = null;
+                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
+                            if (isInt) level3 = AddData(level2, tableHeadRow_3[colIdx], i);
+                            else level3 = AddData(level2, tableHeadRow_3[colIdx], wordsOnRow[colIdx]);
+                            AddExtraData(extraRows, colIdx, level3);
                         }
                         else if (tableHeadRow_2[colIdx] != "" && tableHeadRow_1[colIdx] != "")
                         {
                             Block level1 = item.GetSub(tableHeadRow_1[colIdx], false);
                             if (level1 == null) level1 = AddData(item, tableHeadRow_1[colIdx]);
 
-                            int i = 0;
-                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out i);
-                            if (isInt) AddData(level1, tableHeadRow_2[colIdx], i);
-                            else AddData(level1, tableHeadRow_2[colIdx], wordsOnRow[colIdx]);
-
-                            //if (System.Char.IsLetter(wordsOnRow[colIdx][0])) AddData(level1, tableHeadRow_2[colIdx], wordsOnRow[colIdx]);
-                            //else AddData(level1, tableHeadRow_2[colIdx], wordsOnRow[colIdx].ToInt());
+                            Block level2 = null;
+                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
+                            if (isInt) level2 = AddData(level1, tableHeadRow_2[colIdx], i);
+                            else level2 = AddData(level1, tableHeadRow_2[colIdx], wordsOnRow[colIdx]);
+                            AddExtraData(extraRows, colIdx, level2);
                         }
                         else
                         {
-                            int i = 0;
-                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out i);
-                            if (isInt) AddData(item, tableHeadRow_1[colIdx], i);
-                            else AddData(item, tableHeadRow_1[colIdx], wordsOnRow[colIdx]);
-
-                            //if (System.Char.IsLetter(wordsOnRow[colIdx][0])) AddData(item, tableHeadRow_1[colIdx], wordsOnRow[colIdx]);
-                            //else AddData(item, tableHeadRow_1[colIdx], wordsOnRow[colIdx].ToInt());
+                            Block level1 = null;
+                            bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
+                            if (isInt) level1 = AddData(item, tableHeadRow_1[colIdx], i);
+                            else level1 = AddData(item, tableHeadRow_1[colIdx], wordsOnRow[colIdx]);
+                            AddExtraData(extraRows, colIdx, level1);
                         }
                     }
                 }
             }
 
             return data;
+        }
+
+        private static void AddExtraData(List<string[]> extraRows, int colIdx, Block parent)
+        {
+            for (int extraRowIdx = 0; extraRowIdx < extraRows.Count; extraRowIdx++)
+            {
+                if (extraRows[extraRowIdx][colIdx] != "")
+                {
+                    string[] split = extraRows[extraRowIdx][colIdx].Split('&');
+                    if (split.Length == 1)
+                    {
+                        AddData(parent, split[0]);
+                    }
+                    else if (split.Length == 2)
+                    {
+                        bool isInt = Int32.TryParse(split[1], out int i);
+                        if (isInt) AddData(parent, split[0], i);
+                        else AddData(parent, split[0], split[1]);
+                    }
+                    else
+                    {
+                        Debug.LogError("LoadCSV error: more than one & symbol not supported! Cell: " + extraRows[extraRowIdx][colIdx]);
+                    }
+                }
+            }
         }
 
         // helper 

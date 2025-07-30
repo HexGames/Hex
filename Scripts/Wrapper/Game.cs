@@ -8,6 +8,7 @@ public static class Game
     public static Data.Decks Decks => Instance?.Decks;
     public static Data.Player Player => Instance?.Player;
     public static Data.Map Map => Instance?.Map;
+    public static int TurnNo => Instance != null ? Instance.TurnNo : -1;
 
     // Exposed methods
     public static void SetDraftedTile(Data.Tile tile) => Instance?.SetDraftedTile(tile);

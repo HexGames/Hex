@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmlyxakqxpjaa"]
+
+[ext_resource type="PackedScene" uid="uid://r5n1omt6tg86" path="res://Assets/Map/HexKit/stone-mountain.fbx" id="1_awn15"]
+
+[node name="Mountain" instance=ExtResource("1_awn15")]

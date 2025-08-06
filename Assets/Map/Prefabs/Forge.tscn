@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://sfvulvr2t8oi"]
+
+[ext_resource type="PackedScene" uid="uid://cc63j08phjq7y" path="res://Assets/Map/HexKit/building-smelter.fbx" id="1_wodp1"]
+
+[node name="Forge" instance=ExtResource("1_wodp1")]

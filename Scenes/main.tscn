@@ -1,13 +1,15 @@
-[gd_scene load_steps=69 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=81 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
 [ext_resource type="Script" uid="uid://cirbujwcxbq6o" path="res://Scripts/AssetsLib/AssetLib.cs" id="3_k12tt"]
 [ext_resource type="PackedScene" uid="uid://bg1h5q0cyc74v" path="res://Assets/Map/Prefabs/Castle.tscn" id="4_1semv"]
 [ext_resource type="Texture2D" uid="uid://6tmmbf0y7cao" path="res://Assets/Icons/Alert.png" id="4_54nrm"]
+[ext_resource type="PackedScene" uid="uid://cpq8jpq4cbolt" path="res://Assets/Map/Prefabs/Amphiteather.tscn" id="4_qnggo"]
 [ext_resource type="Texture2D" uid="uid://cyg028oigyayh" path="res://Assets/Icons/Arsenale.png" id="5_55jeb"]
 [ext_resource type="PackedScene" uid="uid://cjero1x3je5ga" path="res://Assets/Map/Prefabs/Farm.tscn" id="5_2060n"]
 [ext_resource type="PackedScene" uid="uid://bjo3a42ebvevw" path="res://Assets/Map/Prefabs/Desert.tscn" id="5_ovafv"]
+[ext_resource type="PackedScene" uid="uid://u2f4h3gaqy3p" path="res://Assets/Map/Prefabs/Archery.tscn" id="5_tab3y"]
 [ext_resource type="PackedScene" uid="uid://bm5x6siil0ty5" path="res://Assets/Map/Prefabs/Forest.tscn" id="6_6ml46"]
 [ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bob0j02gv3ysp" path="res://Assets/Icons/Bricks.png" id="6_gsvbx"]
@@ -22,28 +24,38 @@
 [ext_resource type="PackedScene" uid="uid://y0rbfhcw04i7" path="res://Assets/Map/Prefabs/NobleHouse.tscn" id="9_y86h7"]
 [ext_resource type="Texture2D" uid="uid://bkxnqyvityx6r" path="res://Assets/Icons/Draft.png" id="10_1semv"]
 [ext_resource type="PackedScene" uid="uid://b7w4jk7lnrj7w" path="res://Assets/Map/Prefabs/Water.tscn" id="10_my4ki"]
+[ext_resource type="PackedScene" uid="uid://sfvulvr2t8oi" path="res://Assets/Map/Prefabs/Forge.tscn" id="11_1tvlp"]
 [ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="11_2060n"]
 [ext_resource type="PackedScene" uid="uid://du1vdihkbb0h" path="res://Assets/Map/Prefabs/Mill.tscn" id="11_uv6w5"]
 [ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="12_6ml46"]
 [ext_resource type="PackedScene" uid="uid://c704ey2w2ir71" path="res://Assets/Map/Prefabs/Mine.tscn" id="12_r7bbj"]
+[ext_resource type="PackedScene" uid="uid://bfpmb7l6lsj4v" path="res://Assets/Map/Prefabs/Garden.tscn" id="12_wl4bb"]
 [ext_resource type="PackedScene" uid="uid://dmlyxakqxpjaa" path="res://Assets/Map/Prefabs/Mountain.tscn" id="13_e5peh"]
 [ext_resource type="Texture2D" uid="uid://cjn6wuhwjno5e" path="res://Assets/Icons/Faith.png" id="13_qax2n"]
 [ext_resource type="Texture2D" uid="uid://sq70sl800s21" path="res://Assets/Icons/Food.png" id="14_y86h7"]
+[ext_resource type="PackedScene" uid="uid://c5003bgoiuf8j" path="res://Assets/Map/Prefabs/Library.tscn" id="15_6h1fc"]
 [ext_resource type="PackedScene" uid="uid://hpx0qnyra4j8" path="res://Assets/Map/Prefabs/Tower.tscn" id="15_f6rfp"]
 [ext_resource type="Script" uid="uid://b4ljhy6ehe2sl" path="res://Scripts/_UI/Menu/Victory/UIVictory.cs" id="15_fevyy"]
 [ext_resource type="Texture2D" uid="uid://deio43uwyww2e" path="res://Assets/Icons/Galleys.png" id="15_my4ki"]
 [ext_resource type="Texture2D" uid="uid://bnretra6j2jkj" path="res://Assets/Icons/Garments.png" id="16_lx3vj"]
+[ext_resource type="PackedScene" uid="uid://dxovjje062m87" path="res://Assets/Map/Prefabs/Lighthouse.tscn" id="16_vxl7x"]
+[ext_resource type="PackedScene" uid="uid://dxbx3014caao5" path="res://Assets/Map/Prefabs/Market.tscn" id="17_ihvwq"]
 [ext_resource type="Texture2D" uid="uid://cbqdtt8qt6rs2" path="res://Assets/Icons/Glass.png" id="17_ynmfv"]
 [ext_resource type="Texture2D" uid="uid://hcwb6ofpsaos" path="res://Assets/Icons/Happiness.png" id="18_cblf0"]
+[ext_resource type="PackedScene" uid="uid://6fja14r0xlrf" path="res://Assets/Map/Prefabs/Mausoleum.tscn" id="18_k8rh3"]
 [ext_resource type="Texture2D" uid="uid://r1suuw47slhk" path="res://Assets/Icons/Influence.png" id="19_nay3j"]
 [ext_resource type="Texture2D" uid="uid://clm278l8i7xq4" path="res://Assets/Icons/Iron.png" id="20_ovafv"]
 [ext_resource type="Texture2D" uid="uid://c4avwaemudv7c" path="res://Assets/Icons/Jewelry.png" id="21_owhal"]
 [ext_resource type="Texture2D" uid="uid://fxw8348cecp0" path="res://Assets/Icons/Marketplace.png" id="22_uv6w5"]
+[ext_resource type="PackedScene" uid="uid://b3gn48a1wtpn3" path="res://Assets/Map/Prefabs/Port.tscn" id="23_55idt"]
 [ext_resource type="Texture2D" uid="uid://c2chtt6pf1gtm" path="res://Assets/Icons/Fame.png" id="23_r7bbj"]
+[ext_resource type="PackedScene" uid="uid://spjftejq1fhn" path="res://Assets/Map/Prefabs/Sheep.tscn" id="24_87bhu"]
 [ext_resource type="Texture2D" uid="uid://bb3qd0msgftik" path="res://Assets/Icons/Population.png" id="24_e5peh"]
 [ext_resource type="Texture2D" uid="uid://dqtufxuyw2j8w" path="res://Assets/Icons/PopulationBusy.png" id="25_f6rfp"]
+[ext_resource type="PackedScene" uid="uid://h05cstyxjs54" path="res://Assets/Map/Prefabs/University.tscn" id="26_33qc4"]
 [ext_resource type="Texture2D" uid="uid://c0lrd2wdwmbj7" path="res://Assets/Icons/PopulationUsed.png" id="26_sasc4"]
 [ext_resource type="Texture2D" uid="uid://dybin35wniqa5" path="res://Assets/Icons/Port.png" id="27_pfx1i"]
+[ext_resource type="PackedScene" uid="uid://cc8chvpx1sxq7" path="res://Assets/Map/Prefabs/Workshop.tscn" id="28_e6rcu"]
 [ext_resource type="Texture2D" uid="uid://bwv5ux3y584iy" path="res://Assets/Icons/Production.png" id="28_fg68e"]
 [ext_resource type="Texture2D" uid="uid://b23itoc6qfvvr" path="res://Assets/Icons/Salt.png" id="29_jekl6"]
 [ext_resource type="Texture2D" uid="uid://dxut7ywfbpr0s" path="res://Assets/Icons/Science.png" id="30_v1mrv"]
@@ -81,19 +93,31 @@ script = ExtResource("1_kry3j")
 [node name="AssetsLib" type="Node" parent="."]
 script = ExtResource("3_k12tt")
 PrefabTiles = Dictionary[String, PackedScene]({
+"Amphiteather.tscn": ExtResource("4_qnggo"),
+"Archery.tscn": ExtResource("5_tab3y"),
 "Castle.tscn": ExtResource("4_1semv"),
 "Desert.tscn": ExtResource("5_ovafv"),
 "Farm.tscn": ExtResource("5_2060n"),
 "FishingBoats.tscn": ExtResource("7_owhal"),
 "Forest.tscn": ExtResource("6_6ml46"),
+"Forge.tscn": ExtResource("11_1tvlp"),
+"Garden.tscn": ExtResource("12_wl4bb"),
 "Grass.tscn": ExtResource("7_qax2n"),
 "House.tscn": ExtResource("8_y86h7"),
+"Library.tscn": ExtResource("15_6h1fc"),
+"Lighthouse.tscn": ExtResource("16_vxl7x"),
+"Market.tscn": ExtResource("17_ihvwq"),
+"Mausoleum.tscn": ExtResource("18_k8rh3"),
 "Mill.tscn": ExtResource("11_uv6w5"),
 "Mine.tscn": ExtResource("12_r7bbj"),
 "Mountain.tscn": ExtResource("13_e5peh"),
 "NobleHouse.tscn": ExtResource("9_y86h7"),
+"Port.tscn": ExtResource("23_55idt"),
+"Sheep.tscn": ExtResource("24_87bhu"),
 "Tower.tscn": ExtResource("15_f6rfp"),
-"Water.tscn": ExtResource("10_my4ki")
+"University.tscn": ExtResource("26_33qc4"),
+"Water.tscn": ExtResource("10_my4ki"),
+"Workshop.tscn": ExtResource("28_e6rcu")
 })
 TexturesIcons = Dictionary[String, Texture2D]({
 "Alert.png": ExtResource("4_54nrm"),

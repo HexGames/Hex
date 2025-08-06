@@ -1,17 +1,8 @@
-// 2025-07-28T16:06:22
+// 2025-08-04T15:50:51
 Tiles 
 {
 	Tile Grass
 	{
-		Data 
-		{
-			Level 0
-			Weight 0
-			Terrain Flat
-			Terrain Hills
-			Climate Temperate
-			Tags Grass
-		}
 		Map 
 		{
 			Prefab Grass
@@ -25,16 +16,16 @@ Tiles
 				Description It's_a_tile.
 			}
 		}
+		Data 
+		{
+			Terrain Flat
+			Terrain Hills
+			Climate Temperate
+			Tags Grass
+		}
 	}
 	Tile Water
 	{
-		Data 
-		{
-			Level 0
-			Weight 0
-			Terrain Water
-			Tags Water
-		}
 		Map 
 		{
 			Prefab Water
@@ -48,19 +39,14 @@ Tiles
 				Description It's_a_tile.
 			}
 		}
+		Data 
+		{
+			Terrain Water
+			Tags Water
+		}
 	}
 	Tile Desert
 	{
-		Data 
-		{
-			Level 0
-			Weight 0
-			Terrain Flat
-			Terrain Hills
-			Climate Arid
-			Tags Desert
-			PlaceCondition NotAdjacent:Water
-		}
 		Map 
 		{
 			Prefab Desert
@@ -74,17 +60,17 @@ Tiles
 				Description It's_a_tile.
 			}
 		}
+		Data 
+		{
+			Terrain Flat
+			Terrain Hills
+			Climate Arid
+			Tags Desert
+			PlaceCondition NotAdjacent:Water
+		}
 	}
 	Tile Forest
 	{
-		Data 
-		{
-			Level 0
-			Weight 0
-			Terrain Flat
-			Terrain Hills
-			Tags Forrest
-		}
 		Map 
 		{
 			Prefab Forest
@@ -98,16 +84,15 @@ Tiles
 				Description It's_a_tile.
 			}
 		}
+		Data 
+		{
+			Terrain Flat
+			Terrain Hills
+			Tags Forrest
+		}
 	}
 	Tile Mountain
 	{
-		Data 
-		{
-			Level 0
-			Weight 0
-			Terrain Mountain
-			Tags Mountain
-		}
 		Map 
 		{
 			Prefab Mountain
@@ -121,6 +106,11 @@ Tiles
 				Description It's_a_tile.
 			}
 		}
+		Data 
+		{
+			Terrain Mountain
+			Tags Mountain
+		}
 	}
 	Tile Houses
 	{
@@ -128,6 +118,7 @@ Tiles
 		{
 			Level 1
 			Weight 10
+			Starting 6
 			Terrain Flat
 			Terrain Hills
 			Climate __
@@ -167,6 +158,7 @@ Tiles
 		{
 			Level 1
 			Weight 10
+			Starting 3
 			Terrain Water
 			Tags FishingBoats
 			Initiative 4
@@ -192,6 +184,7 @@ Tiles
 		{
 			Level 2
 			Weight 10
+			Starting 3
 			Terrain Flat
 			Climate Temperate
 			Tags Building
@@ -220,6 +213,7 @@ Tiles
 		{
 			Level 3
 			Weight 5
+			Starting 2
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -247,6 +241,7 @@ Tiles
 		{
 			Level 7
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -277,6 +272,7 @@ Tiles
 		{
 			Level 2
 			Weight 5
+			Starting 2
 			Terrain Hills
 			Tags Building
 			Tags Mines
@@ -304,6 +300,7 @@ Tiles
 		{
 			Level 3
 			Weight 5
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -315,7 +312,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Forge
 		}
 		UI 
 		{
@@ -333,6 +330,7 @@ Tiles
 		{
 			Level 9
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -362,6 +360,7 @@ Tiles
 		{
 			Level 3
 			Weight 5
+			Starting 2
 			Terrain Flat
 			Terrain Hills
 			Tags Millitary
@@ -374,7 +373,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Archery
 		}
 		UI 
 		{
@@ -392,6 +391,7 @@ Tiles
 		{
 			Level 5
 			Weight 5
+			Starting 1
 			Terrain Flat
 			Tags Building
 			Tags Millitary
@@ -405,7 +405,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Sheep
 		}
 		UI 
 		{
@@ -423,6 +423,7 @@ Tiles
 		{
 			Level 7
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -452,6 +453,7 @@ Tiles
 		{
 			Level 3
 			Weight 5
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -462,7 +464,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Monument
+			Prefab Amphiteather
 		}
 		UI 
 		{
@@ -480,6 +482,7 @@ Tiles
 		{
 			Level 6
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -492,7 +495,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Mausoleum
 		}
 		UI 
 		{
@@ -510,6 +513,7 @@ Tiles
 		{
 			Level 3
 			Weight 5
+			Starting 2
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -517,13 +521,13 @@ Tiles
 			Tags Workshop
 			Initiative 5
 			Effect PerTurn:PerAdjacent-Forrest:Trade:1
-			Effect PerTurn:PerAdjacent-Harbor:Gold:3
+			Effect PerTurn:PerAdjacent-Port:Gold:3
 			Effect PerTurn:PerAdjacent-Market:Gold:3
 			Effect PerTurn:PerAdjacent-Houses:Gold:1
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Workshop
 		}
 		UI 
 		{
@@ -541,6 +545,7 @@ Tiles
 		{
 			Level 4
 			Weight 5
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -553,7 +558,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Market
 		}
 		UI 
 		{
@@ -571,17 +576,18 @@ Tiles
 		{
 			Level 4
 			Weight 2
+			Starting 1
 			Terrain Water
 			Tags Building
 			Tags Lighthouse
 			PlaceCondition Adjacent:Hills
 			Initiative 3
-			Effect PerTurn:Double-Harbor
+			Effect PerTurn:Double-Port
 			Effect PerTurn:Double-FishingBoats
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Lighthouse
 		}
 		UI 
 		{
@@ -593,16 +599,17 @@ Tiles
 			}
 		}
 	}
-	Tile Harbor
+	Tile Port
 	{
 		Data 
 		{
 			Level 4
 			Weight 5
+			Starting 1
 			Terrain Water
 			Tags Building
 			Tags Trade
-			Tags Harbor
+			Tags Port
 			PlaceCondition Adjacent:Flat
 			Initiative 4
 			Effect PerTurn:Gain:Trade:3
@@ -611,14 +618,14 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Port
 		}
 		UI 
 		{
-			Title Harbor
+			Title Port
 			ToolTip 
 			{
-				Title Harbor
+				Title Port
 				Description It's_a_tile.
 			}
 		}
@@ -629,6 +636,7 @@ Tiles
 		{
 			Level 5
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -642,7 +650,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Library
 		}
 		UI 
 		{
@@ -660,6 +668,7 @@ Tiles
 		{
 			Level 8
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Building
@@ -672,7 +681,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab University
 		}
 		UI 
 		{
@@ -690,6 +699,7 @@ Tiles
 		{
 			Level 7
 			Weight 2
+			Starting 1
 			Terrain Flat
 			Terrain Hills
 			Tags Gardens
@@ -698,7 +708,7 @@ Tiles
 		}
 		Map 
 		{
-			Prefab Ruin
+			Prefab Garden
 		}
 		UI 
 		{

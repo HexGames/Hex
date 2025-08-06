@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpmb7l6lsj4v"]
+
+[ext_resource type="PackedScene" uid="uid://doafgp575tqjw" path="res://Assets/Map/HexKit/grass.fbx" id="1_ef5bt"]
+[ext_resource type="PackedScene" uid="uid://b5i5mnaovdyjc" path="res://Assets/Map/HexKit/unit-tree.fbx" id="2_rpoqf"]
+
+[node name="Mausoleum" instance=ExtResource("1_ef5bt")]
+
+[node name="unit-tree" parent="." index="0" instance=ExtResource("2_rpoqf")]
+transform = Transform3D(1, 0, 0, 0, 0.998856, 0.0478212, 0, -0.0478212, 0.998856, -0.239027, 0.186149, 0.217007)
+
+[node name="unit-tree2" parent="." index="2" instance=ExtResource("2_rpoqf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.239027, 0.186149, -0.266675)
+
+[node name="unit-tree3" parent="." index="3" instance=ExtResource("2_rpoqf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206829, 0.186149, -0.266675)
+
+[node name="unit-tree4" parent="." index="4" instance=ExtResource("2_rpoqf")]
+transform = Transform3D(1, 0, 0, 0, 0.998856, 0.0478212, 0, -0.0478212, 0.998856, 0.206829, 0.186149, 0.217007)

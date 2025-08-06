@@ -8,8 +8,9 @@ namespace Def
 
         public string ID = "";
 
-        public int Data_Level = 0; // unused for now
-        public int Data_Weight = 0; // unused for now
+        public int Data_Level = 0;
+        public int Data_Weight = 0;
+        public int Data_Starting = 0;
         public List<string> Data_Tags = new List<string>();
         // PlaceConditions
         // DraftConditions
@@ -32,6 +33,7 @@ namespace Def
             {
                 Data_Level = targetData.GetSubValueI("Data", "Level");
                 Data_Weight = targetData.GetSubValueI("Data", "Weight");
+                Data_Starting = targetData.GetSubValueI("Data", "Starting");
 
                 Data_Tags.Clear();
                 List<Save.Block> tagsData = targetData.GetSub("Data").GetSubs("Tags");

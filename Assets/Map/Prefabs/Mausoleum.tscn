@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://6fja14r0xlrf"]
+
+[ext_resource type="PackedScene" uid="uid://doafgp575tqjw" path="res://Assets/Map/HexKit/grass.fbx" id="1_yu2sp"]
+[ext_resource type="PackedScene" uid="uid://b4cwke0togkm8" path="res://Assets/Map/HexKit/unit-wall-tower.fbx" id="2_6kcwb"]
+
+[node name="Mausoleum" instance=ExtResource("1_yu2sp")]
+
+[node name="unit-wall-tower" parent="." index="0" instance=ExtResource("2_6kcwb")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.126617, 0)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxbx3014caao5"]
+
+[ext_resource type="PackedScene" uid="uid://bvd47o1gd5du5" path="res://Assets/Map/HexKit/building-market.fbx" id="1_i106h"]
+
+[node name="Market" instance=ExtResource("1_i106h")]

@@ -10,7 +10,7 @@ namespace Logic
             public static void AddStartingRes(Data.Player player)
             {
                 foreach (Def.Res resDef in Def.Lib.Res)
-                {
+                { 
                     Stockpile.AddResToStockpile(player.Stockpile, new Data.Res(resDef, resDef.Default));
                 }
             }
@@ -20,14 +20,11 @@ namespace Logic
             {
                 foreach (Def.Tile tileDef in Def.Lib.Tiles)
                 {
-                    if (tileDef.Data_Level == 1)
+                    for (int n = 0; n < tileDef.Data_Starting; n++)
                     {
                         decks.AddTile(tileDef);
                     }
                 }
-
-                // can aslo use:
-                // Turn.AddDeckCardsForLevel(decks, decks.Level);
             }
         }
     }

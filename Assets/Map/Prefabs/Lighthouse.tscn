@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxovjje062m87"]
+
+[ext_resource type="PackedScene" uid="uid://b0x5ixinjcpmw" path="res://Assets/Map/HexKit/water.fbx" id="1_ug1gu"]
+[ext_resource type="PackedScene" uid="uid://b4cwke0togkm8" path="res://Assets/Map/HexKit/unit-wall-tower.fbx" id="2_54q1j"]
+
+[node name="water" instance=ExtResource("1_ug1gu")]
+
+[node name="unit-wall-tower" parent="water" index="0" instance=ExtResource("2_54q1j")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.0673116, 0)

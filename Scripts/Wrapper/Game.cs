@@ -11,7 +11,8 @@ public static class Game
     public static int TurnNo => Instance != null ? Instance.TurnNo : -1;
 
     // Exposed methods
-    public static void SetDraftedTile(Data.Tile tile) => Instance?.SetDraftedTile(tile);
+    //public static void SetDraftedTile(Data.Tile tile) => Instance?.SetDraftedTile(tile);
+    public static void StartTurn() => Instance?.StartTurn();
     public static bool CheckPlayable(in Data.Tile tile, in Data.HexCoord coord) => Instance?.CheckPlayable(tile, coord) ?? false;
     public static void SimulatePlayTile(in Data.Tile tile, in Data.HexCoord coord) => Instance?.SimulatePlayTile(tile, coord);
     public static void PlayTile(in Data.Tile tile, in Data.HexCoord coord) => Instance?.PlayTile(tile, coord);

@@ -7,7 +7,7 @@ namespace Data
     {
         public enum State
         {
-            IN_DRAFT,
+            IN_NEXT,
             IN_PLAY
         };
 

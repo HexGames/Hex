@@ -13,6 +13,7 @@ public static class UI
     public static void TileInfo_RefreshEffects(Data.Tile tile) => Instance?.TileInfo.RefreshEffects(tile);
     public static void TileInfo_Refresh(bool show) => Instance?.TileInfo.Refresh(show);
     public static void Turn_Refresh(bool show) => Instance?.Turn.Refresh(show);
-    public static void WDraft_Refresh(bool show) => Instance?.Draft.Refresh(show);
+    public static void NextTiles_Refresh(bool show) => Instance?.NextTiles.Refresh(show);
+    //public static void WDraft_Refresh(bool show) => Instance?.Draft.Refresh(show);
     // Add more as needed...
 }

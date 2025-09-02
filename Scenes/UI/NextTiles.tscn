@@ -1,0 +1,310 @@
+[gd_scene load_steps=10 format=3 uid="uid://f5ubdigheanb"]
+
+[ext_resource type="Script" uid="uid://7q7ti8si5g6f" path="res://Scripts/_UI/HUD/NextTile/UINextTiles.cs" id="1_fhios"]
+[ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
+[ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="3_ifsaa"]
+[ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_ukdo0"]
+[ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/_Base/UIAnims/AnimButton.cs" id="5_amitg"]
+[ext_resource type="Texture2D" uid="uid://bhsvghvmob0t3" path="res://Assets/Button/shadow.png" id="6_oxjkp"]
+[ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="7_6a3g4"]
+[ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="8_vlw24"]
+[ext_resource type="PackedScene" uid="uid://dupgwvkvalyan" path="res://Scenes/UI/NextTiles_Item.tscn" id="9_qh4ya"]
+
+[node name="NextTilesUI" type="Control" node_paths=PackedStringArray("NextTiles")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fhios")
+NextTiles = [NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/Choice_0"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/Choice_1"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/Choice_2")]
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -16.0
+grow_vertical = 0
+script = ExtResource("2_tkfwc")
+EntryAnimation = 1
+
+[node name="BG" type="ColorRect" parent="Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.129412, 0.2, 0.215686, 0.878431)
+
+[node name="Border" type="NinePatchRect" parent="Panel"]
+self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_ifsaa")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+
+[node name="Deck" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("2_tkfwc")
+EntryAnimation = 1
+
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+layout_mode = 2
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[center][b]Remaining
+Tiles[/b][/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_ukdo0")
+
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Button" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer" node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("5_amitg")
+HoverOverlays = [null]
+PressedOverlays = [null]
+ActionOverlays = [null]
+Offset = NodePath("BtnOffset")
+
+[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_oxjkp")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_6a3g4")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/BtnPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34902, 0.196078, 0.184314, 1)
+
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/BtnPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.8, 0, 0.25098)
+
+[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/BtnPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_vlw24")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/BtnBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/BtnBorder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 0.8, 0, 1)
+
+[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RemainingTitles" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/Content"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]$v[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_ukdo0")
+
+[node name="Gap_0" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/Content"]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title2" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/HBoxContainer/Button/BtnOffset/Content"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]$name[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_ukdo0")
+
+[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Gap1" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="Next" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("2_tkfwc")
+EntryAnimation = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[left][b]Next Tiles[/b][/left]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_ukdo0")
+
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Choice_0" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" instance=ExtResource("9_qh4ya")]
+layout_mode = 2
+
+[node name="Choice_1" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" instance=ExtResource("9_qh4ya")]
+layout_mode = 2
+
+[node name="Choice_2" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" instance=ExtResource("9_qh4ya")]
+layout_mode = 2
+
+[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2

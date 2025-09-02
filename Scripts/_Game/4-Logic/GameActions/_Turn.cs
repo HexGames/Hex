@@ -28,13 +28,29 @@ namespace Logic
             //}
 
             // -----------------------------------------------------------------------------------------
-            public static void RefreshDraftTiles(Data.Decks decks, Data.Player player)
+            //public static void RefreshDraftTiles(Data.Decks decks, Data.Player player)
+            //{
+            //    player.DraftTiles.Clear();
+            //    for (int n = 0; n < player.DraftTilesCount; n++)
+            //    {
+            //        Def.Tile tileDef = decks.GetRandomTile();
+            //        player.DraftTiles.Add(new Data.Tile(tileDef, Data.Tile.State.IN_DRAFT));
+            //    }
+            //}
+
+            // -----------------------------------------------------------------------------------------
+            public static void SetNextTileAsCurrentTile(Data.Player player)
             {
-                player.DraftTiles.Clear();
-                for (int n = 0; n < player.DraftTilesCount; n++)
+                player.CurrentTile = player.NextTiles[0];
+            }
+
+            // -----------------------------------------------------------------------------------------
+            public static void PutNewTilesIntoNextQueue(Data.Decks decks, Data.Player player)
+            {
+                while (player.NextTiles.Count < player.NextTilesCount)
                 {
                     Def.Tile tileDef = decks.GetRandomTile();
-                    player.DraftTiles.Add(new Data.Tile(tileDef, Data.Tile.State.IN_DRAFT));
+                    player.NextTiles.Add(new Data.Tile(tileDef, Data.Tile.State.IN_NEXT));
                 }
             }
         }

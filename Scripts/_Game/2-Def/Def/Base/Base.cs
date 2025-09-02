@@ -6,6 +6,6 @@ namespace Def
         public readonly static int GoalStart = 20;
         public readonly static int GoalMultiplierPerc = 50; // 50%
         public readonly static string GoldResID = "Gold";
-        public readonly static int DefaultDraftTiles = 3;
+        public readonly static int DefaultNextTilesCount = 3;
     }
 }

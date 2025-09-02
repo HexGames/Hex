@@ -7,15 +7,15 @@ namespace Data
     {
         public readonly List<Res> Stockpile = new List<Res>();
         public readonly List<Res> Income = new List<Res>();
-        public readonly List<Tile> DraftTiles = new List<Tile>();
-        public Tile DraftedTile = null;
-        public HexCoord DraftedTileHoverCoords = HexCoord.Invalid;
-        public readonly List<Effect> DraftedTileHoverEffects = new List<Effect>();
-        public int DraftTilesCount = 0;
+        public readonly List<Tile> NextTiles = new List<Tile>();
+        public Tile CurrentTile = null;
+        public HexCoord CurrentTileHoverCoords = HexCoord.Invalid;
+        public readonly List<Effect> CurrentTileHoverEffects = new List<Effect>();
+        public int NextTilesCount = 0;
 
         public Player()
         {
-            DraftTilesCount = Def.Base.DefaultDraftTiles;
+            NextTilesCount = Def.Base.DefaultNextTilesCount;
         }
 
         // --------------------------------------------------------------------------------------------------------------

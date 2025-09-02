@@ -16,7 +16,9 @@ namespace GodotUI
         [Export]
         public UITileInfo TileInfo;
         [Export]
-        public UIDraft Draft;
+        public UINextTiles NextTiles;
+        //[Export]
+        //public UIDraft Draft;
         [Export]
         public UIResources Resoruces;
         [Export]
@@ -37,7 +39,8 @@ namespace GodotUI
             Resoruces.Visible = false;
             Turn.Visible = false;
             TileInfo.Visible = false;
-            Draft.Visible = false;
+            NextTiles.Visible = false;
+            //Draft.Visible = false;
             //WEvent.Visible = false;
             WVictory.Visible = false;
 

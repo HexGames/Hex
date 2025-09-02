@@ -122,9 +122,9 @@ namespace Logic
             }
 
             // -----------------------------------------------------------------------------------------
-            public static void MoveTileToInPlay(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoord coords)
+            public static void MoveTileInPlay(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoord coords)
             {
-                player.DraftTiles.Remove(tile);
+                player.NextTiles.Remove(tile);
                 tile.Status = Data.Tile.State.IN_PLAY;
 
                 for (int idx = 0; idx < tile.Effects.Count; idx++)

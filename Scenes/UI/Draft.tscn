@@ -121,7 +121,3 @@ layout_mode = 2
 [node name="Gap3" type="Control" parent="Panel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-
-[connection signal="LeftClick" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Choice_0" to="." method="OnDraft" binds= [0]]
-[connection signal="LeftClick" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Choice_1" to="." method="OnDraft" binds= [1]]
-[connection signal="LeftClick" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Choice_2" to="." method="OnDraft" binds= [2]]

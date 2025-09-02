@@ -28,10 +28,10 @@ namespace Logic
         }
 
         // ------------------------------------------------------------------------------------------
-        public void SetDraftedTile(Data.Tile tile)
-        {
-            Player.DraftedTile = tile;
-        }
+        //public void SetDraftedTile(Data.Tile tile)
+        //{
+        //    Player.DraftedTile = tile;
+        //}
 
         // ------------------------------------------------------------------------------------------
         public bool CheckPlayable(Data.Tile tile, Data.HexCoord coord)
@@ -50,7 +50,7 @@ namespace Logic
         {
             Play.CalculateOnPlayBenefits(this, tile, coord);
             Play.RemoveTile(Map, coord);
-            Play.MoveTileToInPlay(Player, Map, tile, coord);
+            Play.MoveTileInPlay(Player, Map, tile, coord);
             Play.GainBenefits(Player, tile.Benefits);
             Play.CalculateAllTilesPerTurnBenefits(this);
             //Play.CalculateGoalProgress(Player);
@@ -60,8 +60,6 @@ namespace Logic
         public void EndTurn()
         {
             TurnNo++;
-
-            StartTurn();
         }
 
         // ------------------------------------------------------------------------------------------
@@ -70,10 +68,11 @@ namespace Logic
         }
 
         // ------------------------------------------------------------------------------------------
-        private void StartTurn()
+        public void StartTurn()
         {
             Turn.GainAllBenefits(Player, Map);
-            Turn.RefreshDraftTiles(Decks, Player);
+            Turn.PutNewTilesIntoNextQueue(Decks, Player);
+            Turn.SetNextTileAsCurrentTile(Player);
         }
     }
 }

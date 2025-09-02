@@ -11,6 +11,7 @@ namespace Def
         public int Data_Level = 0;
         public int Data_Weight = 0;
         public int Data_Starting = 0;
+        public List<string> Data_Terrain = new List<string>();
         public List<string> Data_Tags = new List<string>();
         // PlaceConditions
         // DraftConditions

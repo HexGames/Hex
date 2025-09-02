@@ -14,8 +14,6 @@ public static partial class Actions
         Game.StartGame();
 
         Map.Refresh();
-        UI.Resources_Refresh(Game.Player.Stockpile, Game.Player.Income);
-
         OnStartTurn();
     }
 
@@ -36,27 +34,27 @@ public static partial class Actions
     //}
 
     // --------------------------------------------------------------------------------------------------- DRAFT
-    public static void OnDraft(Data.Tile tile)
-    {
-        HideDraftWindow();
-
-        Game.SetDraftedTile(tile);
-
-        Map.InitCursorTile(Game.Player.DraftedTile);
-
-        UI.Resources_Refresh(Game.Player.Stockpile, Game.Player.Income);
-    }
+    //public static void OnDraft(Data.Tile tile)
+    //{
+    //    HideDraftWindow();
+    //
+    //    Game.SetDraftedTile(tile);
+    //
+    //    Map.InitCursorTile(Game.Player.DraftedTile);
+    //
+    //    UI.Resources_Refresh(Game.Player.Stockpile, Game.Player.Income);
+    //}
 
     // --------------------------------------------------------------------------------------------------- Hover
-    public static void OnHoverDraftedTile(Data.HexCoord coord)
+    public static void OnHoverCurrentTile(Data.HexCoord coord)
     {
-        Data.Tile tile = Game.Player.DraftedTile; 
-
+        Data.Tile tile = Game.Player.CurrentTile; 
+    
         bool playable = Game.CheckPlayable(tile, coord);
         if (playable == true)
         {
            Game.SimulatePlayTile(tile, coord);
-
+    
             UI.TileInfo_RefreshBenefits(tile);
         }
         else
@@ -67,15 +65,15 @@ public static partial class Actions
 
     public static void OnHoverOffMap()
     {
-        Data.Tile tile = Game.Player.DraftedTile;
+        Data.Tile tile = Game.Player.CurrentTile;
 
         UI.TileInfo_RefreshEffects(tile);
     }
 
     // --------------------------------------------------------------------------------------------------- Play
-    public static void OnPlayDraftedTile(Data.HexCoord coord)
+    public static void OnPlayCurrentTile(Data.HexCoord coord)
     {
-        Data.Tile tile = Game.Player.DraftedTile;
+        Data.Tile tile = Game.Player.CurrentTile;
 
         bool playable = Game.CheckPlayable(tile, coord);
         if (playable == true)
@@ -141,26 +139,28 @@ public static partial class Actions
     {
         UI.Resources_Refresh(Game.Player.Stockpile, Game.Player.Income);
 
-        ShowDraftWindow();
+        Game.StartTurn();
+        Map.InitCursorTile(Game.Player.CurrentTile);
+        UI.NextTiles_Refresh(true);
 
         Debug.Log($"OnStartTurn {Game.TurnNo}");
     }
 
     // ---------------------------------------------------------------------------------------------------
     //public static bool IsDraftWindowShown = false;
-    public static void ShowDraftWindow()
-    {
-        UI.Turn_Refresh(false);
-
-        UI.WDraft_Refresh(true);
-
-        //IsDraftWindowShown = false;
-    }
-
-    public static void HideDraftWindow()
-    {
-        UI.WDraft_Refresh(false);
-
-        //UI.Turn_Refresh(true);
-    }
+    //public static void ShowDraftWindow()
+    //{
+    //    UI.Turn_Refresh(false);
+    //
+    //    UI.WDraft_Refresh(true);
+    //
+    //    //IsDraftWindowShown = false;
+    //}
+    //
+    //public static void HideDraftWindow()
+    //{
+    //    UI.WDraft_Refresh(false);
+    //
+    //    //UI.Turn_Refresh(true);
+    //}
 }

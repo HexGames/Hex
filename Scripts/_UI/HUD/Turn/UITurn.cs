@@ -37,9 +37,9 @@ namespace GodotUI
             Actions.OnEndTurn();
         }
 
-        public void OnDraftWindow()
-        {
-            Actions.ShowDraftWindow();
-        }
+        //public void OnDraftWindow()
+        //{
+        //    Actions.ShowDraftWindow();
+        //}
     }
 }

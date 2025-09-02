@@ -74,7 +74,7 @@ namespace Godot3D
 
                 if (_LastHexCoord != hexCoord)
                 {
-                    Actions.OnHoverDraftedTile(hexCoord);
+                    Actions.OnHoverCurrentTile(hexCoord);
                     _LastHexCoord = hexCoord;
                 }
             }
@@ -106,7 +106,7 @@ namespace Godot3D
 
         private void OnLeftClick()
         {
-            Actions.OnPlayDraftedTile(_LastHexCoord);
+            Actions.OnPlayCurrentTile(_LastHexCoord);
         }
     }
 }

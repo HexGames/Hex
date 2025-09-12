@@ -10,23 +10,29 @@ namespace Data
         private readonly List<Tile> _tilesInPlay = new List<Tile>();
         public ReadOnlyCollection<Tile> TilesInPlay => _tilesInPlay.AsReadOnly();
 
-        public Map(Def.Tile tileDef)
+        public Map(List<Def.Tile> tileDefs)
         {
-            // Generate hex grid with 3 rings (radius 3, center at 0,0)
+            int defIdx = 0;
             for (int x = -3; x <= 3; x++)
             {
                 for (int y = Math.Max(-3, -x - 3); y <= Math.Min(3, -x + 3); y++)
                 {
                     var coord = new HexCoord(x, y);
-                    if (HexCoord.Distance(coord, new HexCoord(0, 0)) <= 3)
+                    if (Data.HexCoord.Distance(coord, new HexCoord(0, 0)) <= 3)
                     {
-                        var tile = new Tile(tileDef, Tile.State.IN_PLAY);
+                        var tile = new Tile(tileDefs[defIdx], Tile.State.IN_PLAY);
+                        defIdx++;
                         // Initialize list for each coord
-                        _hexTiles[coord] = new List<Tile> { tile };
+                        _hexTiles[coord] = new List<Data.Tile> { tile };
                         _tilesInPlay.Add(tile);
                     }
                 }
             }
+        }
+
+        public void SetMapTiles(List<Tile> tiles)
+        {
+            _tilesInPlay.Clear();
         }
 
         // --------------------------------------------------------------------------------------------------------------

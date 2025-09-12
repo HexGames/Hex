@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Logic
@@ -6,6 +7,58 @@ namespace Logic
     {
         private static class Start
         {
+            // -----------------------------------------------------------------------------------------
+            public static List<Def.Tile> GenerateMap()
+            {
+                List<Def.Tile> tiles = new List<Def.Tile>();
+
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Water"));
+
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Water"));
+
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+
+                tiles.Add(Def.Lib.GetTile("Water"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Mountain"));
+                tiles.Add(Def.Lib.GetTile("Mountain"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Mountain"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+                tiles.Add(Def.Lib.GetTile("Forest"));
+                tiles.Add(Def.Lib.GetTile("Grass"));
+
+                return tiles;
+            }
+            
             // -----------------------------------------------------------------------------------------
             public static void AddStartingRes(Data.Player player)
             {

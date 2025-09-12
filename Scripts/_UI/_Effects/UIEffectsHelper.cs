@@ -34,12 +34,12 @@ namespace GodotUI
         }
 
         private static readonly Dictionary<string, System.Reflection.MethodInfo> _methodCache = new();
-        public static string GetDescription(Data.Effect effect)
+        public static string GetDescription(Def.Var effect)
         {
-            if (effect.EffectID == "Execute" || effect.EffectID == "GetDescription")
+            /*if (effect.EffectID == "Execute" || effect.EffectID == "GetDescription")
                 return null;
 
-            string[] paramArray = effect.EffectParam.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string[] paramArray = new string[1] {""}; // TO DO effect.EffectParam.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             int paramIdx = 0;
 
             bool foundCachedMethod = _methodCache.TryGetValue(effect.EffectID, out var method);
@@ -57,19 +57,20 @@ namespace GodotUI
                 for (int i = 0; i < parameters.Length; i++)
                 {
                     var p = parameters[i];
-                    if (p.ParameterType == typeof(Def.Res))
-                        args[i] = effect.Res;
-                    else if (p.ParameterType == typeof(Def.Timing))
+                    //if (p.ParameterType == typeof(Def.Res))
+                    //    args[i] = effect.Res;
+                    //else
+                    if (p.ParameterType == typeof(Def.Timing))
                         args[i] = effect.EffectTiming;
                     else if (p.ParameterType == typeof(string))
                         args[i] = paramArray[paramIdx++];
-                    else if (p.ParameterType == typeof(int))
-                        args[i] = effect.Value;
+                    //else if (p.ParameterType == typeof(int))
+                    //    args[i] = effect.Value;
                     else
                         args[i] = null;
                 }
                 return (string)method.Invoke(null, args);
-            }
+            }*/
 
             return null;
         }

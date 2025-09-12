@@ -16,7 +16,7 @@ namespace Logic
         {
             Decks = new Data.Decks();
             Player = new Data.Player();
-            Map = new Data.Map(Def.Lib.Tiles[0]);
+            Map = new Data.Map(Start.GenerateMap());
 
             TurnNo = 0;
             Finished = false;

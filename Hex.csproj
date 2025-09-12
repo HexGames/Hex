@@ -3,4 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\_Game\4-Logic\NewFolder\" />
+  </ItemGroup>
 </Project>

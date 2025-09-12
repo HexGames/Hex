@@ -26,6 +26,8 @@ namespace GodotUI
         [Export]
         public UIVictory WVictory;
         [Export]
+        public UIInWorld InWorld;
+        [Export]
         public UIText DebugText;
 
         [ExportCategory("Overlays")]

@@ -13,8 +13,8 @@ namespace GodotUI
 
         public override void _Ready()
         {
-            _Camera = GetNode<Camera3D>("Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/Camera3D");
-            _PrefabParent = GetNode<Node3D>("Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent");
+            _Camera = GetNode<Camera3D>("Content/SubViewportContainer/SubViewport/Node3D/Camera3D");
+            _PrefabParent = GetNode<Node3D>("Content/SubViewportContainer/SubViewport/Node3D/HexParent");
 
             // clear 3d
             foreach (Node node in _PrefabParent.GetChildren())

@@ -10,7 +10,8 @@ namespace Godot3D
             float z = Base.HEX_RADIUS * 3.0f / 2.0f * coords.Y;
             return new Vector3(x, 0, z);
         }
-        public static Data.HexCoord FromWorldXZ(Vector3 position)
+
+        public static Data.HexCoord WorldToHexCoord(Vector3 position)
         {
             float x = position.X;
             float z = position.Z;
@@ -41,6 +42,11 @@ namespace Godot3D
 
             // Return as axial (q, r) = (rx, ry)
             return new Data.HexCoord(rx, ry);
+        }
+
+        public static Vector2 WorldToScreen(Vector3 worldPos)
+        {
+            return Main.x.MapInstance.GetViewport().GetCamera3D().UnprojectPosition(worldPos);
         }
     }
 }

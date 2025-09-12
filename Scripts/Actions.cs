@@ -15,6 +15,14 @@ public static partial class Actions
 
         Map.Refresh();
         OnStartTurn();
+
+        Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoord(0, 0), new Data.HexCoord(0, 1));
+        Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoord(2, 0), new Data.HexCoord(2, -1));
+        Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoord(2, 0), new Data.HexCoord(1, 0));
+
+        UI.TileInfos.AddTileInfo(new Data.HexCoord(0, 0), "+2");
+        UI.TileInfos.AddTileInfo(new Data.HexCoord(2, 0), "+2");
+        UI.TileInfos.AddTileInfo(new Data.HexCoord(3, -1), "x2");
     }
 
     public static void OnEndRun()
@@ -46,24 +54,22 @@ public static partial class Actions
     //}
 
     // --------------------------------------------------------------------------------------------------- Hover
-    public static void OnHoverCurrentTile(Data.HexCoord coord)
+    public static bool IsHoverValid(Data.HexCoord coord)
     {
-        Data.Tile tile = Game.Player.CurrentTile; 
-    
-        bool playable = Game.CheckPlayable(tile, coord);
-        if (playable == true)
-        {
-           Game.SimulatePlayTile(tile, coord);
-    
-            UI.TileInfo_RefreshBenefits(tile);
-        }
-        else
-        {
-            UI.TileInfo_RefreshEffects(tile);
-        }
+        Data.Tile tile = Game.Player.CurrentTile;
+        return Game.CheckPlayable(tile, coord);
     }
 
-    public static void OnHoverOffMap()
+    public static void OnHoverCurrentTile(Data.HexCoord coord)
+    {
+        Data.Tile tile = Game.Player.CurrentTile;
+
+        Game.SimulatePlayTile(tile, coord);
+
+        UI.TileInfo_RefreshBenefits(tile);
+    }
+
+    public static void OnHoverInvalid()
     {
         Data.Tile tile = Game.Player.CurrentTile;
 

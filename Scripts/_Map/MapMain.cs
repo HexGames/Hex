@@ -6,6 +6,8 @@ namespace Godot3D
     public partial class MapMain : Node3D
     {
         [Export]
+        public WorldUI WorldUI;
+        [Export]
         private CursorTile _TileCursor;
         [Export]
         private BenefitPopUp benefitPopUpPrototype;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,5 +44,9 @@ namespace Data
             };
 
         public static HexCoord Invalid => new HexCoord(-5, -5);
+
+        public override string ToString() => $"({X}, {Y})";
+
+
     }
 }

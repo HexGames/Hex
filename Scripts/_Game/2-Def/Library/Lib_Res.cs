@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -44,6 +45,20 @@ namespace Def
             }
             return null;
         }
+
+        public static Res GetRes(ReadOnlySpan<char> id)
+        {
+            foreach (Res res in _Res)
+            {
+                if (id.SequenceEqual(res.ID.AsSpan()) == true)
+                {
+                    return res;
+                }
+            }
+            return null;
+        }
+
+
 
         private static void SaveResDef()
         {

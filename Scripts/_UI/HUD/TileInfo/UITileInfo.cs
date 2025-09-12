@@ -65,34 +65,34 @@ namespace GodotUI
             text_Instant.Title += "Instant";
             foreach (Data.Benefit benefit in benefits)
             {
-                if (benefit.BenefitTiming == Def.Timing.OnPlaceSelf)
+                if (benefit.BenefitTiming == Def.Timing.OnPlace)
                 {
                     text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + "\n";
                 }
             }
-            foreach (Data.Benefit benefit in benefits)
-            {
-                if (benefit.BenefitTiming == Def.Timing.OnPlaceOther)
-                {
-                    
-                    text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + " from " + map.GetTile(benefit.HexCoord).Def.UI_Title + "\n";
-                }
-            }
-            foreach (Data.Benefit benefit in benefits)
-            {
-                if (benefit.BenefitTiming == Def.Timing.OnDestroySelf)
-                {
-                    text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + "\n";
-                }
-            }
-            foreach (Data.Benefit benefit in benefits)
-            {
-                if (benefit.BenefitTiming == Def.Timing.OnDestroyOther)
-                {
-
-                    text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + " from " + map.GetTile(benefit.HexCoord).Def.UI_Title + "\n";
-                }
-            }
+            //foreach (Data.Benefit benefit in benefits)
+            //{
+            //    if (benefit.BenefitTiming == Def.Timing.OnPlaceOther)
+            //    {
+            //        
+            //        text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + " from " + map.GetTile(benefit.HexCoord).Def.UI_Title + "\n";
+            //    }
+            //}
+            //foreach (Data.Benefit benefit in benefits)
+            //{
+            //    if (benefit.BenefitTiming == Def.Timing.OnDestroySelf)
+            //    {
+            //        text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + "\n";
+            //    }
+            //}
+            //foreach (Data.Benefit benefit in benefits)
+            //{
+            //    if (benefit.BenefitTiming == Def.Timing.OnDestroyOther)
+            //    {
+            //
+            //        text_Instant.Description += UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true) + " from " + map.GetTile(benefit.HexCoord).Def.UI_Title + "\n";
+            //    }
+            //}
             if (text_Instant.Description.Length > 0) toInfoTexts.Add(text_Instant);
 
             UIInfoSection.Texts text_EachTurn = new UIInfoSection.Texts();
@@ -108,64 +108,66 @@ namespace GodotUI
         }
 
         /// toInfoTexts will be cleared
-        public static void GetTextsForEffects(List<Data.Effect> effects, List<UIInfoSection.Texts> toInfoTexts)
+        public static void GetTextsForEffects(List<Def.Var> effects, List<UIInfoSection.Texts> toInfoTexts)
         {
             toInfoTexts.Clear();
 
             UIInfoSection.Texts text_OnPlace = new UIInfoSection.Texts();
             text_OnPlace.Title += "On Place";
-            foreach (Data.Effect effect in effects)
+            foreach (Def.Var effect in effects)
             {
-                if (effect.EffectTiming == Def.Timing.OnPlaceSelf)
+                Def.Timing timing = Logic.Effects.GetTiming(effect);
+                if (timing == Def.Timing.OnPlace)
                 {
                     text_OnPlace.Description += UIEffectsHelper.GetDescription(effect);
                 }
             }
             if (text_OnPlace.Description.Length > 0) toInfoTexts.Add(text_OnPlace);
 
-            UIInfoSection.Texts text_OnPlaceOther = new UIInfoSection.Texts();
-            text_OnPlaceOther.Title += "On Place other Tile";
-            foreach (Data.Effect effect in effects)
-            {
-                if (effect.EffectTiming == Def.Timing.OnPlaceOther)
-                {
-                    text_OnPlaceOther.Description += UIEffectsHelper.GetDescription(effect);
-                }
-            }
-            if (text_OnPlaceOther.Description.Length > 0) toInfoTexts.Add(text_OnPlaceOther);
+            //UIInfoSection.Texts text_OnPlaceOther = new UIInfoSection.Texts();
+            //text_OnPlaceOther.Title += "On Place other Tile";
+            //foreach (Data.Effect effect in effects)
+            //{
+            //    if (effect.EffectTiming == Def.Timing.OnPlaceOther)
+            //    {
+            //        text_OnPlaceOther.Description += UIEffectsHelper.GetDescription(effect);
+            //    }
+            //}
+            //if (text_OnPlaceOther.Description.Length > 0) toInfoTexts.Add(text_OnPlaceOther);
 
             UIInfoSection.Texts text_PerTurn = new UIInfoSection.Texts();
             text_PerTurn.Title += "Per Turn";
-            foreach (Data.Effect effect in effects)
+            foreach (Def.Var effect in effects)
             {
-                if (effect.EffectTiming == Def.Timing.PerTurn)
+                Def.Timing timing = Logic.Effects.GetTiming(effect);
+                if (timing == Def.Timing.PerTurn)
                 {
                     text_PerTurn.Description += UIEffectsHelper.GetDescription(effect);
                 }
             }
             if (text_PerTurn.Description.Length > 0) toInfoTexts.Add(text_PerTurn);
 
-            UIInfoSection.Texts text_OnDestroy = new UIInfoSection.Texts();
-            text_OnDestroy.Title += "On Destroy";
-            foreach (Data.Effect effect in effects)
-            {
-                if (effect.EffectTiming == Def.Timing.OnDestroySelf)
-                {
-                    text_OnDestroy.Description += UIEffectsHelper.GetDescription(effect);
-                }
-            }
-            if (text_OnDestroy.Description.Length > 0) toInfoTexts.Add(text_OnDestroy);
-
-            UIInfoSection.Texts text_OnDestroyOther = new UIInfoSection.Texts();
-            text_OnDestroyOther.Title += "On Destroy other Tile";
-            foreach (Data.Effect effect in effects)
-            {
-                if (effect.EffectTiming == Def.Timing.OnDestroyOther)
-                {
-                    text_OnDestroyOther.Description += UIEffectsHelper.GetDescription(effect);
-                }
-            }
-            if (text_OnDestroyOther.Description.Length > 0) toInfoTexts.Add(text_OnDestroyOther);
+            //UIInfoSection.Texts text_OnDestroy = new UIInfoSection.Texts();
+            //text_OnDestroy.Title += "On Destroy";
+            //foreach (Data.Effect effect in effects)
+            //{
+            //    if (effect.EffectTiming == Def.Timing.OnDestroySelf)
+            //    {
+            //        text_OnDestroy.Description += UIEffectsHelper.GetDescription(effect);
+            //    }
+            //}
+            //if (text_OnDestroy.Description.Length > 0) toInfoTexts.Add(text_OnDestroy);
+            //
+            //UIInfoSection.Texts text_OnDestroyOther = new UIInfoSection.Texts();
+            //text_OnDestroyOther.Title += "On Destroy other Tile";
+            //foreach (Data.Effect effect in effects)
+            //{
+            //    if (effect.EffectTiming == Def.Timing.OnDestroyOther)
+            //    {
+            //        text_OnDestroyOther.Description += UIEffectsHelper.GetDescription(effect);
+            //    }
+            //}
+            //if (text_OnDestroyOther.Description.Length > 0) toInfoTexts.Add(text_OnDestroyOther);
         }
     }
 }

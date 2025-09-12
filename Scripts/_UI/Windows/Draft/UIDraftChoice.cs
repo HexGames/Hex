@@ -70,7 +70,7 @@ namespace GodotUI
             }
 
             // add effects info
-            UITileInfo.GetTextsForEffects(tile.Effects, _TitlesAndDescriptions);
+            //UITileInfo.GetTextsForEffects(tile.Effects, _TitlesAndDescriptions);
             _InfoSection.SetTexts(_TitlesAndDescriptions);
         }
 

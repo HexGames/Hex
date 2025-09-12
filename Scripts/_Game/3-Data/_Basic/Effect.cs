@@ -2,31 +2,28 @@
 {
     public class Effect
     {
-        public Def.Res Res = null;
-        public int Value = 0;
         public Def.Timing EffectTiming = Def.Timing.PerTurn;
-        public string EffectID = "";
-        public string EffectParam = "";
 
-        public Effect(Def.VarEffect defVar) 
+        public Effect(Def.Var defEffect)
         {
-            Res = defVar.Res;
-            Value = defVar.Value;
-            EffectID = defVar.EffectID;
-            EffectParam = defVar.EffectParam;
-            switch (defVar.EffectTiming)
+            string timing = defEffect.GetString(0);
+            switch (timing)
             {
+                case "Always":
+                    EffectTiming = Def.Timing.Always; break;
                 case "PerTurn":
                     EffectTiming = Def.Timing.PerTurn; break;
-                case "OnDestroySelf":
-                    EffectTiming = Def.Timing.OnDestroySelf; break;
-                case "OnDestroyOther":
-                    EffectTiming = Def.Timing.OnDestroyOther; break;
-                case "OnPlaceOther":
-                    EffectTiming = Def.Timing.OnPlaceOther; break;
-                case "OnPlaceSelf":
+                case "OnLevelUp":
+                    EffectTiming = Def.Timing.OnLevelUp; break;
+                //case "OnDestroySelf":
+                //    EffectTiming = Def.Timing.OnDestroySelf; break;
+                //case "OnDestroyOther":
+                //    EffectTiming = Def.Timing.OnDestroyOther; break;
+                //case "OnPlaceOther":
+                //    EffectTiming = Def.Timing.OnPlaceOther; break;
+                case "OnPlace":
                 default:
-                    EffectTiming = Def.Timing.OnPlaceSelf; break;
+                    EffectTiming = Def.Timing.OnPlace; break;
             }
         }
     }

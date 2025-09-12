@@ -14,19 +14,19 @@ namespace Data
         public Def.Tile Def;
         public State Status;
 
-        public readonly List<Effect> Effects;
+        public readonly List<Def.Var> Effects;
         public readonly List<Benefit> Benefits;
 
         public Tile(Def.Tile def, State state)
         {
             Def = def;
             Status = state;
-            Effects = new List<Effect>();
+            Effects = new List<Def.Var>();
             Benefits = new List<Benefit>();
 
             for (int idx = 0; idx < Def.Data_Effects.Count; idx++)
             {
-                Effects.Add(new Effect(Def.Data_Effects[idx]));
+                Effects.Add(Def.Data_Effects[idx].Clone());
             }
         }
     }

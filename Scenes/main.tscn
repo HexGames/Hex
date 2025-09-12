@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=89 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -79,7 +79,15 @@
 [ext_resource type="PackedScene" uid="uid://cy04tkuafexhs" path="res://Scenes/UI/turn.tscn" id="55_e5peh"]
 [ext_resource type="PackedScene" uid="uid://hgnollckll75" path="res://Scenes/UI/TileInfo.tscn" id="55_qax2n"]
 [ext_resource type="Script" uid="uid://bdirxous68e33" path="res://Scripts/_Map/BenefitPopUp.cs" id="56_6ml46"]
+[ext_resource type="ArrayMesh" uid="uid://brxb6kuqj8u3u" path="res://Assets/3DGUI/Hover.res" id="68_tab3y"]
+[ext_resource type="PackedScene" uid="uid://c6htmi5gtw8kj" path="res://Assets/3DGUI/Arrow.tscn" id="69_1tvlp"]
+[ext_resource type="Script" uid="uid://dd8qxdepl25bu" path="res://Scripts/_Map/WorldUI/WUIArrowsPool.cs" id="70_ihvwq"]
+[ext_resource type="Script" uid="uid://owufqjb0ra1a" path="res://Scripts/_Map/WorldUI/WUIArrow.cs" id="71_k8rh3"]
 [ext_resource type="PackedScene" uid="uid://f5ubdigheanb" path="res://Scenes/UI/NextTiles.tscn" id="74_qnggo"]
+[ext_resource type="Script" uid="uid://bdgagiwrlnukm" path="res://Scripts/_Map/WorldUI/WorldUI.cs" id="83_55idt"]
+[ext_resource type="Script" uid="uid://b0qd30yehw6bj" path="res://Scripts/_UI/WorldUI/UIInWorld.cs" id="83_87bhu"]
+[ext_resource type="Script" uid="uid://cf1kyeb7cqd1t" path="res://Scripts/_UI/WorldUI/UIWTileInfosPool.cs" id="84_33qc4"]
+[ext_resource type="Script" uid="uid://ds1r1l633forr" path="res://Scripts/_UI/WorldUI/UIWTileInfo.cs" id="85_e6rcu"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("Assets", "MapInstance", "UIInstance")]
 script = ExtResource("2_v2nl5")
@@ -159,14 +167,15 @@ TexturesIcons = Dictionary[String, Texture2D]({
 "Worker_Busy.png": ExtResource("40_55idt")
 })
 
-[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_TileCursor", "benefitPopUpPrototype")]
+[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("WorldUI", "_TileCursor", "benefitPopUpPrototype")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0690838, 0)
 script = ExtResource("41_54nrm")
+WorldUI = NodePath("Origin/WorldUI")
 _TileCursor = NodePath("Origin/CursorOrigin/Cursor")
 benefitPopUpPrototype = NodePath("../UI/PopUps/BenefitPopUp_0")
 
 [node name="Camera3D" type="Camera3D" parent="3D"]
-transform = Transform3D(0.707107, 0.640856, -0.298836, 0, 0.422618, 0.906308, 0.707107, -0.640856, 0.298836, -5, 15, 5)
+transform = Transform3D(0.707107, 0.640856, -0.298836, 0, 0.422618, 0.906308, 0.707107, -0.640856, 0.298836, -5.5, 15, 5.5)
 cull_mask = 1
 fov = 30.0
 far = 250.0
@@ -178,13 +187,32 @@ far = 250.0
 [node name="Cursor" type="Node3D" parent="3D/Origin/CursorOrigin"]
 script = ExtResource("47_2060n")
 
+[node name="HoveredHex" type="MeshInstance3D" parent="3D/Origin/CursorOrigin/Cursor"]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0.25, 0)
+mesh = ExtResource("68_tab3y")
+skeleton = NodePath("")
+
+[node name="WorldUI" type="Node3D" parent="3D/Origin" node_paths=PackedStringArray("ArrowsPool")]
+script = ExtResource("83_55idt")
+ArrowsPool = NodePath("Arrows")
+
+[node name="Arrows" type="Node3D" parent="3D/Origin/WorldUI" node_paths=PackedStringArray("_arrowPrototype")]
+script = ExtResource("70_ihvwq")
+_arrowPrototype = NodePath("Arrow_0")
+
+[node name="Arrow_0" type="Node3D" parent="3D/Origin/WorldUI/Arrows"]
+script = ExtResource("71_k8rh3")
+
+[node name="ArrowModel" parent="3D/Origin/WorldUI/Arrows/Arrow_0" instance=ExtResource("69_1tvlp")]
+transform = Transform3D(2.08616e-07, 0, -1, 0, 1, 0, 1, 0, 2.08616e-07, -1.19209e-07, 0.225, -0.6)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 light_cull_mask = 4293918721
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "WVictory", "DebugText")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "WVictory", "InWorld", "DebugText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,6 +228,7 @@ NextTiles = NodePath("NextTilesUI")
 Resoruces = NodePath("ResourcesUI")
 Turn = NodePath("TurnUI")
 WVictory = NodePath("Win_VictoryUI")
+InWorld = NodePath("InWorldUI")
 DebugText = NodePath("_debug_text")
 
 [node name="MenuUI" parent="UI" instance=ExtResource("31_2daye")]
@@ -226,9 +255,13 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="PopUps" type="Control" parent="UI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="BenefitPopUp_0" type="Control" parent="UI/PopUps"]
 anchors_preset = 0
@@ -248,6 +281,62 @@ offset_right = 22.0
 offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]$[/center]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("49_xdkp6")
+
+[node name="InWorldUI" type="Control" parent="UI" node_paths=PackedStringArray("TileInfosPool")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("83_87bhu")
+TileInfosPool = NodePath("TileInfos")
+
+[node name="TileInfos" type="Control" parent="UI/InWorldUI" node_paths=PackedStringArray("_tileInfoPrototype")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("84_33qc4")
+_tileInfoPrototype = NodePath("TileInfo_0")
+
+[node name="TileInfo_0" type="Control" parent="UI/InWorldUI/TileInfos"]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("85_e6rcu")
+
+[node name="Bg" type="PanelContainer" parent="UI/InWorldUI/TileInfos/TileInfo_0"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Text" type="RichTextLabel" parent="UI/InWorldUI/TileInfos/TileInfo_0/Bg"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
@@ -368,7 +457,6 @@ theme = null
 script = null
 
 [node name="_debug_text" type="RichTextLabel" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

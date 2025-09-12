@@ -1,10 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://dupgwvkvalyan"]
+[gd_scene load_steps=6 format=4 uid="uid://dq4ojgpswtj65"]
 
 [ext_resource type="Script" uid="uid://3mx0x1jys7n2" path="res://Scripts/_UI/HUD/NextTile/UINextTileItem.cs" id="1_vhfxv"]
-[ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/_Base/UIAnims/AnimButton.cs" id="2_2vl5d"]
-[ext_resource type="Texture2D" uid="uid://bhsvghvmob0t3" path="res://Assets/Button/shadow.png" id="3_3y4cj"]
-[ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="4_huywr"]
-[ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="5_50p8n"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="7_67oi2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t71gq"]
@@ -48,13 +44,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2hi7i")
 
 [node name="NextTiles_Item" type="Control"]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(144, 144)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vhfxv")
 
-[node name="Button" type="Control" parent="." node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
-custom_minimum_size = Vector2(160, 160)
+[node name="Button" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,27 +57,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("2_2vl5d")
-HoverOverlays = [NodePath("BtnOffset/BtnBorder/HoverColor")]
-PressedOverlays = [NodePath("BtnOffset/BtnPanel/PressedColor")]
-ActionOverlays = [NodePath("BtnOffset/BtnPanel/ActionColor")]
-Offset = NodePath("BtnOffset")
-
-[node name="BtnShadow" type="NinePatchRect" parent="Button"]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 2.0
-anchor_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_3y4cj")
-region_rect = Rect2(0, 0, 96, 96)
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
 
 [node name="BtnOffset" type="Control" parent="Button"]
 layout_mode = 1
@@ -104,7 +78,6 @@ anchor_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_huywr")
 region_rect = Rect2(0, 0, 96, 96)
 patch_margin_left = 32
 patch_margin_top = 32
@@ -121,44 +94,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 0.8, 0, 0.25098)
-
-[node name="ActionColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="BtnBorder" type="NinePatchRect" parent="Button/BtnOffset"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 2.0
-anchor_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_50p8n")
-region_rect = Rect2(0, 0, 96, 96)
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
-
-[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder"]
+[node name="Content" type="VBoxContainer" parent="Button/BtnOffset"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,27 +102,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="HoverColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder"]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 1.0
-offset_bottom = 1.0
-mouse_filter = 2
-color = Color(1, 0.8, 0, 1)
-
-[node name="Content" type="VBoxContainer" parent="Button/BtnOffset"]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-offset_right = 160.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Gap_0" type="Control" parent="Button/BtnOffset/Content"]
-custom_minimum_size = Vector2(0, 16)
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 
@@ -228,8 +147,6 @@ mesh = SubResource("ArrayMesh_pke2f")
 skeleton = NodePath("")
 
 [node name="Gap_2" type="Control" parent="Button/BtnOffset/Content"]
-custom_minimum_size = Vector2(0, 16)
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
-
-[connection signal="LeftClick" from="Button" to="." method="OnLeftClick"]

@@ -1,4 +1,4 @@
-// 2025-09-03T00:12:44
+// 2025-09-13T01:31:37
 Tiles 
 {
 	Tile Water
@@ -116,17 +116,9 @@ Tiles
 			Tags Building
 			Tags Houses
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Population:2
-			{
-				Bonus Bonus:IfAdjacent-Water:2
-				Bonus Bonus:If-Grass:2
-			}
-			Effect PerTurn:Gain:Population:1
-			{
-				Bonus Bonus:IfAdjacent-Gardens:1
-				Bonus Malus:If-Desert:1
-			}
-			Effect OnLevelUp:Gain:Gold:1
+			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
+			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
+			Effect OnLevelUp:Gold:1
 			Stockpile Population
 			SelfUpgrade Population:10
 		}
@@ -154,17 +146,9 @@ Tiles
 			Tags Building
 			Tags Houses
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Population:10
-			{
-				Bonus Bonus:IfAdjacent-Water:5
-				Bonus Bonus:If-Grass:5
-			}
-			Effect PerTurn:Gain:Population:1
-			{
-				Bonus Bonus:IfAdjacent-Gardens:1
-				Bonus Malus:If-Desert:1
-			}
-			Effect OnLevelUp:Gain:Gold:2
+			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
+			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
+			Effect OnLevelUp:Gold:2
 			Stockpile Population
 			SelfUpgrade Population:25
 		}
@@ -192,16 +176,8 @@ Tiles
 			Tags Houses
 			Tags Population
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Population:25
-			{
-				Bonus Bonus:IfAdjacent-Water:10
-				Bonus Bonus:If-Grass:10
-			}
-			Effect PerTurn:Gain:Population:1
-			{
-				Bonus Bonus:IfAdjacent-Gardens:1
-				Bonus Malus:If-Desert:1
-			}
+			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
+			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
 			Stockpile Population
 		}
 		Map 
@@ -230,7 +206,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Water
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*2
 		}
 		Map 
 		{
@@ -257,7 +233,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Water
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*3
 		}
 		Map 
 		{
@@ -283,7 +259,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Water
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*4
 		}
 		Map 
 		{
@@ -312,7 +288,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*2
 		}
 		Map 
 		{
@@ -340,7 +316,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*3
 		}
 		Map 
 		{
@@ -367,7 +343,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Houses
+			Effect Always:MultiplyAdjacent:Houses*4
 		}
 		Map 
 		{
@@ -396,7 +372,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 3
-			Effect PerTurn:Double-Farms
+			Effect Always:MultiplyAdjacent:Farms*2
 		}
 		Map 
 		{
@@ -423,7 +399,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 3
-			Effect PerTurn:Double-Farms
+			Effect Always:MultiplyAdjacent:Farms*3
 		}
 		Map 
 		{
@@ -449,10 +425,8 @@ Tiles
 			Tags Temple
 			PlaceCondition On:Land
 			Initiative 6
-			Effect PerTurn:Reactivate-Houses
-			Effect PerTurn:Reactivate-Culture
-			Effect PerTurn:PerAdjacent-Farm:Gold:2
-			Effect PerTurn:PerAdjacent-Workshop:Gold:2
+			Effect PerTurn:Gold:2*PerAdjacent*Farm:2*PerAdjacent*Workshop
+			Effect Always:ReactivateAdjacent:Houses:Culture
 		}
 		Map 
 		{
@@ -481,8 +455,7 @@ Tiles
 			Tags Gold
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Gold:1
-			Effect PerTurn:PerAdjacent-Mountain:Gold:1
+			Effect PerTurn:Gold:1:1*PerAdjacent*Mountain
 		}
 		Map 
 		{
@@ -510,8 +483,7 @@ Tiles
 			Tags Gold
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Gold:2
-			Effect PerTurn:PerAdjacent-Mountain:Gold:1
+			Effect PerTurn:Gold:2:1*PerAdjacent*Mountain
 		}
 		Map 
 		{
@@ -538,8 +510,7 @@ Tiles
 			Tags Gold
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Gold:2
-			Effect PerTurn:PerAdjacent-Mountain:Gold:2
+			Effect PerTurn:Gold:2:2*PerAdjacent*Mountain
 		}
 		Map 
 		{
@@ -566,9 +537,7 @@ Tiles
 			Tags Forge
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Mines
-			Effect PerTurn:Double-Millitary
-			Effect PerTurn:Double-Workshop
+			Effect Always:MultiplyAdjacent:Mines*2:Millitary*2:Workshop*2
 		}
 		Map 
 		{
@@ -594,9 +563,7 @@ Tiles
 			Tags Forge
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Mines
-			Effect PerTurn:Double-Millitary
-			Effect PerTurn:Double-Workshop
+			Effect Always:MultiplyAdjacent:Mines*3:Millitary*3:Workshop*3
 		}
 		Map 
 		{
@@ -622,9 +589,8 @@ Tiles
 			Tags Palace
 			PlaceCondition On:Land
 			Initiative 7
-			Effect PerTurn:Reactivate-Castle
-			Effect PerTurn:Reactivate-Temple
-			Effect PerTurn:IfAdjacent-Gardens:Culture:1
+			Effect PerTurn:Culture:1*IfAdjacent*Gardens
+			Effect Always:ReactivateAdjacent:Castle:Temple
 		}
 		Map 
 		{
@@ -652,9 +618,9 @@ Tiles
 			Tags Mustering_Grounds
 			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Soldiers:1
-			Effect PerTurn:PerAdjacentLevel-Houses:Soldiers:1
-			Effect OnLevelUp:Gain:Soldiers:2
+			Effect OnPlace:Soldiers:1
+			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
+			Effect OnLevelUp:Soldiers:3
 			Stockpile Soldiers
 			SelfUpgrade Soldiers:10
 		}
@@ -683,9 +649,9 @@ Tiles
 			Tags Mustering_Grounds
 			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Soldiers:5
-			Effect PerTurn:PerAdjacentLevel-Houses:Soldiers:1
-			Effect OnLevelUp:Gain:Soldiers:5
+			Effect OnPlace:Soldiers:5
+			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
+			Effect OnLevelUp:Soldiers:6
 			Stockpile Soldiers
 			SelfUpgrade Soldiers:25
 		}
@@ -713,8 +679,8 @@ Tiles
 			Tags Mustering_Grounds
 			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlaceSelf:Gain:Soldiers:10
-			Effect PerTurn:PerAdjacentLevel-Houses:Soldiers:1
+			Effect OnPlace:Soldiers:10
+			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
 			Stockpile Soldiers
 		}
 		Map 
@@ -742,15 +708,9 @@ Tiles
 			Tags Millitary
 			Tags Stable
 			PlaceCondition On:Land
-			{
-				On:Land 
-			}
 			Initiative 4
-			Effect PerTurn:PerAdjacent-Castle:Soldiers:3
-			Effect PerTurn:Double-MusteringGrounds
-			{
-				Condition Condition:IfAdjacent:Farm
-			}
+			Effect PerTurn:Soldiers:2*PerAdjacent*Castle
+			Effect Always:Double*MusteringGrounds*IfAdjacent*Farm
 		}
 		Map 
 		{
@@ -776,15 +736,9 @@ Tiles
 			Tags Millitary
 			Tags Stable
 			PlaceCondition On:Land
-			{
-				On:Land 
-			}
 			Initiative 4
-			Effect PerTurn:PerAdjacent-Castle:Soldiers:3
-			Effect PerTurn:Double-MusteringGrounds
-			{
-				Condition Condition:IfAdjacent:Farm
-			}
+			Effect PerTurn:Soldiers:4*PerAdjacent*Castle
+			Effect Always:Double*MusteringGrounds*IfAdjacent*Farm
 		}
 		Map 
 		{
@@ -811,8 +765,8 @@ Tiles
 			Tags Castle
 			PlaceCondition On:Land
 			Initiative 6
-			Effect PerTurn:Reactivate-Millitary
-			Effect OnPlaceSelf:If-Hills:SelfLevel:1
+			Effect OnPlace:SelfLevel:1:If*Hills
+			Effect Always:ReactivateAdjacent:Millitary
 		}
 		Map 
 		{
@@ -841,7 +795,7 @@ Tiles
 			Tags Amphiteather
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Houses:Culture:1
+			Effect PerTurn:Culture:1*PerAdjacent*Houses
 		}
 		Map 
 		{
@@ -869,7 +823,7 @@ Tiles
 			Tags Amphiteather
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Houses:Culture:1
+			Effect PerTurn:Culture:2*PerAdjacent*Houses
 		}
 		Map 
 		{
@@ -896,7 +850,7 @@ Tiles
 			Tags Amphiteather
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Houses:Culture:1
+			Effect PerTurn:Culture:3*PerAdjacent*Houses
 		}
 		Map 
 		{
@@ -923,9 +877,9 @@ Tiles
 			Tags Mausoleum
 			PlaceCondition On:Land
 			Initiative 4
-			Effect PerTurn:Double-Amphiteather
-			Effect OnPlaceSelf:Cost:Population:1
-			Effect OnPlaceSelf:Cost:Gold:1
+			Effect OnPlace:Population:1
+			Effect Always:MultiplyAdjacent-2:Amphiteather
+			Effect Cost:Gold:1
 		}
 		Map 
 		{
@@ -954,10 +908,8 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Forrest:Trade:1
-			Effect PerTurn:PerAdjacent-Port:Gold:1
-			Effect PerTurn:PerAdjacent-Market:Gold:1
-			Effect PerTurn:PerAdjacentLevel-Houses:Gold:1
+			Effect PerTurn:Gold:1*PerAdjacent*Port:1*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
 		{
@@ -985,10 +937,8 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Forrest:Trade:1
-			Effect PerTurn:PerAdjacent-Port:Gold:2
-			Effect PerTurn:PerAdjacent-Market:Gold:2
-			Effect PerTurn:PerAdjacentLevel-Houses:Gold:1
+			Effect PerTurn:Gold:2*PerAdjacent*Port:2*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
 		{
@@ -1015,10 +965,8 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:PerAdjacent-Forrest:Trade:1
-			Effect PerTurn:PerAdjacent-Port:Gold:3
-			Effect PerTurn:PerAdjacent-Market:Gold:3
-			Effect PerTurn:PerAdjacentLevel-Houses:Gold:1
+			Effect PerTurn:Gold:3*PerAdjacent*Port:3*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
 		{
@@ -1047,8 +995,7 @@ Tiles
 			PlaceCondition On:Land
 			PlaceCondition Margin
 			Initiative 5
-			Effect PerTurn:Gain:Trade:2
-			Effect PerTurn:PerExisting-Workshop:Trade:1
+			Effect PerTurn:Trade:2:1*PerExisting*Workshop
 		}
 		Map 
 		{
@@ -1076,8 +1023,7 @@ Tiles
 			PlaceCondition On:Land
 			PlaceCondition Margin
 			Initiative 5
-			Effect PerTurn:Gain:Trade:3
-			Effect PerTurn:PerExisting-Workshop:Trade:2
+			Effect PerTurn:Trade:3:2*PerExisting*Workshop
 		}
 		Map 
 		{
@@ -1103,8 +1049,7 @@ Tiles
 			Tags Lighthouse
 			PlaceCondition On:Water
 			Initiative 3
-			Effect PerTurn:Double-Port
-			Effect PerTurn:Double-FishingBoats
+			Effect Always:MultiplyAdjacent-2:Port:FishingBoats
 		}
 		Map 
 		{
@@ -1132,9 +1077,8 @@ Tiles
 			Tags Port
 			PlaceCondition On:Water
 			Initiative 4
-			Effect PerTurn:Gain:Trade:2
-			Effect PerTurn:PerAdjacent-Houses:Trade:1
-			Effect PerTurn:Double-FishingBoats
+			Effect PerTurn:Trade:2:1*PerAdjacent*Houses
+			Effect Always:MultiplyAdjacent-2:FishingBoats
 		}
 		Map 
 		{
@@ -1161,9 +1105,8 @@ Tiles
 			Tags Port
 			PlaceCondition On:Water
 			Initiative 4
-			Effect PerTurn:Gain:Trade:4
-			Effect PerTurn:PerAdjacentLevel-Houses:Trade:1
-			Effect PerTurn:Double-FishingBoats
+			Effect PerTurn:Trade:4:1*PerAdjacentLevel*Houses
+			Effect Always:MultiplyAdjacent-3:FishingBoats
 		}
 		Map 
 		{
@@ -1192,8 +1135,7 @@ Tiles
 			Tags Library
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Science:1
-			Effect PerTurn:PerAdjacent-Houses:Science:1
+			Effect PerTurn:Science:1:1*PerAdjacent*Houses
 			Stockpile Science
 			SelfUpgrade Science:10
 		}
@@ -1223,8 +1165,7 @@ Tiles
 			Tags Library
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Science:2
-			Effect PerTurn:PerAdjacent-Houses:Science:1
+			Effect PerTurn:Science:2:1*PerAdjacent-Houses
 			Stockpile Science
 			SelfUpgrade Science:25
 		}
@@ -1253,8 +1194,7 @@ Tiles
 			Tags Library
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gain:Science:3
-			Effect PerTurn:PerAdjacent-Houses:Science:1
+			Effect PerTurn:Science:3:1*PerAdjacent-Houses
 			Stockpile Science
 		}
 		Map 
@@ -1282,9 +1222,7 @@ Tiles
 			Tags University
 			PlaceCondition On:Land
 			Initiative 6
-			Effect PerTurn:Reactivate-Library
-			Effect PerTurn:PerAdjacent-Houses:Science:2
-			Effect PerTurn:IfAdjacent-Gardens:Culture:1
+			Effect Always:ReactivateAdjacent:Library
 		}
 		Map 
 		{
@@ -1309,8 +1247,8 @@ Tiles
 			Tags Gardens
 			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlaceSelf:PerAdjacentLevel-House:Gold:2
-			Effect OnPlaceSelf:PerAdjacentLevel-House:Culture:1
+			Effect OnPlace:Gold:2*PerAdjacentLevel*House
+			Effect OnPlace:Culture:1*PerAdjacentLevel*House
 		}
 		Map 
 		{

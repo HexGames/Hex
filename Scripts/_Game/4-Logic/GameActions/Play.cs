@@ -26,6 +26,28 @@ namespace Logic
                 if (coords == Data.HexCoord.Invalid)
                     return false;
 
+                Data.Tile oldTile = map.GetTile(coords);
+                for (int idx = 0; idx < tile.Def.Data_Conditions.Count; idx++)
+                {
+                    Def.Var condition = tile.Def.Data_Conditions[idx];
+                    string conditionID = condition.GetString(0);
+                    if (conditionID == "On")
+                    {
+                        if (oldTile.Def.Data_Tags.Contains(condition.GetString(1)) == false)
+                        {
+                            return false;
+                        }
+                    }
+                    else if (conditionID == "Margin")
+                    {
+                        Data.HexCoord center = new Data.HexCoord(0, 0);
+                        if (center.DistanceTo(coords) != 3)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
                 return true;
             }
 
@@ -36,48 +58,51 @@ namespace Logic
 
                 if (coords != Data.HexCoord.Invalid)
                 {
-                    foreach (Data.Effect effect in tile.Effects)
+                    foreach (Def.Var effect in tile.Effects)
                     {
-                        if (effect.EffectTiming == Def.Timing.OnPlaceSelf) // <--------------------------------- OnPlaceSelf
+                        Def.Timing timing = Effects.GetTiming(effect);
+                        if (timing  == Def.Timing.OnPlace) // <--------------------------------- OnPlaceSelf
                         {
                             tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
                         }
-                        else if (effect.EffectTiming == Def.Timing.PerTurn) // <-------------------------------- PerTurn - self
+                        else if (timing == Def.Timing.PerTurn) // <-------------------------------- PerTurn - self
                         {
                             tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
                         }
                     }
 
-                    Data.Tile oldTile = game.Map.GetTile(coords);
-                    if (oldTile != null)
-                    {
-                        foreach (Data.Effect effect in oldTile.Effects)
-                        {
-                            if (effect.EffectTiming == Def.Timing.OnDestroySelf) // <--------------------------- OnDestroySelf
-                            {
-                                tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
-                            }
-                        }
-                    }
+                    //Data.Tile oldTile = game.Map.GetTile(coords);
+                    //if (oldTile != null)
+                    //{
+                    //    foreach (Data.Effect effect in oldTile.Effects)
+                    //    {
+                    //        if (effect.EffectTiming == Def.Timing.OnDestroySelf) // <--------------------------- OnDestroySelf
+                    //        {
+                    //            tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
+                    //        }
+                    //    }
+                    //}
 
                     foreach (Data.Tile otherTile in game.Map.TilesInPlay)
                     {
                         Data.HexCoord otherTileCoord = game.Map.GetCoord(otherTile);
                         if (otherTileCoord != coords)
                         {
-                            foreach (Data.Effect effect in otherTile.Effects)
+                            foreach (Def.Var effect in otherTile.Effects)
                             {
-                                if (effect.EffectTiming == Def.Timing.OnPlaceOther) // <----------------------- OnPlaceOther
+                                Def.Timing timing = Effects.GetTiming(effect);
+                                //if (effect.EffectTiming == Def.Timing.OnPlaceOther) // <----------------------- OnPlaceOther
+                                //{
+                                //    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, tile));
+                                //}
+                                //else if (oldTile != null && effect.EffectTiming == Def.Timing.OnDestroyOther) // <------------------ OnDestroyOther
+                                //{
+                                //    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, oldTile));
+                                //}
+                                //else 
+                                if (timing == Def.Timing.PerTurn) // <-------------------------------- PerTurn - other
                                 {
-                                    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, tile));
-                                }
-                                else if (oldTile != null && effect.EffectTiming == Def.Timing.OnDestroyOther) // <------------------ OnDestroyOther
-                                {
-                                    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, oldTile));
-                                }
-                                else if (effect.EffectTiming == Def.Timing.PerTurn) // <-------------------------------- PerTurn - other
-                                {
-                                    List<Data.Benefit> newBenefits = Effects.Execute(game, otherTileCoord, effect);
+                                    List<Data.Benefit> newBenefits = Effects.Execute(game, otherTileCoord, effect, null);
                                     foreach (Data.Benefit benefit in newBenefits)
                                     {
                                         bool found = false;
@@ -129,8 +154,8 @@ namespace Logic
 
                 for (int idx = 0; idx < tile.Effects.Count; idx++)
                 {
-                    Data.Effect effect = tile.Effects[idx];
-                    if (effect.EffectTiming == Def.Timing.OnPlaceSelf)
+                    Def.Var effect = tile.Effects[idx];
+                    if (Effects.GetTiming(effect) == Def.Timing.OnPlace)
                     {
                         // remove from tile effects
                         tile.Effects.RemoveAt(idx);
@@ -149,9 +174,10 @@ namespace Logic
                     Data.HexCoord coord = game.Map.GetCoord(tile); 
                     // caluclate just on end turn benefits
                     tile.Benefits.Clear();
-                    foreach (Data.Effect effect in tile.Effects)
+                    foreach (Def.Var effect in tile.Effects)
                     {
-                        if (effect.EffectTiming == Def.Timing.PerTurn)
+                        Def.Timing timing = Effects.GetTiming(effect);
+                        if (timing == Def.Timing.PerTurn)
                         {
                             tile.Benefits.AddRange( Effects.Execute(game, coord, effect));
                         }

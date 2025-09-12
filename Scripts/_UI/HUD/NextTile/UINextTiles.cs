@@ -19,7 +19,7 @@ namespace GodotUI
                     if (idx < player.NextTiles.Count)
                     {
                         NextTiles[idx].Visible = true;
-                        NextTiles[idx].Refresh(player.NextTiles[idx]);
+                        NextTiles[idx].Refresh(player.NextTiles[NextTiles.Count - 1 - idx]);
                     }
                     else
                     {
@@ -39,6 +39,10 @@ namespace GodotUI
         {
             //Data.Player player = Game.Player;
             //Actions.OnDraft(player.DraftTiles[idx]);
+        }
+
+        public void OnViewDeck()
+        {
         }
     }
 }

@@ -13,9 +13,8 @@ namespace Def
         public int Data_Starting = 0;
         public List<string> Data_Terrain = new List<string>();
         public List<string> Data_Tags = new List<string>();
-        // PlaceConditions
-        // DraftConditions
-        public List<VarEffect> Data_Effects = new List<VarEffect>();
+        public List<Var> Data_Conditions = new List<Var>();
+        public List<Var> Data_Effects = new List<Var>();
 
 
         public string Map_TilePrefab = "";
@@ -43,12 +42,20 @@ namespace Def
                     Data_Tags.Add(tagsData[idx].ValueS);
                 }
 
-                Data_Effects.Clear();
-                List<Save.Block> benefitsData = targetData.GetSub("Data").GetSubs("Effect");
-                for (int idx = 0; idx < benefitsData.Count; idx++)
+                Data_Conditions.Clear();
+                List<Save.Block> conditionsData = targetData.GetSub("Data").GetSubs("PlaceCondition");
+                for (int idx = 0; idx < conditionsData.Count; idx++)
                 {
-                    VarEffect varRes = new VarEffect(benefitsData[idx].ValueS);
-                    if (varRes.Res != null) Data_Effects.Add(varRes);
+                    Var varCondition = new Var(conditionsData[idx].ValueS);
+                    Data_Conditions.Add(varCondition);
+                }
+
+                Data_Effects.Clear();
+                List<Save.Block> effectsData = targetData.GetSub("Data").GetSubs("Effect");
+                for (int idx = 0; idx < effectsData.Count; idx++)
+                {
+                    Var varEffect = new Var(effectsData[idx].ValueS);
+                    Data_Effects.Add(varEffect);
                 }
             }
 

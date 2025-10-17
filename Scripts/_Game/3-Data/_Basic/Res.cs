@@ -2,7 +2,7 @@ using System;
 
 namespace Data
 {
-    public struct Res //: IEquatable<Res>
+    public struct Res
     {
         public Def.Res Def;
         public int Value;

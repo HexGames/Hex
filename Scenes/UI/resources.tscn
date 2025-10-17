@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://wy385bgugdla"]
 
-[ext_resource type="Script" uid="uid://s3083hh8eefj" path="res://Scripts/_UI/HUD/Resources/UIResources.cs" id="1_pi4xh"]
-[ext_resource type="Script" uid="uid://c8gwbntfi77c2" path="res://Scripts/_UI/HUD/Resources/UIResourcesItem.cs" id="2_nx35g"]
+[ext_resource type="Script" uid="uid://c7ucqrmafdw6k" path="res://Scripts/_UI/HUD/Godot/UIResources.cs" id="1_pi4xh"]
 [ext_resource type="Texture2D" uid="uid://bv1ibkfwq8o7l" path="res://Assets/Icons/Gold.png" id="3_p0406"]
+[ext_resource type="Script" uid="uid://b58o0f8atubef" path="res://Scripts/_UI/HUD/Godot/UIResourcesItem.cs" id="4_nx35g"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_wjcy2"]
 [ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="5_ealah"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="7_pi4xh"]
@@ -63,7 +63,7 @@ EntryAnimation = 1
 [node name="Resource_0" type="Control" parent="Panel2/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("2_nx35g")
+script = ExtResource("4_nx35g")
 
 [node name="PulseContainer" type="HBoxContainer" parent="Panel2/VBoxContainer/VBoxContainer/Resource_0"]
 layout_mode = 1

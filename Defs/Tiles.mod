@@ -1,4 +1,4 @@
-// 2025-09-13T01:31:37
+// 2025-10-16T22:30:13
 Tiles 
 {
 	Tile Water
@@ -18,7 +18,9 @@ Tiles
 		}
 		Data 
 		{
+			Tags Sea
 			Tags Water
+			Initiative 0
 		}
 	}
 	Tile Grass
@@ -40,6 +42,7 @@ Tiles
 		{
 			Tags Land
 			Tags Grass
+			Initiative 0
 		}
 	}
 	Tile Desert
@@ -62,6 +65,7 @@ Tiles
 			Tags Land
 			Tags Desert
 			PlaceCondition NotAdjacent:Water
+			Initiative 0
 		}
 	}
 	Tile Forest
@@ -83,6 +87,7 @@ Tiles
 		{
 			Tags Land
 			Tags Forrest
+			Initiative 0
 		}
 	}
 	Tile Mountain
@@ -103,6 +108,7 @@ Tiles
 		Data 
 		{
 			Tags Mountain
+			Initiative 0
 		}
 	}
 	Tile Houses_I
@@ -115,8 +121,9 @@ Tiles
 			Starting 6
 			Tags Building
 			Tags Houses
+			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
+			Effect OnPlace:Population:2:1*IfAdjacent*Water:1*If*Grass
 			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
 			Effect OnLevelUp:Gold:1
 			Stockpile Population
@@ -145,8 +152,9 @@ Tiles
 			Weight 2
 			Tags Building
 			Tags Houses
+			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
+			Effect OnPlace:Population:10:4*IfAdjacent*Water:4*If*Grass
 			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
 			Effect OnLevelUp:Gold:2
 			Stockpile Population
@@ -175,6 +183,7 @@ Tiles
 			Tags Building
 			Tags Houses
 			Tags Population
+			PlaceCondition On:Land
 			Initiative 5
 			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
 			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
@@ -204,9 +213,10 @@ Tiles
 			Starting 3
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*2
+			Effect Always:MultiplyAdjacent*Houses:2
 		}
 		Map 
 		{
@@ -231,9 +241,10 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*3
+			Effect Always:MultiplyAdjacent*Houses:3
 		}
 		Map 
 		{
@@ -257,9 +268,10 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*4
+			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
 		{
@@ -288,7 +300,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*2
+			Effect Always:MultiplyAdjacent*Houses:2
 		}
 		Map 
 		{
@@ -316,7 +328,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*3
+			Effect Always:MultiplyAdjacent*Houses:3
 		}
 		Map 
 		{
@@ -343,7 +355,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Houses*4
+			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
 		{
@@ -372,7 +384,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 3
-			Effect Always:MultiplyAdjacent:Farms*2
+			Effect Always:MultiplyAdjacent*Farms:2
 		}
 		Map 
 		{
@@ -399,7 +411,7 @@ Tiles
 			Tags Food
 			PlaceCondition On:Land
 			Initiative 3
-			Effect Always:MultiplyAdjacent:Farms*3
+			Effect Always:MultiplyAdjacent*Farms:3
 		}
 		Map 
 		{
@@ -537,7 +549,9 @@ Tiles
 			Tags Forge
 			PlaceCondition On:Land
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Mines*2:Millitary*2:Workshop*2
+			Effect Always:MultiplyAdjacent*Mines:2
+			Effect Always:MultiplyAdjacent*Millitary:2
+			Effect Always:MultiplyAdjacent*Workshop:2
 		}
 		Map 
 		{
@@ -563,7 +577,9 @@ Tiles
 			Tags Forge
 			PlaceCondition On:Land
 			Initiative 4
-			Effect Always:MultiplyAdjacent:Mines*3:Millitary*3:Workshop*3
+			Effect Always:MultiplyAdjacent*Mines:3
+			Effect Always:MultiplyAdjacent*Millitary:3
+			Effect Always:MultiplyAdjacent*Workshop:3
 		}
 		Map 
 		{
@@ -619,7 +635,7 @@ Tiles
 			PlaceCondition On:Land
 			Initiative 5
 			Effect OnPlace:Soldiers:1
-			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
 			Effect OnLevelUp:Soldiers:3
 			Stockpile Soldiers
 			SelfUpgrade Soldiers:10
@@ -650,7 +666,7 @@ Tiles
 			PlaceCondition On:Land
 			Initiative 5
 			Effect OnPlace:Soldiers:5
-			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
 			Effect OnLevelUp:Soldiers:6
 			Stockpile Soldiers
 			SelfUpgrade Soldiers:25
@@ -680,7 +696,7 @@ Tiles
 			PlaceCondition On:Land
 			Initiative 5
 			Effect OnPlace:Soldiers:10
-			Effect PerTurn:Soldiers:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
 			Stockpile Soldiers
 		}
 		Map 
@@ -877,9 +893,9 @@ Tiles
 			Tags Mausoleum
 			PlaceCondition On:Land
 			Initiative 4
-			Effect OnPlace:Population:1
 			Effect Always:MultiplyAdjacent-2:Amphiteather
 			Effect Cost:Gold:1
+			Effect Cost:Population:1
 		}
 		Map 
 		{
@@ -908,7 +924,7 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gold:1*PerAdjacent*Port:1*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Gold:1*PerAdjacent*Port:1*PerAdjacent*Market:1*PerLevelAdjacent*Houses
 			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
@@ -937,7 +953,7 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gold:2*PerAdjacent*Port:2*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Gold:2*PerAdjacent*Port:2*PerAdjacent*Market:1*PerLevelAdjacent*Houses
 			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
@@ -965,7 +981,7 @@ Tiles
 			Tags Workshop
 			PlaceCondition On:Land
 			Initiative 5
-			Effect PerTurn:Gold:3*PerAdjacent*Port:3*PerAdjacent*Market:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Gold:3*PerAdjacent*Port:3*PerAdjacent*Market:1*PerLevelAdjacent*Houses
 			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
 		}
 		Map 
@@ -1047,7 +1063,8 @@ Tiles
 			Weight 2
 			Tags Building
 			Tags Lighthouse
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 3
 			Effect Always:MultiplyAdjacent-2:Port:FishingBoats
 		}
@@ -1075,7 +1092,8 @@ Tiles
 			Tags Building
 			Tags Trade
 			Tags Port
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 4
 			Effect PerTurn:Trade:2:1*PerAdjacent*Houses
 			Effect Always:MultiplyAdjacent-2:FishingBoats
@@ -1103,9 +1121,10 @@ Tiles
 			Tags Building
 			Tags Trade
 			Tags Port
-			PlaceCondition On:Water
+			Tags Water
+			PlaceCondition On:Sea
 			Initiative 4
-			Effect PerTurn:Trade:4:1*PerAdjacentLevel*Houses
+			Effect PerTurn:Trade:4:1*PerLevelAdjacent*Houses
 			Effect Always:MultiplyAdjacent-3:FishingBoats
 		}
 		Map 
@@ -1247,8 +1266,8 @@ Tiles
 			Tags Gardens
 			PlaceCondition On:Land
 			Initiative 5
-			Effect OnPlace:Gold:2*PerAdjacentLevel*House
-			Effect OnPlace:Culture:1*PerAdjacentLevel*House
+			Effect OnPlace:Gold:2*PerLevelAdjacent*House
+			Effect OnPlace:Culture:1*PerLevelAdjacent*House
 		}
 		Map 
 		{

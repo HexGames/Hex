@@ -6,7 +6,7 @@ namespace Data
 {
     public class Map
     {
-        private readonly Dictionary<HexCoord, List<Tile>> _hexTiles = new();
+        private readonly Dictionary<HexCoords, List<Tile>> _hexTiles = new();
         private readonly List<Tile> _tilesInPlay = new List<Tile>();
         public ReadOnlyCollection<Tile> TilesInPlay => _tilesInPlay.AsReadOnly();
 
@@ -17,13 +17,13 @@ namespace Data
             {
                 for (int y = Math.Max(-3, -x - 3); y <= Math.Min(3, -x + 3); y++)
                 {
-                    var coord = new HexCoord(x, y);
-                    if (Data.HexCoord.Distance(coord, new HexCoord(0, 0)) <= 3)
+                    var coords = new HexCoords(x, y);
+                    if (Data.HexCoords.Distance(coords, new HexCoords(0, 0)) <= 3)
                     {
                         var tile = new Tile(tileDefs[defIdx], Tile.State.IN_PLAY);
                         defIdx++;
                         // Initialize list for each coord
-                        _hexTiles[coord] = new List<Data.Tile> { tile };
+                        _hexTiles[coords] = new List<Data.Tile> { tile };
                         _tilesInPlay.Add(tile);
                     }
                 }
@@ -35,10 +35,8 @@ namespace Data
             _tilesInPlay.Clear();
         }
 
-        // --------------------------------------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------------------------- methods for future needs
         // HexCoords and hex grid operations
-
-
 
         // Returns the first tile at the coord, or null if none
 
@@ -126,14 +124,14 @@ namespace Data
         //    return false;
         //}
         
-        public bool IsHexCoordOnMap(HexCoord coord)
+        public bool IsHexCoordOnMap(HexCoords coord)
         {
-            return HexCoord.Distance(coord, new HexCoord(0, 0)) <= 3;
+            return HexCoords.Distance(coord, new HexCoords(0, 0)) <= 3;
         }
 
-        public HexCoord GetCoord(Tile tile)
+        public HexCoords GetCoords(Tile tile)
         {
-            HexCoord? coords = GetCoordOfTile(tile);
+            HexCoords? coords = GetCoordOfTile(tile);
             if (coords != null)
             {
                 return coords.Value;
@@ -141,10 +139,10 @@ namespace Data
             else
             {
                 Debug.LogError($"Tile not found in map dictionary");
-                return HexCoord.Invalid;
+                return HexCoords.Invalid;
             }
         }
-        public Tile GetTile(HexCoord coord)
+        public Tile GetTile(HexCoords coord)
         {
             if (_hexTiles.TryGetValue(coord, out var tiles) && tiles.Count > 0)
                 return tiles[0];
@@ -152,7 +150,7 @@ namespace Data
         }
 
         // Helper: get the coordinate of a tile
-        private HexCoord? GetCoordOfTile(Tile tile)
+        private HexCoords? GetCoordOfTile(Tile tile)
         {
             foreach (var kvp in _hexTiles)
             {
@@ -164,7 +162,7 @@ namespace Data
 
 
         // --------------------------------------------------------------------------------------------------------------
-        public void AddTile(Tile tile, HexCoord coord)
+        public void AddTile(Tile tile, HexCoords coord)
         {
             if (_hexTiles.ContainsKey(coord) == false)
                 _hexTiles[coord] = new List<Tile>();
@@ -174,7 +172,7 @@ namespace Data
 
         public void RemoveTile(Tile tile)
         {
-            HexCoord? coords = GetCoordOfTile(tile);
+            HexCoords? coords = GetCoordOfTile(tile);
             if (coords != null)
             {
                 RemoveTile(tile, coords.Value);
@@ -185,7 +183,7 @@ namespace Data
             }
         }
 
-        public void RemoveTiles(HexCoord coord)
+        public void RemoveTiles(HexCoords coord)
         {
             if (_hexTiles.TryGetValue(coord, out var tiles))
             {
@@ -200,7 +198,7 @@ namespace Data
                 Debug.LogError($"No tiles found at coord {coord}.");
             }
         }
-        private void RemoveTile(Tile tile, HexCoord coord)
+        private void RemoveTile(Tile tile, HexCoords coord)
         {
             if (_hexTiles.TryGetValue(coord, out var tiles))
             {

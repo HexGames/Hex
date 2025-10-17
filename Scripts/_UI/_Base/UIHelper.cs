@@ -106,6 +106,89 @@ namespace GodotUI
             }
         }
 
+        private const string NORMAL_EFFECT_FORMAT = "{0}{1}{2}{3}";
+        private const string REACTIVATE_ONCE_EFFECT_FORMAT = "{0}{2}{1} time{3}";
+        private const string REACTIVATE_MULTIPLE_EFFECT_FORMAT = "{0}{2}{1} times{3}";
+        public static string EffectVarToString(Def.Var effectDef)
+        {
+            string text = "";
+            string format = NORMAL_EFFECT_FORMAT;
+            bool reactivate = false;
+
+            string prefix = "";
+            string value = "";
+            string target = "";
+            string condition = "";
+
+            if (effectDef.IsRes(1))
+            {
+                Def.Res res = effectDef.GetRes(1);
+                prefix = "+";
+                target = GetIcon(res.Image, 24);
+            }
+            else
+            {
+                string keyword = effectDef.GetString(1);
+                if (keyword == "AddAdjacent")
+                {
+                    prefix = "+";
+                    target = $" to adjacent {effectDef.GetString(1, 1)}";
+                }
+                else if (keyword == "MultiplyAdjacent")
+                {
+                    prefix = "*";
+                    target = $" to adjacent {effectDef.GetString(1, 1)}";
+                }
+                else if (keyword == "ReactivateAdjacent")
+                {
+                    prefix = "Reactivate";
+                    target = $" adjacent {effectDef.GetString(1, 1)}";
+                    reactivate = true;
+                }
+            }
+
+            for (int valueGroupIdx = 2; valueGroupIdx < effectDef.GetCount(); valueGroupIdx++)
+            {
+                if (effectDef.GetSubCount(valueGroupIdx) == 1)
+                {
+                    int valueInt = effectDef.GetInt(valueGroupIdx);
+                    value = valueInt.ToString();
+                    if (reactivate == true)
+                    {
+                        if (valueInt > 1)
+                        {
+                            format = REACTIVATE_MULTIPLE_EFFECT_FORMAT;
+                        }
+                        else
+                        {
+                            format = REACTIVATE_ONCE_EFFECT_FORMAT;
+                        }
+                    }
+                }
+                if (effectDef.GetSubCount(valueGroupIdx) == 3)
+                {
+                    // verify condition
+                    string conditionKey = effectDef.GetString(valueGroupIdx, 1);
+                    if (conditionKey == "IfAdjacent")
+                    {
+                        condition = $" if {effectDef.GetString(valueGroupIdx, 2)} is adjacent";
+                    }
+                    else if (effectDef.GetString(valueGroupIdx, 1) == "PerAdjacent")
+                    {
+                        condition = $" for each adjacent {effectDef.GetString(valueGroupIdx, 2)}";
+                    }
+                    else if (effectDef.GetString(valueGroupIdx, 1) == "PerAdjacentLevel")
+                    {
+                        condition = $" for each adjacent {effectDef.GetString(valueGroupIdx, 2)} level";
+                    }
+                }
+                if (valueGroupIdx > 2) text += "\n";
+                text += string.Format(format, prefix, value, target, condition);
+            }
+
+            return text;
+        }
+
         public static string GetIcon(string name, int size = 24)
         {
             return "[img=" + size.ToString() + "x" + size.ToString() + "]Assets/Icons/" + name + ".png[/img]";

@@ -8,13 +8,14 @@ namespace Def
 
         public string ID = "";
 
-        public int Data_Level = 0;
-        public int Data_Weight = 0;
-        public int Data_Starting = 0;
-        public List<string> Data_Terrain = new List<string>();
-        public List<string> Data_Tags = new List<string>();
-        public List<Var> Data_Conditions = new List<Var>();
-        public List<Var> Data_Effects = new List<Var>();
+        public int Starting = 0;
+        public int Level = 0;
+        public int Weight = 0;
+        public int Initiative = 0;
+        public List<string> Terrain = new List<string>();
+        public List<string> Tags = new List<string>();
+        public List<Var> Conditions = new List<Var>();
+        public List<Var> Effects = new List<Var>();
 
 
         public string Map_TilePrefab = "";
@@ -31,31 +32,32 @@ namespace Def
 
             if (targetData.HasSub("Data") != false)
             {
-                Data_Level = targetData.GetSubValueI("Data", "Level");
-                Data_Weight = targetData.GetSubValueI("Data", "Weight");
-                Data_Starting = targetData.GetSubValueI("Data", "Starting");
+                Starting = targetData.GetSubValueI("Data", "Starting");
+                Level = targetData.GetSubValueI("Data", "Level");
+                Weight = targetData.GetSubValueI("Data", "Weight");
+                Initiative = targetData.GetSubValueI("Data", "Initiative");
 
-                Data_Tags.Clear();
+                Tags.Clear();
                 List<Save.Block> tagsData = targetData.GetSub("Data").GetSubs("Tags");
                 for (int idx = 0; idx < tagsData.Count; idx++)
                 {
-                    Data_Tags.Add(tagsData[idx].ValueS);
+                    Tags.Add(tagsData[idx].ValueS);
                 }
 
-                Data_Conditions.Clear();
+                Conditions.Clear();
                 List<Save.Block> conditionsData = targetData.GetSub("Data").GetSubs("PlaceCondition");
                 for (int idx = 0; idx < conditionsData.Count; idx++)
                 {
                     Var varCondition = new Var(conditionsData[idx].ValueS);
-                    Data_Conditions.Add(varCondition);
+                    Conditions.Add(varCondition);
                 }
 
-                Data_Effects.Clear();
+                Effects.Clear();
                 List<Save.Block> effectsData = targetData.GetSub("Data").GetSubs("Effect");
                 for (int idx = 0; idx < effectsData.Count; idx++)
                 {
                     Var varEffect = new Var(effectsData[idx].ValueS);
-                    Data_Effects.Add(varEffect);
+                    Effects.Add(varEffect);
                 }
             }
 

@@ -8,7 +8,7 @@ namespace Godot3D
         private Viewport _viewport;
         private Camera3D _camera;
 
-        private Data.HexCoord _lastHexCoord = Data.HexCoord.Invalid;
+        private Data.HexCoords _lastHexCoord = Data.HexCoords.Invalid;
         private Node3D _instance = null;
 
         public override void _Ready()
@@ -68,24 +68,25 @@ namespace Godot3D
             float t = -from.Y / dir.Y;
             Vector3 intersection = from + dir * t;
 
-            Data.HexCoord hexCoord = Convert.WorldToHexCoord(intersection);
+            Data.HexCoords hexCoord = Convert.WorldToHexCoord(intersection);
 
-            if (Game.Map.IsHexCoordOnMap(hexCoord))
+            if (Game.Board.Map.IsHexCoordOnMap(hexCoord))
             {
                 Visible = true;
                 Position = Convert.HexCoordToWorld(hexCoord);
 
                 if (_lastHexCoord != hexCoord)
                 {
-                    Actions.OnHoverCurrentTile(hexCoord);
                     _lastHexCoord = hexCoord;
                 }
                 if (Actions.IsHoverValid(hexCoord))
                 {
+                    Actions.OnHoverCurrentTile(hexCoord);
                     _instance.Visible = true;
                 }
                 else
                 {
+                    Actions.OnHoverBlocked();
                     _instance.Visible = false;
                 }
 
@@ -94,12 +95,12 @@ namespace Godot3D
             else
             {
                 Visible = false;
-                if (_lastHexCoord != Data.HexCoord.Invalid)
+                if (_lastHexCoord != Data.HexCoords.Invalid)
                 {
                     Actions.OnHoverInvalid();
                 }
 
-                _lastHexCoord = Data.HexCoord.Invalid;
+                _lastHexCoord = Data.HexCoords.Invalid;
             }
         }
 

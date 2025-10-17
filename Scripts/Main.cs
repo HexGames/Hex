@@ -11,9 +11,6 @@ public partial class Main : Node
     [Export]
     public GodotUI.UIMain UIInstance;
 
-    // --- public ---
-    public Logic.Game GameInstance = null;
-
     // --- private ---
     private SceneTree Tree = null;
     private bool FirstFrame = true;
@@ -55,6 +52,8 @@ public partial class Main : Node
         if (FirstFrame)
         {
             // do things on the first frame
+            Actions.Init();
+
             FirstFrame = false;
         }
     }

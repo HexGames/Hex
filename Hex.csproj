@@ -4,6 +4,6 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Scripts\_Game\4-Logic\NewFolder\" />
+    <Folder Include="Scripts\_Game\4-Logic\A\" />
   </ItemGroup>
 </Project>

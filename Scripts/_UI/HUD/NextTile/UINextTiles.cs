@@ -12,7 +12,7 @@ namespace GodotUI
         {
             if (show)
             {
-                Data.Player player = Game.Player;
+                Data.Player player = Game.Board.Player;
 
                 for (int idx = 0; idx < NextTiles.Count; idx++)
                 {

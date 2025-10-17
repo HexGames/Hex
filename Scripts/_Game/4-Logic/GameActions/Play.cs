@@ -2,204 +2,323 @@ using System.Collections.Generic;
 
 namespace Logic
 {
-    public partial class Game
+    public class Play
     {
-        private static class Play
+        // -----------------------------------------------------------------------------------------
+        //public static void CalculateGoalProgress(Data.Player player)
+        //{
+        //    // todo
+        //}
+
+        // -----------------------------------------------------------------------------------------
+        public static void RemoveTile(Data.Map map, Data.HexCoords hexCoord)
         {
-            // -----------------------------------------------------------------------------------------
-            //public static void CalculateGoalProgress(Data.Player player)
-            //{
-            //    // todo
-            //}
+            map.RemoveTiles(hexCoord);
+        }
 
-            // -----------------------------------------------------------------------------------------
-            public static void RemoveTile(Data.Map map, Data.HexCoord hexCoord)
+        // -----------------------------------------------------------------------------------------
+        public static bool CheckPlayable(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoords coords)
+        {
+            if (coords == Data.HexCoords.Invalid)
+                return false;
+
+            Data.Tile oldTile = map.GetTile(coords);
+            for (int idx = 0; idx < tile.Def.Conditions.Count; idx++)
             {
-                map.RemoveTiles(hexCoord);
-
-                // todo add benefits from OnDestroySelf
-            }
-
-            // -----------------------------------------------------------------------------------------
-            public static bool CheckPlayable(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoord coords)
-            {
-                if (coords == Data.HexCoord.Invalid)
-                    return false;
-
-                Data.Tile oldTile = map.GetTile(coords);
-                for (int idx = 0; idx < tile.Def.Data_Conditions.Count; idx++)
+                Def.Var condition = tile.Def.Conditions[idx];
+                string conditionID = condition.GetString(0);
+                if (conditionID == "On")
                 {
-                    Def.Var condition = tile.Def.Data_Conditions[idx];
-                    string conditionID = condition.GetString(0);
-                    if (conditionID == "On")
+                    if (oldTile.Def.Tags.Contains(condition.GetString(1)) == false)
                     {
-                        if (oldTile.Def.Data_Tags.Contains(condition.GetString(1)) == false)
-                        {
-                            return false;
-                        }
-                    }
-                    else if (conditionID == "Margin")
-                    {
-                        Data.HexCoord center = new Data.HexCoord(0, 0);
-                        if (center.DistanceTo(coords) != 3)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
-
-                return true;
+                else if (conditionID == "Margin")
+                {
+                    Data.HexCoords center = new Data.HexCoords(0, 0);
+                    if (center.DistanceTo(coords) != 3)
+                    {
+                        return false;
+                    }
+                }
             }
 
-            // -----------------------------------------------------------------------------------------
-            public static void CalculateOnPlayBenefits(Game game, Data.Tile tile, Data.HexCoord coords)
-            {
-                tile.Benefits.Clear();
+            return true;
+        }
 
-                if (coords != Data.HexCoord.Invalid)
+        // -----------------------------------------------------------------------------------------
+        private static Data.Tile _overwriteTile = null;
+        private static Data.HexCoords _overwriteCoords = Data.HexCoords.Invalid;
+        public static void ReapplyAllEffectsWithOverwriteTile(Data.Map map, Data.Tile overwriteTile, Data.HexCoords overwriteCoords)
+        {
+            _overwriteTile = overwriteTile;
+            _overwriteCoords = overwriteCoords;
+            ReapplyAllEffects(map);
+            _overwriteTile = null;
+            _overwriteCoords = Data.HexCoords.Invalid;
+        }
+
+        public static void ReapplyAllEffects(Data.Map map)
+        {
+            // fitst clear all
+            for (int tileIdx = 0; tileIdx < map.TilesInPlay.Count; tileIdx++)
+            {
+                Data.Tile tile = map.TilesInPlay[tileIdx];
+                Data.HexCoords coords = map.GetCoords(tile);
+                if (_overwriteTile != null && coords == _overwriteCoords)
                 {
-                    foreach (Def.Var effect in tile.Effects)
+                    tile = _overwriteTile;
+                }
+
+                foreach (Data.EffectNode effectNode in tile.GetEffectsList(_overwriteTile != null))
+                {
+                    effectNode.Clear();
+                }
+            }
+
+            // then reapply
+            for (int tileIdx = 0; tileIdx < map.TilesInPlay.Count; tileIdx++)
+            {
+                Data.Tile tile = map.TilesInPlay[tileIdx];
+                Data.HexCoords coords = map.GetCoords(tile);
+                if (_overwriteTile != null && coords == _overwriteCoords)
+                {
+                    tile = _overwriteTile;
+                }
+
+                foreach (Data.EffectNode effectNode in tile.GetEffectsList(_overwriteTile != null))
+                {
+                    Def.Var effectDef = effectNode.EffectDef;
+                    int baseValue = 0;
+
+                    if (effectNode.ResDef == null)
                     {
-                        Def.Timing timing = Effects.GetTiming(effect);
-                        if (timing  == Def.Timing.OnPlace) // <--------------------------------- OnPlaceSelf
+                        // verify condition
+                        string keyword = effectDef.GetString(1);
+                        if (keyword == "AddAdjacent")
                         {
-                            tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
+                            ApplyAdjacentEffectNode(map, effectNode, coords, effectDef, Data.EffectNode.BonusType.Add);
                         }
-                        else if (timing == Def.Timing.PerTurn) // <-------------------------------- PerTurn - self
+                        else if (keyword == "MultiplyAdjacent")
                         {
-                            tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
+                            ApplyAdjacentEffectNode(map, effectNode, coords, effectDef, Data.EffectNode.BonusType.Multiply);
+                        }
+                        else if (keyword == "ReactivateAdjacent")
+                        {
+                            ApplyAdjacentEffectNode(map, effectNode, coords, effectDef, Data.EffectNode.BonusType.Reactivate);
                         }
                     }
 
-                    //Data.Tile oldTile = game.Map.GetTile(coords);
-                    //if (oldTile != null)
-                    //{
-                    //    foreach (Data.Effect effect in oldTile.Effects)
-                    //    {
-                    //        if (effect.EffectTiming == Def.Timing.OnDestroySelf) // <--------------------------- OnDestroySelf
-                    //        {
-                    //            tile.Benefits.AddRange(Effects.Execute(game, coords, effect));
-                    //        }
-                    //    }
-                    //}
-
-                    foreach (Data.Tile otherTile in game.Map.TilesInPlay)
+                    for (int valueGroupIdx = 2; valueGroupIdx < effectDef.GetCount(); valueGroupIdx++)
                     {
-                        Data.HexCoord otherTileCoord = game.Map.GetCoord(otherTile);
-                        if (otherTileCoord != coords)
+                        if (effectDef.GetSubCount(valueGroupIdx) == 1)
                         {
-                            foreach (Def.Var effect in otherTile.Effects)
+                            baseValue += effectDef.GetInt(valueGroupIdx);
+                        }
+                    }
+                    effectNode.SetBaseValue(baseValue);
+                    for (int valueGroupIdx = 2; valueGroupIdx < effectDef.GetCount(); valueGroupIdx++)
+                    {
+                        if (effectDef.GetSubCount(valueGroupIdx) == 3)
+                        {
+                            // verify condition
+                            string codition = effectDef.GetString(valueGroupIdx, 1);
+                            if (codition == "IfAdjacent")
                             {
-                                Def.Timing timing = Effects.GetTiming(effect);
-                                //if (effect.EffectTiming == Def.Timing.OnPlaceOther) // <----------------------- OnPlaceOther
-                                //{
-                                //    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, tile));
-                                //}
-                                //else if (oldTile != null && effect.EffectTiming == Def.Timing.OnDestroyOther) // <------------------ OnDestroyOther
-                                //{
-                                //    tile.Benefits.AddRange(Effects.Execute(game, otherTileCoord, effect, oldTile));
-                                //}
-                                //else 
-                                if (timing == Def.Timing.PerTurn) // <-------------------------------- PerTurn - other
-                                {
-                                    List<Data.Benefit> newBenefits = Effects.Execute(game, otherTileCoord, effect, null);
-                                    foreach (Data.Benefit benefit in newBenefits)
-                                    {
-                                        bool found = false;
-                                        foreach (Data.Benefit existingBenefit in otherTile.Benefits)
-                                        {
-                                            if (benefit.Res.Def == existingBenefit.Res.Def)
-                                            {
-                                                if (benefit.Res.Value != existingBenefit.Res.Value)
-                                                {
-                                                    tile.Benefits.Add(new Data.Benefit(benefit.Res.Def, benefit.Res.Value - existingBenefit.Res.Value, otherTileCoord, Def.Timing.PerTurn));
-                                                }
-                                                found = true;
-                                                break;
-                                            }
-                                        }
-                                        if (found == false)
-                                        {
-                                            tile.Benefits.Add(new Data.Benefit(benefit.Res.Def, benefit.Res.Value, otherTileCoord, Def.Timing.PerTurn));
-                                        }
-                                    }
-                                }
+                                ApplyAdjacentEffectTile(map, effectNode, coords, effectDef.GetString(valueGroupIdx, 2), effectDef.GetInt(valueGroupIdx, 0), true, false, Data.EffectNode.BonusType.Add);
+                            }
+                            else if (effectDef.GetString(valueGroupIdx, 1) == "PerAdjacent")
+                            {
+                                ApplyAdjacentEffectTile(map, effectNode, coords, effectDef.GetString(valueGroupIdx, 2), effectDef.GetInt(valueGroupIdx, 0), false, false, Data.EffectNode.BonusType.Add);
+                            }
+                            else if (effectDef.GetString(valueGroupIdx, 1) == "PerAdjacentLevel")
+                            {
+                                ApplyAdjacentEffectTile(map, effectNode, coords, effectDef.GetString(valueGroupIdx, 2), effectDef.GetInt(valueGroupIdx, 0), false, true, Data.EffectNode.BonusType.Add);
                             }
                         }
                     }
                 }
             }
+        }
 
-            // -----------------------------------------------------------------------------------------
-            public static void GainBenefits(Data.Player player, List<Data.Benefit> benefits)
+        private static void ApplyAdjacentEffectTile(Data.Map map, Data.EffectNode effectNode, Data.HexCoords coords, string targetTag, int value, bool justOnce, bool perLevel, Data.EffectNode.BonusType bonusType)
+        {
+            foreach (Data.HexCoords direction in Data.HexCoords.Directions)
             {
-                foreach (Data.Benefit benefit in benefits)
+                Data.HexCoords adjCoords = coords + direction;
+                Data.Tile adjTile = map.GetTile(coords + direction); 
+                if (_overwriteTile != null && adjCoords == _overwriteCoords)
                 {
-                    if (benefit.BenefitTiming == Def.Timing.PerTurn)
+                    adjTile = _overwriteTile;
+                }
+                if (adjTile != null && adjTile.Def.Tags.Contains(targetTag))
+                {
+                    int multiplier = 1;
+                    if (perLevel) multiplier = adjTile.Def.Level;
+                    effectNode.AddTileBonus(adjTile, multiplier * value, bonusType);
+                    if (justOnce == true)
+                        return;
+                }
+            }
+        }
+
+        private static void ApplyAdjacentEffectNode(Data.Map map, Data.EffectNode effectNode, Data.HexCoords coords, Def.Var effectDef, Data.EffectNode.BonusType bonusType)
+        {
+            foreach (Data.HexCoords direction in Data.HexCoords.Directions)
+            {
+                Data.HexCoords adjCoords = coords + direction;
+                Data.Tile adjTile = map.GetTile(coords + direction);
+                if (_overwriteTile != null && adjCoords == _overwriteCoords)
+                {
+                    adjTile = _overwriteTile;
+                }
+                string targetTag = effectDef.GetString(1, 1);
+                if (adjTile != null && adjTile.Def.Tags.Contains(targetTag))
+                {
+                    foreach (Data.EffectNode adjEffectNode in adjTile.GetEffectsList(_overwriteTile != null))
                     {
-                        Stockpile.AddResToStockpile(player.Income, benefit.Res);
-                    }
-                    else
-                    {
-                        Stockpile.AddResToStockpile(player.Stockpile, benefit.Res);
+                        adjEffectNode.AddNodeBonus(effectNode, bonusType);
                     }
                 }
             }
+        }
 
-            // -----------------------------------------------------------------------------------------
-            public static void MoveTileInPlay(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoord coords)
+        // -----------------------------------------------------------------------------------------
+        private static List<Data.Benefit> _benefitsTotal = new List<Data.Benefit>();
+        private static List<Data.Benefit> _benefitsAtCoords = new List<Data.Benefit>();
+        private static List<Data.Benefit> _benefitsTotalWithOverwrite = new List<Data.Benefit>();
+        private static List<Data.Benefit> _benefitsAtCoordsWithOverwrite = new List<Data.Benefit>();
+        //private static List<Data.Benefit> _benefitsSteps = new List<Data.Benefit>(); // TO DO ?
+
+        public static void CalculateAllBenefitsWithOverwriteTile(Data.Map map, Data.Tile overwriteTile, Data.HexCoords overwriteCoords, out List<Data.Benefit> benefitsTotal, out List<Data.Benefit> benefitsAtCoords)
+        {
+            _overwriteTile = overwriteTile;
+            _overwriteCoords = overwriteCoords;
+            benefitsTotal = _benefitsTotalWithOverwrite;
+            benefitsAtCoords = _benefitsAtCoordsWithOverwrite;
+            AddAllBenefits(map, benefitsTotal, benefitsAtCoords);
+            _overwriteTile = null;
+            _overwriteCoords = Data.HexCoords.Invalid;
+        }
+
+        public static void CalculateAllBenefits(Data.Map map, out List<Data.Benefit> benefitsTotal, out List<Data.Benefit> benefitsAtCoords)
+        {
+            benefitsTotal = _benefitsTotal;
+            benefitsAtCoords = _benefitsAtCoords;
+            AddAllBenefits(map, benefitsTotal, benefitsAtCoords);
+        }
+
+        private static void AddAllBenefits(Data.Map map, List<Data.Benefit> benefitsTotal, List<Data.Benefit> benefitsAtCoords)
+        {
+            benefitsTotal.Clear();
+            benefitsAtCoords.Clear();
+
+            for (int tileIdx = 0; tileIdx < map.TilesInPlay.Count; tileIdx++)
             {
-                player.NextTiles.Remove(tile);
-                tile.Status = Data.Tile.State.IN_PLAY;
-
-                for (int idx = 0; idx < tile.Effects.Count; idx++)
+                Data.Tile tile = map.TilesInPlay[tileIdx];
+                Data.HexCoords coords = map.GetCoords(tile);
+                if (_overwriteTile != null && coords == _overwriteCoords)
                 {
-                    Def.Var effect = tile.Effects[idx];
-                    if (Effects.GetTiming(effect) == Def.Timing.OnPlace)
-                    {
-                        // remove from tile effects
-                        tile.Effects.RemoveAt(idx);
-                        idx--;
-                    }
+                    tile = _overwriteTile;
                 }
 
-                map.AddTile(tile, coords);
-            }
-
-            // -----------------------------------------------------------------------------------------
-            public static void CalculateAllTilesPerTurnBenefits(Game game)
-            {
-                foreach (Data.Tile tile in game.Map.TilesInPlay)
+                foreach (Data.EffectNode effectNode in tile.GetEffectsList(_overwriteTile != null))
                 {
-                    Data.HexCoord coord = game.Map.GetCoord(tile); 
-                    // caluclate just on end turn benefits
-                    tile.Benefits.Clear();
-                    foreach (Def.Var effect in tile.Effects)
+                    Def.Timing benefitTiming = effectNode.Timing;
+                    if (benefitTiming != Def.Timing.OnPlace)
+                        continue;
+                    Def.Res def = effectNode.ResDef;
+                    Data.HexCoords hexCoords = coords;
+                    Data.EffectNode.Values values = effectNode.GetValues();
+                    int totalValue = values.value * values.multiply * ( 1 + values.reactivate);
+
+                    AddBenefitToList(benefitsAtCoords, def, totalValue, hexCoords, benefitTiming);
+                    AddBenefitToList(benefitsTotal, def, totalValue, Data.HexCoords.Invalid, benefitTiming);
+                }
+            }
+        }
+
+        public static void AddBenefitToList(List<Data.Benefit> benefits, Def.Res resDef, int value, Data.HexCoords coords, Def.Timing timing)
+        {
+            for (int idx = 0; idx < benefits.Count; idx++)
+            {
+                Data.Benefit benefit = benefits[idx];
+                if (benefit.Res.Def == resDef && benefit.BenefitTiming == timing && benefit.HexCoords == coords)
+                {
+                    benefit.Res.Value += value;
+                    benefits[idx] = benefit;
+                    return;
+                }
+            }
+            Data.Benefit newBenefit = new Data.Benefit(resDef, value, coords, timing);
+            benefits.Add(newBenefit);
+        }
+
+        // -----------------------------------------------------------------------------------------
+        public static void RemoveBenefitsRange(List<Data.Benefit> originalBenefits, List<Data.Benefit> toRemoveBenefits)
+        {
+            foreach (Data.Benefit toRemove in toRemoveBenefits)
+            {
+                for (int idx = 0; idx < originalBenefits.Count; idx++)
+                {
+                    Data.Benefit original = originalBenefits[idx];
+                    if (original.Res.Def == toRemove.Res.Def && original.BenefitTiming == toRemove.BenefitTiming && original.HexCoords == toRemove.HexCoords)
                     {
-                        Def.Timing timing = Effects.GetTiming(effect);
-                        if (timing == Def.Timing.PerTurn)
+                        original.Res.Value -= toRemove.Res.Value;
+                        if (original.Res.Value == 0)
                         {
-                            tile.Benefits.AddRange( Effects.Execute(game, coord, effect));
+                            originalBenefits.RemoveAt(idx);
                         }
-                    }
-                }
-            }
-
-            // -----------------------------------------------------------------------------------------
-            public static void RefreshPlayerIncome(Data.Player player, Data.Map map)
-            {
-                player.Income.Clear();
-                foreach (Data.Tile tile in map.TilesInPlay)
-                {
-                    foreach (Data.Benefit benefit in tile.Benefits)
-                    {
-                        if (benefit.BenefitTiming == Def.Timing.PerTurn)
+                        else
                         {
-                            Stockpile.AddResToStockpile(player.Income, benefit.Res);
+                            originalBenefits[idx] = original;
                         }
+                        break;
                     }
                 }
             }
+        }
+
+        // -----------------------------------------------------------------------------------------
+        public static void GainBenefits(Data.Player player, List<Data.Benefit> benefits)
+        {
+            foreach (Data.Benefit benefit in benefits)
+            {
+                if (benefit.BenefitTiming == Def.Timing.PerTurn)
+                {
+                    Stockpile.AddResToStockpile(player.Income, benefit.Res);
+                }
+                else
+                {
+                    Stockpile.AddResToStockpile(player.Stockpile, benefit.Res);
+                }
+            }
+        }
+
+        // -----------------------------------------------------------------------------------------
+        public static void SetTileIOnMap(Data.Player player, Data.Map map, Data.Tile tile, Data.HexCoords coords)
+        {
+            player.NextTiles.Remove(tile);
+            tile.Status = Data.Tile.State.IN_PLAY;
+            map.AddTile(tile, coords);
+        }
+
+        // -----------------------------------------------------------------------------------------
+        public static void RefreshPlayerIncome(Data.Player player, Data.Map map)
+        {
+            // TO DO
+            //player.Income.Clear();
+            //foreach (Data.Tile tile in map.TilesInPlay)
+            //{
+            //    foreach (Data.Benefit benefit in tile.Benefits)
+            //    {
+            //        if (benefit.BenefitTiming == Def.Timing.PerTurn)
+            //        {
+            //            Stockpile.AddResToStockpile(player.Income, benefit.Res);
+            //        }
+            //    }
+            //}
         }
     }
 }

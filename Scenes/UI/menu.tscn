@@ -1,21 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpbrlpqjj5dwf"]
+[gd_scene load_steps=9 format=3 uid="uid://cpbrlpqjj5dwf"]
 
-[ext_resource type="Script" uid="uid://b5i4e24pdk57w" path="res://Scripts/_UI/Menu/UIMenu.cs" id="1_wuk0b"]
+[ext_resource type="Script" uid="uid://chp1oavv7ktol" path="res://Scripts/_UI/Menus/Godot/UIMainMenu.cs" id="1_dxfgg"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="2_t1b1y"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_ttkkf"]
-[ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="3_4twqa"]
 [ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/_Base/UIAnims/AnimButton.cs" id="3_t1b1y"]
-[ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="3_tjcm1"]
 [ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="4_q0i46"]
 [ext_resource type="Texture2D" uid="uid://bhsvghvmob0t3" path="res://Assets/Button/shadow.png" id="6_ttkkf"]
 [ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="7_dxfgg"]
 [ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="8_q0i46"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_h1bgf"]
-keycode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_b3802"]
-events = [SubResource("InputEventKey_h1bgf")]
 
 [node name="MenuUI" type="Control"]
 layout_mode = 3
@@ -24,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wuk0b")
+script = ExtResource("1_dxfgg")
 
 [node name="Panel" type="Control" parent="."]
 custom_minimum_size = Vector2(320, 192)
@@ -105,56 +97,6 @@ autowrap_mode = 0
 script = ExtResource("2_t1b1y")
 
 [node name="Gap" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="StartGame" type="Button" parent="Panel/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(128, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-focus_mode = 0
-theme = ExtResource("3_4twqa")
-shortcut = SubResource("Shortcut_b3802")
-
-[node name="Text" type="RichTextLabel" parent="Panel/VBoxContainer/StartGame"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "[center][b]Start[/b][/center]"
-fit_content = true
-autowrap_mode = 0
-script = ExtResource("2_t1b1y")
-
-[node name="Tooltip" type="Control" parent="Panel/VBoxContainer/StartGame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -106.0
-offset_right = -64.0
-offset_bottom = -106.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("3_tjcm1")
-CanBeHovered = false
-Direction = 3
-Width = 320
-Title = "Tooltip"
-Row_1 = "We have a tooltip here."
-
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
@@ -321,7 +263,4 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="pressed" from="Panel/VBoxContainer/StartGame" to="." method="OnStartGame"]
-[connection signal="mouse_entered" from="Panel/VBoxContainer/StartGame/Tooltip" to="Panel/VBoxContainer/StartGame/Tooltip" method="OnHoverEnter"]
-[connection signal="mouse_exited" from="Panel/VBoxContainer/StartGame/Tooltip" to="Panel/VBoxContainer/StartGame/Tooltip" method="OnHoverExit"]
 [connection signal="LeftClick" from="Panel/VBoxContainer/StartGameBtn" to="." method="OnStartGame"]

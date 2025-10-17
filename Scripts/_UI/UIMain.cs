@@ -4,29 +4,19 @@ namespace GodotUI
 {
     public partial class UIMain : Control
     {
+        public static UIMain X = null;
+
         [ExportCategory("UIs")]
         [Export]
-        public UIMenu Menu;
-        //[Export]
-        //public UIBeforeRound BeforeRound;
-        //[Export]
-        //public UIViewDeckBtn ViewDeckBtn;
-        //[Export]
-        //public UIEvent WEvent;
+        public UIMainMenu Menu;
         [Export]
         public UITileInfo TileInfo;
         [Export]
         public UINextTiles NextTiles;
-        //[Export]
-        //public UIDraft Draft;
         [Export]
         public UIResources Resoruces;
         [Export]
         public UITurn Turn;
-        [Export]
-        public UIVictory WVictory;
-        [Export]
-        public UIInWorld InWorld;
         [Export]
         public UIText DebugText;
 
@@ -34,17 +24,21 @@ namespace GodotUI
         [Export]
         public UIDeckViewer DeckViewer;
 
+        [ExportCategory("Prototypes")]
+        [Export]
+        public UITileInfo3D TileInfoPrototype;
+        [Export]
+        public UIBenefitPop3D BenefitPopPrototype;
+
         public override void _Ready()
         {
+            X = this;
+
             Menu.Visible = false;
-            //ViewDeckBtn.Visible = false;
             Resoruces.Visible = false;
             Turn.Visible = false;
             TileInfo.Visible = false;
             NextTiles.Visible = false;
-            //Draft.Visible = false;
-            //WEvent.Visible = false;
-            WVictory.Visible = false;
 
             SceneTreeTimer timer = GetTree().CreateTimer(0.5f);
             timer.Timeout += StartDelayed;
@@ -54,13 +48,5 @@ namespace GodotUI
         {
             Menu.ShowAnim();
         }
-
-        //public void ShowDeckOverlay()
-        //{
-        //    if (Logic.Run.X != null)
-        //    {
-        //        DeckViewer.Refresh();
-        //    }
-        //}
     }
 }

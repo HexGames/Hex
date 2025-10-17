@@ -17,7 +17,7 @@ namespace GodotUI
         {
             if (show)
             {
-                Data.Player player = Game.Player;
+                Data.Player player = Game.Board.Player;
 
                 //DraftBtn.ThemeTypeVariation = player.DraftPicksCurrent > 0 ? "ButtonRound" : "ButtonRoundGrey";
 
@@ -32,10 +32,10 @@ namespace GodotUI
             }
         }
 
-        public void OnEndTurn()
-        {
-            Actions.OnEndTurn();
-        }
+        //public void OnEndTurn()
+        //{
+        //    Actions.OnEndTurn();
+        //}
 
         //public void OnDraftWindow()
         //{

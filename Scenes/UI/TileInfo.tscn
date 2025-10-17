@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://hgnollckll75"]
 
-[ext_resource type="Script" uid="uid://cic8n052mxlg5" path="res://Scripts/_UI/HUD/TileInfo/UITileInfo.cs" id="1_ldrw6"]
+[ext_resource type="Script" uid="uid://cl8uxlo2yhky8" path="res://Scripts/_UI/HUD/Godot/UITileInfo.cs" id="1_ldrw6"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
 [ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="3_ifsaa"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_ukdo0"]
@@ -105,6 +105,7 @@ layout_mode = 2
 
 [node name="InfoSection" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("5_hbkke")
 

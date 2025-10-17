@@ -9,16 +9,15 @@ namespace Data
         public readonly List<Res> Income = new List<Res>();
         public readonly List<Tile> NextTiles = new List<Tile>();
         public Tile CurrentTile = null;
-        public HexCoord CurrentTileHoverCoords = HexCoord.Invalid;
-        public readonly List<Effect> CurrentTileHoverEffects = new List<Effect>();
+        public HexCoords CurrentTileHoverCoords = HexCoords.Invalid;
         public int NextTilesCount = 0;
 
         public Player()
         {
-            NextTilesCount = Def.Base.DefaultNextTilesCount;
+            NextTilesCount = Def.Base.NextTilesCountDefault;
         }
 
-        // --------------------------------------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------------------------- disabled stockpile functions
         //public Res GetStockpile(string id)
         //{
         //    foreach (Res res in Stockpile)

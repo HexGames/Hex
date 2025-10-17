@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=86 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://sq70sl800s21" path="res://Assets/Icons/Food.png" id="14_y86h7"]
 [ext_resource type="PackedScene" uid="uid://c5003bgoiuf8j" path="res://Assets/Map/Prefabs/Library.tscn" id="15_6h1fc"]
 [ext_resource type="PackedScene" uid="uid://hpx0qnyra4j8" path="res://Assets/Map/Prefabs/Tower.tscn" id="15_f6rfp"]
-[ext_resource type="Script" uid="uid://b4ljhy6ehe2sl" path="res://Scripts/_UI/Menu/Victory/UIVictory.cs" id="15_fevyy"]
 [ext_resource type="Texture2D" uid="uid://deio43uwyww2e" path="res://Assets/Icons/Galleys.png" id="15_my4ki"]
 [ext_resource type="Texture2D" uid="uid://bnretra6j2jkj" path="res://Assets/Icons/Garments.png" id="16_lx3vj"]
 [ext_resource type="PackedScene" uid="uid://dxovjje062m87" path="res://Assets/Map/Prefabs/Lighthouse.tscn" id="16_vxl7x"]
@@ -85,9 +84,7 @@
 [ext_resource type="Script" uid="uid://owufqjb0ra1a" path="res://Scripts/_Map/WorldUI/WUIArrow.cs" id="71_k8rh3"]
 [ext_resource type="PackedScene" uid="uid://f5ubdigheanb" path="res://Scenes/UI/NextTiles.tscn" id="74_qnggo"]
 [ext_resource type="Script" uid="uid://bdgagiwrlnukm" path="res://Scripts/_Map/WorldUI/WorldUI.cs" id="83_55idt"]
-[ext_resource type="Script" uid="uid://b0qd30yehw6bj" path="res://Scripts/_UI/WorldUI/UIInWorld.cs" id="83_87bhu"]
-[ext_resource type="Script" uid="uid://cf1kyeb7cqd1t" path="res://Scripts/_UI/WorldUI/UIWTileInfosPool.cs" id="84_33qc4"]
-[ext_resource type="Script" uid="uid://ds1r1l633forr" path="res://Scripts/_UI/WorldUI/UIWTileInfo.cs" id="85_e6rcu"]
+[ext_resource type="Script" uid="uid://cf6kmwgy7vpo8" path="res://Scripts/_UI/WorldUI/Godot/UITileInfo3D.cs" id="85_e6rcu"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("Assets", "MapInstance", "UIInstance")]
 script = ExtResource("2_v2nl5")
@@ -212,7 +209,7 @@ light_cull_mask = 4293918721
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "WVictory", "InWorld", "DebugText")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "DebugText", "TileInfoPrototype")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,9 +224,8 @@ TileInfo = NodePath("TileInfoUI")
 NextTiles = NodePath("NextTilesUI")
 Resoruces = NodePath("ResourcesUI")
 Turn = NodePath("TurnUI")
-WVictory = NodePath("Win_VictoryUI")
-InWorld = NodePath("InWorldUI")
 DebugText = NodePath("_debug_text")
+TileInfoPrototype = NodePath("WorldUI/TileInfos/TileInfo_0")
 
 [node name="MenuUI" parent="UI" instance=ExtResource("31_2daye")]
 visible = false
@@ -291,7 +287,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="InWorldUI" type="Control" parent="UI" node_paths=PackedStringArray("TileInfosPool")]
+[node name="WorldUI" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -299,10 +295,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("83_87bhu")
-TileInfosPool = NodePath("TileInfos")
 
-[node name="TileInfos" type="Control" parent="UI/InWorldUI" node_paths=PackedStringArray("_tileInfoPrototype")]
+[node name="TileInfos" type="Control" parent="UI/WorldUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -310,15 +304,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("84_33qc4")
-_tileInfoPrototype = NodePath("TileInfo_0")
 
-[node name="TileInfo_0" type="Control" parent="UI/InWorldUI/TileInfos"]
+[node name="TileInfo_0" type="Control" parent="UI/WorldUI/TileInfos"]
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("85_e6rcu")
 
-[node name="Bg" type="PanelContainer" parent="UI/InWorldUI/TileInfos/TileInfo_0"]
+[node name="Bg" type="PanelContainer" parent="UI/WorldUI/TileInfos/TileInfo_0"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
@@ -334,7 +326,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Text" type="RichTextLabel" parent="UI/InWorldUI/TileInfos/TileInfo_0/Bg"]
+[node name="Text" type="RichTextLabel" parent="UI/WorldUI/TileInfos/TileInfo_0/Bg"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -347,7 +339,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="Win_VictoryUI" type="Control" parent="UI"]
+[node name="t_Win_VictoryUI" type="Control" parent="UI"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -357,9 +349,8 @@ offset_left = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("15_fevyy")
 
-[node name="VictoryPanel" type="Panel" parent="UI/Win_VictoryUI"]
+[node name="VictoryPanel" type="Panel" parent="UI/t_Win_VictoryUI"]
 custom_minimum_size = Vector2(256, 192)
 layout_mode = 1
 anchors_preset = 8
@@ -374,7 +365,7 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Win_VictoryUI/VictoryPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/t_Win_VictoryUI/VictoryPanel"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -385,7 +376,7 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Text" type="RichTextLabel" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -394,17 +385,17 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="Gap" type="Control" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="Gap" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="BackToMenu" type="Button" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="BackToMenu" type="Button" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
 custom_minimum_size = Vector2(160, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 
-[node name="Text" type="RichTextLabel" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -421,7 +412,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="Tooltip" type="Control" parent="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+[node name="Tooltip" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -460,9 +451,9 @@ script = null
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.229
+anchor_top = 0.049
 anchor_right = 0.5
-anchor_bottom = 0.229
+anchor_bottom = 0.061
 offset_left = -344.0
 offset_top = -3.32002
 offset_right = 338.0
@@ -478,6 +469,6 @@ fit_content = true
 scroll_active = false
 script = ExtResource("49_xdkp6")
 
-[connection signal="pressed" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" to="UI/Win_VictoryUI" method="OnBackToMenu"]
-[connection signal="mouse_entered" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverEnter"]
-[connection signal="mouse_exited" from="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverExit"]
+[connection signal="pressed" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" to="UI/t_Win_VictoryUI" method="OnBackToMenu"]
+[connection signal="mouse_entered" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverEnter"]
+[connection signal="mouse_exited" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverExit"]

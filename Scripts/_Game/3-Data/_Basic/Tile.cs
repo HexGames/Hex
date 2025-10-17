@@ -14,20 +14,25 @@ namespace Data
         public Def.Tile Def;
         public State Status;
 
-        public readonly List<Def.Var> Effects;
-        public readonly List<Benefit> Benefits;
+        private readonly List<EffectNode> Effects = new List<EffectNode>();
+        private readonly List<EffectNode> OverwriteEffects = new List<EffectNode>();
 
         public Tile(Def.Tile def, State state)
         {
             Def = def;
             Status = state;
-            Effects = new List<Def.Var>();
-            Benefits = new List<Benefit>();
 
-            for (int idx = 0; idx < Def.Data_Effects.Count; idx++)
+            foreach (Def.Var effectVar in Def.Effects)
             {
-                Effects.Add(Def.Data_Effects[idx].Clone());
+                Effects.Add(new EffectNode(this, effectVar));
+                OverwriteEffects.Add(new EffectNode(this, effectVar));
             }
+        }
+
+        public List<EffectNode> GetEffectsList(bool overwrite)
+        {
+            if (overwrite) return OverwriteEffects;
+            return Effects;
         }
     }
 }

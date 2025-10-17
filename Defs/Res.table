@@ -1,8 +1,9 @@
 Res,Default,UI,UI,UI,Data
 ,,Title,Description,Image,Value
 ,,,,,
-Population,,Population,It's a pop.,Population,4
-Food,,Food,It's a food.,Food,2
-Wood,,Wood,It's a wood.,Wood,1
-Gold,,Gold,It's a gold.,Gold,10
-Fame,,Fame,It's a fame?,Fame,5
+Population,,Population,It's a pop,Population,5
+Gold,,Gold,It's a gold,Gold,10
+Culture,,Culture,It's a book?,Culture,10
+Soldiers,,Soldiers,It's a army,Soldiers,10
+Science,,Science,It's science,Science,10
+Trade,,Trade,It's a trade,Trade,10

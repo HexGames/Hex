@@ -1,4 +1,4 @@
-// 2025-09-13T01:31:37
+// 2025-10-16T22:30:13
 Ress 
 {
 	Res Population
@@ -6,38 +6,12 @@ Ress
 		UI 
 		{
 			Title Population
-			Description It's_a_pop.
+			Description It's_a_pop
 			Image Population
 		}
 		Data 
 		{
-			Value 4
-		}
-	}
-	Res Food
-	{
-		UI 
-		{
-			Title Food
-			Description It's_a_food.
-			Image Food
-		}
-		Data 
-		{
-			Value 2
-		}
-	}
-	Res Wood
-	{
-		UI 
-		{
-			Title Wood
-			Description It's_a_wood.
-			Image Wood
-		}
-		Data 
-		{
-			Value 1
+			Value 5
 		}
 	}
 	Res Gold
@@ -45,7 +19,7 @@ Ress
 		UI 
 		{
 			Title Gold
-			Description It's_a_gold.
+			Description It's_a_gold
 			Image Gold
 		}
 		Data 
@@ -53,17 +27,56 @@ Ress
 			Value 10
 		}
 	}
-	Res Fame
+	Res Culture
 	{
 		UI 
 		{
-			Title Fame
-			Description It's_a_fame?
-			Image Fame
+			Title Culture
+			Description It's_a_book?
+			Image Culture
 		}
 		Data 
 		{
-			Value 5
+			Value 10
+		}
+	}
+	Res Soldiers
+	{
+		UI 
+		{
+			Title Soldiers
+			Description It's_a_army
+			Image Soldiers
+		}
+		Data 
+		{
+			Value 10
+		}
+	}
+	Res Science
+	{
+		UI 
+		{
+			Title Science
+			Description It's_science
+			Image Science
+		}
+		Data 
+		{
+			Value 10
+		}
+	}
+	Res Trade
+	{
+		UI 
+		{
+			Title Trade
+			Description It's_a_trade
+			Image Trade
+		}
+		Data 
+		{
+			Value 10
 		}
 	}
 }

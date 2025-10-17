@@ -11,7 +11,7 @@ namespace Godot3D
             _arrowModel = GetNode<Node3D>("ArrowModel");
         }
 
-        public void Refresh(Data.HexCoord atHexCoord, Data.HexCoord pointToHexCoord)
+        public void Refresh(Data.HexCoords atHexCoord, Data.HexCoords pointToHexCoord)
         {
             Vector3 position = Convert.HexCoordToWorld(atHexCoord);
             Vector3 pointToPosition = Convert.HexCoordToWorld(pointToHexCoord);

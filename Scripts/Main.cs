@@ -7,6 +7,8 @@ public partial class Main : Node
     [Export]
     public AssetLib Assets;
     [Export]
+    public ColorLib Colors;
+    [Export]
     public Godot3D.MapMain MapInstance;
     [Export]
     public GodotUI.UIMain UIInstance;
@@ -56,11 +58,16 @@ public partial class Main : Node
 
             FirstFrame = false;
         }
+
+        ProcessDelayedCalls(delta);
     }
 
-    public static void DelayedAction(Action action, float delay)
-    {
-        SceneTreeTimer timer = x.Tree.CreateTimer(delay);
-        timer.Timeout += action;
-    }
+    //public static void DelayedAction(Action<string> action, float delay, string context)
+    //{
+    //    SceneTreeTimer timer = x.Tree.CreateTimer(delay);
+    //    timer.Timeout += () =>
+    //    {
+    //        action.Invoke(context);
+    //    };
+    //}
 }

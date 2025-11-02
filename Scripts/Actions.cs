@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public static partial class Actions
 {
@@ -12,7 +13,8 @@ public static partial class Actions
     {
         UI.MainMenu.Hide();
 
-        Main.DelayedAction(OnStartRunDelayed, 0.5f);
+        Main.DelayedCall(OnStartRunDelayed, 0.5f);
+
     }
 
     private static void OnStartRunDelayed()
@@ -30,6 +32,18 @@ public static partial class Actions
         //UI.TileInfo.Add(new Data.HexCoords(0, 0), "+2");
         //UI.TileInfo.Add(new Data.HexCoords(2, 0), "+2");
         //UI.TileInfo.Add(new Data.HexCoords(3, -1), "x2");
+
+        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.OnPlace, "+3");
+
+        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.OnPlace, "+3");
+
+        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.PerTurn, "+2");
+
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.OnPlace), 1.5f);
+
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.PerTurn), 3.0f);
+
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.OnPlace), 4.5f);
     }
 
     public static void OnEndRun()
@@ -55,7 +69,7 @@ public static partial class Actions
 
     public static void OnEndTurn()
     {
-        Main.DelayedAction(OnStartTurn, 1.0f);
+        Main.DelayedCall(OnStartTurn, 1.0f);
     }
 
     //    List<Data.Res> initialStockpile = new List<Data.Res>(Game.Board.Player.Stockpile);
@@ -131,7 +145,7 @@ public static partial class Actions
         Map.PlayTile(tile, coord); 
         UI.TileInfo.Hide();
 
-        UI.TileInfo3D.
+        //UI.TileInfo3D.
 
         OnEndTurn();
 

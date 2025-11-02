@@ -18,17 +18,27 @@ namespace UI
 
             int tileInfoIdx = GetNewTileInfoIdx();
             UITileInfo3D tileInfo = _tileInfoPool[tileInfoIdx];
-            tileInfo.Refresh(forTile, text);
+            tileInfo.Show(forTile, text);
             tileInfo.Name = $"TileInfo_{forTile}";
             tileInfo.Visible = true;
 
             _tileInfoIdx.Add(forTile, tileInfoIdx);
         }
 
+        public static void Refresh(Data.HexCoords forTile, string text)
+        {
+            if (_tileInfoIdx.TryGetValue(forTile, out int poolIdx) == true)
+            {
+                _tileInfoPool[poolIdx].Refresh(text);
+            }
+        }
+
         public static void Remove(Data.HexCoords forTile)
         {
             if (_tileInfoIdx.TryGetValue(forTile, out int poolIdx) == true)
             {
+                _tileInfoPool[poolIdx].Hide();
+
                 _tileInfoPool[poolIdx].Name = "TileInfo_unused";
                 _tileInfoPool[poolIdx].Visible = false;
 

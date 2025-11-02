@@ -28,7 +28,7 @@ namespace GodotUI
         [Export]
         public UITileInfo3D TileInfoPrototype;
         [Export]
-        public UIBenefitPop3D BenefitPopPrototype;
+        public Benefit3DControl Benefit3DPrototype;
 
         public override void _Ready()
         {

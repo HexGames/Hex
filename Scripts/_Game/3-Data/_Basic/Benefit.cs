@@ -3,14 +3,14 @@ namespace Data
     public struct Benefit
     {
         public Res Res;
-        public HexCoords HexCoords;
+        public HexPos HexPos;
         public Def.Timing BenefitTiming = Def.Timing.PerTurn;
 
-        public Benefit(Def.Res def, int value, HexCoords hexCoords, Def.Timing benefitTiming)
+        public Benefit(Def.Res def, int value, HexPos hexPos, Def.Timing benefitTiming)
         {
 
             Res = new Res(def, value);
-            HexCoords = hexCoords;
+            HexPos = hexPos;
             BenefitTiming = benefitTiming;
         }
     }

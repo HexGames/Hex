@@ -9,7 +9,7 @@ namespace Data
         public readonly List<Res> Income = new List<Res>();
         public readonly List<Tile> NextTiles = new List<Tile>();
         public Tile CurrentTile = null;
-        public HexCoords CurrentTileHoverCoords = HexCoords.Invalid;
+        public HexPos CurrentTileHoverCoords = HexPos.Invalid;
         public int NextTilesCount = 0;
 
         public Player()

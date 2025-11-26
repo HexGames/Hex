@@ -48,26 +48,22 @@ namespace UI
         {
             _TitlesAndDescriptions.Clear();
 
-            AddSectionForEffects(tile.GetEffectsList(false), Def.Timing.OnPlace, "Instant");
+            AddSectionForEffects(tile, Def.Timing.OnPlace, "Instant");
 
-            AddSectionForEffects(tile.GetEffectsList(false), Def.Timing.PerTurn, "PerTurn");
+            AddSectionForEffects(tile, Def.Timing.PerTurn, "PerTurn");
 
-            AddSectionForEffects(tile.GetEffectsList(false), Def.Timing.Always, "Always");
+            AddSectionForEffects(tile, Def.Timing.Always, "Always");
 
             GodotUI.UIMain.X.TileInfo.Refresh(tile, _TitlesAndDescriptions);
         }
 
-        private static void AddSectionForEffects(List<Data.EffectNode> effects, Def.Timing timingFilter, string title)
+        private static void AddSectionForEffects(Data.Tile tile, Def.Timing timingFilter, string title)
         {
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
-            text.Title += title;
-            foreach (Data.EffectNode effect in effects)
-            {
-                if (effect.Timing == timingFilter)
-                {
-                    text.Description += GodotUI.UIHelper.EffectVarToString(effect.EffectDef) + "\n";
-                }
-            }
+            
+            text.Title = title;
+            text.Description = Logic.Effects.GetTileEddectsDescription(tile, timingFilter);
+
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
         }
     }

@@ -5,10 +5,10 @@ namespace UI
     public static class Benefit3D
     {
         private static List<GodotUI.Benefit3DControl> _benefit3DPool = new List<GodotUI.Benefit3DControl>();
-        private static Dictionary<Data.HexCoords, List<int>> _benefit3DIdx = new Dictionary<Data.HexCoords, List<int>>();
+        private static Dictionary<Data.HexPos, List<int>> _benefit3DIdx = new Dictionary<Data.HexPos, List<int>>();
 
         // ---------------------------------------------------------------------------------------------------
-        public static void Add(Data.HexCoords forTile, Def.Timing timing, string text)
+        public static void Add(Data.HexPos forTile, Def.Timing timing, string text)
         {
             if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
             {
@@ -47,7 +47,7 @@ namespace UI
             }
         }
 
-        private static int GetNewBenefit(Data.HexCoords forTile, Def.Timing timing, string text, int onTileIdx)
+        private static int GetNewBenefit(Data.HexPos forTile, Def.Timing timing, string text, int onTileIdx)
         {
             int benefitPopIdx = GetNewBenefitFromPool();
             GodotUI.Benefit3DControl tileInfo = _benefit3DPool[benefitPopIdx];
@@ -58,7 +58,7 @@ namespace UI
             return benefitPopIdx;
         }
 
-        //public static void Refresh(Data.HexCoords forTile, Def.Timing timing, string text)
+        //public static void Refresh(Data.HexPos forTile, Def.Timing timing, string text)
         //{
         //    if (_benefitPopIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
         //    { 
@@ -66,7 +66,7 @@ namespace UI
         //    }
         //}
 
-        public static void Pop(Data.HexCoords forTile, Def.Timing timing)
+        public static void Pop(Data.HexPos forTile, Def.Timing timing)
         {
             if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
             {
@@ -84,7 +84,7 @@ namespace UI
             Debug.LogError($"[Benefit3D] Benefit at {forTile} with timing {timing} not found.");
         }
 
-        //public static void Remove(Data.HexCoords forTile, Def.Timing timing)
+        //public static void Remove(Data.HexPos forTile, Def.Timing timing)
         //{
         //    if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
         //    {

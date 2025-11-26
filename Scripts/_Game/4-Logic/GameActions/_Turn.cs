@@ -5,7 +5,7 @@ namespace Logic
     public static class Turn
     {
         // -----------------------------------------------------------------------------------------
-        public static void GainAllBenefits(Data.Player player, Data.Map map)
+        public static void GainAllBenefits(Data.Player player)
         {
             // TO DO
             //foreach (Data.Tile tile in map.TilesInPlay)

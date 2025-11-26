@@ -25,25 +25,25 @@ public static partial class Actions
         OnStartTurn();
 
         // test example - TO DO - remove
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoords(0, 0), new Data.HexCoords(0, 1));
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoords(2, 0), new Data.HexCoords(2, -1));
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexCoords(2, 0), new Data.HexCoords(1, 0));
+        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(0, 0), new Data.HexPos(0, 1));
+        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(2, -1));
+        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(1, 0));
 
-        //UI.TileInfo.Add(new Data.HexCoords(0, 0), "+2");
-        //UI.TileInfo.Add(new Data.HexCoords(2, 0), "+2");
-        //UI.TileInfo.Add(new Data.HexCoords(3, -1), "x2");
+        //UI.TileInfo.Add(new Data.HexPos(0, 0), "+2");
+        //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
+        //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
 
-        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.OnPlace, "+3");
+        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.OnPlace, "+3");
 
-        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.OnPlace, "+3");
+        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.OnPlace, "+3");
 
-        UI.Benefit3D.Add(new Data.HexCoords(1, 0), Def.Timing.PerTurn, "+2");
+        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.PerTurn, "+2");
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.OnPlace), 1.5f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.OnPlace), 1.5f);
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.PerTurn), 3.0f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.PerTurn), 3.0f);
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexCoords(1, 0), Def.Timing.OnPlace), 4.5f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.OnPlace), 4.5f);
     }
 
     public static void OnEndRun()
@@ -97,19 +97,19 @@ public static partial class Actions
 
     // ---------------------------------------------------------------------------------------------------
     // TO DO - add auto skip for unplayable tiles
-    //public static bool CanPlayTile(Data.Tile tile, Data.HexCoord hexCoord)
+    //public static bool CanPlayTile(Data.Tile tile, Data.HexPos hexPos)
     //{
-    //    return Game.CheckPlayable(tile, hexCoord);
+    //    return Game.CheckPlayable(tile, hexPos);
     //}
 
     // --------------------------------------------------------------------------------------------------- Hover
-    public static bool IsHoverValid(Data.HexCoords coord)
+    public static bool IsHoverValid(Data.HexPos coord)
     {
         Data.Tile tile = Game.Board.Player.CurrentTile;
         return Game.Play.CheckPlayable(tile, coord);
     }
 
-    public static void OnHoverCurrentTile(Data.HexCoords coord) // from Map.Cursor
+    public static void OnHoverCurrentTile(Data.HexPos coord) // from Map.Cursor
     {
         Data.Tile tile = Game.Board.Player.CurrentTile;
         List<Data.Benefit> benefitsTotal;
@@ -132,7 +132,7 @@ public static partial class Actions
     }
 
     // --------------------------------------------------------------------------------------------------- Play
-    public static void OnPlayCurrentTile(Data.HexCoords coord)
+    public static void OnPlayCurrentTile(Data.HexPos coord)
     {
         Data.Tile tile = Game.Board.Player.CurrentTile;
         if (Game.Play.CheckPlayable(tile, coord) == false)
@@ -184,7 +184,7 @@ public static partial class Actions
     //        Logic.Stockpile.AddResToStockpile(stockpile, benefit.Res);
     //    }
     //    //UIX.Resources_Refresh(stockpile, income);
-    //    Map.PopUpBenefit(benefit.HexCoords, GodotUI.UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true));
+    //    Map.PopUpBenefit(benefit.HexPos, GodotUI.UIHelper.ResToString(benefit.Res, alwaysShowSign: true, redNegativeValues: true));
     //}
 
     // ---------------------------------------------------------------------------------------------------

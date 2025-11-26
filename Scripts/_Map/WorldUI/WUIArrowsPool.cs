@@ -9,7 +9,7 @@ namespace Godot3D
         private WUIArrow _arrowPrototype;
 
         private List<WUIArrow> _arrowPool = new List<WUIArrow>();
-        private Dictionary<(Data.HexCoords fromTile, Data.HexCoords toTile), int> _arrowsIdx = new Dictionary<(Data.HexCoords fromTile, Data.HexCoords toTile), int>();
+        private Dictionary<(Data.HexPos fromTile, Data.HexPos toTile), int> _arrowsIdx = new Dictionary<(Data.HexPos fromTile, Data.HexPos toTile), int>();
 
         public override void _Ready()
         {
@@ -17,7 +17,7 @@ namespace Godot3D
             _arrowPool.Add(_arrowPrototype);
         }
 
-        public void AddArrow(Data.HexCoords fromTile, Data.HexCoords toTile)
+        public void AddArrow(Data.HexPos fromTile, Data.HexPos toTile)
         {
             if (_arrowsIdx.TryGetValue((fromTile, toTile), out int poolIdx) == true)
             {
@@ -33,7 +33,7 @@ namespace Godot3D
             _arrowsIdx.Add((fromTile, toTile), arrowIdx);
         }
 
-        public void RemoveArrow(Data.HexCoords fromTile, Data.HexCoords toTile)
+        public void RemoveArrow(Data.HexPos fromTile, Data.HexPos toTile)
         {
             if (_arrowsIdx.TryGetValue((fromTile, toTile), out int poolIdx) == true)
             {

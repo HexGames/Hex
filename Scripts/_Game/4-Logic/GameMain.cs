@@ -8,7 +8,6 @@ namespace Logic
 
         public Data.Decks Decks = null;
         public Data.Player Player = null;
-        public Data.Map Map = null;
         public Data.Turn Turn = null;
 
         public int TurnNo = 0;
@@ -21,7 +20,7 @@ namespace Logic
 
             Decks = new Data.Decks();
             Player = new Data.Player();
-            Map = new Data.Map(Start.GenerateMap());
+            Data.Map.Init(Start.GenerateMap());
             Turn = new Data.Turn();
         }
 
@@ -32,7 +31,7 @@ namespace Logic
         //}
 
         // ------------------------------------------------------------------------------------------
-        //public void PlayTile(Data.Tile tile, Data.HexCoords coord)
+        //public void PlayTile(Data.Tile tile, Data.HexPos coord)
         //{
         //    // TO DO
         //    //Play.CalculateOnPlayBenefits(this, tile, coord);

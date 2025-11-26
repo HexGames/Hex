@@ -5,8 +5,8 @@ public static class Map
     // Example wrappers for methods
     public static void Refresh() => Instance?.Refresh();
     public static void InitCursorTile(Data.Tile tile) => Instance?.InitCursorTile(tile);
-    public static void PopUpBenefit(Data.HexCoords coord, string text) => Instance?.PopUpBenefit(coord, text);
-    public static void PlayTile(Data.Tile tile, Data.HexCoords hexCoord) => Instance?.OnPlayTile(tile, hexCoord);
+    public static void PopUpBenefit(Data.HexPos coord, string text) => Instance?.PopUpBenefit(coord, text);
+    public static void PlayTile(Data.Tile tile, Data.HexPos hexPos) => Instance?.OnPlayTile(tile, hexPos);
 
     public static Godot3D.WorldUI WorldUI => Instance?.WorldUI;
 }

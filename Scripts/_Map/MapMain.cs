@@ -13,7 +13,7 @@ namespace Godot3D
         private BenefitPopUp benefitPopUpPrototype;
         private List<BenefitPopUp> BenefitPopUpPool = new List<BenefitPopUp>();
 
-        private readonly System.Collections.Generic.Dictionary<Data.HexCoords, Node3D> _PlacedTiles = new();
+        private readonly System.Collections.Generic.Dictionary<Data.HexPos, Node3D> _PlacedTiles = new();
 
 
         private const string PREFAB_ROOT = "res://Assets/Map/Prefabs/"; // Path to prefabs
@@ -25,13 +25,11 @@ namespace Godot3D
 
         public void Refresh()
         {
-            Data.Map map = Game.Board.Map;
-
-            foreach (Data.Tile tile in map.TilesInPlay)
+            foreach (Data.Tile tile in Data.Map.TilesInPlay)
             {
-                Data.HexCoords coord = map.GetCoords(tile);
+                Data.HexPos coord = Data.Map.GetCoords(tile);
 
-                SetPrefabAtHexCoord(tile.Def.Map_TilePrefab, coord);
+                SetPrefabAtHexPos(tile.Def.Map_TilePrefab, coord);
             }
         }
 
@@ -40,16 +38,16 @@ namespace Godot3D
             _TileCursor.Activate(tile);
         }
 
-        public void OnPlayTile(Data.Tile tile, Data.HexCoords hexCoord)
+        public void OnPlayTile(Data.Tile tile, Data.HexPos hexPos)
         {
-            SetPrefabAtHexCoord(tile.Def.Map_TilePrefab, hexCoord);
+            SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
             _TileCursor.Clear();
         }
 
-        public void PopUpBenefit(Data.HexCoords coord, string text)
+        public void PopUpBenefit(Data.HexPos coord, string text)
         {
-            // Step 1: Convert HexCoord to 3D world position
-            Vector3 worldPos = Convert.HexCoordToWorld(coord);
+            // Step 1: Convert HexPos to 3D world position
+            Vector3 worldPos = Convert.HexPosToWorld(coord);
 
             // Step 2: Convert 3D world position to 2D screen position
             var viewport = GetViewport();
@@ -83,7 +81,7 @@ namespace Godot3D
             popup.ShowPopUp(screenPos, text);
         }
 
-        private void SetPrefabAtHexCoord(string prefabName, Data.HexCoords coord)
+        private void SetPrefabAtHexPos(string prefabName, Data.HexPos coord)
         {
             // Check if a tile already exists at this coordinate
             if (_PlacedTiles.TryGetValue(coord, out var existingNode))
@@ -104,7 +102,7 @@ namespace Godot3D
                 var instance = prefab.Instantiate<Node3D>();
                 // Use prefabName as the node's name for comparison
                 instance.Name = prefabName;
-                instance.Position = Convert.HexCoordToWorld(coord);
+                instance.Position = Convert.HexPosToWorld(coord);
                 AddChild(instance);
                 _PlacedTiles[coord] = instance;
             }

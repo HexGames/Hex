@@ -11,9 +11,9 @@ namespace GodotUI
             _text = GetNode<UIText>("Bg/Text");
         }
 
-        public void Show(Data.HexCoords atHexCoord, string text)
+        public void Show(Data.HexPos atHexPos, string text)
         {
-            Vector3 worldPos = Godot3D.Convert.HexCoordToWorld(atHexCoord) + 0.3f * Vector3.Up;
+            Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
             Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);
             Position = screenPos;
             _text.SetText("$", text);

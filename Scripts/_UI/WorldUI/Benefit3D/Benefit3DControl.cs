@@ -17,7 +17,7 @@ namespace GodotUI
 
         private UIText _text;
 
-        private Data.HexCoords _hexCoords;
+        private Data.HexPos _hexPos;
         private Def.Timing _timing;
 
         private int _offset;
@@ -35,21 +35,21 @@ namespace GodotUI
         }
 
         /// <param name="offset">Possible offset patterns are: {0} {-1, 1} {-2, 0, 2} {-3, -1, 1, 3} ...</param>
-        public void SetData(Data.HexCoords hexCoord, Def.Timing timing, string text, int offset)
+        public void SetData(Data.HexPos hexPos, Def.Timing timing, string text, int offset)
         {
-            _hexCoords = hexCoord;
+            _hexPos = hexPos;
             _timing = timing;
 
             _offset = offset;
-            _tileWorldPos = Godot3D.Convert.HexCoordToWorld(_hexCoords) + 0.3f * Vector3.Up;
+            _tileWorldPos = Godot3D.Convert.HexPosToWorld(_hexPos) + 0.3f * Vector3.Up;
             Position = Godot3D.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
             _text.SetText("$", text);
             _text.Modulate = ColorLib.GetColor_Text(_timing);
         }
 
-        public void Show(Data.HexCoords atHexCoord, string text)
+        public void Show(Data.HexPos atHexPos, string text)
         {
-            Vector3 worldPos = Godot3D.Convert.HexCoordToWorld(atHexCoord) + 0.3f * Vector3.Up;
+            Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
             Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);
             Position = screenPos;
             _text.SetText("$", text);

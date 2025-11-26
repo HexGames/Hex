@@ -4,9 +4,9 @@
     {
         public static void StartTurn()
         {
-            Logic.Turn.GainAllBenefits(Board.Player, Board.Map);
-            Logic.Play.ReapplyAllEffects(Board.Map);
-            Logic.Play.CalculateAllBenefits(Board.Map, out Board.Turn.BenefitsTotal, out Board.Turn.BenefitsAtCoords);
+            Logic.Turn.GainAllBenefits(Board.Player);
+            Logic.Effects.ReapplyAllEffects();
+            Logic.Effects.CalculateAllBenefits(out Board.Turn.BenefitsTotal, out Board.Turn.BenefitsAtCoords);
             Logic.Turn.PutNewTilesIntoNextQueue(Board.Decks, Board.Player);
             Logic.Turn.SetNextTileAsCurrentTile(Board.Player);
 

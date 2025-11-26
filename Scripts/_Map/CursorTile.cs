@@ -8,7 +8,7 @@ namespace Godot3D
         private Viewport _viewport;
         private Camera3D _camera;
 
-        private Data.HexCoords _lastHexCoord = Data.HexCoords.Invalid;
+        private Data.HexPos _lastHexPos = Data.HexPos.Invalid;
         private Node3D _instance = null;
 
         public override void _Ready()
@@ -68,20 +68,20 @@ namespace Godot3D
             float t = -from.Y / dir.Y;
             Vector3 intersection = from + dir * t;
 
-            Data.HexCoords hexCoord = Convert.WorldToHexCoord(intersection);
+            Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
 
-            if (Game.Board.Map.IsHexCoordOnMap(hexCoord))
+            if (Data.Map.IsHexPosOnMap(hexPos))
             {
                 Visible = true;
-                Position = Convert.HexCoordToWorld(hexCoord);
+                Position = Convert.HexPosToWorld(hexPos);
 
-                if (_lastHexCoord != hexCoord)
+                if (_lastHexPos != hexPos)
                 {
-                    _lastHexCoord = hexCoord;
+                    _lastHexPos = hexPos;
                 }
-                if (Actions.IsHoverValid(hexCoord))
+                if (Actions.IsHoverValid(hexPos))
                 {
-                    Actions.OnHoverCurrentTile(hexCoord);
+                    Actions.OnHoverCurrentTile(hexPos);
                     _instance.Visible = true;
                 }
                 else
@@ -90,17 +90,17 @@ namespace Godot3D
                     _instance.Visible = false;
                 }
 
-                Main.x.UIInstance.DebugText.SetText("$", $"{hexCoord}");
+                Main.x.UIInstance.DebugText.SetText("$", $"{hexPos}");
             }
             else
             {
                 Visible = false;
-                if (_lastHexCoord != Data.HexCoords.Invalid)
+                if (_lastHexPos != Data.HexPos.Invalid)
                 {
                     Actions.OnHoverInvalid();
                 }
 
-                _lastHexCoord = Data.HexCoords.Invalid;
+                _lastHexPos = Data.HexPos.Invalid;
             }
         }
 
@@ -120,7 +120,7 @@ namespace Godot3D
 
         private void OnLeftClick()
         {
-            Actions.OnPlayCurrentTile(_lastHexCoord);
+            Actions.OnPlayCurrentTile(_lastHexPos);
         }
     }
 }

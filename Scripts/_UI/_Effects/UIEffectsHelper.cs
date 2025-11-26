@@ -10,12 +10,12 @@ namespace GodotUI
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
         }
 
-        public static string PerAdjacent(Data.Map map, string param, Def.Res res, int value, Def.Timing timing)
+        public static string PerAdjacent(string param, Def.Res res, int value, Def.Timing timing)
         {
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true) + " for each adj.\n" + param;
         }
 
-        public static string IfAdjacent(Data.Map map, string param, Def.Res res, int value, Def.Timing timing)
+        public static string IfAdjacent(string param, Def.Res res, int value, Def.Timing timing)
         {
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true) + " if adj. to\n" + param;
         }

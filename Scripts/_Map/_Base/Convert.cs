@@ -4,14 +4,14 @@ namespace Godot3D
 {
     public static class Convert
     {
-        public static Vector3 HexPosToWorld(Data.HexPos coords)
+        public static Vector3 HexPosToWorld(Hex.Data.HexPos coords)
         {
             float x = Base.HEX_RADIUS * Mathf.Sqrt(3) * (coords.X + coords.Y / 2.0f);
             float z = Base.HEX_RADIUS * 3.0f / 2.0f * coords.Y;
             return new Vector3(x, 0, z);
         }
 
-        public static Data.HexPos WorldToHexPos(Vector3 position)
+        public static Hex.Data.HexPos WorldToHexPos(Vector3 position)
         {
             float x = position.X;
             float z = position.Z;
@@ -41,7 +41,7 @@ namespace Godot3D
             // else rz = -rx - ry; // Not needed for axial output
 
             // Return as axial (q, r) = (rx, ry)
-            return new Data.HexPos(rx, ry);
+            return new Hex.Data.HexPos(rx, ry);
         }
 
         public static Vector2 WorldToScreen(Vector3 worldPos)

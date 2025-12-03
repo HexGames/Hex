@@ -46,10 +46,10 @@ namespace GodotUI
             }
         }
 
-        public void Refresh(Data.Tile tile)
+        public void Refresh(Hex.Data.Tile tile)
         {
             _Title.SetText("$name", tile.Def.UI_Title);
-            _Type.SetText("$type", string.Join(", ", tile.Def.Tags));
+            _Type.SetText("$type", string.Join(", ", tile.Def.BuildingTags));
 
             // clean 3d tiles
             foreach (Node node in _PrefabParent.GetChildren())

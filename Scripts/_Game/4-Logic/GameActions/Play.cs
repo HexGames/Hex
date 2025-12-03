@@ -11,32 +11,32 @@ namespace Logic
         //}
 
         // -----------------------------------------------------------------------------------------
-        public static void RemoveTile(Data.HexPos hexPos)
+        public static void RemoveTile(Hex.Data.HexPos hexPos)
         {
-            Data.Map.RemoveTiles(hexPos);
+            Hex.Data.Map.RemoveTiles(hexPos);
         }
 
         // -----------------------------------------------------------------------------------------
-        public static bool CheckPlayable(Data.Player player, Data.Tile tile, Data.HexPos coords)
+        public static bool CheckPlayable(Hex.Data.Player player, Hex.Data.Tile tile, Hex.Data.HexPos coords)
         {
-            if (coords == Data.HexPos.Invalid)
+            if (coords == Hex.Data.HexPos.Invalid)
                 return false;
 
-            Data.Tile oldTile = Data.Map.GetTile(coords);
+            Hex.Data.Tile oldTile = Hex.Data.Map.GetTile(coords);
             for (int idx = 0; idx < tile.Def.Conditions.Count; idx++)
             {
-                Def.Var condition = tile.Def.Conditions[idx];
+                Hex.Def.Var condition = tile.Def.Conditions[idx];
                 string conditionID = condition.GetString(0);
                 if (conditionID == "On")
                 {
-                    if (oldTile.Def.Tags.Contains(condition.GetString(1)) == false)
+                    if (oldTile.Def.BuildingTags.Contains(condition.GetString(1)) == false)
                     {
                         return false;
                     }
                 }
                 else if (conditionID == "Margin")
                 {
-                    Data.HexPos center = new Data.HexPos(0, 0);
+                    Hex.Data.HexPos center = new Hex.Data.HexPos(0, 0);
                     if (center.DistanceTo(coords) != 3)
                     {
                         return false;
@@ -48,11 +48,11 @@ namespace Logic
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void GainBenefits(Data.Player player, List<Data.Benefit> benefits)
+        public static void GainBenefits(Hex.Data.Player player, List<Hex.Data.Benefit> benefits)
         {
-            foreach (Data.Benefit benefit in benefits)
+            foreach (Hex.Data.Benefit benefit in benefits)
             {
-                if (benefit.BenefitTiming == Def.Timing.PerTurn)
+                if (benefit.BenefitTiming == Hex.Def.Timing.PerTurn)
                 {
                     Stockpile.AddResToStockpile(player.Income, benefit.Res);
                 }
@@ -64,15 +64,15 @@ namespace Logic
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void SetTileIOnMap(Data.Player player, Data.Tile tile, Data.HexPos coords)
+        public static void SetTileIOnMap(Hex.Data.Player player, Hex.Data.Tile tile, Hex.Data.HexPos coords)
         {
             player.NextTiles.Remove(tile);
-            tile.Status = Data.Tile.State.IN_PLAY;
-            Data.Map.AddTile(tile, coords);
+            tile.Status = Hex.Data.Tile.State.IN_PLAY;
+            Hex.Data.Map.AddTile(tile, coords);
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void RefreshPlayerIncome(Data.Player player)
+        public static void RefreshPlayerIncome(Hex.Data.Player player)
         {
             // TO DO
             //player.Income.Clear();

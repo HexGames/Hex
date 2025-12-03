@@ -4,13 +4,13 @@ namespace Game
 {
     public static class Play
     {
-        public static bool CheckPlayable(Data.Tile tile, Data.HexPos coord)
+        public static bool CheckPlayable(HexData.Tile tile, HexData.HexPos coord)
         {
             bool playable = Logic.Play.CheckPlayable(Board.Player, tile, coord);
             return playable;
         }
 
-        public static void SimulatePlayTile(Data.Tile tile, Data.HexPos coord, out List<Data.Benefit> benefitsExtra, out List<Data.Benefit> benefitsExtraAtCoords)
+        public static void SimulatePlayTile(HexData.Tile tile, HexData.HexPos coord, out List<HexData.Benefit> benefitsExtra, out List<HexData.Benefit> benefitsExtraAtCoords)
         {
             Logic.Effects.ReapplyAllEffectsWithOverwriteTile(tile, coord);
             Logic.Effects.CalculateAllBenefitsWithOverwriteTile(tile, coord, out benefitsExtra, out benefitsExtraAtCoords);
@@ -18,7 +18,7 @@ namespace Game
             Logic.Effects.RemoveBenefitsRange(benefitsExtraAtCoords, Board.Turn.BenefitsAtCoords);
         }
 
-        public static void PlayTile(Data.Tile tile, Data.HexPos coord, out List<Data.Benefit> benefitsTotal, out List<Data.Benefit> benefitsAtCoords)
+        public static void PlayTile(HexData.Tile tile, HexData.HexPos coord, out List<HexData.Benefit> benefitsTotal, out List<HexData.Benefit> benefitsAtCoords)
         {
             Logic.Play.RemoveTile(coord);
             Logic.Play.SetTileIOnMap(Logic.GameMain.X.Player, tile, coord);

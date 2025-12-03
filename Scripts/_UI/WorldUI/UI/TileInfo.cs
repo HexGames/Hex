@@ -6,10 +6,10 @@ namespace UI
     public static class TileInfo3D
     {
         private static List<UITileInfo3D> _tileInfoPool = new List<UITileInfo3D>();
-        private static Dictionary<Data.HexPos, int> _tileInfoIdx = new Dictionary<Data.HexPos, int>();
+        private static Dictionary<Hex.Data.HexPos, int> _tileInfoIdx = new Dictionary<Hex.Data.HexPos, int>();
 
         // ---------------------------------------------------------------------------------------------------
-        public static void Add(Data.HexPos forTile, string text)
+        public static void Add(Hex.Data.HexPos forTile, string text)
         {
             if (_tileInfoIdx.TryGetValue(forTile, out int poolIdx) == true)
             {
@@ -25,7 +25,7 @@ namespace UI
             _tileInfoIdx.Add(forTile, tileInfoIdx);
         }
 
-        public static void Refresh(Data.HexPos forTile, string text)
+        public static void Refresh(Hex.Data.HexPos forTile, string text)
         {
             if (_tileInfoIdx.TryGetValue(forTile, out int poolIdx) == true)
             {
@@ -33,7 +33,7 @@ namespace UI
             }
         }
 
-        public static void Remove(Data.HexPos forTile)
+        public static void Remove(Hex.Data.HexPos forTile)
         {
             if (_tileInfoIdx.TryGetValue(forTile, out int poolIdx) == true)
             {

@@ -2,29 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Def
+namespace Hex.Def
 {
     public static partial class Lib
     {
-        private static Save.Block _ResRawData = null;
-        private static List<Save.Block> _ResRaw = new List<Save.Block>();
-        private static List<Res> _Res = new List<Res>();
-        public static ReadOnlyCollection<Res> Res => _Res.AsReadOnly();
+        private static Save.Block _resRawData = null;
+        private static List<Save.Block> _resRaw = new List<Save.Block>();
+        private static List<Res> _res = new List<Res>();
+        public static ReadOnlyCollection<Res> Res => _res.AsReadOnly();
 
         private static void InitResDefs()
         {
-            _Res.Clear();
-            for (int idx = 0; idx < _ResRaw.Count; idx++)
+            _res.Clear();
+            for (int idx = 0; idx < _resRaw.Count; idx++)
             {
-                Res res = new(_ResRaw[idx]);
-                res.IDX = idx;
-                _Res.Add(res);
+                Res res = new(_resRaw[idx]);
+                res.ID = idx;
+                _res.Add(res);
             }
         }
 
         private static Save.Block GetRawRes(string id)
         {
-            foreach (Save.Block resData in _ResRaw)
+            foreach (Save.Block resData in _resRaw)
             {
                 if (resData.ValueS == id)
                 {
@@ -36,9 +36,9 @@ namespace Def
 
         public static Res GetRes(string id)
         {
-            foreach (Res res in _Res)
+            foreach (Res res in _res)
             {
-                if (res.ID == id)
+                if (res.Name == id)
                 {
                     return res;
                 }
@@ -46,11 +46,16 @@ namespace Def
             return null;
         }
 
+        public static Res GetRes(int ID)
+        {
+            return _res[ID];
+        }
+
         public static Res GetRes(ReadOnlySpan<char> id)
         {
-            foreach (Res res in _Res)
+            foreach (Res res in _res)
             {
-                if (id.SequenceEqual(res.ID.AsSpan()) == true)
+                if (id.SequenceEqual(res.Name.AsSpan()) == true)
                 {
                     return res;
                 }
@@ -62,15 +67,15 @@ namespace Def
 
         private static void SaveResDef()
         {
-            Save.Data.SaveToFile(_ResRawData, "Defs/Res.mod");
+            Save.Data.SaveToFile(_resRawData, "Defs/Res.mod");
         }
 
         private static void LoadResDef()
         {
-            _ResRawData = Save.Data.LoadCSV("Defs/Res.table");
+            _resRawData = Save.Data.LoadCSV("Defs/Res.table");
 
-            _ResRaw.Clear();
-            _ResRaw = _ResRawData.GetSubs("Res");
+            _resRaw.Clear();
+            _resRaw = _resRawData.GetSubs("Res");
         }
     }
 }

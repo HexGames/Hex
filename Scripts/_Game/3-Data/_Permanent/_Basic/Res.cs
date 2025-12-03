@@ -1,27 +1,28 @@
 using System;
 
-namespace Data
+namespace Hex.Data
 {
     public struct Res
     {
-        public Def.Res Def;
+        private readonly int _defID = -1;
+        public readonly Hex.Def.Res Def { get => Hex.Def.Lib.GetRes(_defID); }
         public int Value;
 
-        public Res(Def.Res def)
+        public Res(Hex.Def.Res def)
         {
-            Def = def;
+            _defID = def.ID;
             Value = 0;
         }
 
-        public Res(Def.Res def, int value)
+        public Res(Hex.Def.Res def, int value)
         {
-            Def = def;
+            _defID = def.ID;
             Value = value;
         }
 
         public override bool Equals(object obj) => obj is Res other && Equals(other);
-        public bool Equals(Res other) => Def == other.Def && Value == other.Value;
-        public override int GetHashCode() => HashCode.Combine(Def, Value);
+        public bool Equals(Res other) => _defID == other._defID && Value == other.Value;
+        public override int GetHashCode() => HashCode.Combine(_defID, Value);
         public static bool operator ==(Res a, Res b) => a.Equals(b);
         public static bool operator !=(Res a, Res b) => !a.Equals(b);
 
@@ -29,11 +30,11 @@ namespace Data
 
         public bool IsNull()
         {
-            return Def == null;
+            return _defID < 0;
         }
         public bool IsNotNull()
         {
-            return Def != null;
+            return _defID >= 0;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace GodotUI
             _text = GetNode<UIText>("Bg/Text");
         }
 
-        public void Show(Data.HexPos atHexPos, string text)
+        public void Show(Hex.Data.HexPos atHexPos, string text)
         {
             Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
             Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);

@@ -21,7 +21,7 @@ namespace GodotUI
             PerTurn = GetNode<UIText>("PulseContainer/PerTurn");
         }
 
-        public void SetRes(Def.Res resDef, int value, int perTurn)
+        public void SetRes(Hex.Def.Res resDef, int value, int perTurn)
         {
             int pulseMagnitude = Mathf.Abs(OldValue - value) + Mathf.Abs(OldPerTurn - perTurn);
             OldValue = value;

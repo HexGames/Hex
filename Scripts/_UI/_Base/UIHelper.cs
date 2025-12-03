@@ -53,12 +53,12 @@ namespace GodotUI
             return "[/color]";
         }
 
-        public static string ResToString(Data.Res res, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
+        public static string ResToString(Hex.Data.Res res, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
         {
             return ResToString(res.Def, res.Value, iconSize, precision, alwaysShowSign, redNegativeValues);
         }
 
-        public static string ResToString(Def.Res resDef, int value, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
+        public static string ResToString(Hex.Def.Res resDef, int value, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
         {
             string prefix = "";
             string sufix = GetIcon(resDef.Image, iconSize);
@@ -109,7 +109,7 @@ namespace GodotUI
         private const string NORMAL_EFFECT_FORMAT = "{0}{1}{2}{3}";
         private const string REACTIVATE_ONCE_EFFECT_FORMAT = "{0}{2}{1} time{3}";
         private const string REACTIVATE_MULTIPLE_EFFECT_FORMAT = "{0}{2}{1} times{3}";
-        public static string EffectVarToString(Def.Var effectDef)
+        public static string EffectVarToString(Hex.Def.Var effectDef)
         {
             string text = "";
             string format = NORMAL_EFFECT_FORMAT;
@@ -122,7 +122,7 @@ namespace GodotUI
 
             if (effectDef.IsRes(1))
             {
-                Def.Res res = effectDef.GetRes(1);
+                Hex.Def.Res res = effectDef.GetRes(1);
                 prefix = "+";
                 target = GetIcon(res.Image, 24);
             }

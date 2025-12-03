@@ -13,7 +13,7 @@ namespace Godot3D
         private BenefitPopUp benefitPopUpPrototype;
         private List<BenefitPopUp> BenefitPopUpPool = new List<BenefitPopUp>();
 
-        private readonly System.Collections.Generic.Dictionary<Data.HexPos, Node3D> _PlacedTiles = new();
+        private readonly System.Collections.Generic.Dictionary<Hex.Data.HexPos, Node3D> _PlacedTiles = new();
 
 
         private const string PREFAB_ROOT = "res://Assets/Map/Prefabs/"; // Path to prefabs
@@ -25,26 +25,26 @@ namespace Godot3D
 
         public void Refresh()
         {
-            foreach (Data.Tile tile in Data.Map.TilesInPlay)
+            foreach (Hex.Data.Tile tile in Hex.Data.Map.TilesInPlay)
             {
-                Data.HexPos coord = Data.Map.GetCoords(tile);
+                Hex.Data.HexPos coord = Hex.Data.Map.GetCoords(tile);
 
                 SetPrefabAtHexPos(tile.Def.Map_TilePrefab, coord);
             }
         }
 
-        public void InitCursorTile(Data.Tile tile)
+        public void InitCursorTile(Hex.Data.Tile tile)
         {
             _TileCursor.Activate(tile);
         }
 
-        public void OnPlayTile(Data.Tile tile, Data.HexPos hexPos)
+        public void OnPlayTile(Hex.Data.Tile tile, Hex.Data.HexPos hexPos)
         {
             SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
             _TileCursor.Clear();
         }
 
-        public void PopUpBenefit(Data.HexPos coord, string text)
+        public void PopUpBenefit(Hex.Data.HexPos coord, string text)
         {
             // Step 1: Convert HexPos to 3D world position
             Vector3 worldPos = Convert.HexPosToWorld(coord);
@@ -81,7 +81,7 @@ namespace Godot3D
             popup.ShowPopUp(screenPos, text);
         }
 
-        private void SetPrefabAtHexPos(string prefabName, Data.HexPos coord)
+        private void SetPrefabAtHexPos(string prefabName, Hex.Data.HexPos coord)
         {
             // Check if a tile already exists at this coordinate
             if (_PlacedTiles.TryGetValue(coord, out var existingNode))

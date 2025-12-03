@@ -5,7 +5,7 @@ namespace Logic
     public static class Turn
     {
         // -----------------------------------------------------------------------------------------
-        public static void GainAllBenefits(Data.Player player)
+        public static void GainAllBenefits(Hex.Data.Player player)
         {
             // TO DO
             //foreach (Data.Tile tile in map.TilesInPlay)
@@ -38,18 +38,18 @@ namespace Logic
         //}
 
         // -----------------------------------------------------------------------------------------
-        public static void SetNextTileAsCurrentTile(Data.Player player)
+        public static void SetNextTileAsCurrentTile(Hex.Data.Player player)
         {
             player.CurrentTile = player.NextTiles[0];
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void PutNewTilesIntoNextQueue(Data.Decks decks, Data.Player player)
+        public static void PutNewTilesIntoNextQueue(Hex.Data.TilePool decks, Hex.Data.Player player)
         {
             while (player.NextTiles.Count < player.NextTilesCount)
             {
-                Def.Tile tileDef = decks.GetRandomTile();
-                player.NextTiles.Add(new Data.Tile(tileDef, Data.Tile.State.IN_NEXT));
+                Hex.Def.Tile tileDef = decks.GetRandomTile();
+                player.NextTiles.Add(new Hex.Data.Tile(tileDef, Hex.Data.Tile.State.IN_NEXT));
             }
         }
     }

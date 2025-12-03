@@ -27,7 +27,7 @@ namespace GodotUI
             Description = GetNode<UIText>("VBoxContainer/Description");
         }
 
-        public void Refresh(Data.Tile tile)
+        public void Refresh(Hex.Data.Tile tile)
         {
             Title.SetText("$", tile.Def.UI_ToolTip_Title);
             Description.SetText("$", tile.Def.UI_ToolTip_Description);

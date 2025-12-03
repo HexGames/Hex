@@ -33,17 +33,17 @@ public static partial class Actions
         //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
         //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
 
-        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.OnPlace, "+3");
+        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
 
-        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.OnPlace, "+3");
+        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
 
-        UI.Benefit3D.Add(new Data.HexPos(1, 0), Def.Timing.PerTurn, "+2");
+        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, "+2");
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.OnPlace), 1.5f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 1.5f);
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.PerTurn), 3.0f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn), 3.0f);
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Data.HexPos(1, 0), Def.Timing.OnPlace), 4.5f);
+        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 4.5f);
     }
 
     public static void OnEndRun()
@@ -103,17 +103,17 @@ public static partial class Actions
     //}
 
     // --------------------------------------------------------------------------------------------------- Hover
-    public static bool IsHoverValid(Data.HexPos coord)
+    public static bool IsHoverValid(Hex.Data.HexPos coord)
     {
-        Data.Tile tile = Game.Board.Player.CurrentTile;
+        Hex.Data.Tile tile = Game.Board.Player.CurrentTile;
         return Game.Play.CheckPlayable(tile, coord);
     }
 
-    public static void OnHoverCurrentTile(Data.HexPos coord) // from Map.Cursor
+    public static void OnHoverCurrentTile(Hex.Data.HexPos coord) // from Map.Cursor
     {
-        Data.Tile tile = Game.Board.Player.CurrentTile;
-        List<Data.Benefit> benefitsTotal;
-        List<Data.Benefit> benefitAtCoords;
+        Hex.Data.Tile tile = Game.Board.Player.CurrentTile;
+        List<Hex.Data.Benefit> benefitsTotal;
+        List<Hex.Data.Benefit> benefitAtCoords;
         Game.Play.SimulatePlayTile(tile, coord, out benefitsTotal, out benefitAtCoords);
         UI.TileInfo.RefrehsForBenefits(tile, benefitsTotal);
         UI.TileInfo.Show();
@@ -121,7 +121,7 @@ public static partial class Actions
 
     public static void OnHoverBlocked() // from Map.Cursor
     {
-        Data.Tile tile = Game.Board.Player.CurrentTile;
+        Hex.Data.Tile tile = Game.Board.Player.CurrentTile;
         UI.TileInfo.RefrehsForEffects(tile);
         UI.TileInfo.Show();
     }
@@ -132,14 +132,14 @@ public static partial class Actions
     }
 
     // --------------------------------------------------------------------------------------------------- Play
-    public static void OnPlayCurrentTile(Data.HexPos coord)
+    public static void OnPlayCurrentTile(Hex.Data.HexPos coord)
     {
-        Data.Tile tile = Game.Board.Player.CurrentTile;
+        Hex.Data.Tile tile = Game.Board.Player.CurrentTile;
         if (Game.Play.CheckPlayable(tile, coord) == false)
             return;
 
-        List<Data.Benefit> benefitsTotal;
-        List<Data.Benefit> benefitAtCoords;
+        List<Hex.Data.Benefit> benefitsTotal;
+        List<Hex.Data.Benefit> benefitAtCoords;
         Game.Play.PlayTile(tile, coord, out benefitsTotal, out benefitAtCoords);
 
         Map.PlayTile(tile, coord); 

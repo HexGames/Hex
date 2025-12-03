@@ -42,11 +42,9 @@ public partial class Main : Node
     {
         Tree = GetTree();
 
-        RNG.RNG.xInit();
+        RNG.RNGInit.Init();
 
-        Def.Lib.xTakeDefsFromDownloads();
-        Def.Lib.xLoadDefs();
-        Def.Lib.xInitDefs();
+        Hex.Def.LibInit.Init();
     }
 
     public override void _Process(double delta)

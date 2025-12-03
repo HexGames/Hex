@@ -34,7 +34,7 @@ namespace GodotUI
             }
         }
 
-        public void Refresh(Data.Tile tile)
+        public void Refresh(Hex.Data.Tile tile)
         {
 
             // clean 3d tiles

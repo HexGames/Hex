@@ -6,9 +6,9 @@ namespace Logic
     {
         public static GameMain X = null;
 
-        public Data.Decks Decks = null;
-        public Data.Player Player = null;
-        public Data.Turn Turn = null;
+        public Hex.Data.TilePool Decks = null;
+        public Hex.Data.Player Player = null;
+        public Hex.Data.Turn Turn = null;
 
         public int TurnNo = 0;
         public bool Finished = false;
@@ -18,10 +18,10 @@ namespace Logic
         {
             X = this;
 
-            Decks = new Data.Decks();
-            Player = new Data.Player();
-            Data.Map.Init(Start.GenerateMap());
-            Turn = new Data.Turn();
+            Decks = new Hex.Data.TilePool();
+            Player = new Hex.Data.Player();
+            Hex.Data.Map.Init(Start.GenerateMap());
+            Turn = new Hex.Data.Turn();
         }
 
         // ------------------------------------------------------------------------------------------

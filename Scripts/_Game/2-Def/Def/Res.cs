@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-namespace Def
+namespace Hex.Def
 {
     public class Res 
     {
-        public int IDX = -1;
+        public int ID = -1;
 
-        public string ID = "";
+        public string Name = "";
 
         public int Default = 0;
         public string Title = "";
@@ -16,7 +16,7 @@ namespace Def
 
         public Res(Save.Block targetData)
         {
-            ID = targetData.ValueS;
+            Name = targetData.ValueS;
             Default = targetData.GetSubValueI("Default");
             Title = targetData.GetSubValueS("UI", "Title");
             Description = targetData.GetSubValueS("UI", "Description");

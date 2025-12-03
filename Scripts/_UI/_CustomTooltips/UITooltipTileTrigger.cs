@@ -15,7 +15,7 @@ namespace GodotUI
         private bool CanBeHovered = true;
 
         // Data
-        private Data.Tile _Tile = null;
+        private Hex.Data.Tile _Tile = null;
 
         [ExportCategory("Runtime Hover")]
         [Export]
@@ -48,7 +48,7 @@ namespace GodotUI
         }
 
         // ------------------------------------------------------------------
-        public void SetCard(Data.Tile tile)
+        public void SetCard(Hex.Data.Tile tile)
         {
             _Tile = tile;
         }

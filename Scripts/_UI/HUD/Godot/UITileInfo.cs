@@ -14,10 +14,10 @@ namespace GodotUI
         [Export]
         private UIInfoSection _InfoSection;
 
-        public void Refresh(Data.Tile tile, List<UIInfoSection.Texts> titlesAndDescriptions)
+        public void Refresh(Hex.Data.Tile tile, List<UIInfoSection.Texts> titlesAndDescriptions)
         {
             _Title.SetText("$name", tile.Def.UI_Title);
-            _Type.SetText("$type", string.Join(", ", tile.Def.Tags));
+            _Type.SetText("$type", string.Join(", ", tile.Def.BuildingTags));
 
             _InfoSection.SetTexts(titlesAndDescriptions);
         }

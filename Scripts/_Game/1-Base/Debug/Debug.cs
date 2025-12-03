@@ -9,6 +9,12 @@ public static class Debug
         Debugger.Log(1, "info", "[Game] " + message);
     }
 
+    public static void LogWarning(string message)
+    {
+        GD.PrintErr("[Game] " + message);
+        Debugger.Log(2, "warning", "[Game] " + message);
+    }
+
     public static void LogError(string message)
     {
         GD.PrintErr("[Game] " + message);

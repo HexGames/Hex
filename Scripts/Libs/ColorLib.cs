@@ -6,11 +6,11 @@ using System.Linq;
 public partial class ColorLib : Node
 {
     [Export]
-    public Dictionary<Def.Timing, Color> TimingTextColor = new Dictionary<Def.Timing, Color>();
+    public Dictionary<Hex.Def.Timing, Color> TimingTextColor = new Dictionary<Hex.Def.Timing, Color>();
     [Export]
-    public Dictionary<Def.Timing, Color> TimingBgColor = new Dictionary<Def.Timing, Color>();
+    public Dictionary<Hex.Def.Timing, Color> TimingBgColor = new Dictionary<Hex.Def.Timing, Color>();
 
-    public static Color GetColor_Text(Def.Timing timing)
+    public static Color GetColor_Text(Hex.Def.Timing timing)
     {
         if (Main.x.Colors.TimingTextColor.TryGetValue(timing, out Color color) == true)
         {
@@ -18,7 +18,7 @@ public partial class ColorLib : Node
         }
         return new Color(0xffffffff);
     }
-    public static Color GetColor_BG(Def.Timing timing)
+    public static Color GetColor_BG(Hex.Def.Timing timing)
     {
         if (Main.x.Colors.TimingBgColor.TryGetValue(timing, out Color color) == true)
         {

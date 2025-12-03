@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Data
+namespace Hex.Data
 {
     public class Player
     {
@@ -14,7 +14,7 @@ namespace Data
 
         public Player()
         {
-            NextTilesCount = Def.Base.NextTilesCountDefault;
+            NextTilesCount = Hex.Def.Base.NextTilesCountDefault;
         }
 
         // -------------------------------------------------------------------------------------------------------------- disabled stockpile functions
@@ -111,3 +111,4 @@ namespace Data
         //}
     }
 }
+*/

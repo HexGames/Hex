@@ -314,7 +314,7 @@ namespace Save
 
         public void SetValueI(int value)
         {
-            Type = Data._GetDBType("i_" + Name, Data.BaseType.INT);
+            Type = Data.GetDBType("i_" + Name, Data.BaseType.INT);
             ValueI = value;
             ValueS = "";
         }
@@ -385,7 +385,7 @@ namespace Save
 
         public void SetValueS(string value)
         {
-            Type = Data._GetDBType("s_" + Name, Data.BaseType.STRING);
+            Type = Data.GetDBType("s_" + Name, Data.BaseType.STRING);
             ValueI = 0;
             ValueS = value;
         }

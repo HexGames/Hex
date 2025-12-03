@@ -1,12 +1,12 @@
 ﻿
 
-namespace Def
+namespace Hex.Def
 {
     public enum Timing
     {
         Always,
         PerTurn,
-        OnLevelUp,
+        //OnLevelUp,
         OnPlace,
         //OnPlaceOther,
         //OnDestroySelf,

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Def
+namespace Hex.Def
 {
     public static partial class Lib
     {
-        public static void xTakeDefsFromDownloads()
+        internal static void TakeDefsFromDownloads()
         {
             if (Directory.Exists("C:\\Users\\Vlad\\Downloads"))
             {
@@ -27,7 +27,7 @@ namespace Def
             }
         }
 
-        public static void xLoadDefs()
+        internal static void LoadDefs()
         {
             LoadResDef();
             LoadTilesDef();
@@ -36,10 +36,20 @@ namespace Def
             SaveTilesDef();
         }
 
-        public static void xInitDefs()
+        internal static void InitDefs()
         {
             InitResDefs();
             InitTileDefs();
+            InitTagsDefs(_tiles);
+        }
+        private static void EnsureUnmanaged<T>() where T : unmanaged { }
+        internal static void InitData()
+        {
+            // Check that the struct is an unbroken chunck of memory
+            EnsureUnmanaged<Var>();
+            EnsureUnmanaged<TileData>();
+
+            InitTileData();
         }
 
         // --------------------------------------------------------------------------------------------------- private
@@ -76,6 +86,17 @@ namespace Def
             File.Copy(originalFile, destination);
 
             Debug.Log("Moved " + originalFile + " to " + destination);
+        }
+    }
+
+    public static class LibInit
+    {
+        public static void Init()
+        {
+            Lib.TakeDefsFromDownloads();
+            Lib.LoadDefs();
+            Lib.InitDefs();
+            Lib.InitData();
         }
     }
 }

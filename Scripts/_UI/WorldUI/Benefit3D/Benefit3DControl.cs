@@ -17,8 +17,8 @@ namespace GodotUI
 
         private UIText _text;
 
-        private Data.HexPos _hexPos;
-        private Def.Timing _timing;
+        private Hex.Data.HexPos _hexPos;
+        private Hex.Def.Timing _timing;
 
         private int _offset;
         private Vector3 _tileWorldPos;
@@ -26,7 +26,7 @@ namespace GodotUI
         private Tween _tweenForOffset;
         private bool _isDone;
 
-        public Def.Timing Timing => _timing;
+        public Hex.Def.Timing Timing => _timing;
 
         public override void _Ready()
         {
@@ -35,7 +35,7 @@ namespace GodotUI
         }
 
         /// <param name="offset">Possible offset patterns are: {0} {-1, 1} {-2, 0, 2} {-3, -1, 1, 3} ...</param>
-        public void SetData(Data.HexPos hexPos, Def.Timing timing, string text, int offset)
+        public void SetData(Hex.Data.HexPos hexPos, Hex.Def.Timing timing, string text, int offset)
         {
             _hexPos = hexPos;
             _timing = timing;
@@ -47,7 +47,7 @@ namespace GodotUI
             _text.Modulate = ColorLib.GetColor_Text(_timing);
         }
 
-        public void Show(Data.HexPos atHexPos, string text)
+        public void Show(Hex.Data.HexPos atHexPos, string text)
         {
             Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
             Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);

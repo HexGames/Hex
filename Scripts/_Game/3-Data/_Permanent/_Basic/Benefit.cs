@@ -1,12 +1,12 @@
-namespace Data
+namespace Hex.Data
 {
     public struct Benefit
     {
         public Res Res;
         public HexPos HexPos;
-        public Def.Timing BenefitTiming = Def.Timing.PerTurn;
+        public Hex.Def.Timing BenefitTiming = Hex.Def.Timing.PerTurn;
 
-        public Benefit(Def.Res def, int value, HexPos hexPos, Def.Timing benefitTiming)
+        public Benefit(Hex.Def.Res def, int value, HexPos hexPos, Hex.Def.Timing benefitTiming)
         {
 
             Res = new Res(def, value);

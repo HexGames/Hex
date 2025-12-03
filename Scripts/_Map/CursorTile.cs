@@ -8,7 +8,7 @@ namespace Godot3D
         private Viewport _viewport;
         private Camera3D _camera;
 
-        private Data.HexPos _lastHexPos = Data.HexPos.Invalid;
+        private Hex.Data.HexPos _lastHexPos = Hex.Data.HexPos.Invalid;
         private Node3D _instance = null;
 
         public override void _Ready()
@@ -17,7 +17,7 @@ namespace Godot3D
             _camera = _viewport.GetCamera3D();
         }
 
-        public void Activate(Data.Tile tile)
+        public void Activate(Hex.Data.Tile tile)
         {
             Cleanup();
 
@@ -68,9 +68,9 @@ namespace Godot3D
             float t = -from.Y / dir.Y;
             Vector3 intersection = from + dir * t;
 
-            Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
+            Hex.Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
 
-            if (Data.Map.IsHexPosOnMap(hexPos))
+            if (Hex.Data.Map.IsHexPosOnMap(hexPos))
             {
                 Visible = true;
                 Position = Convert.HexPosToWorld(hexPos);
@@ -95,12 +95,12 @@ namespace Godot3D
             else
             {
                 Visible = false;
-                if (_lastHexPos != Data.HexPos.Invalid)
+                if (_lastHexPos != Hex.Data.HexPos.Invalid)
                 {
                     Actions.OnHoverInvalid();
                 }
 
-                _lastHexPos = Data.HexPos.Invalid;
+                _lastHexPos = Hex.Data.HexPos.Invalid;
             }
         }
 

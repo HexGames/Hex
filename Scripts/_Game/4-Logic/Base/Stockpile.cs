@@ -5,9 +5,9 @@ namespace Logic
     public static class Stockpile
     {
         // -----------------------------------------------------------------------------------------
-        public static int GetValue(List<Data.Res> stockpilem, Def.Res res)
+        public static int GetValue(List<Hex.Data.Res> stockpilem, Hex.Def.Res res)
         {
-            foreach (Data.Res stockRes in stockpilem)
+            foreach (Hex.Data.Res stockRes in stockpilem)
             {
                 if (stockRes.Def == res)
                 {
@@ -18,13 +18,13 @@ namespace Logic
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void AddResToStockpile(List<Data.Res> stockpile, Data.Res res)
+        public static void AddResToStockpile(List<Hex.Data.Res> stockpile, Hex.Data.Res res)
         {
             for (int resIdx = 0; resIdx < stockpile.Count; resIdx++)
             {
                 if (stockpile[resIdx].Def == res.Def)
                 {
-                    Data.Res valueRes = stockpile[resIdx];
+                    Hex.Data.Res valueRes = stockpile[resIdx];
                     valueRes.Value += res.Value;
                     stockpile[resIdx] = valueRes;
                     return;
@@ -35,9 +35,9 @@ namespace Logic
         }
 
         // -----------------------------------------------------------------------------------------
-        public static void AddBenefitsToStockpile(List<Data.Res> stockpile, List<Data.Benefit> benefits)
+        public static void AddBenefitsToStockpile(List<Hex.Data.Res> stockpile, List<Hex.Data.Benefit> benefits)
         {
-            foreach (Data.Benefit benefit in benefits)
+            foreach (Hex.Data.Benefit benefit in benefits)
             {
                 AddResToStockpile(stockpile, benefit.Res);
             }

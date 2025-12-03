@@ -6,18 +6,19 @@ namespace Save
 {
     public static class Data
     {
-        public enum BaseType
+        internal enum BaseType
         {
             NONE,
             INT,
             FLOAT,
             STRING
         }        
-        // --- DB
-        public static Dictionary<int, string> _DB_TypeToString = new Dictionary<int, string>();
-        public static Dictionary<string, int> _DB_TypeToInt = new Dictionary<string, int>();
 
-        public static int _GetDBType(string name, BaseType baseType)
+        // --- DB
+        private static Dictionary<int, string> _DB_TypeToString = new Dictionary<int, string>();
+        private static Dictionary<string, int> _DB_TypeToInt = new Dictionary<string, int>();
+
+        internal static int GetDBType(string name, BaseType baseType)
         {
 
             int type;
@@ -36,7 +37,7 @@ namespace Save
             return type;
         }
 
-        public static string _GetDBValue(int type)
+        internal static string GetDBValue(int type)
         {
             string name;
             if (_DB_TypeToString.TryGetValue(type, out name) == false)
@@ -54,7 +55,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("_" + name, BaseType.NONE);
+            data.Type = GetDBType("_" + name, BaseType.NONE);
             data.Name = name;
 
             return data;
@@ -64,7 +65,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("i_" + name, BaseType.INT);
+            data.Type = GetDBType("i_" + name, BaseType.INT);
             data.Name = name;
             data.ValueI = value;
 
@@ -75,7 +76,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("s_" + name, BaseType.STRING);
+            data.Type = GetDBType("s_" + name, BaseType.STRING);
             data.Name = name;
             data.ValueS = value;
 
@@ -86,7 +87,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("_" + name, BaseType.NONE);
+            data.Type = GetDBType("_" + name, BaseType.NONE);
             data.Name = name;
 
             parent.Subs.Add(data);
@@ -99,7 +100,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("i_" + name, BaseType.INT);
+            data.Type = GetDBType("i_" + name, BaseType.INT);
             data.Name = name;
             data.ValueI = value;
 
@@ -113,7 +114,7 @@ namespace Save
         {
             Block data = new Block();
 
-            data.Type = _GetDBType("s_" + name, BaseType.STRING);
+            data.Type = GetDBType("s_" + name, BaseType.STRING);
             data.Name = name;
             data.ValueS = value;
 
@@ -137,7 +138,7 @@ namespace Save
 
         static public void RemoveDataByType(Block parent, string name, bool all = false)
         {
-            int type = _GetDBType("_" + name, BaseType.NONE);
+            int type = GetDBType("_" + name, BaseType.NONE);
 
             for (int idx = 0; idx < parent.Subs.Count; idx++)
             {
@@ -152,7 +153,7 @@ namespace Save
 
         static public void RemoveDataByType(Block parent, string name, int value, bool all = false)
         {
-            int type = _GetDBType("i_" + name, BaseType.INT);
+            int type = GetDBType("i_" + name, BaseType.INT);
 
             for (int idx = 0; idx < parent.Subs.Count; idx++)
             {
@@ -167,7 +168,7 @@ namespace Save
 
         static public void RemoveDataByType(Block parent, string name, string value, bool all = false)
         {
-            int type = _GetDBType("s_" + name, BaseType.STRING);
+            int type = GetDBType("s_" + name, BaseType.STRING);
 
             for (int idx = 0; idx < parent.Subs.Count; idx++)
             {
@@ -278,7 +279,7 @@ namespace Save
             string prefix = "_";
             if (baseType == BaseType.INT) prefix = "i_";
             if (baseType == BaseType.STRING) prefix = "s_";
-            data.Type = _GetDBType(prefix + words[0], baseType);
+            data.Type = GetDBType(prefix + words[0], baseType);
             data.Name = words[0];
             switch (baseType)
             {
@@ -407,7 +408,7 @@ namespace Save
                 return "";
             }
 
-            string name = _GetDBValue(dataBlock.Type);
+            string name = GetDBValue(dataBlock.Type);
             if (name == "")
             {
                 name = dataBlock.Name;
@@ -564,7 +565,7 @@ namespace Save
         }
 
         // helper 
-        public static string Helper_Tabs(int tabs)
+        private static string Helper_Tabs(int tabs)
         {
             string text = "";
             for (int n = 0; n < tabs; n++)

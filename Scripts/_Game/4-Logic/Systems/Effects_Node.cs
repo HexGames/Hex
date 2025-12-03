@@ -20,11 +20,11 @@ namespace Logic
 
             private struct TileBonuus
             {
-                public Data.Tile Tile;
+                public Hex.Data.Tile Tile;
                 public int Value;
                 public BonusType Type;
 
-                public TileBonuus(Data.Tile tile, int value, BonusType type)
+                public TileBonuus(Hex.Data.Tile tile, int value, BonusType type)
                 {
                     Tile = tile;
                     Value = value;
@@ -52,10 +52,10 @@ namespace Logic
             }
 
             // ------------------------------------------------------------------------------------------ variables
-            public Data.Tile ForTile;
-            public Def.Var EffectDef;
-            public Def.Timing Timing;
-            public Def.Res ResDef = null;
+            public Hex.Data.Tile ForTile;
+            public Hex.Def.Var EffectDef;
+            public Hex.Def.Timing Timing;
+            public Hex.Def.Res ResDef = null;
 
             //public int _baseValue = 0;
             public int _baseValue
@@ -69,7 +69,7 @@ namespace Logic
 
 
             // ------------------------------------------------------------------------------------------ constructor
-            public Node(Data.Tile forTile, Def.Var forEffect)
+            public Node(Hex.Data.Tile forTile, Hex.Def.Var forEffect)
             {
                 ForTile = forTile;
                 EffectDef = forEffect;
@@ -90,7 +90,7 @@ namespace Logic
                 _baseValue = value;
             }
 
-            public void AddTileBonus(Data.Tile fromTile, int value, BonusType type)
+            public void AddTileBonus(Hex.Data.Tile fromTile, int value, BonusType type)
             {
                 _tileBonuses.Add(new TileBonuus(ForTile, value, type));
             }
@@ -152,7 +152,7 @@ namespace Logic
             }
 
             // ------------------------------------------------------------------------------------------ statics
-            public static Def.Timing GetTiming(Def.Var effectDef)
+            public static Hex.Def.Timing GetTiming(Hex.Def.Var effectDef)
             {
                 return effectDef.GetTiming(0);
             }

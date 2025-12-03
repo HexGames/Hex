@@ -17,24 +17,24 @@ namespace UI
             GodotUI.UIMain.X.TileInfo.HideAnim();
         }
 
-        public static void RefrehsForBenefits(Data.Tile tile, List<Data.Benefit> benefits)
+        public static void RefrehsForBenefits(Hex.Data.Tile tile, List<Hex.Data.Benefit> benefits)
         {
             _TitlesAndDescriptions.Clear();
 
-            AddSectionForBenefits(benefits, Def.Timing.OnPlace, "Instant");
+            AddSectionForBenefits(benefits, Hex.Def.Timing.OnPlace, "Instant");
 
-            AddSectionForBenefits(benefits, Def.Timing.PerTurn, "PerTurn");
+            AddSectionForBenefits(benefits, Hex.Def.Timing.PerTurn, "PerTurn");
 
-            AddSectionForBenefits(benefits, Def.Timing.Always, "Always");
+            AddSectionForBenefits(benefits, Hex.Def.Timing.Always, "Always");
 
             GodotUI.UIMain.X.TileInfo.Refresh(tile, _TitlesAndDescriptions);
         }
 
-        private static void AddSectionForBenefits(List<Data.Benefit> benefits, Def.Timing timingFilter, string title)
+        private static void AddSectionForBenefits(List<Hex.Data.Benefit> benefits, Hex.Def.Timing timingFilter, string title)
         {
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
             text.Title += title;
-            foreach (Data.Benefit benefit in benefits)
+            foreach (Hex.Data.Benefit benefit in benefits)
             {
                 if (benefit.BenefitTiming == timingFilter)
                 {
@@ -44,20 +44,20 @@ namespace UI
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
         }
 
-        public static void RefrehsForEffects(Data.Tile tile)
+        public static void RefrehsForEffects(Hex.Data.Tile tile)
         {
             _TitlesAndDescriptions.Clear();
 
-            AddSectionForEffects(tile, Def.Timing.OnPlace, "Instant");
+            AddSectionForEffects(tile, Hex.Def.Timing.OnPlace, "Instant");
 
-            AddSectionForEffects(tile, Def.Timing.PerTurn, "PerTurn");
+            AddSectionForEffects(tile, Hex.Def.Timing.PerTurn, "PerTurn");
 
-            AddSectionForEffects(tile, Def.Timing.Always, "Always");
+            AddSectionForEffects(tile, Hex.Def.Timing.Always, "Always");
 
             GodotUI.UIMain.X.TileInfo.Refresh(tile, _TitlesAndDescriptions);
         }
 
-        private static void AddSectionForEffects(Data.Tile tile, Def.Timing timingFilter, string title)
+        private static void AddSectionForEffects(Hex.Data.Tile tile, Hex.Def.Timing timingFilter, string title)
         {
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
             

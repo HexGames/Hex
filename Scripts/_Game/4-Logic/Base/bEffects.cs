@@ -16,15 +16,15 @@ namespace Logic
 
         private struct Adjiacency
         {
-            public Data.Tile Tile;
+            public Hex.Data.Tile Tile;
             public int Value;
         }
 
         private class Effect
         {
-            public Data.Tile FromTile;
+            public Hex.Data.Tile FromTile;
             public EffectType BonusType;
-            public Def.Res ProdctionResource;
+            public Hex.Def.Res ProdctionResource;
             public int BaseValue;
             public List<Adjiacency> Adjiacencies;
             public List<Effect> Bonuses;
@@ -43,7 +43,7 @@ namespace Logic
         private static List<Effect> _effectsList = new List<Effect>();
         private static List<Effect> _potentialEffectsList = new List<Effect>();
 
-        public static void AddTileEffectsAsPotential(Data.Tile tile, Data.HexPos hexPos)
+        public static void AddTileEffectsAsPotential(Hex.Data.Tile tile, Hex.Data.HexPos hexPos)
         {
             // clone effect list
             _potentialEffectsList.Clear();
@@ -52,7 +52,7 @@ namespace Logic
                 _potentialEffectsList.Add(new Effect(effect));
             }
 
-            Data.Tile oldTile = Data.Map.GetTile(hexPos);
+            Hex.Data.Tile oldTile = Hex.Data.Map.GetTile(hexPos);
 
 
             // to do
@@ -66,7 +66,7 @@ namespace Logic
             // ...
         }
 
-        public static void GetOnPlaceProduction(Data.Tile tile, Data.HexPos hexPos)
+        public static void GetOnPlaceProduction(Hex.Data.Tile tile, Hex.Data.HexPos hexPos)
         {
 
         }

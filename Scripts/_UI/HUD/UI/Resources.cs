@@ -17,15 +17,15 @@ namespace UI
             GodotUI.UIMain.X.Resoruces.HideAnim();
         }
 
-        public static void Refresh(List<Data.Res> stockpile, List<Data.Res> income)
+        public static void Refresh(List<Hex.Data.Res> stockpile, List<Hex.Data.Res> income)
         {
             // refresh items data
             _ItemsData.Clear();
-            foreach (Def.Res resDef in Def.Lib.Res)
+            foreach (Hex.Def.Res resDef in Hex.Def.Lib.Res)
             {
                 int resValue = 0;
                 int resIncome = 0;
-                foreach (Data.Res res in stockpile)
+                foreach (Hex.Data.Res res in stockpile)
                 {
                     if (res.Def == resDef)
                     {
@@ -33,7 +33,7 @@ namespace UI
                         break;
                     }
                 }
-                foreach (Data.Res res in income)
+                foreach (Hex.Data.Res res in income)
                 {
                     if (res.Def == resDef)
                     {

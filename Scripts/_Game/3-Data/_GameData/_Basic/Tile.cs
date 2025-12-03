@@ -12,6 +12,9 @@ namespace Hex.Data
 
     public struct Tile
     {
+        internal const int MAX_DECK = 91; // so that MAX_DECK + MAX_MAP = 128
+        internal const int MAX_MAP = 37; // map size is 1 + 6 * (1 + 2 + 3) = 37 tiles
+
         private readonly int _defID = -1;
         public readonly Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
         public readonly Def.TileData DefData;

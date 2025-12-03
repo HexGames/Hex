@@ -12,7 +12,7 @@ namespace Hex.Data
 
         public static void GenerateMap()
         {
-            Game.InitMapTiles(GenerateDeckTiles());
+            GameData.InitMapTiles(GenerateDeckTiles());
         }
     }
 }

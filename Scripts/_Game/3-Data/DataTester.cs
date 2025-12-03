@@ -10,6 +10,8 @@
             EnsureUnmanaged<HexPos>();
             EnsureUnmanaged<Res>();
             EnsureUnmanaged<Tile>();
+            EnsureUnmanaged<Turn>();
+            EnsureUnmanaged<GameData>();
         }
     }
 }

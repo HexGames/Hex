@@ -10,7 +10,7 @@ namespace Hex.Data
 
         public static void InitFromAllDeckTiles()
         {
-            _tileIDs = Game.MakeListWithDeckTileIDs();
+            _tileIDs = GameData.MakeListWithDeckTileIDs();
         }
     }
 }

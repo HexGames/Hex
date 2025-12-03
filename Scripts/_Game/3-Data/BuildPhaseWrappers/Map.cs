@@ -15,12 +15,12 @@ namespace Hex.Data
 
         public static void GenerateMap()
         {
-            Game.InitMapTiles(GenerateMapTiles());
+            GameData.InitMapTiles(GenerateMapTiles());
         }
 
         public static void Init()
         {
-            _tileIDs = Game.MakeListWithMapTileIDs();
+            _tileIDs = GameData.MakeListWithMapTileIDs();
             int tileIdx = 0;
 
             for (int x = -3; x <= 3; x++)

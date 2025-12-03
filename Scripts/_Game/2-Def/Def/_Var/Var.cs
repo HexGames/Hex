@@ -13,6 +13,8 @@ namespace Hex.Def
             Bool,
             Int,
             Timing,
+            Bonus,
+            Condition,
             Tag, // ref
             Res, // ref
             Tile // ref
@@ -27,6 +29,8 @@ namespace Hex.Def
             public Value(bool value) { Type = ValueType.Bool; _id = value ? 1 : 0; }
             public Value(int value) { Type = ValueType.Int; _id = value; }
             public Value(Timing value) { Type = ValueType.Timing; _id = (int)value; }
+            public Value(Bonus value) { Type = ValueType.Bonus; _id = (int)value; }
+            public Value(Condition value) { Type = ValueType.Condition; _id = (int)value; }
             public Value(Res value) { Type = ValueType.Res; _id = value.ID; }
             public Value(Tag value) { Type = ValueType.Tag; _id = value.ID; }
             public Value(Tile value) { Type = ValueType.Tile; _id = value.ID; }
@@ -34,6 +38,8 @@ namespace Hex.Def
             public bool BoolValue => _id != 0;
             public int IntValue => _id;
             public Timing TimingValue => (Timing)_id;
+            public Bonus BonusValue => (Bonus)_id;
+            public Condition ConditionValue => (Condition)_id;
             public Res ResRef => Lib.GetRes(_id);
             public Tag TagRef => Lib.GetTag(_id);
             public Tile TileRef => Lib.GetTile(_id);
@@ -62,6 +68,8 @@ namespace Hex.Def
             if (bool.TryParse(v, out bool b)) return new Value(b);
             if (int.TryParse(v, out int i)) return new Value(i);
             if (Enum.TryParse<Timing>(v, out Timing t)) return new Value(t);
+            if (Enum.TryParse<Bonus>(v, out Bonus b)) return new Value(b);
+            if (Enum.TryParse<Condition>(v, out Condition c)) return new Value(c);
 
             Res res = Lib.GetRes(v);
             if (res != null) return new Value(res);
@@ -119,6 +127,12 @@ namespace Hex.Def
         public bool IsTiming(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Timing;
         public Timing GetTiming(int index = 0, int subIndex = 0) => _values[index][subIndex].TimingValue;
 
+        public bool IsBonus(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Bonus;
+        public Bonus GetBonus(int index = 0, int subIndex = 0) => _values[index][subIndex].BonusValue;
+
+        public bool IsCondition(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Condition;
+        public Condition GetCondition(int index = 0, int subIndex = 0) => _values[index][subIndex].ConditionValue;
+
         public bool IsRes(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Res;
         public Res GetRes(int index = 0, int subIndex = 0) => _values[index][subIndex].ResRef;
 
@@ -146,6 +160,8 @@ namespace Hex.Def
                         case ValueType.Bool: stringBuilder.Append(_values[idx][subIdx].BoolValue); break;
                         case ValueType.Int: stringBuilder.Append(_values[idx][subIdx].IntValue); break;
                         case ValueType.Timing: stringBuilder.Append(_values[idx][subIdx].TimingValue.ToString()); break;
+                        case ValueType.Bonus: stringBuilder.Append(_values[idx][subIdx].BonusValue.ToString()); break;
+                        case ValueType.Condition: stringBuilder.Append(_values[idx][subIdx].ConditionValue.ToString()); break;
                         case ValueType.Res: stringBuilder.Append(_values[idx][subIdx].ResRef.Name); break;
                         case ValueType.Tag: stringBuilder.Append(_values[idx][subIdx].TagRef.Name); break;
                         case ValueType.Tile: stringBuilder.Append(_values[idx][subIdx].TileRef.Name); break;

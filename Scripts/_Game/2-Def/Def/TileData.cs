@@ -19,8 +19,8 @@ namespace Hex.Def
         public readonly int Level;
         public readonly int Weight;
         public readonly int Initiative;
-        public readonly TerrainTagArray TerrainTagIDs;
-        public readonly BuildingTagArray BuildingTagsIDs;
+        public TerrainTagArray TerrainTags;
+        public readonly BuildingTagArray BuildingTags;
         public readonly ConditionArray Conditions;
         public readonly EffectArray Effects;
 
@@ -31,9 +31,9 @@ namespace Hex.Def
             Weight = tile.Weight;
             Initiative = tile.Initiative;
 
-            TerrainTagIDs = new TerrainTagArray(tile.TerrainTags);
+            TerrainTags = new TerrainTagArray(tile.TerrainTags);
 
-            BuildingTagsIDs = new BuildingTagArray(tile.TerrainTags);
+            BuildingTags = new BuildingTagArray(tile.TerrainTags);
 
             for (int idx = 0; idx < MAX_CONDITIONS; idx++)
             {
@@ -72,6 +72,18 @@ namespace Hex.Def
                 get
                 {
                     return Lib.GetTag(_array[i]);
+                }
+            }
+
+            public void AddTag(int tagID)
+            {
+                for (int idx = 0; idx < MAX_TERRAIN_TAGS; idx++)
+                {
+                    if (_array[idx] == -1)
+                    {
+                        _array[idx] = tagID;
+                        return;
+                    }
                 }
             }
         }

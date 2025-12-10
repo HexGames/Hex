@@ -1,29 +1,22 @@
-﻿using PlayInternal;
-using CommandSystem;
+﻿using CommandSystem;
 using System;
+using Hex;
+using Hex.PlayInternal;
 
-namespace Play
+namespace Hex.Play
 {
     public static class Game
     {
-        public static void Initialize()
+        public static void Init()
         {
-            Commands.Initialize();
+            Data.MapHelperInit.Init();
+            CommandsInit.Init();
         }
+
         public static void NewGame()
         {
-            if (Logic.GameMain.X == null)
-            {
-                Logic.GameMain.X = new Logic.GameMain();
-            }
-            else
-            {
-                Debug.LogError("Game instance already exists. Cannot start a new game.");
-                return;
-            }
-
-            Logic.Start.AddStartingDeckTiles();
-            Logic.Start.AddStartingRes();
+            Data.Game.DeckTiles.SetDeckTiles(Logic.Deck.GenerateDeckTiles());
+            Data.Game.MapTiles.SetMapTiles(Logic.Map.GenerateMapTiles());
         }
 
         public static void RegisterPlayTileOutputHandlers(Action<ICommandResult> handler)
@@ -31,9 +24,9 @@ namespace Play
             CommandSys.RegisterResultHandler(Phase.Build, CommandType.PlayTile, handler);
         }
 
-        public static void InputPlayTile(HexData.Tile tile, HexData.HexPos atHexPos)
+        public static void InputPlayTile(Data.HexPos atHexPos)
         {
-            CommandSys.AddCommand(new Command(CommandType.PlayTile, new PlayTileCommandInfo(tile, atHexPos)));
+            CommandSys.AddCommand(new Command(CommandType.PlayTile, new PlayTileCommandInfo(Data.Game.DeckTiles[PlayData.CurrentTileID], atHexPos)));
         }
 
         public static void Update()

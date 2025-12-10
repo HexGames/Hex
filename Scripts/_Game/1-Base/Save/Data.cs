@@ -476,8 +476,10 @@ namespace Save
             {
                 string[] wordsOnRow = rows[idx].Split(',');
                 if (wordsOnRow[0] == "") continue;
-
                 if (wordsOnRow[0] == "-") continue;
+                if (wordsOnRow[0].StartsWith("//")) continue;
+
+
                 extraRows.Clear();
                 for (int extraRowIdx = idx + 1; extraRowIdx < rows.Length; extraRowIdx++)
                 {

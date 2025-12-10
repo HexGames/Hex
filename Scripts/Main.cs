@@ -52,10 +52,12 @@ public partial class Main : Node
         if (FirstFrame)
         {
             // do things on the first frame
-            Actions.Init();
+            GameLoop.Init();
 
             FirstFrame = false;
         }
+
+        GameLoop.Update(delta);
 
         ProcessDelayedCalls(delta);
     }

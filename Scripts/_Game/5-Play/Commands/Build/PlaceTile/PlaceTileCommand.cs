@@ -1,22 +1,29 @@
 ﻿using CommandSystem;
+using System.Collections.Generic;
+using Hex;
 
-namespace PlayInternal
+namespace Hex.PlayInternal
 {
     public class PlayTileCommandResult : ICommandResult
     {
-        public bool Success;
-        public PlayTileCommandResult(bool success)
+        public readonly List<TileToTile> OnPlaceBonusTree = new List<TileToTile>();
+        public readonly Data.Res Production;
+        public readonly bool Success = false;
+
+        public PlayTileCommandResult(List<TileToTile> onPlaceBonusTree, Data.Res production)
         {
-            Success = success;
+            Success = true;
+            OnPlaceBonusTree = onPlaceBonusTree;
+            Production = production;
         }
     }
 
     public class PlayTileCommandInfo : ICommandInfo
     {
-        public HexData.Tile Tile;
-        public HexData.HexPos AtHexPos;
+        public Data.Tile Tile;
+        public Data.HexPos AtHexPos;
 
-        public PlayTileCommandInfo(HexData.Tile tile, HexData.HexPos atHexPos)
+        public PlayTileCommandInfo(Data.Tile tile, Data.HexPos atHexPos)
         {
             Tile = tile;
             AtHexPos = atHexPos;
@@ -31,9 +38,12 @@ namespace PlayInternal
             if (placeTileInfo == null)
                 return null;
 
-            bool success = Logic.Actions.PlayTile(placeTileInfo.Tile, placeTileInfo.AtHexPos);
+            bool success = Logic.Actions.PlayTile(placeTileInfo.Tile, placeTileInfo.AtHexPos, out List<TileToTile> onPlaceBonusTree, out Data.Res production);
 
-            PlayTileCommandResult result = new PlayTileCommandResult(success);
+            if (success == false)
+                return default;
+
+            PlayTileCommandResult result = new PlayTileCommandResult(onPlaceBonusTree, production);
 
             return result;
         }

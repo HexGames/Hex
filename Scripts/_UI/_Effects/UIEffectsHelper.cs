@@ -23,15 +23,15 @@ namespace GodotUI
         {
             return "Lose " + UIHelper.ResToString(res, -value, alwaysShowSign: true, redNegativeValues: true);
         }
-        public static string TransformX1(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
-        {
-            return "Transform 1" + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
-        }
-
-        public static string TransformAll(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
-        {
-            return "Transform all " + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
-        }
+        //public static string TransformX1(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        //{
+        //    return "Transform 1" + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
+        //}
+        //
+        //public static string TransformAll(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        //{
+        //    return "Transform all " + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
+        //}
 
         private static readonly Dictionary<string, System.Reflection.MethodInfo> _methodCache = new();
         public static string GetDescription(Hex.Def.Var effect)

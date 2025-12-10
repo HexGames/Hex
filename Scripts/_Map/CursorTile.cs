@@ -70,7 +70,7 @@ namespace Godot3D
 
             Hex.Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
 
-            if (Hex.Data.Map.IsHexPosOnMap(hexPos))
+            if (Hex.Data.MapHelper.IsHexPosOnMap(hexPos))
             {
                 Visible = true;
                 Position = Convert.HexPosToWorld(hexPos);
@@ -79,16 +79,16 @@ namespace Godot3D
                 {
                     _lastHexPos = hexPos;
                 }
-                if (Actions.IsHoverValid(hexPos))
-                {
-                    Actions.OnHoverCurrentTile(hexPos);
+                //if (Actions.IsHoverValid(hexPos))
+                //{
+                //    Actions.OnHoverCurrentTile(hexPos);
                     _instance.Visible = true;
-                }
-                else
-                {
-                    Actions.OnHoverBlocked();
-                    _instance.Visible = false;
-                }
+                //}
+                //else
+                //{
+                //    Actions.OnHoverBlocked();
+                //    _instance.Visible = false;
+                //}
 
                 Main.x.UIInstance.DebugText.SetText("$", $"{hexPos}");
             }
@@ -97,7 +97,7 @@ namespace Godot3D
                 Visible = false;
                 if (_lastHexPos != Hex.Data.HexPos.Invalid)
                 {
-                    Actions.OnHoverInvalid();
+                    //Actions.OnHoverInvalid();
                 }
 
                 _lastHexPos = Hex.Data.HexPos.Invalid;
@@ -120,7 +120,8 @@ namespace Godot3D
 
         private void OnLeftClick()
         {
-            Actions.OnPlayCurrentTile(_lastHexPos);
+            Hex.Play.Game.InputPlayTile(_lastHexPos);
+            //Actions.OnPlayCurrentTile(_lastHexPos);
         }
     }
 }

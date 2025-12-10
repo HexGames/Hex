@@ -1,14 +1,22 @@
 ﻿using CommandSystem;
 
-namespace PlayInternal
+namespace Hex.PlayInternal
 {
     public static class Commands
     {
-        public static void Initialize()
+        internal static void Init()
         {
             CommandSys.RegisterCommandHandler(Phase.Build, CommandType.PlayTile, PlayTileCommand.HandleCommand);
 
             CommandSys.SetPhase(Phase.Build);
+        }
+    }
+
+    public static class CommandsInit
+    {
+        public static void Init()
+        {
+            Commands.Init();
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Hex.Data
     internal partial struct Turn
     {
         internal TileArray Tiles; // an inline array of MAX_DECK + MAX_MAP
+        // a tile can be in both deck and map, so it can be duplicated in the array
 
         internal void InitDeckTiles(List<Def.Tile> tileDefs)
         {
@@ -17,14 +18,14 @@ namespace Hex.Data
 
             for (int idx = 0; idx < int.Min(tileDefs.Count, Tile.MAX_DECK); idx++)
             {
-                Tiles.Array[idx] = new Tile(tileDefs[idx]);
-                Tiles.Array[idx].IsDeckTile = true;
-                Tiles.Array[idx].State = TileState.InMeta;
+                int id = idx;
+                Tiles.Array[id] = new Tile(tileDefs[idx], id);
+                Tiles.Array[id].State = TileState.InMeta;
             }
             Tiles.DeckTileCount = tileDefs.Count;
         }
 
-        internal void InitMapTiles(List<Def.Tile> tileDefs)
+        internal void InitMapTiles(List<Def.Tile> tileDefs) // map initial tiles
         {
             if (tileDefs.Count > Tile.MAX_MAP)
             {
@@ -32,24 +33,23 @@ namespace Hex.Data
                 return;
             }
 
-            for (int idx = Tile.MAX_DECK; idx < tileDefs.Count; idx++)
+            for (int idx = 0; idx < int.Min(tileDefs.Count, Tile.MAX_MAP); idx++)
             {
-                Tiles.Array[idx] = new Tile(tileDefs[idx]);
-                Tiles.Array[idx].IsDeckTile = false; // just to be explicit
-                Tiles.Array[idx].State = TileState.OnMap; // also set in Map to make sure
+                int id = Tile.MAX_DECK + idx;
+                Tiles.Array[id] = new Tile(tileDefs[idx], id);
+                Tiles.Array[id].State = TileState.OnMap;
             }
             Tiles.MapTileCount = tileDefs.Count;
         }
 
-        public void AddDeckTile(Def.Tile tileDef)
+        internal void AddDeckTile(Def.Tile tileDef)
         {
-            Tiles.Array[Tiles.DeckTileCount] = new Tile(tileDef);
-            Tiles.Array[Tiles.DeckTileCount].IsDeckTile = true;
+            Tiles.Array[Tiles.DeckTileCount] = new Tile(tileDef, Tiles.DeckTileCount);
             Tiles.Array[Tiles.DeckTileCount].State = TileState.InMeta;
             Tiles.DeckTileCount++;
         }
 
-        public List<int> MakeListWithDeckTileIDs()
+        internal List<int> MakeListWithDeckTileIDs()
         {
             List<int> tileIDs = new List<int>();
             for (int idx = 0; idx < Tiles.DeckTileCount; idx++)
@@ -59,7 +59,7 @@ namespace Hex.Data
             return tileIDs;
         }
 
-        public List<int> MakeListWithMapTileIDs()
+        internal List<int> MakeListWithMapTileIDs()
         {
             List<int> tileIDs = new List<int>();
             for (int idx = Tile.MAX_DECK; idx < Tiles.MapTileCount; idx++)

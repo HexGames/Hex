@@ -15,7 +15,7 @@ namespace GodotUI
         private bool CanBeHovered = true;
 
         // Data
-        private Hex.Data.Tile _Tile = null;
+        //private Hex.Data.Tile _Tile = null;
 
         [ExportCategory("Runtime Hover")]
         [Export]
@@ -25,8 +25,8 @@ namespace GodotUI
 
         public void OnHoverEnter()
         {
-            if (_Disabled || _Tile == null)
-                return;
+            //if (_Disabled || _Tile == null)
+            //    return;
 
             // ---
             //_Tooltip = Main.x.Tooltips.GetTooltipCard();
@@ -50,7 +50,7 @@ namespace GodotUI
         // ------------------------------------------------------------------
         public void SetCard(Hex.Data.Tile tile)
         {
-            _Tile = tile;
+            //_Tile = tile;
         }
     }
 }

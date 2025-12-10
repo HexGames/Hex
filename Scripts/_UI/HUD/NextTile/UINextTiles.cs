@@ -12,20 +12,20 @@ namespace GodotUI
         {
             if (show)
             {
-                Hex.Data.Player player = Game.Board.Player;
-
-                for (int idx = 0; idx < NextTiles.Count; idx++)
-                {
-                    if (idx < player.NextTiles.Count)
-                    {
-                        NextTiles[idx].Visible = true;
-                        NextTiles[idx].Refresh(player.NextTiles[NextTiles.Count - 1 - idx]);
-                    }
-                    else
-                    {
-                        NextTiles[idx].Visible = false;
-                    }
-                }
+                //Hex.Data.Player player = Game.Board.Player;
+                //
+                //for (int idx = 0; idx < NextTiles.Count; idx++)
+                //{
+                //    if (idx < player.NextTiles.Count)
+                //    {
+                //        NextTiles[idx].Visible = true;
+                //        NextTiles[idx].Refresh(player.NextTiles[NextTiles.Count - 1 - idx]);
+                //    }
+                //    else
+                //    {
+                //        NextTiles[idx].Visible = false;
+                //    }
+                //}
 
                 ShowAnim();
             }

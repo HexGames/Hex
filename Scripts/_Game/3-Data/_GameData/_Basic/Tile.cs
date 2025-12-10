@@ -7,7 +7,8 @@ namespace Hex.Data
         InMeta,
         InDrawDeck,
         InNextQueue,
-        OnMap
+        OnMap,
+        Destroyed
     }
 
     public struct Tile
@@ -16,18 +17,22 @@ namespace Hex.Data
         internal const int MAX_MAP = 37; // map size is 1 + 6 * (1 + 2 + 3) = 37 tiles
 
         private readonly int _defID = -1;
-        public readonly Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
-        public readonly Def.TileData DefData;
-        public bool IsDeckTile = false; // the big player deck with all the tiles, not just the draw deck
+
+        public Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
+        public Def.TileData _defData;
+        public int DeckTileID = -1; // the intex from TileArray
+        public int MapTileID = -1; // the intex from TileArray
         public TileState State = TileState.InMeta;
 
         //private readonly List<EffectNode> Effects = new List<EffectNode>();
         //private readonly List<EffectNode> OverwriteEffects = new List<EffectNode>();
 
-        public Tile(Def.Tile def)
+        public Tile(Def.Tile def, int id)
         {
             _defID = def.ID;
-            DefData = Hex.Def.Lib.GetTileData(_defID);
+            _defData = Hex.Def.Lib.GetTileData(_defID);
+            if (id < MAX_DECK) DeckTileID = id;
+            else MapTileID = id;
 
             //foreach (Def.Var effectVar in Def.Effects)
             //{

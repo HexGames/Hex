@@ -25,11 +25,12 @@ namespace Godot3D
 
         public void Refresh()
         {
-            foreach (Hex.Data.Tile tile in Hex.Data.Map.TilesInPlay)
+            for (int mapIdx = 0; mapIdx < Hex.Data.Game.MapTiles.span.Length; mapIdx++)
             {
-                Hex.Data.HexPos coord = Hex.Data.Map.GetCoords(tile);
-
-                SetPrefabAtHexPos(tile.Def.Map_TilePrefab, coord);
+                ref Hex.Data.Tile tile = ref Hex.Data.Game.MapTiles.span[mapIdx];
+                int mapTileId = tile.MapTileID;
+                Hex.Data.HexPos hexPos = Hex.Data.MapHelper.MapTileIDToHexPos(mapTileId);
+                SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
             }
         }
 

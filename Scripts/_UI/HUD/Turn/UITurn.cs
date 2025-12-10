@@ -17,7 +17,7 @@ namespace GodotUI
         {
             if (show)
             {
-                Hex.Data.Player player = Game.Board.Player;
+                //Hex.Data.Player player = Game.Board.Player;
 
                 //DraftBtn.ThemeTypeVariation = player.DraftPicksCurrent > 0 ? "ButtonRound" : "ButtonRoundGrey";
 

@@ -67,9 +67,9 @@ namespace Hex.Def
         {
             if (bool.TryParse(v, out bool b)) return new Value(b);
             if (int.TryParse(v, out int i)) return new Value(i);
-            if (Enum.TryParse<Timing>(v, out Timing t)) return new Value(t);
-            if (Enum.TryParse<Bonus>(v, out Bonus b)) return new Value(b);
-            if (Enum.TryParse<Condition>(v, out Condition c)) return new Value(c);
+            if (Enum.TryParse<Timing>(v, out Timing timing)) return new Value(timing);
+            if (Enum.TryParse<Bonus>(v, out Bonus bonus)) return new Value(bonus);
+            if (Enum.TryParse<Condition>(v, out Condition condition)) return new Value(condition);
 
             Res res = Lib.GetRes(v);
             if (res != null) return new Value(res);
@@ -78,7 +78,8 @@ namespace Hex.Def
             Tile tile = Lib.GetTile(v);
             if (tile != null) return new Value(tile);
 
-            throw new Exception($"Unknown value: {v.ToString()}");
+            Debug.LogError($"[VAR] Unknown value - {v.ToString()}");
+            return new Value(0);
         }
 
         private void Parse(string defString)
@@ -169,6 +170,22 @@ namespace Hex.Def
                 }
             }
             return stringBuilder.ToString();
+        }
+
+        public string GetString(int index = 0, int subIndex = 0)
+        {
+            switch (_values[index][subIndex].Type)
+            {
+                case ValueType.Bool: return _values[index][subIndex].BoolValue.ToString();
+                case ValueType.Int: return _values[index][subIndex].IntValue.ToString();
+                case ValueType.Timing: return _values[index][subIndex].TimingValue.ToString();
+                case ValueType.Bonus: return _values[index][subIndex].BonusValue.ToString();
+                case ValueType.Condition: return _values[index][subIndex].ConditionValue.ToString();
+                case ValueType.Res: return _values[index][subIndex].ResRef.Name;
+                case ValueType.Tag: return _values[index][subIndex].TagRef.Name;
+                case ValueType.Tile: return _values[index][subIndex].TileRef.Name;
+                default: throw new Exception("Unknown Var type");
+            }
         }
     }
 }

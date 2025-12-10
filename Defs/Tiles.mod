@@ -1,4 +1,4 @@
-// 2025-11-26T14:18:21
+// 2025-12-11T01:31:23
 Tiles 
 {
 	Tile Water
@@ -18,9 +18,7 @@ Tiles
 		}
 		Data 
 		{
-			Tags Sea
-			Tags Water
-			Initiative 0
+			Terrain Water
 		}
 	}
 	Tile Grass
@@ -40,9 +38,7 @@ Tiles
 		}
 		Data 
 		{
-			Tags Land
-			Tags Grass
-			Initiative 0
+			Terrain Grass
 		}
 	}
 	Tile Desert
@@ -62,10 +58,8 @@ Tiles
 		}
 		Data 
 		{
-			Tags Land
-			Tags Desert
+			Terrain Desert
 			PlaceCondition NotAdjacent:Water
-			Initiative 0
 		}
 	}
 	Tile Forest
@@ -85,9 +79,8 @@ Tiles
 		}
 		Data 
 		{
-			Tags Land
 			Tags Forrest
-			Initiative 0
+			Terrain Grass
 		}
 	}
 	Tile Mountain
@@ -107,8 +100,7 @@ Tiles
 		}
 		Data 
 		{
-			Tags Mountain
-			Initiative 0
+			Terrain Mountain
 		}
 	}
 	Tile Houses_I
@@ -121,13 +113,12 @@ Tiles
 			Starting 6
 			Tags Building
 			Tags Houses
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Population:2:1*IfAdjacent*Water:1*If*Grass
-			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
-			Effect OnLevelUp:Gold:1
+			Tags Population
+			PlaceCondition On:Grass:Desert
+			Effect OnPlace:Population:2:2*IfTerrain*Grass:2*IfAdjacent*Water
+			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
-			SelfUpgrade Population:10
+			SelfUpgrade Population:25
 		}
 		Map 
 		{
@@ -152,13 +143,12 @@ Tiles
 			Weight 2
 			Tags Building
 			Tags Houses
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Population:10:4*IfAdjacent*Water:4*If*Grass
-			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
-			Effect OnLevelUp:Gold:2
+			Tags Population
+			PlaceCondition On:Grass:Desert
+			Effect OnPlace:Population:25:10*IfTerrain*Grass:10*IfAdjacent*Water
+			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
-			SelfUpgrade Population:25
+			SelfUpgrade Population:100
 		}
 		Map 
 		{
@@ -183,10 +173,9 @@ Tiles
 			Tags Building
 			Tags Houses
 			Tags Population
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Population:25:10*IfAdjacent*Water:10*If*Grass
-			Effect PerTurn:Population:1:1*IfAdjacent*Gardens:-1*If*Desert
+			PlaceCondition On:Grass:Desert
+			Effect OnPlace:Population:100:20*IfTerrain*Grass:20*IfAdjacent*Water
+			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
 		}
 		Map 
@@ -213,10 +202,9 @@ Tiles
 			Starting 3
 			Tags Fishing_Boats
 			Tags Food
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 4
+			PlaceCondition On:Water
 			Effect Always:MultiplyAdjacent*Houses:2
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -241,10 +229,9 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 4
+			PlaceCondition On:Water
 			Effect Always:MultiplyAdjacent*Houses:3
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -268,9 +255,7 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 4
+			PlaceCondition On:Water
 			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
@@ -298,9 +283,9 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Land
-			Initiative 4
+			PlaceCondition On:Grass
 			Effect Always:MultiplyAdjacent*Houses:2
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -326,9 +311,9 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Land
-			Initiative 4
+			PlaceCondition On:Grass
 			Effect Always:MultiplyAdjacent*Houses:3
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -353,8 +338,7 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Land
-			Initiative 4
+			PlaceCondition On:Grass
 			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
@@ -382,9 +366,9 @@ Tiles
 			Tags Building
 			Tags Mill
 			Tags Food
-			PlaceCondition On:Land
-			Initiative 3
-			Effect Always:MultiplyAdjacent*Farms:2
+			PlaceCondition On:Grass:Desert
+			Effect Always:MultiplyAdjacent*Farm:2
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -409,9 +393,8 @@ Tiles
 			Tags Building
 			Tags Mill
 			Tags Food
-			PlaceCondition On:Land
-			Initiative 3
-			Effect Always:MultiplyAdjacent*Farms:3
+			PlaceCondition On:Grass:Desert
+			Effect Always:MultiplyAdjacent*Farm:3
 		}
 		Map 
 		{
@@ -423,862 +406,6 @@ Tiles
 			ToolTip 
 			{
 				Title Mill
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Temple
-	{
-		Data 
-		{
-			Level 3
-			Weight 2
-			Tags Building
-			Tags Temple
-			PlaceCondition On:Land
-			Initiative 6
-			Effect PerTurn:Gold:2*PerAdjacent*Farm:2*PerAdjacent*Workshop
-			Effect Always:ReactivateAdjacent:Houses:Culture
-		}
-		Map 
-		{
-			Prefab Tower
-		}
-		UI 
-		{
-			Title Temple
-			ToolTip 
-			{
-				Title Temple
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Mines_I
-	{
-		Data 
-		{
-			Level 1
-			Upgrade Mines_II
-			Weight 5
-			Starting 3
-			Tags Building
-			Tags Mines
-			Tags Gold
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:1:1*PerAdjacent*Mountain
-		}
-		Map 
-		{
-			Prefab Mine
-		}
-		UI 
-		{
-			Title Mines
-			ToolTip 
-			{
-				Title Mines
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Mines_II
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Mines_III
-			Weight 5
-			Tags Building
-			Tags Mines
-			Tags Gold
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:2:1*PerAdjacent*Mountain
-		}
-		Map 
-		{
-			Prefab Mine
-		}
-		UI 
-		{
-			Title Mines
-			ToolTip 
-			{
-				Title Mines
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Mines_III
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Mines
-			Tags Gold
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:2:2*PerAdjacent*Mountain
-		}
-		Map 
-		{
-			Prefab Mine
-		}
-		UI 
-		{
-			Title Mines
-			ToolTip 
-			{
-				Title Mines
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Forge_I
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Forge_II
-			Weight 5
-			Tags Building
-			Tags Forge
-			PlaceCondition On:Land
-			Initiative 4
-			Effect Always:MultiplyAdjacent*Mines:2
-			Effect Always:MultiplyAdjacent*Millitary:2
-			Effect Always:MultiplyAdjacent*Workshop:2
-		}
-		Map 
-		{
-			Prefab Forge
-		}
-		UI 
-		{
-			Title Forge
-			ToolTip 
-			{
-				Title Forge
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Forge_II
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Forge
-			PlaceCondition On:Land
-			Initiative 4
-			Effect Always:MultiplyAdjacent*Mines:3
-			Effect Always:MultiplyAdjacent*Millitary:3
-			Effect Always:MultiplyAdjacent*Workshop:3
-		}
-		Map 
-		{
-			Prefab Forge
-		}
-		UI 
-		{
-			Title Forge
-			ToolTip 
-			{
-				Title Forge
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Palace
-	{
-		Data 
-		{
-			Level 3
-			Weight 2
-			Tags Building
-			Tags Palace
-			PlaceCondition On:Land
-			Initiative 7
-			Effect PerTurn:Culture:1*IfAdjacent*Gardens
-			Effect Always:ReactivateAdjacent:Castle:Temple
-		}
-		Map 
-		{
-			Prefab NobleHouse
-		}
-		UI 
-		{
-			Title Palace
-			ToolTip 
-			{
-				Title Palace
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Barraks_I
-	{
-		Data 
-		{
-			Level 1
-			Upgrade Barraks_II
-			Weight 5
-			Starting 3
-			Tags Millitary
-			Tags Mustering_Grounds
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Soldiers:1
-			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
-			Effect OnLevelUp:Soldiers:3
-			Stockpile Soldiers
-			SelfUpgrade Soldiers:10
-		}
-		Map 
-		{
-			Prefab Archery
-		}
-		UI 
-		{
-			Title MusteringGrounds
-			ToolTip 
-			{
-				Title MusteringGrounds
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Barraks_II
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Barraks_III
-			Weight 5
-			Tags Millitary
-			Tags Mustering_Grounds
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Soldiers:5
-			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
-			Effect OnLevelUp:Soldiers:6
-			Stockpile Soldiers
-			SelfUpgrade Soldiers:25
-		}
-		Map 
-		{
-			Prefab Archery
-		}
-		UI 
-		{
-			Title MusteringGrounds
-			ToolTip 
-			{
-				Title MusteringGrounds
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Barraks_III
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Millitary
-			Tags Mustering_Grounds
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Soldiers:10
-			Effect PerTurn:Soldiers:1*PerLevelAdjacent*Houses
-			Stockpile Soldiers
-		}
-		Map 
-		{
-			Prefab Archery
-		}
-		UI 
-		{
-			Title MusteringGrounds
-			ToolTip 
-			{
-				Title MusteringGrounds
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Stable_I
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Stable_II
-			Weight 5
-			Tags Building
-			Tags Millitary
-			Tags Stable
-			PlaceCondition On:Land
-			Initiative 4
-			Effect PerTurn:Soldiers:2*PerAdjacent*Castle
-			Effect Always:Double*MusteringGrounds*IfAdjacent*Farm
-		}
-		Map 
-		{
-			Prefab Sheep
-		}
-		UI 
-		{
-			Title Stable
-			ToolTip 
-			{
-				Title Stable
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Stable_II
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Millitary
-			Tags Stable
-			PlaceCondition On:Land
-			Initiative 4
-			Effect PerTurn:Soldiers:4*PerAdjacent*Castle
-			Effect Always:Double*MusteringGrounds*IfAdjacent*Farm
-		}
-		Map 
-		{
-			Prefab Sheep
-		}
-		UI 
-		{
-			Title Stable
-			ToolTip 
-			{
-				Title Stable
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Castle
-	{
-		Data 
-		{
-			Level 3
-			Weight 2
-			Tags Building
-			Tags Millitary
-			Tags Castle
-			PlaceCondition On:Land
-			Initiative 6
-			Effect OnPlace:SelfLevel:1:If*Hills
-			Effect Always:ReactivateAdjacent:Millitary
-		}
-		Map 
-		{
-			Prefab Castle
-		}
-		UI 
-		{
-			Title Castle
-			ToolTip 
-			{
-				Title Castle
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Amphiteather_I
-	{
-		Data 
-		{
-			Level 1
-			Upgrade Amphiteather_II
-			Weight 5
-			Starting 3
-			Tags Building
-			Tags Culture
-			Tags Amphiteather
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Culture:1*PerAdjacent*Houses
-		}
-		Map 
-		{
-			Prefab Amphiteather
-		}
-		UI 
-		{
-			Title Amphiteather
-			ToolTip 
-			{
-				Title Amphiteather
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Amphiteather_II
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Amphiteather_III
-			Weight 5
-			Tags Building
-			Tags Culture
-			Tags Amphiteather
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Culture:2*PerAdjacent*Houses
-		}
-		Map 
-		{
-			Prefab Amphiteather
-		}
-		UI 
-		{
-			Title Amphiteather
-			ToolTip 
-			{
-				Title Amphiteather
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Amphiteather_III
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Culture
-			Tags Amphiteather
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Culture:3*PerAdjacent*Houses
-		}
-		Map 
-		{
-			Prefab Amphiteather
-		}
-		UI 
-		{
-			Title Amphiteather
-			ToolTip 
-			{
-				Title Amphiteather
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Mausoleum
-	{
-		Data 
-		{
-			Level 2
-			Weight 2
-			Tags Building
-			Tags Culture
-			Tags Mausoleum
-			PlaceCondition On:Land
-			Initiative 4
-			Effect Always:MultiplyAdjacent-2:Amphiteather
-			Effect Cost:Gold:1
-			Effect Cost:Population:1
-		}
-		Map 
-		{
-			Prefab Mausoleum
-		}
-		UI 
-		{
-			Title Mausoleum
-			ToolTip 
-			{
-				Title Mausoleum
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Workshop_I
-	{
-		Data 
-		{
-			Level 1
-			Upgrade Workshop_II
-			Weight 5
-			Starting 3
-			Tags Building
-			Tags Trade
-			Tags Workshop
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:1*PerAdjacent*Port:1*PerAdjacent*Market:1*PerLevelAdjacent*Houses
-			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
-		}
-		Map 
-		{
-			Prefab Workshop
-		}
-		UI 
-		{
-			Title Workshop
-			ToolTip 
-			{
-				Title Workshop
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Workshop_II
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Workshop_III
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Workshop
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:2*PerAdjacent*Port:2*PerAdjacent*Market:1*PerLevelAdjacent*Houses
-			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
-		}
-		Map 
-		{
-			Prefab Workshop
-		}
-		UI 
-		{
-			Title Workshop
-			ToolTip 
-			{
-				Title Workshop
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Workshop_III
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Workshop
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Gold:3*PerAdjacent*Port:3*PerAdjacent*Market:1*PerLevelAdjacent*Houses
-			Effect PerTurn:Trade:1*PerAdjacent*Forrest:
-		}
-		Map 
-		{
-			Prefab Workshop
-		}
-		UI 
-		{
-			Title Workshop
-			ToolTip 
-			{
-				Title Workshop
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Market_I
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Market_II
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Market
-			PlaceCondition On:Land
-			PlaceCondition Margin
-			Initiative 5
-			Effect PerTurn:Trade:2:1*PerExisting*Workshop
-		}
-		Map 
-		{
-			Prefab Market
-		}
-		UI 
-		{
-			Title Market
-			ToolTip 
-			{
-				Title Market
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Market_II
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Market
-			PlaceCondition On:Land
-			PlaceCondition Margin
-			Initiative 5
-			Effect PerTurn:Trade:3:2*PerExisting*Workshop
-		}
-		Map 
-		{
-			Prefab Market
-		}
-		UI 
-		{
-			Title Market
-			ToolTip 
-			{
-				Title Market
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Lighthouse
-	{
-		Data 
-		{
-			Level 2
-			Weight 2
-			Tags Building
-			Tags Lighthouse
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 3
-			Effect Always:MultiplyAdjacent-2:Port:FishingBoats
-		}
-		Map 
-		{
-			Prefab Lighthouse
-		}
-		UI 
-		{
-			Title Lighthouse
-			ToolTip 
-			{
-				Title Lighthouse
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Port_I
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Port_II
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Port
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 4
-			Effect PerTurn:Trade:2:1*PerAdjacent*Houses
-			Effect Always:MultiplyAdjacent-2:FishingBoats
-		}
-		Map 
-		{
-			Prefab Port
-		}
-		UI 
-		{
-			Title Port
-			ToolTip 
-			{
-				Title Port
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Port_II
-	{
-		Data 
-		{
-			Level 3
-			Weight 5
-			Tags Building
-			Tags Trade
-			Tags Port
-			Tags Water
-			PlaceCondition On:Sea
-			Initiative 4
-			Effect PerTurn:Trade:4:1*PerLevelAdjacent*Houses
-			Effect Always:MultiplyAdjacent-3:FishingBoats
-		}
-		Map 
-		{
-			Prefab Port
-		}
-		UI 
-		{
-			Title Port
-			ToolTip 
-			{
-				Title Port
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Library_I
-	{
-		Data 
-		{
-			Level 1
-			Upgrade Library_II
-			Weight 2
-			Starting 3
-			Tags Building
-			Tags Science
-			Tags Library
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Science:1:1*PerAdjacent*Houses
-			Stockpile Science
-			SelfUpgrade Science:10
-		}
-		Map 
-		{
-			Prefab Library
-		}
-		UI 
-		{
-			Title Library
-			ToolTip 
-			{
-				Title Library
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Library_II
-	{
-		Data 
-		{
-			Level 2
-			Upgrade Library_III
-			Weight 2
-			Tags Building
-			Tags Science
-			Tags Library
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Science:2:1*PerAdjacent-Houses
-			Stockpile Science
-			SelfUpgrade Science:25
-		}
-		Map 
-		{
-			Prefab Library
-		}
-		UI 
-		{
-			Title Library
-			ToolTip 
-			{
-				Title Library
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Library_III
-	{
-		Data 
-		{
-			Level 3
-			Weight 2
-			Tags Building
-			Tags Science
-			Tags Library
-			PlaceCondition On:Land
-			Initiative 5
-			Effect PerTurn:Science:3:1*PerAdjacent-Houses
-			Stockpile Science
-		}
-		Map 
-		{
-			Prefab Library
-		}
-		UI 
-		{
-			Title Library
-			ToolTip 
-			{
-				Title Library
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile University
-	{
-		Data 
-		{
-			Level 3
-			Weight 2
-			Tags Building
-			Tags Science
-			Tags University
-			PlaceCondition On:Land
-			Initiative 6
-			Effect Always:ReactivateAdjacent:Library
-		}
-		Map 
-		{
-			Prefab University
-		}
-		UI 
-		{
-			Title University
-			ToolTip 
-			{
-				Title University
-				Description It's_a_tile.
-			}
-		}
-	}
-	Tile Gardens
-	{
-		Data 
-		{
-			Level 1
-			Weight 2
-			Tags Gardens
-			PlaceCondition On:Land
-			Initiative 5
-			Effect OnPlace:Gold:2*PerLevelAdjacent*House
-			Effect OnPlace:Culture:1*PerLevelAdjacent*House
-		}
-		Map 
-		{
-			Prefab Garden
-		}
-		UI 
-		{
-			Title Gardens
-			ToolTip 
-			{
-				Title Gardens
 				Description It's_a_tile.
 			}
 		}

@@ -62,7 +62,7 @@ namespace UI
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
             
             text.Title = title;
-            text.Description = Logic.Effects.GetTileEddectsDescription(tile, timingFilter);
+            text.Description = ""; //Logic.Effects.GetTileEddectsDescription(tile, timingFilter);
 
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
         }

@@ -1,15 +1,23 @@
-﻿namespace Logic
-{
-    public static class Actions
-    {
-        public static bool PlayTile(Hex.Data.Tile tile, Hex.Data.HexPos atHexPos)
-        {
-            Play.RemoveTile(atHexPos);
-            Play.SetTileIOnMap(GameMain.X.Player, tile, atHexPos);
-            Effects.ReapplyAllEffects();
-            Effects.CalculateAllBenefits(out benefitsTotal, out benefitsAtCoords);
+﻿using CommandSystem;
+using System.Collections.Generic;
+using Hex;
 
-            return true;
+namespace Hex.Logic
+{
+    public static partial class Actions
+    {
+        public static bool PlayTile(Data.Tile tile, Data.HexPos atHexPos, out List<TileToTile> onPlaceBonusTree, out Data.Res production)
+        {
+            // transfer terrain tags - before setTileAtHexPos
+            tile._defData.TerrainTags = Data.Game.MapTiles[atHexPos]._defData.TerrainTags;
+
+            Data.Game.MapTiles.SetTileAtHexPos(tile, atHexPos);
+
+            // calculate onPlaceBonusTree and production
+
+            onPlaceBonusTree = null;
+            production = default;
+            return false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace GodotUI
         [Export]
         private UIInfoSection _InfoSection;
 
-        public void Refresh(Hex.Data.Tile tile, List<UIInfoSection.Texts> titlesAndDescriptions)
+        public void Refresh(Hex.Data.DeckTile tile, List<UIInfoSection.Texts> titlesAndDescriptions)
         {
             _Title.SetText("$name", tile.Def.UI_Title);
             _Type.SetText("$type", string.Join(", ", tile.Def.BuildingTags));

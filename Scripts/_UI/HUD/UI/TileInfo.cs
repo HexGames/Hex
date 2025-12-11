@@ -17,7 +17,7 @@ namespace UI
             GodotUI.UIMain.X.TileInfo.HideAnim();
         }
 
-        public static void RefrehsForBenefits(Hex.Data.Tile tile, List<Hex.Data.Benefit> benefits)
+        public static void RefrehsForBenefits(Hex.Data.DeckTile tile, List<Hex.Data.Benefit> benefits)
         {
             _TitlesAndDescriptions.Clear();
 
@@ -44,7 +44,7 @@ namespace UI
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
         }
 
-        public static void RefrehsForEffects(Hex.Data.Tile tile)
+        public static void RefrehsForEffects(Hex.Data.DeckTile tile)
         {
             _TitlesAndDescriptions.Clear();
 
@@ -57,7 +57,7 @@ namespace UI
             GodotUI.UIMain.X.TileInfo.Refresh(tile, _TitlesAndDescriptions);
         }
 
-        private static void AddSectionForEffects(Hex.Data.Tile tile, Hex.Def.Timing timingFilter, string title)
+        private static void AddSectionForEffects(Hex.Data.DeckTile tile, Hex.Def.Timing timingFilter, string title)
         {
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
             

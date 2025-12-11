@@ -46,7 +46,7 @@ namespace GodotUI
             }
         }
 
-        public void Refresh(Hex.Data.Tile tile)
+        public void Refresh(Hex.Data.DeckTile tile)
         {
             _Title.SetText("$name", tile.Def.UI_Title);
             _Type.SetText("$type", string.Join(", ", tile.Def.BuildingTags));

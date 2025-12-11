@@ -17,11 +17,11 @@ namespace Godot3D
             _camera = _viewport.GetCamera3D();
         }
 
-        public void Activate(Hex.Data.Tile tile)
+        public void Activate(Hex.Data.DeckTile deckTile)
         {
             Cleanup();
 
-            var prefab = Main.x.Assets.GetPrefab_Tiles(tile.Def.Map_TilePrefab);
+            var prefab = Main.x.Assets.GetPrefab_Tiles(deckTile.Def.Map_TilePrefab);
             if (prefab != null)
             {
                 _instance = prefab.Instantiate<Node3D>();

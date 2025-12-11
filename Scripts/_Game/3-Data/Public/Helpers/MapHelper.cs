@@ -10,7 +10,7 @@ namespace Hex.Data
 
         internal static void Init()
         {
-            int mapTileID = Tile.MAX_DECK;
+            int mapTileID = 0; // just the MapTileArray index
             for (int x = -3; x <= 3; x++)
             {
                 for (int y = Math.Max(-3, -x - 3); y <= Math.Min(3, -x + 3); y++)

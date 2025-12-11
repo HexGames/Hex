@@ -27,19 +27,19 @@ namespace Godot3D
         {
             for (int mapIdx = 0; mapIdx < Hex.Data.Game.MapTiles.span.Length; mapIdx++)
             {
-                ref Hex.Data.Tile tile = ref Hex.Data.Game.MapTiles.span[mapIdx];
+                ref Hex.Data.MapTile tile = ref Hex.Data.Game.MapTiles.span[mapIdx];
                 int mapTileId = tile.MapTileID;
                 Hex.Data.HexPos hexPos = Hex.Data.MapHelper.MapTileIDToHexPos(mapTileId);
                 SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
             }
         }
 
-        public void InitCursorTile(Hex.Data.Tile tile)
+        public void InitCursorTile(Hex.Data.DeckTile deckTile)
         {
-            _TileCursor.Activate(tile);
+            _TileCursor.Activate(deckTile);
         }
 
-        public void OnPlayTile(Hex.Data.Tile tile, Hex.Data.HexPos hexPos)
+        public void OnPlayTile(Hex.Data.DeckTile tile, Hex.Data.HexPos hexPos)
         {
             SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
             _TileCursor.Clear();

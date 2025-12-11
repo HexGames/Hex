@@ -20,10 +20,10 @@ namespace Hex.PlayInternal
 
     public class PlayTileCommandInfo : ICommandInfo
     {
-        public Data.Tile Tile;
+        public Data.DeckTile Tile;
         public Data.HexPos AtHexPos;
 
-        public PlayTileCommandInfo(Data.Tile tile, Data.HexPos atHexPos)
+        public PlayTileCommandInfo(Data.DeckTile tile, Data.HexPos atHexPos)
         {
             Tile = tile;
             AtHexPos = atHexPos;

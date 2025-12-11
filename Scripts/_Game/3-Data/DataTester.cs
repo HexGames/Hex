@@ -9,7 +9,8 @@
             EnsureUnmanaged<Benefit>();
             EnsureUnmanaged<HexPos>();
             EnsureUnmanaged<Res>();
-            EnsureUnmanaged<Tile>();
+            EnsureUnmanaged<DeckTile>();
+            EnsureUnmanaged<MapTile>();
             EnsureUnmanaged<Turn>();
             EnsureUnmanaged<GameData>();
         }

@@ -15,8 +15,8 @@ namespace Hex.Play
 
         public static void NewGame()
         {
-            Data.Game.DeckTiles.SetDeckTiles(Logic.Deck.GenerateDeckTiles());
-            Data.Game.MapTiles.SetMapTiles(Logic.Map.GenerateMapTiles());
+            Data.Game.DeckTiles.InitDeckTiles(Logic.Deck.GenerateDeckTiles());
+            Data.Game.MapTiles.InitMapTiles(Logic.Map.GenerateMapTiles());
         }
 
         public static void RegisterPlayTileOutputHandlers(Action<ICommandResult> handler)

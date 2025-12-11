@@ -6,12 +6,11 @@ namespace Hex.Logic
 {
     public static partial class Actions
     {
-        public static bool PlayTile(Data.Tile tile, Data.HexPos atHexPos, out List<TileToTile> onPlaceBonusTree, out Data.Res production)
+        public static bool PlayTile(Data.DeckTile deckTile, Data.HexPos atHexPos, out List<TileToTile> onPlaceBonusTree, out Data.Res production)
         {
             // transfer terrain tags - before setTileAtHexPos
-            tile._defData.TerrainTags = Data.Game.MapTiles[atHexPos]._defData.TerrainTags;
 
-            Data.Game.MapTiles.SetTileAtHexPos(tile, atHexPos);
+            ref Data.MapTile mapTile = ref Data.Game.MapTiles.CreateMapTileAtHexPos(deckTile, atHexPos);
 
             // calculate onPlaceBonusTree and production
 

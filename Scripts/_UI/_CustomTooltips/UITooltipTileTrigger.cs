@@ -48,7 +48,7 @@ namespace GodotUI
         }
 
         // ------------------------------------------------------------------
-        public void SetCard(Hex.Data.Tile tile)
+        public void SetCard(Hex.Data.DeckTile tile)
         {
             //_Tile = tile;
         }

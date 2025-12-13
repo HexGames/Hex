@@ -8,10 +8,6 @@ public partial class Main : Node
     public AssetLib Assets;
     [Export]
     public ColorLib Colors;
-    [Export]
-    public Godot3D.MapMain MapInstance;
-    [Export]
-    public GodotUI.UIMain UIInstance;
 
     // --- private ---
     private SceneTree Tree = null;
@@ -42,8 +38,6 @@ public partial class Main : Node
     {
         Tree = GetTree();
 
-        RNG.RNGInit.Init();
-
         Hex.Def.LibInit.Init();
     }
 
@@ -52,12 +46,12 @@ public partial class Main : Node
         if (FirstFrame)
         {
             // do things on the first frame
-            GameLoop.Init();
+            Hex.GameLoop.Init();
 
             FirstFrame = false;
         }
 
-        GameLoop.Update(delta);
+        Hex.GameLoop.Update(delta);
 
         ProcessDelayedCalls(delta);
     }

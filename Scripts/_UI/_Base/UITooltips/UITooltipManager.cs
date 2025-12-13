@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UITooltipManager : Control
     {

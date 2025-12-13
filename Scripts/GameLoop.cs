@@ -1,66 +1,79 @@
-﻿public static class GameLoop
+﻿namespace Hex
 {
-    public static void Init()
+    public static class GameLoop
     {
-        Hex.Play.Game.Init();
+        public static void Init()
+        {
+            Play.Game.Init();
 
-        UI.MainMenu.OnStartGame = OnStartRun;
-    }
+            // after Play.Game.Init
+            CommandResultHandlers.Init();
 
-    // --------------------------------------------------------------------------------------------------- Game
-    public static void OnStartRun()
-    {
-        UI.MainMenu.Hide();
+            UI.MainMenu.OnStartGame = OnStartRun;
+        }
 
-        Main.DelayedCall(OnStartRunDelayed, 0.5f);
-    }
+        // --------------------------------------------------------------------------------------------------- Game
+        public static void OnStartRun()
+        {
+            UI.MainMenu.Hide();
 
-    private static void OnStartRunDelayed()
-    {
-        Hex.Play.Game.NewGame();
+            Main.DelayedCall(OnStartRunDelayed, 0.5f);
+        }
 
-        // add 0, 0 - production
-        // add ---- - add reactivate
-        // add 0, 1 - add multiply <- 
-        // add ---- - add additive <- 
+        private static void OnStartRunDelayed()
+        {
+            Play.Game.NewGame();
 
-        // appear +2 at 0,0
-        // appear *2 at 0,1 arrow to 0,0
-        // appear +3 at 1,0 arrow to 0,0
-        // appear *2 at 2,0 arrow to 1,0
+            Map.MapTiles.Refresh();
 
-        // process *2 at 2,0 -> make +6 at 1,0
-        // process +3 at 1,0 -> make +8 at 0,0
-        // process *2 at 0,1 -> make +16 at 0,0
-        // process +2 at 0,0 -> pop +16 at 0,0
+            // add 0, 0 - production
+            // add ---- - add reactivate
+            // add 0, 1 - add multiply <- 
+            // add ---- - add additive <- 
 
-        // test example - TO DO - remove
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(0, 0), new Data.HexPos(0, 1));
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(2, -1));
-        //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(1, 0));
+            // appear +2 at 0,0
+            // appear *2 at 0,1 arrow to 0,0
+            // appear +3 at 1,0 arrow to 0,0
+            // appear *2 at 2,0 arrow to 1,0
 
-        //UI.TileInfo.Add(new Data.HexPos(0, 0), "+2");
-        //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
-        //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
+            // process *2 at 2,0 -> make +6 at 1,0
+            // process +3 at 1,0 -> make +8 at 0,0
+            // process *2 at 0,1 -> make +16 at 0,0
+            // process +2 at 0,0 -> pop +16 at 0,0
 
-        Map.Refresh();
+            // test example - TO DO - remove
+            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(0, 0), new Data.HexPos(0, 1));
+            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(2, -1));
+            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(1, 0));
 
-        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
+            //UI.TileInfo.Add(new Data.HexPos(0, 0), "+2");
+            //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
+            //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
 
-        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
+            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
 
-        UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, "+2");
+            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 1.5f);
+            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, "+2");
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn), 3.0f);
+            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 1.5f);
 
-        Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 4.5f);
-    }
+            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn), 3.0f);
 
-    public static void Update(double delta)
-    {
-        Hex.Play.Game.Update();
+            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 4.5f);
+
+            StartTurn();
+        }
+
+        public static void StartTurn()
+        {
+            Hex.Play.Game.AutoInputGetTileFromQueue();
+        }
+
+        public static void Update(double delta)
+        {
+            Hex.Play.Game.Update();
+        }
     }
 }
 

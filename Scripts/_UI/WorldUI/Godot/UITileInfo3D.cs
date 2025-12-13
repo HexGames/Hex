@@ -1,6 +1,7 @@
 ﻿using Godot;
+using Hex;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UITileInfo3D : Control
     {
@@ -13,8 +14,8 @@ namespace GodotUI
 
         public void Show(Hex.Data.HexPos atHexPos, string text)
         {
-            Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
-            Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);
+            Vector3 worldPos = GodotMap.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
+            Vector2 screenPos = GodotMap.Convert.WorldToScreen(worldPos);
             Position = screenPos;
             _text.SetText("$", text);
         }

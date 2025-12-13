@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UIMain : Control
     {
@@ -32,6 +32,9 @@ namespace GodotUI
 
         public override void _Ready()
         {
+            if (X != null)
+                Debug.LogError("[UIMain] UIMain.X is already set!");
+
             X = this;
 
             Menu.Visible = false;

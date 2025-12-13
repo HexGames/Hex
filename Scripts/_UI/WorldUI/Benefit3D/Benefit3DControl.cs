@@ -1,6 +1,7 @@
 ﻿using Godot;
+using Hex;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class Benefit3DControl : Control
     {
@@ -41,16 +42,16 @@ namespace GodotUI
             _timing = timing;
 
             _offset = offset;
-            _tileWorldPos = Godot3D.Convert.HexPosToWorld(_hexPos) + 0.3f * Vector3.Up;
-            Position = Godot3D.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
+            _tileWorldPos = GodotMap.Convert.HexPosToWorld(_hexPos) + 0.3f * Vector3.Up;
+            Position = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
             _text.SetText("$", text);
             _text.Modulate = ColorLib.GetColor_Text(_timing);
         }
 
         public void Show(Hex.Data.HexPos atHexPos, string text)
         {
-            Vector3 worldPos = Godot3D.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
-            Vector2 screenPos = Godot3D.Convert.WorldToScreen(worldPos);
+            Vector3 worldPos = GodotMap.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
+            Vector2 screenPos = GodotMap.Convert.WorldToScreen(worldPos);
             Position = screenPos;
             _text.SetText("$", text);
 
@@ -83,7 +84,7 @@ namespace GodotUI
             _tweenForOffset = CreateTween();
             _tweenForOffset.SetTrans(Tween.TransitionType.Linear);
 
-            Vector2 newPosition = Godot3D.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
+            Vector2 newPosition = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
 
             _tweenForOffset.TweenProperty(this, "position:y", newPosition.Y, _offsetDuration);
         }

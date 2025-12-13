@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UIInfoSection : VBoxContainer
     {

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UITooltipTrigger : Control
     {

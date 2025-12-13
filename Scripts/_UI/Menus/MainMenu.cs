@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace UI
+namespace Hex.UI
 {
     public static class MainMenu
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public class UIHelper
     {

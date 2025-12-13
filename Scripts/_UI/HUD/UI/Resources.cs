@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UI
+namespace Hex.UI
 {
     public static class Resources
     {

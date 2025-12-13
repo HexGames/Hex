@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public static class UIEffectsHelper
     {

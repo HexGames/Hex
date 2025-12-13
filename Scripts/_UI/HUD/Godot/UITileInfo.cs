@@ -3,7 +3,7 @@ using Godot.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UITileInfo : AnimControl
     {

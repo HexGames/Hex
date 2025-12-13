@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.ComponentModel;
 
-namespace GodotUI
+namespace Hex.GodotUI
 {
     public partial class UIMainMenu : AnimControl
     {

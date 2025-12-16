@@ -1,4 +1,4 @@
-﻿namespace CommandSystem
+﻿namespace Hex.Data
 {
     public struct TileToTile
     {

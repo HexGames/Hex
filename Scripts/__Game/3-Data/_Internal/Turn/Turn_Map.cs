@@ -18,7 +18,7 @@ namespace Hex.Data
             for (int idx = 0; idx < tileDefs.Count; idx++)
             {
                 int id = idx;
-                MapTiles.Array[id] = new MapTile(tileDefs[idx], id);
+                MapTiles.Array[id] = new MapTile(tileDefs[idx]);
             }
         }
     }

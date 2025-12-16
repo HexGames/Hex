@@ -34,7 +34,7 @@ namespace Hex.Play
 
         public static void InputPlayTile(Data.HexPos atHexPos)
         {
-            CommandSys.AddCommand(new Command(CommandType.PlayTile, new PlayTileCommandInfo(Data.Game.DeckTiles[PlayData.CurrentDeckTileID], atHexPos)));
+            CommandSys.AddCommand(new Command(CommandType.PlayTile, new PlayTileCommandInfo(PlayData.CurrentDeckTile, atHexPos)));
         }
 
         public static void AutoInputGetTileFromQueue()
@@ -50,7 +50,7 @@ namespace Hex.Play
                 Debug.LogError("[Game] AutoInputGetTileFromQueueResultHandler: result is not GetTileFromQueueCommandResult!");
                 return;
             }
-            PlayData.CurrentDeckTileID = getTileFromQueueCommandResult.DeckTileID;
+            PlayData.CurrentDeckTile = getTileFromQueueCommandResult.DeckTile;
         }
 
         public static void Update()

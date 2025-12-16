@@ -6,56 +6,58 @@ namespace Hex.Data
     public static partial class Game
     {
         public static MapTilesInterface MapTiles = new MapTilesInterface();
-
+        
         public sealed class MapTilesInterface
         {
+        
+            //public ref MapTile this[int id]
+            //{
+            //    get
+            //    {
+            //        return ref _data.Turns.Array[_data.CurrentTurn].MapTiles.Array[id];
+            //    }
+            //}
+        
+            //public ref MapTile this[HexPos hexPos]
+            //{
+            //    get
+            //    {
+            //        return ref _data.Turns.Array[_data.CurrentTurn].MapTiles.Array[MapHelper.HexPosToMapTileID(hexPos)];
+            //    }
+            //}
 
-            public ref MapTile this[int id]
+            public Span<MapTile> Collection
             {
                 get
                 {
-                    return ref _data.Turns.Array[_data.CurrentTurn].MapTiles.Array[id];
+                    return GameData.Data.Turns.Array[GameData.Data.CurrentTurn].MapTiles.Array;
                 }
             }
+        
+            //public ref MapTile GetTileFromHistory(int id, int turn)
+            //{
+            //    return ref _data.Turns.Array[turn].MapTiles.Array[id];
+            //}
 
-            public ref MapTile this[HexPos hexPos]
-            {
-                get
-                {
-                    return ref _data.Turns.Array[_data.CurrentTurn].MapTiles.Array[MapHelper.HexPosToMapTileID(hexPos)];
-                }
-            }
-            public Span<MapTile> span
-            {
-                get
-                {
-                    return _data.Turns.Array[_data.CurrentTurn].MapTiles.Array;
-                }
-            }
-
-            public ref MapTile GetTileFromHistory(int id, int turn)
-            {
-                return ref _data.Turns.Array[turn].MapTiles.Array[id];
-            }
-
-            public Span<MapTile> GetTileCollectionFromHistory(int id, int turn)
-            {
-                return _data.Turns.Array[turn].MapTiles.Array;
-            }
-
+            //public Span<MapTile> GetTileCollectionFromHistory(int id, int turn)
+            //{
+            //    return _data.Turns.Array[turn].MapTiles.Array;
+            //}
+        
             public void InitMapTiles(List<Def.Tile> tiles)
             {
-                _data.Turns.Array[_data.CurrentTurn].InitMapTiles(tiles);
+                GameData.Data.Turns.Array[GameData.Data.CurrentTurn].InitMapTiles(tiles);
             }
-
-            public ref MapTile CreateMapTileAtHexPos(DeckTile deckTile, HexPos hexPos)
+        
+            public MapTileRef CreateMapTileAtHexPos(DeckTileRef deckTile, HexPos hexPos)
             {
+                ref Turn turn = ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn];
+                Def.TileData.TerrainTagArray terrainTags = deckTile.Value.DefData.TerrainTags; // copy existing terrain tags
+
                 int mapTileID = MapHelper.HexPosToMapTileID(hexPos);
-                ref Turn turn = ref _data.Turns.Array[_data.CurrentTurn];
-                Def.TileData.TerrainTagArray terrainTags = turn.MapTiles.Array[mapTileID].DefData.TerrainTags; // copy existing terrain tags
-                turn.MapTiles.Array[mapTileID] = new MapTile(deckTile, mapTileID);
+                turn.MapTiles.Array[mapTileID] = new MapTile(deckTile);
                 turn.MapTiles.Array[mapTileID].DefData.TerrainTags = terrainTags; // paste existing terrain tags
-                return ref turn.MapTiles.Array[mapTileID];
+                return MapTileRef.FromID(mapTileID);
             }
         }
     }

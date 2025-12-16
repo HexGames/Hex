@@ -10,22 +10,20 @@ namespace Hex.Data
 
         public Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
         public Def.TileData DefData;
-        public int FromDeckTileID = -1; // the index of the DeckTile it came from
-        public int MapTileID = -1; // the intex from MapTileArray
+        public DeckTileRef FromDeckTile; // the index of the DeckTile it came from
 
-        internal MapTile(Def.Tile def, int id)
+        internal MapTile(Def.Tile def)
         {
             _defID = def.ID;
             DefData = Hex.Def.Lib.GetTileData(_defID);
-            MapTileID = id;
         }
 
-        internal MapTile(DeckTile deckTile, int id)
+        internal MapTile(DeckTileRef deckTile)
         {
-            _defID = deckTile.Def.ID;
-            DefData = deckTile.DefData;
-            FromDeckTileID = deckTile.DeckTileID;
-            MapTileID = id;
+            ref DeckTile deckTileValue = ref deckTile.Value;
+            _defID = deckTileValue.Def.ID;
+            DefData = deckTileValue.DefData;
+            FromDeckTile = deckTile;
         }
 
         public bool IsValid()

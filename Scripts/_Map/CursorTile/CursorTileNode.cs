@@ -8,7 +8,7 @@ namespace Hex.GodotMap
         private Viewport _viewport;
         private Camera3D _camera;
 
-        private Hex.Data.HexPos _lastHexPos = Hex.Data.HexPos.Invalid;
+        private Data.HexPos _lastHexPos = Data.HexPos.Invalid;
         private Node3D _instance = null;
 
         public override void _Ready()
@@ -17,11 +17,11 @@ namespace Hex.GodotMap
             _camera = _viewport.GetCamera3D();
         }
 
-        public void Activate(Hex.Data.DeckTile deckTile)
+        public void Activate(Data.DeckTileRef deckTile)
         {
             Cleanup();
 
-            var prefab = Main.x.Assets.GetPrefab_Tiles(deckTile.Def.Map_TilePrefab);
+            var prefab = Main.x.Assets.GetPrefab_Tiles(deckTile.Value.Def.Map_TilePrefab);
             if (prefab != null)
             {
                 _instance = prefab.Instantiate<Node3D>();
@@ -95,12 +95,12 @@ namespace Hex.GodotMap
             else
             {
                 Visible = false;
-                if (_lastHexPos != Hex.Data.HexPos.Invalid)
+                if (_lastHexPos != Data.HexPos.Invalid)
                 {
                     //Actions.OnHoverInvalid();
                 }
 
-                _lastHexPos = Hex.Data.HexPos.Invalid;
+                _lastHexPos = Data.HexPos.Invalid;
             }
         }
 

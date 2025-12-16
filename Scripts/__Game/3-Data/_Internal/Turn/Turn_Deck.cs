@@ -26,7 +26,7 @@ namespace Hex.Data
         internal void AddDeckTile(Def.Tile tileDef)
         {
             int id = DeckTiles.DeckTileCount; // the index in the array
-            DeckTiles.Array[DeckTiles.DeckTileCount] = new DeckTile(tileDef, id);
+            DeckTiles.Array[DeckTiles.DeckTileCount] = new DeckTile(tileDef);
             DeckTiles.Array[DeckTiles.DeckTileCount].State = DeckTile.TileState.InMeta;
             DeckTiles.DeckTileCount++;
         }
@@ -41,9 +41,9 @@ namespace Hex.Data
             DrawPileDeckTileIDs.DrawPileCount = 0;
 
             // add all deck tiles
-            for (int idx = 0; idx < DeckTiles.DeckTileCount; idx++)
+            for (int id = 0; id < DeckTiles.DeckTileCount; id++)
             {
-                DrawPileDeckTileIDs.Array[DrawPileDeckTileIDs.DrawPileCount] = DeckTiles.Array[idx].DeckTileID;
+                DrawPileDeckTileIDs.Array[DrawPileDeckTileIDs.DrawPileCount] = id;
                 DrawPileDeckTileIDs.DrawPileCount++;
             }
         }
@@ -74,7 +74,7 @@ namespace Hex.Data
             }
         }
 
-        internal int GetNextDeckTileIDFromQueue()
+        internal DeckTileRef GetNextDeckTileFromQueue()
         {
             int firstInQueue = QueueDeckTileIDs.Array[0];
 
@@ -94,7 +94,7 @@ namespace Hex.Data
                 Debug.LogError("[Data.Game]: not enough tiles in draw pile to re-fill queue");
             }
 
-            return firstInQueue;
+            return DeckTileRef.FromID(firstInQueue);
         }
     }
 }

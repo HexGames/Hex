@@ -6,13 +6,13 @@ namespace Hex.Play
 {
     public class GetTileFromQueueCommandResult : ICommandResult
     {
-        public readonly int DeckTileID = -1;
+        public readonly Data.DeckTileRef DeckTile;
         public readonly bool Success = false;
 
-        public GetTileFromQueueCommandResult(int deckTileID)
+        public GetTileFromQueueCommandResult(Data.DeckTileRef deckTile)
         {
             Success = true;
-            DeckTileID = deckTileID;
+            DeckTile = deckTile;
         }
     }
 }
@@ -37,12 +37,12 @@ namespace Hex.PlayInternal
                 return null;
             }
 
-            bool success = Logic.Actions.GetTileFromQueue(out int deckTileID);
+            bool success = Logic.Actions.GetTileFromQueue(out Data.DeckTileRef deckTile);
 
             if (success == false)
                 return default;
 
-            Play.GetTileFromQueueCommandResult result = new Play.GetTileFromQueueCommandResult(deckTileID);
+            Play.GetTileFromQueueCommandResult result = new Play.GetTileFromQueueCommandResult(deckTile);
 
             return result;
         }

@@ -8,13 +8,17 @@ namespace Hex.Map
     {
         public static void Refresh()
         {
-            for (int mapIdx = 0; mapIdx < Hex.Data.Game.MapTiles.span.Length; mapIdx++)
+            for (int mapID = 0; mapID < Data.Game.MapTiles.Collection.Length; mapID++)
             {
-                ref Hex.Data.MapTile tile = ref Hex.Data.Game.MapTiles.span[mapIdx];
-                int mapTileId = tile.MapTileID;
-                Hex.Data.HexPos hexPos = Hex.Data.MapHelper.MapTileIDToHexPos(mapTileId);
-                MapTilesSubsystem.SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
+                // to do - think about changing Data.MapHelper.MapTileIDToHexPos and maps to an Array of MapTileRef
+                Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(mapID);
+                MapTilesSubsystem.SetPrefabAtHexPos(Data.Game.MapTiles.Collection[mapID].Def.Map_TilePrefab, hexPos);
             }
+        }
+
+        public static void PlaceTile(Data.MapTileRef mapTile)
+        {
+            MapTilesSubsystem.SetPrefabAtHexPos(mapTile.Value.Def.Map_TilePrefab, mapTile.HexPos);
         }
     }
 }

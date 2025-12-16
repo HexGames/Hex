@@ -4,14 +4,14 @@ namespace Hex.Map
 {
     public static class CursorTile
     {
-        public static void InitCursorTile(Hex.Data.DeckTile deckTile)
+        public static void InitCursorTile(Data.DeckTileRef deckTile)
         {
             MapBindings.X.TileCursor.Activate(deckTile);
         }
 
-        public static void OnPlayTile(Hex.Data.DeckTile tile, Hex.Data.HexPos hexPos)
+        public static void OnPlayTile(Data.DeckTileRef deckTile, Data.HexPos hexPos)
         {
-            MapTilesSubsystem.SetPrefabAtHexPos(tile.Def.Map_TilePrefab, hexPos);
+            MapTilesSubsystem.SetPrefabAtHexPos(deckTile.Value.Def.Map_TilePrefab, hexPos);
             MapBindings.X.TileCursor.Clear();
         }
     }

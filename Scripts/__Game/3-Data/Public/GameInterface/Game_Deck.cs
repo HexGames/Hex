@@ -6,74 +6,74 @@ namespace Hex.Data
     public static partial class Game
     {
         public static DeckArrayInterface DeckTiles = new DeckArrayInterface();
-
+    
         public sealed class DeckArrayInterface
         {
-            public ref DeckTile this[int id]
-            {
-                get
-                {
-                    return ref _data.Turns.Array[_data.CurrentTurn].DeckTiles.Array[id];
-                }
-            }
+            //public ref DeckTile this[int id]
+            //{
+            //    get
+            //    {
+            //        return ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles.Array[id];
+            //    }
+            //}
 
-            public Span<DeckTile> span
-            {
-                get
-                {
-                    ref DeckTileArray deckTiles = ref _data.Turns.Array[_data.CurrentTurn].DeckTiles;
-                    return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
-                }
-            }
-
-            public ref DeckTile GetTileFromHistory(int id, int turn)
-            {
-                return ref _data.Turns.Array[turn].DeckTiles.Array[id];
-            }
-
-            public Span<DeckTile> GetTileCollectionFromHistory(int id, int turn)
-            {
-                ref DeckTileArray deckTiles = ref _data.Turns.Array[turn].DeckTiles;
-                return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
-            }
-
+            //public Span<DeckTile> span
+            //{
+            //    get
+            //    {
+            //        ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles;
+            //        return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
+            //    }
+            //}
+    
+            //public ref DeckTile GetTileFromHistory(int id, int turn)
+            //{
+            //    return ref GameData.Data.Turns.Array[turn].DeckTiles.Array[id];
+            //}
+    
+            //public Span<DeckTile> GetTileCollectionFromHistory(int id, int turn)
+            //{
+            //    ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[turn].DeckTiles;
+            //    return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
+            //}
+    
             public void InitDeckTiles(List<Def.Tile> tiles)
             {
-                if (_data.CurrentTurn != 0)
+                if (GameData.Data.CurrentTurn != 0)
                 {
                     Debug.LogError("[DeckArrayInterface] InitDeckTiles can only be called at turn 0.");
                     return;
                 }
 
-                _data.Turns.Array[_data.CurrentTurn].InitDeckTiles(tiles);
+                GameData.Data.Turns.Array[GameData.Data.CurrentTurn].InitDeckTiles(tiles);
             }
-
+    
             public void CreateDrawPile()
             {
-                if (_data.CurrentTurn != 0)
+                if (GameData.Data.CurrentTurn != 0)
                 {
                     Debug.LogError("[DeckArrayInterface] CreateDrawPile can only be called at turn 0.");
                     return;
                 }
-
-                _data.Turns.Array[_data.CurrentTurn].CreateDrawPileFromDeck();
-                _data.Turns.Array[_data.CurrentTurn].ShuffleDrawPile();
+    
+                GameData.Data.Turns.Array[GameData.Data.CurrentTurn].CreateDrawPileFromDeck();
+                GameData.Data.Turns.Array[GameData.Data.CurrentTurn].ShuffleDrawPile();
             }
-
+    
             public void CreateQueue()
             {
-                if (_data.CurrentTurn != 0)
+                if (GameData.Data.CurrentTurn != 0)
                 {
                     Debug.LogError("[DeckArrayInterface] CreateQueue can only be called at turn 0.");
                     return;
                 }
 
-                _data.Turns.Array[_data.CurrentTurn].CreateQueueFromDrawPile();
+                GameData.Data.Turns.Array[GameData.Data.CurrentTurn].CreateQueueFromDrawPile();
             }
-
-            public ref DeckTile GetNextDeckTileIDFromQueue()
+    
+            public DeckTileRef GetNextDeckTileFromQueue()
             {
-                return ref DeckTiles[_data.Turns.Array[_data.CurrentTurn].GetNextDeckTileIDFromQueue()];
+                return GameData.Data.Turns.Array[GameData.Data.CurrentTurn].GetNextDeckTileFromQueue();
             }
         }
     }

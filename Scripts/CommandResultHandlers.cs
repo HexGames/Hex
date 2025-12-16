@@ -17,7 +17,18 @@ namespace Hex
                 Debug.LogError("[CommandResultHandlers] GetTileFromQueueResultHandler: result is not GetTileFromQueueCommandResult!");
                 return;
             }
-            Map.CursorTile.InitCursorTile(Data.Game.DeckTiles[getTileFromQueueCommandResult.DeckTileID]);
+            Map.CursorTile.InitCursorTile(getTileFromQueueCommandResult.DeckTile);
+        }
+
+        public static void PlaceTileResultHandler(ICommandResult result)
+        {
+            var playTileCommandResult = result as Play.PlayTileCommandResult;
+            if (playTileCommandResult == null)
+            {
+                Debug.LogError("[CommandResultHandlers] GetTileFromQueueResultHandler: result is not GetTileFromQueueCommandResult!");
+                return;
+            }
+            Map.MapTiles.PlaceTile(playTileCommandResult.MapTile);
         }
     }
 }

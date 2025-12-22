@@ -4,53 +4,53 @@ namespace Hex.Logic
 {
     public static partial class Map
     {
-        public static List<Def.Tile> GenerateMapTiles()
+        public static List<Def.TileRef> GenerateMapTiles()
         {
-            List<Def.Tile> tiles = new List<Hex.Def.Tile>();
+            List<Def.TileRef> tiles = new List<Def.TileRef>();
 
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
 
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
 
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
 
-            tiles.Add(Def.Lib.GetTile("Water"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Mountain"));
-            tiles.Add(Def.Lib.GetTile("Mountain"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Water"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Mountain"));
+            tiles.Add(Def.Lib.GetTileRef("Mountain"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
 
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Mountain"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Mountain"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
 
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
 
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
-            tiles.Add(Def.Lib.GetTile("Forest"));
-            tiles.Add(Def.Lib.GetTile("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
+            tiles.Add(Def.Lib.GetTileRef("Forest"));
+            tiles.Add(Def.Lib.GetTileRef("Grass"));
 
             return tiles;
         }

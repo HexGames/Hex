@@ -11,10 +11,9 @@ namespace Hex.Logic
 {
     public static partial class Actions
     {
-        public static bool GetTileFromQueue(out Data.DeckTileRef deckTileRef)
+        public static void GetTileFromQueue(out Data.DeckTileRef deckTileRef)
         {
             deckTileRef = Data.Game.DeckTiles.GetNextDeckTileFromQueue();
-            return true;
         }
     }
 }

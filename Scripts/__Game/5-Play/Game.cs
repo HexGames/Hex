@@ -7,6 +7,8 @@ namespace Hex.Play
 {
     public static class Game
     {
+        public static bool LockInput = false;
+
         public static void Init()
         {
             CommandsInit.Init();
@@ -34,7 +36,10 @@ namespace Hex.Play
 
         public static void InputPlayTile(Data.HexPos atHexPos)
         {
-            CommandSys.AddCommand(new Command(CommandType.PlayTile, new PlayTileCommandInfo(PlayData.CurrentDeckTile, atHexPos)));
+            if (LockInput == true) return;
+
+            LockInput = true;
+            CommandSys.AddCommand(new Command(CommandType.PlaceTile, new PlayTileCommandInfo(PlayData.CurrentDeckTile, atHexPos)));
         }
 
         public static void AutoInputGetTileFromQueue()

@@ -6,72 +6,70 @@ namespace Hex.Def
 {
     public static partial class Lib
     {
-        private static List<Tag> _tags = new List<Tag>();
+        private static Tag[] _tags = null;
         public static ReadOnlyCollection<Tag> Tags => _tags.AsReadOnly();
 
-        private static void InitTagsDefs(List<Tile> tiles)
+        private static void InitTagsDefs(Tile[] tiles)
         {
+            List<Tag> tags = new List<Tag>();
             foreach (Tile tile in tiles)
             {
                 for (int idx = 0; idx < tile.TerrainTags.Count; idx++)
                 {
                     string tagName = tile.TerrainTags[idx];
 
-                    if (GetTag(tagName) != null)
-                        continue;
-
-                    if (GetTag(tagName) == null)
+                    foreach (Tag existingTag in tags)
                     {
-                        Tag tag = new Tag(tagName);
-                        tag.ID = idx;
-                        _tags.Add(tag);
+                        if (existingTag.Name == tagName)
+                        {
+                            continue;
+                        }
                     }
+
+                    int id = tags.Count;
+                    tags.Add(new Tag(id, tagName));
                 }
 
                 for (int idx = 0; idx < tile.BuildingTags.Count; idx++)
                 {
                     string tagName = tile.BuildingTags[idx];
 
-                    if (GetTag(tagName) != null)
-                        continue;
-
-                    if (GetTag(tagName) == null)
+                    foreach (Tag existingTag in tags)
                     {
-                        Tag tag = new Tag(tagName);
-                        tag.ID = idx;
-                        _tags.Add(tag);
+                        if (existingTag.Name == tagName)
+                        {
+                            continue;
+                        }
                     }
+
+                    int id = tags.Count;
+                    tags.Add(new Tag(id, tagName));
                 }
             }
+
+            _tags = tags.ToArray();
         }
 
-        public static Tag GetTag(string name)
+        public static ref Tag GetTag(int ID)
         {
-            foreach (Tag tag in _tags)
+            return ref _tags[ID];
+        }
+
+        public static TagRef GetTagRef(string name)
+        {
+            return GetTagRef(name.AsSpan());
+        }
+
+        internal static TagRef GetTagRef(ReadOnlySpan<char> name)
+        {
+            for (int idx = 0; idx < _tags.Length; idx++)
             {
-                if (tag.Name == name)
+                if (name.SequenceEqual(_tags[idx].Name))
                 {
-                    return tag;
+                    return TagRef.FromID(idx);
                 }
             }
-            return null;
-        }
-
-        public static Tag GetTag(int ID)
-        {
-            return _tags[ID];
-        }
-
-        public static Tag GetTag(ReadOnlySpan<char> id)
-        {
-            foreach (Tag tag in _tags)
-            {
-                if (id.SequenceEqual(tag.Name.AsSpan()) == true)
-                {
-                    return tag;
-                }
-            }
-            return null;
+            return TagRef.INVALID;
         }
     }
 }

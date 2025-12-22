@@ -7,7 +7,7 @@ namespace Hex.Data
     {
         internal MapTileArray MapTiles;
 
-        internal void InitMapTiles(List<Def.Tile> tileDefs) // map initial tiles
+        internal void InitMapTiles(List<Def.TileRef> tileDefs) // map initial tiles
         {
             if (tileDefs.Count > MapTile.MAP_SIZE)
             {
@@ -18,7 +18,7 @@ namespace Hex.Data
             for (int idx = 0; idx < tileDefs.Count; idx++)
             {
                 int id = idx;
-                MapTiles.Array[id] = new MapTile(tileDefs[idx]);
+                MapTiles.Array[id] = new MapTile(tileDefs[idx].Value);
             }
         }
     }

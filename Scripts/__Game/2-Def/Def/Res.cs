@@ -2,20 +2,21 @@ using System.Collections.Generic;
 
 namespace Hex.Def
 {
-    public class Res 
+    public struct Res 
     {
-        public int ID = -1;
+        public readonly int ID = -1;
 
-        public string Name = "";
+        public readonly string Name = "";
 
-        public int Default = 0;
-        public string Title = "";
-        public string Description = "";
-        public string Image = "";
-        public int Value = 0;
+        public readonly int Default = 0;
+        public readonly string Title = "";
+        public readonly string Description = "";
+        public readonly string Image = "";
+        public readonly int Value = 0;
 
-        public Res(Save.Block targetData)
+        public Res(int id, Save.Block targetData)
         {
+            ID = id;
             Name = targetData.ValueS;
             Default = targetData.GetSubValueI("Default");
             Title = targetData.GetSubValueS("UI", "Title");

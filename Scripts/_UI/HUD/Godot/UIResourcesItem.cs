@@ -21,13 +21,13 @@ namespace Hex.GodotUI
             PerTurn = GetNode<UIText>("PulseContainer/PerTurn");
         }
 
-        public void SetRes(Hex.Def.Res resDef, int value, int perTurn)
+        public void SetRes(Def.ResRef resDef, int value, int perTurn)
         {
             int pulseMagnitude = Mathf.Abs(OldValue - value) + Mathf.Abs(OldPerTurn - perTurn);
             OldValue = value;
             OldPerTurn = perTurn;
 
-            Icon.Texture = Main.x.Assets.GetTexture2D_Icons(resDef.Image);
+            Icon.Texture = Main.x.Assets.GetTexture2D_Icons(resDef.Value.Image);
             Value.SetText("$", UIHelper.ResValueToString(value, 1, false, true));
             if (perTurn != 0)
             {

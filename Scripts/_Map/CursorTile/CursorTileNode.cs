@@ -8,7 +8,7 @@ namespace Hex.GodotMap
         private Viewport _viewport;
         private Camera3D _camera;
 
-        private Data.HexPos _lastHexPos = Data.HexPos.Invalid;
+        private Data.HexPos _lastHexPos = Data.HexPos.INVALID;
         private Node3D _instance = null;
 
         public override void _Ready()
@@ -95,12 +95,12 @@ namespace Hex.GodotMap
             else
             {
                 Visible = false;
-                if (_lastHexPos != Data.HexPos.Invalid)
+                if (_lastHexPos != Data.HexPos.INVALID)
                 {
                     //Actions.OnHoverInvalid();
                 }
 
-                _lastHexPos = Data.HexPos.Invalid;
+                _lastHexPos = Data.HexPos.INVALID;
             }
         }
 

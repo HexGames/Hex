@@ -3,8 +3,9 @@
     public enum CommandType
     {
         GetTileFromQueue,
-        PlayTile,
+        PlaceTile,
         SkipTile,
+        EndTurn,
         //BuyTile,
         //UpdatedTile,
         //BuyAdvisor,

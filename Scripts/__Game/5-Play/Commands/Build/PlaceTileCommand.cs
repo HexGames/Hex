@@ -10,6 +10,11 @@ namespace Hex.Play
         public readonly Data.Res Production;
         public readonly bool Success = false;
 
+        public PlayTileCommandResult()
+        {
+            Success = false;
+        }
+        
         public PlayTileCommandResult(Data.MapTileRef mapTile, List<Data.TileToTile> onPlaceBonusTree, Data.Res production)
         {
             Success = true;
@@ -38,17 +43,11 @@ namespace Hex.PlayInternal
     {
         public static ICommandResult HandleCommand(ICommandInfo commandInfo)
         {
-            var placeTileInfo = commandInfo as PlayTileCommandInfo;
-            if (placeTileInfo == null)
-            {
-                Debug.LogError("[PlayTileCommand] HandleCommand: commandInfo is not PlayTileCommandInfo!");
-                return null;
-            }
+            var info = Commands.GetInfo<PlayTileCommandInfo>(commandInfo);
+            if (info == null) return null;
 
-            bool success = Logic.Actions.PlayTile(placeTileInfo.DeckTile, placeTileInfo.AtHexPos, out Data.MapTileRef mapTile, out List<Data.TileToTile> onPlaceBonusTree, out Data.Res production);
-
-            if (success == false)
-                return default;
+            bool success = Logic.Actions.PlayTile(info.DeckTile, info.AtHexPos, out Data.MapTileRef mapTile, out List<Data.TileToTile> onPlaceBonusTree, out Data.Res production);
+            if (success == false) return new Play.PlayTileCommandResult();
 
             Play.PlayTileCommandResult result = new Play.PlayTileCommandResult(mapTile, onPlaceBonusTree, production);
 

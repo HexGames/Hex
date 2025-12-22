@@ -53,15 +53,15 @@ namespace Hex.GodotUI
             return "[/color]";
         }
 
-        public static string ResToString(Hex.Data.Res res, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
+        public static string ResToString(Data.Res res, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
         {
             return ResToString(res.Def, res.Value, iconSize, precision, alwaysShowSign, redNegativeValues);
         }
 
-        public static string ResToString(Hex.Def.Res resDef, int value, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
+        public static string ResToString(Def.ResRef resDef, int value, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
         {
             string prefix = "";
-            string sufix = GetIcon(resDef.Image, iconSize);
+            string sufix = GetIcon(resDef.Value.Image, iconSize);
             if (redNegativeValues && value < 0)
             {
                 prefix += GetColorPrefix_Bad();
@@ -122,9 +122,9 @@ namespace Hex.GodotUI
 
             if (effectDef.IsRes(1))
             {
-                Hex.Def.Res res = effectDef.GetRes(1);
+                Def.ResRef res = effectDef.GetRes(1);
                 prefix = "+";
-                target = GetIcon(res.Image, 24);
+                target = GetIcon(res.Value.Image, 24);
             }
             else
             {

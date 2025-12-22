@@ -1,40 +1,31 @@
 using System;
+using Hex;
 
 namespace Hex.Data
 {
     public struct Res
     {
-        private readonly int _defID = -1;
-        public readonly Hex.Def.Res Def { get => Hex.Def.Lib.GetRes(_defID); }
+        public readonly Hex.Def.ResRef Def;
         public int Value;
 
-        public Res(Hex.Def.Res def)
+        public Res(Hex.Def.ResRef resDef)
         {
-            _defID = def.ID;
+            Def = resDef;
             Value = 0;
         }
 
-        public Res(Hex.Def.Res def, int value)
+        public Res(Hex.Def.ResRef resDef, int value)
         {
-            _defID = def.ID;
+            Def = resDef;
             Value = value;
         }
 
         public override bool Equals(object obj) => obj is Res other && Equals(other);
-        public bool Equals(Res other) => _defID == other._defID && Value == other.Value;
-        public override int GetHashCode() => HashCode.Combine(_defID, Value);
+        public bool Equals(Res other) => Def == other.Def && Value == other.Value;
+        public override int GetHashCode() => HashCode.Combine(Def, Value);
         public static bool operator ==(Res a, Res b) => a.Equals(b);
         public static bool operator !=(Res a, Res b) => !a.Equals(b);
 
-        public static Res Null => new Res(null, 0);
-
-        public bool IsNull()
-        {
-            return _defID < 0;
-        }
-        public bool IsNotNull()
-        {
-            return _defID >= 0;
-        }
+        public static Res INVALID => new Res(Hex.Def.ResRef.INVALID);
     }
 }

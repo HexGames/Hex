@@ -2,30 +2,35 @@ using System.Collections.Generic;
 
 namespace Hex.Def
 {
-    public class Tile
+    public struct Tile
     {
-        public int ID = -1;
+        public readonly int ID = -1;
 
-        public string Name = "";
+        public readonly string Name = "";
 
-        public int Starting = 0;
-        public int Level = 0;
-        public int Weight = 0;
-        public int Initiative = 0;
-        public List<string> TerrainTags = new List<string>();
-        public List<string> BuildingTags = new List<string>();
-        public List<string> Conditions = new List<string>();
-        public List<string> Effects = new List<string>();
+        public readonly int Starting = 0;
+        public readonly int Level = 0;
+        public readonly int Weight = 0;
+        public readonly int Initiative = 0;
+        private readonly List<string> _terrainTags = new List<string>();
+        public IReadOnlyList<string> TerrainTags => _terrainTags.AsReadOnly();
+        private readonly List<string> _buildingTags = new List<string>();
+        public IReadOnlyList<string> BuildingTags => _buildingTags.AsReadOnly();
+        private readonly List<string> _conditions = new List<string>();
+        public IReadOnlyList<string> Conditions => _conditions.AsReadOnly();
+        private readonly List<string> _effects = new List<string>();
+        public IReadOnlyList<string> Effects => _effects.AsReadOnly();
 
-        public string Map_TilePrefab = "";
+        public readonly string Map_TilePrefab = "";
 
-        public string UI_Title = "";
-        public string UI_ToolTip_Title = "";
-        public string UI_ToolTip_Description = "";
+        public readonly string UI_Title = "";
+        public readonly string UI_ToolTip_Title = "";
+        public readonly string UI_ToolTip_Description = "";
 
 
-        public Tile(Save.Block targetData)
+        public Tile(int id, Save.Block targetData)
         {
+            ID = id;
             Name = targetData.ValueS;
 
 
@@ -36,25 +41,32 @@ namespace Hex.Def
                 Weight = targetData.GetSubValueI("Data", "Weight");
                 Initiative = targetData.GetSubValueI("Data", "Initiative");
 
-                BuildingTags.Clear();
+                _terrainTags.Clear();
+                List<Save.Block> terrainTagsData = targetData.GetSub("Data").GetSubs("Terrain");
+                for (int idx = 0; idx < terrainTagsData.Count; idx++)
+                {
+                    _terrainTags.Add(terrainTagsData[idx].ValueS);
+                }
+
+                _buildingTags.Clear();
                 List<Save.Block> tagsData = targetData.GetSub("Data").GetSubs("Tags");
                 for (int idx = 0; idx < tagsData.Count; idx++)
                 {
-                    BuildingTags.Add(tagsData[idx].ValueS);
+                    _buildingTags.Add(tagsData[idx].ValueS);
                 }
 
-                Conditions.Clear();
+                _conditions.Clear();
                 List<Save.Block> conditionsData = targetData.GetSub("Data").GetSubs("PlaceCondition");
                 for (int idx = 0; idx < conditionsData.Count; idx++)
                 {
-                    Conditions.Add(conditionsData[idx].ValueS);
+                    _conditions.Add(conditionsData[idx].ValueS);
                 }
 
-                Effects.Clear();
+                _effects.Clear();
                 List<Save.Block> effectsData = targetData.GetSub("Data").GetSubs("Effect");
                 for (int idx = 0; idx < effectsData.Count; idx++)
                 {
-                    Effects.Add(effectsData[idx].ValueS);
+                    _effects.Add(effectsData[idx].ValueS);
                 }
             }
 

@@ -10,6 +10,7 @@ namespace Hex.Def
     {
         enum ValueType
         {
+            Invalid,
             Bool,
             Int,
             Timing,
@@ -31,18 +32,18 @@ namespace Hex.Def
             public Value(Timing value) { Type = ValueType.Timing; _id = (int)value; }
             public Value(Bonus value) { Type = ValueType.Bonus; _id = (int)value; }
             public Value(Condition value) { Type = ValueType.Condition; _id = (int)value; }
-            public Value(Res value) { Type = ValueType.Res; _id = value.ID; }
-            public Value(Tag value) { Type = ValueType.Tag; _id = value.ID; }
-            public Value(Tile value) { Type = ValueType.Tile; _id = value.ID; }
+            public Value(ResRef resRef) { Type = ValueType.Res; _id = resRef._id; }
+            public Value(TagRef tagRef) { Type = ValueType.Tag; _id = tagRef._id; }
+            public Value(TileRef tileRef) { Type = ValueType.Tile; _id = tileRef._id; }
 
             public bool BoolValue => _id != 0;
             public int IntValue => _id;
             public Timing TimingValue => (Timing)_id;
             public Bonus BonusValue => (Bonus)_id;
             public Condition ConditionValue => (Condition)_id;
-            public Res ResRef => Lib.GetRes(_id);
-            public Tag TagRef => Lib.GetTag(_id);
-            public Tile TileRef => Lib.GetTile(_id);
+            public ResRef ResRef => ResRef.FromID(_id);
+            public TagRef TagRef => TagRef.FromID(_id);
+            public TileRef TileRef => TileRef.FromID(_id);
         }
 
         private const int MAX_VALUE_COUNT = 8;
@@ -71,12 +72,12 @@ namespace Hex.Def
             if (Enum.TryParse<Bonus>(v, out Bonus bonus)) return new Value(bonus);
             if (Enum.TryParse<Condition>(v, out Condition condition)) return new Value(condition);
 
-            Res res = Lib.GetRes(v);
-            if (res != null) return new Value(res);
-            Tag tag = Lib.GetTag(v);
-            if (tag != null) return new Value(tag);
-            Tile tile = Lib.GetTile(v);
-            if (tile != null) return new Value(tile);
+            ResRef resRef = Lib.GetResRef(v);
+            if (resRef != ResRef.INVALID) return new Value(resRef);
+            TagRef tagRef = Lib.GetTagRef(v);
+            if (tagRef != TagRef.INVALID) return new Value(tagRef);
+            TileRef tileRef = Lib.GetTileRef(v);
+            if (tileRef != TileRef.INVALID) return new Value(tileRef);
 
             Debug.LogError($"[VAR] Unknown value - {v.ToString()}");
             return new Value(0);
@@ -135,13 +136,13 @@ namespace Hex.Def
         public Condition GetCondition(int index = 0, int subIndex = 0) => _values[index][subIndex].ConditionValue;
 
         public bool IsRes(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Res;
-        public Res GetRes(int index = 0, int subIndex = 0) => _values[index][subIndex].ResRef;
+        public ResRef GetRes(int index = 0, int subIndex = 0) => _values[index][subIndex].ResRef;
 
         public bool IsTag(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Tag;
-        public Tag GetTag(int index = 0, int subIndex = 0) => _values[index][subIndex].TagRef;
+        public TagRef GetTag(int index = 0, int subIndex = 0) => _values[index][subIndex].TagRef;
 
         public bool IsTile(int index = 0, int subIndex = 0) => _values[index][subIndex].Type == ValueType.Tile;
-        public Tile GetTile(int index = 0, int subIndex = 0) => _values[index][subIndex].TileRef;
+        public TileRef GetTile(int index = 0, int subIndex = 0) => _values[index][subIndex].TileRef;
 
         public int GetCount() => _tableCount;
         public int GetSubCount(int listIndex) => _listCounts[listIndex];
@@ -163,9 +164,9 @@ namespace Hex.Def
                         case ValueType.Timing: stringBuilder.Append(_values[idx][subIdx].TimingValue.ToString()); break;
                         case ValueType.Bonus: stringBuilder.Append(_values[idx][subIdx].BonusValue.ToString()); break;
                         case ValueType.Condition: stringBuilder.Append(_values[idx][subIdx].ConditionValue.ToString()); break;
-                        case ValueType.Res: stringBuilder.Append(_values[idx][subIdx].ResRef.Name); break;
-                        case ValueType.Tag: stringBuilder.Append(_values[idx][subIdx].TagRef.Name); break;
-                        case ValueType.Tile: stringBuilder.Append(_values[idx][subIdx].TileRef.Name); break;
+                        case ValueType.Res: stringBuilder.Append(_values[idx][subIdx].ResRef.Value.Name); break;
+                        case ValueType.Tag: stringBuilder.Append(_values[idx][subIdx].TagRef.Value.Name); break;
+                        case ValueType.Tile: stringBuilder.Append(_values[idx][subIdx].TileRef.Value.Name); break;
                     }
                 }
             }
@@ -181,11 +182,13 @@ namespace Hex.Def
                 case ValueType.Timing: return _values[index][subIndex].TimingValue.ToString();
                 case ValueType.Bonus: return _values[index][subIndex].BonusValue.ToString();
                 case ValueType.Condition: return _values[index][subIndex].ConditionValue.ToString();
-                case ValueType.Res: return _values[index][subIndex].ResRef.Name;
-                case ValueType.Tag: return _values[index][subIndex].TagRef.Name;
-                case ValueType.Tile: return _values[index][subIndex].TileRef.Name;
+                case ValueType.Res: return _values[index][subIndex].ResRef.Value.Name;
+                case ValueType.Tag: return _values[index][subIndex].TagRef.Value.Name;
+                case ValueType.Tile: return _values[index][subIndex].TileRef.Value.Name;
                 default: throw new Exception("Unknown Var type");
             }
         }
+
+        public static Var INVALID = default;
     }
 }

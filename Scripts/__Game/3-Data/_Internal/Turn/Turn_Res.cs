@@ -14,8 +14,8 @@ namespace Hex.Data
         {
             for (int idx = 0; idx < Def.Lib.Res.Count; idx++)
             {
-                Stockpile.Array[idx] = new Res(Def.Lib.Res[idx], Def.Lib.Res[idx].Default);
-                Income.Array[idx] = new Res(Def.Lib.Res[idx], 0);
+                Stockpile.Array[idx] = new Res(Def.ResRef.FromID(idx), Def.Lib.Res[idx].Default);
+                Income.Array[idx] = new Res(Def.ResRef.FromID(idx), 0);
             }
         }
 

@@ -9,9 +9,8 @@ namespace Hex.Map
             MapBindings.X.TileCursor.Activate(deckTile);
         }
 
-        public static void OnPlayTile(Data.DeckTileRef deckTile, Data.HexPos hexPos)
+        public static void ClearCursorTile()
         {
-            MapTilesSubsystem.SetPrefabAtHexPos(deckTile.Value.Def.Map_TilePrefab, hexPos);
             MapBindings.X.TileCursor.Clear();
         }
     }

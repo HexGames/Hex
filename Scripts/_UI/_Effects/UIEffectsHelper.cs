@@ -5,36 +5,36 @@ namespace Hex.GodotUI
 {
     public static class UIEffectsHelper
     {
-        public static string Gain(Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        public static string Gain(Def.ResRef res, int value, Def.Timing timing)
         {
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
         }
 
-        public static string PerAdjacent(string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        public static string PerAdjacent(string param, Def.ResRef res, int value, Def.Timing timing)
         {
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true) + " for each adj.\n" + param;
         }
 
-        public static string IfAdjacent(string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        public static string IfAdjacent(string param, Def.ResRef res, int value, Def.Timing timing)
         {
             return "Gain " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true) + " if adj. to\n" + param;
         }
-        public static string Cost(Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        public static string Cost(Def.ResRef res, int value, Def.Timing timing)
         {
             return "Lose " + UIHelper.ResToString(res, -value, alwaysShowSign: true, redNegativeValues: true);
         }
-        //public static string TransformX1(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        //public static string TransformX1(Data.Player player, string param, Def.Res res, int value, Def.Timing timing)
         //{
         //    return "Transform 1" + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
         //}
         //
-        //public static string TransformAll(Hex.Data.Player player, string param, Hex.Def.Res res, int value, Hex.Def.Timing timing)
+        //public static string TransformAll(Data.Player player, string param, Def.Res res, int value, Def.Timing timing)
         //{
         //    return "Transform all " + UIHelper.GetIcon(param) + " to " + UIHelper.ResToString(res, value, alwaysShowSign: true, redNegativeValues: true);
         //}
 
         private static readonly Dictionary<string, System.Reflection.MethodInfo> _methodCache = new();
-        public static string GetDescription(Hex.Def.Var effect)
+        public static string GetDescription(Def.Var effect)
         {
             /*if (effect.EffectID == "Execute" || effect.EffectID == "GetDescription")
                 return null;

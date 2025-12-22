@@ -8,17 +8,15 @@ namespace Hex.Def
     {
         private static Save.Block _resRawData = null;
         private static List<Save.Block> _resRaw = new List<Save.Block>();
-        private static List<Res> _res = new List<Res>();
+        private static Res[] _res = null;
         public static ReadOnlyCollection<Res> Res => _res.AsReadOnly();
 
         private static void InitResDefs()
         {
-            _res.Clear();
+            _res = new Res[_resRaw.Count];
             for (int idx = 0; idx < _resRaw.Count; idx++)
             {
-                Res res = new(_resRaw[idx]);
-                res.ID = idx;
-                _res.Add(res);
+                _res[idx] = new Res(idx, _resRaw[idx]);
             }
         }
 
@@ -34,36 +32,27 @@ namespace Hex.Def
             return null;
         }
 
-        public static Res GetRes(string id)
+        public static ref Res GetRes(int ID)
         {
-            foreach (Res res in _res)
+            return ref _res[ID];
+        }
+
+        public static ResRef GetResRef(string name)
+        {
+            return GetResRef(name.AsSpan());
+        }
+
+        internal static ResRef GetResRef(ReadOnlySpan<char> name)
+        {
+            for (int idx = 0; idx < _res.Length; idx++)
             {
-                if (res.Name == id)
+                if (name.SequenceEqual(_res[idx].Name))
                 {
-                    return res;
+                    return ResRef.FromID(idx);
                 }
             }
-            return null;
+            return ResRef.INVALID;
         }
-
-        public static Res GetRes(int ID)
-        {
-            return _res[ID];
-        }
-
-        public static Res GetRes(ReadOnlySpan<char> id)
-        {
-            foreach (Res res in _res)
-            {
-                if (id.SequenceEqual(res.Name.AsSpan()) == true)
-                {
-                    return res;
-                }
-            }
-            return null;
-        }
-
-
 
         private static void SaveResDef()
         {

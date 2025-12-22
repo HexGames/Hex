@@ -33,7 +33,7 @@ namespace Hex.Data
             {
                 return _mapTileIDToHexPos[tileID];
             }
-            return HexPos.Invalid;
+            return HexPos.INVALID;
         }
 
         internal static int HexPosToMapTileID(HexPos hexPos)

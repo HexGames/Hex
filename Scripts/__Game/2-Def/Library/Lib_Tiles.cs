@@ -8,26 +8,23 @@ namespace Hex.Def
     {
         private static Save.Block _tileRawData = null;
         private static List<Save.Block> _tilesRaw = new List<Save.Block>();
-        private static List<Tile> _tiles = new List<Tile>();
+        private static Tile[] _tiles = null;
         public static TileData[] _tileData = null;
         public static ReadOnlyCollection<Tile> Tiles => _tiles.AsReadOnly();
         public static ReadOnlyCollection<TileData> TileData => _tileData.AsReadOnly();
 
         private static void InitTileDefs()
         {
-            _tiles.Clear();
+            _tiles = new Tile[_tilesRaw.Count];
             for (int idx = 0; idx < _tilesRaw.Count; idx++)
             {
-                Tile tile = new Tile(_tilesRaw[idx]);
-                tile.ID = idx;
-                _tiles.Add(tile);
+                _tiles[idx] = new Tile(idx, _tilesRaw[idx]);
             }
         }
-
         private static void InitTileData()
         {
-            _tileData = new TileData[_tiles.Count];
-            for (int idx = 0; idx < _tiles.Count; idx++)
+            _tileData = new TileData[_tiles.Length];
+            for (int idx = 0; idx < _tiles.Length; idx++)
             {
                 _tileData[idx] = new TileData(_tiles[idx]);
             }
@@ -45,21 +42,9 @@ namespace Hex.Def
             return null;
         }
 
-        public static Tile GetTile(string ID)
+        public static ref Tile GetTile(int ID)
         {
-            foreach (Tile tile in _tiles)
-            {
-                if (tile.Name == ID)
-                {
-                    return tile;
-                }
-            }
-            return null;
-        }
-
-        public static Tile GetTile(int ID)
-        {
-            return _tiles[ID];
+            return ref _tiles[ID];
         }
 
         public static TileData GetTileData(int ID)
@@ -67,16 +52,21 @@ namespace Hex.Def
             return _tileData[ID];
         }
 
-        public static Tile GetTile(ReadOnlySpan<char> id)
+        public static TileRef GetTileRef(string name)
         {
-            foreach (Tile tile in _tiles)
+            return GetTileRef(name.AsSpan());
+        }
+
+        internal static TileRef GetTileRef(ReadOnlySpan<char> name)
+        {
+            for (int idx = 0; idx < _tiles.Length; idx++)
             {
-                if (id.SequenceEqual(tile.Name.AsSpan()) == true)
+                if (name.SequenceEqual(_tiles[idx].Name))
                 {
-                    return tile;
+                    return TileRef.FromID(idx);
                 }
             }
-            return null;
+            return TileRef.INVALID;
         }
 
         private static void SaveTilesDef()

@@ -8,7 +8,7 @@ namespace Hex.GodotUI
     {
         public struct ItemData
         {
-            public Hex.Def.Res ResDef;
+            public Def.ResRef ResDef;
             public int Value;
             public int Income;
         }

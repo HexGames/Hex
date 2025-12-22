@@ -1,4 +1,4 @@
-// 2025-12-16T00:30:06
+// 2025-12-23T01:46:11
 Tiles 
 {
 	Tile Water
@@ -59,7 +59,6 @@ Tiles
 		Data 
 		{
 			Terrain Desert
-			PlaceCondition NotAdjacent:Water
 		}
 	}
 	Tile Forest
@@ -114,7 +113,7 @@ Tiles
 			Tags Building
 			Tags Houses
 			Tags Population
-			PlaceCondition On:Grass:Desert
+			PlaceCondition IfTerrain:Grass:Desert
 			Effect OnPlace:Population:2:2*IfTerrain*Grass:2*IfAdjacent*Water
 			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
@@ -144,7 +143,7 @@ Tiles
 			Tags Building
 			Tags Houses
 			Tags Population
-			PlaceCondition On:Grass:Desert
+			PlaceCondition IfTerrain:Grass:Desert
 			Effect OnPlace:Population:25:10*IfTerrain*Grass:10*IfAdjacent*Water
 			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
@@ -173,7 +172,7 @@ Tiles
 			Tags Building
 			Tags Houses
 			Tags Population
-			PlaceCondition On:Grass:Desert
+			PlaceCondition IfTerrain:Grass:Desert
 			Effect OnPlace:Population:100:20*IfTerrain*Grass:20*IfAdjacent*Water
 			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
 			Stockpile Population
@@ -202,7 +201,7 @@ Tiles
 			Starting 3
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			PlaceCondition IfTerrain:Water
 			Effect Always:MultiplyAdjacent*Houses:2
 			UpgradeByToken Yes
 		}
@@ -229,7 +228,7 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			PlaceCondition IfTerrain:Water
 			Effect Always:MultiplyAdjacent*Houses:3
 			UpgradeByToken Yes
 		}
@@ -255,7 +254,7 @@ Tiles
 			Weight 10
 			Tags Fishing_Boats
 			Tags Food
-			PlaceCondition On:Water
+			PlaceCondition IfTerrain:Water
 			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
@@ -283,7 +282,7 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Grass
+			PlaceCondition IfTerrain:Grass
 			Effect Always:MultiplyAdjacent*Houses:2
 			UpgradeByToken Yes
 		}
@@ -311,7 +310,7 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Grass
+			PlaceCondition IfTerrain:Grass
 			Effect Always:MultiplyAdjacent*Houses:3
 			UpgradeByToken Yes
 		}
@@ -338,7 +337,7 @@ Tiles
 			Tags Building
 			Tags Farm
 			Tags Food
-			PlaceCondition On:Grass
+			PlaceCondition IfTerrain:Grass
 			Effect Always:MultiplyAdjacent*Houses:4
 		}
 		Map 
@@ -366,7 +365,7 @@ Tiles
 			Tags Building
 			Tags Mill
 			Tags Food
-			PlaceCondition On:Grass:Desert
+			PlaceCondition IfTerrain:Grass:Desert
 			Effect Always:MultiplyAdjacent*Farm:2
 			UpgradeByToken Yes
 		}
@@ -393,7 +392,7 @@ Tiles
 			Tags Building
 			Tags Mill
 			Tags Food
-			PlaceCondition On:Grass:Desert
+			PlaceCondition IfTerrain:Grass:Desert
 			Effect Always:MultiplyAdjacent*Farm:3
 		}
 		Map 

@@ -2,14 +2,15 @@ using System.Collections.Generic;
 
 namespace Hex.Def
 {
-    public class Tag 
+    public struct Tag 
     {
-        public int ID = -1;
+        public readonly int ID = -1;
 
-        public string Name = "";
+        public readonly string Name = "";
 
-        public Tag(string tag)
+        public Tag(int id, string tag)
         {
+            ID = id;
             Name = tag;
         }
     }

@@ -1,17 +1,13 @@
 ﻿using CommandSystem;
-using System.Collections.Generic;
-using Hex;
 
 namespace Hex.Play
 {
     public class GetTileFromQueueCommandResult : ICommandResult
     {
         public readonly Data.DeckTileRef DeckTile;
-        public readonly bool Success = false;
 
         public GetTileFromQueueCommandResult(Data.DeckTileRef deckTile)
         {
-            Success = true;
             DeckTile = deckTile;
         }
     }
@@ -30,17 +26,10 @@ namespace Hex.PlayInternal
     {
         public static ICommandResult HandleCommand(ICommandInfo commandInfo)
         {
-            var placeTileInfo = commandInfo as GetTileFromQueueCommandInfo;
-            if (placeTileInfo == null)
-            {
-                Debug.LogError("[GetTileFromQueueCommand] HandleCommand: commandInfo is not GetTileFromQueueCommandInfo!");
-                return null;
-            }
+            var info = Commands.GetInfo<GetTileFromQueueCommandInfo>(commandInfo);
+            if (info == null) return null;
 
-            bool success = Logic.Actions.GetTileFromQueue(out Data.DeckTileRef deckTile);
-
-            if (success == false)
-                return default;
+            Logic.Actions.GetTileFromQueue(out Data.DeckTileRef deckTile);
 
             Play.GetTileFromQueueCommandResult result = new Play.GetTileFromQueueCommandResult(deckTile);
 

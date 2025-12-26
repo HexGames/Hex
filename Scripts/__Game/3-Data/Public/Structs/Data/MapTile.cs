@@ -8,9 +8,9 @@ namespace Hex.Data
 
         private readonly int _defID = -1;
 
-        public Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
+        public readonly Def.Tile Def { get => Hex.Def.Lib.GetTile(_defID); }
+        public readonly DeckTileRef FromDeckTile; // the index of the DeckTile it came from
         public Def.TileData DefData;
-        public DeckTileRef FromDeckTile; // the index of the DeckTile it came from
 
         internal MapTile(Def.Tile def)
         {

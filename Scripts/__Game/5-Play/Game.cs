@@ -7,7 +7,8 @@ namespace Hex.Play
 {
     public static class Game
     {
-        public static bool LockInput = false;
+        public static bool LockInput = false; 
+        private static Data.DeckTileRef _currentDeckTile = Data.DeckTileRef.INVALID;
 
         public static void Init()
         {
@@ -22,6 +23,8 @@ namespace Hex.Play
             Data.Game.MapTiles.InitMapTiles(Logic.Map.GenerateMapTiles());
             Data.Game.DeckTiles.CreateDrawPile();
             Data.Game.DeckTiles.CreateQueue();
+
+            Data.Game.NewTurn();
         }
 
         //public static void RegisterPlayTileOutputHandlers(Action<ICommandResult> handler)
@@ -34,19 +37,6 @@ namespace Hex.Play
         //    CommandSys.RegisterResultHandler(Phase.Build, CommandType.GetTileFromQueue, handler);
         //}
 
-        public static void InputPlayTile(Data.HexPos atHexPos)
-        {
-            if (LockInput == true) return;
-
-            LockInput = true;
-            CommandSys.AddCommand(new Command(CommandType.PlaceTile, new PlayTileCommandInfo(PlayData.CurrentDeckTile, atHexPos)));
-        }
-
-        public static void AutoInputGetTileFromQueue()
-        {
-            CommandSys.AddCommand(new Command(CommandType.GetTileFromQueue, new GetTileFromQueueCommandInfo()));
-        }
-
         private static void AutoInputGetTileFromQueueResultHandler(ICommandResult result)
         {
             var getTileFromQueueCommandResult = result as GetTileFromQueueCommandResult;
@@ -55,7 +45,25 @@ namespace Hex.Play
                 Debug.LogError("[Game] AutoInputGetTileFromQueueResultHandler: result is not GetTileFromQueueCommandResult!");
                 return;
             }
-            PlayData.CurrentDeckTile = getTileFromQueueCommandResult.DeckTile;
+            _currentDeckTile = getTileFromQueueCommandResult.DeckTile;
+        }
+
+        public static void AutoInputGetTileFromQueue()
+        {
+            CommandSys.AddCommand(new Command(CommandType.GetTileFromQueue, new GetTileFromQueueCommandInfo()));
+        }
+
+        public static void InputPlayTile(Data.HexPos atHexPos)
+        {
+            if (LockInput == true) return;
+
+            LockInput = true;
+            CommandSys.AddCommand(new Command(CommandType.PlaceTile, new PlayTileCommandInfo(_currentDeckTile, atHexPos)));
+        }
+
+        public static void AutoInputEndTurn()
+        {
+            CommandSys.AddCommand(new Command(CommandType.EndTurn, new EndTurnCommandInfo()));
         }
 
         public static void Update()

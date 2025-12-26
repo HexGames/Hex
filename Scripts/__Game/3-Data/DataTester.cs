@@ -7,11 +7,15 @@
         {
             // Check that the struct is an unbroken chunck of memory
             EnsureUnmanaged<Benefit>();
+            EnsureUnmanaged<Bonus>();
             EnsureUnmanaged<HexPos>();
             EnsureUnmanaged<Res>();
             EnsureUnmanaged<DeckTile>();
             EnsureUnmanaged<MapTile>();
             EnsureUnmanaged<Turn>();
+            EnsureUnmanaged<GameData>();
+            EnsureUnmanaged<DeckTileRef>();
+            EnsureUnmanaged<MapTileRef>();
             EnsureUnmanaged<GameData>();
         }
     }

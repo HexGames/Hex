@@ -1,5 +1,7 @@
 ﻿using Godot;
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Hex.GodotMap
 {
@@ -11,17 +13,23 @@ namespace Hex.GodotMap
         private Data.HexPos _lastHexPos = Data.HexPos.INVALID;
         private Node3D _instance = null;
 
+        private Data.DeckTileRef _currentDeckTile = Data.DeckTileRef.INVALID;
+
         public override void _Ready()
         {
             _viewport = GetViewport();
             _camera = _viewport.GetCamera3D();
+
+            Visible = false;
         }
 
         public void Activate(Data.DeckTileRef deckTile)
         {
             Cleanup();
 
-            var prefab = Main.x.Assets.GetPrefab_Tiles(deckTile.Value.Def.Map_TilePrefab);
+            _currentDeckTile = deckTile;
+
+            var prefab = Main.x.Assets.GetPrefab_Tiles(_currentDeckTile.Value.Def.Map_TilePrefab);
             if (prefab != null)
             {
                 _instance = prefab.Instantiate<Node3D>();
@@ -33,6 +41,8 @@ namespace Hex.GodotMap
         public void Clear()
         {
             Cleanup();
+
+            _currentDeckTile = Data.DeckTileRef.INVALID;
 
             Visible = false;
         }
@@ -48,12 +58,8 @@ namespace Hex.GodotMap
 
         public override void _Process(double delta)
         {
-            Visible = false;
-
             if (_instance == null)
                 return;
-
-            Visible = true;
 
             // Get the mouse position in the viewport
             Vector2 mousePos = _viewport.GetMousePosition();
@@ -68,40 +74,21 @@ namespace Hex.GodotMap
             float t = -from.Y / dir.Y;
             Vector3 intersection = from + dir * t;
 
-            Hex.Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
+            Data.HexPos hexPos = Convert.WorldToHexPos(intersection);
 
             if (Hex.Data.MapHelper.IsHexPosOnMap(hexPos))
             {
-                Visible = true;
-                Position = Convert.HexPosToWorld(hexPos);
-
-                if (_lastHexPos != hexPos)
-                {
-                    _lastHexPos = hexPos;
-                }
-                //if (Actions.IsHoverValid(hexPos))
-                //{
-                //    Actions.OnHoverCurrentTile(hexPos);
-                    _instance.Visible = true;
-                //}
-                //else
-                //{
-                //    Actions.OnHoverBlocked();
-                //    _instance.Visible = false;
-                //}
-
-                GodotUI.UIMain.X.DebugText.SetText("$", $"{hexPos}");
+                if (_lastHexPos == hexPos) return; // no change
             }
             else
             {
-                Visible = false;
-                if (_lastHexPos != Data.HexPos.INVALID)
-                {
-                    //Actions.OnHoverInvalid();
-                }
+                if (_lastHexPos == Data.HexPos.INVALID) return; // no change
 
-                _lastHexPos = Data.HexPos.INVALID;
+                hexPos = Data.HexPos.INVALID;
             }
+
+            OnHoverChange(_currentDeckTile, hexPos);
+            _lastHexPos = hexPos;
         }
 
         public override void _Input(InputEvent @event)
@@ -118,10 +105,110 @@ namespace Hex.GodotMap
             }
         }
 
+
+        // ---------------------------------------------------------------------------------------------------
         private void OnLeftClick()
         {
             Hex.Play.Game.InputPlayTile(_lastHexPos);
-            //Actions.OnPlayCurrentTile(_lastHexPos);
+        }
+
+
+        internal static List<Data.Benefit> OnHoverBenefits = new List<Data.Benefit>(4);
+        internal static int OnHoverBenefitsCount;
+        internal static void ClearOnHoverBenefits()
+        {
+            OnHoverBenefitsCount = 0;
+            for (int idx = 0; idx < OnHoverBenefits.Count; idx++) OnHoverBenefits[idx] = default;
+        }
+
+        internal static void AddOnHoverBenefit(Def.ResRef def, int value, Data.HexPos hexPos, Def.Timing benefitTiming)
+        {
+            Span<Data.Benefit> benefits = CollectionsMarshal.AsSpan(OnHoverBenefits).Slice(0, OnHoverBenefitsCount);
+            for (int idx = 0; idx < benefits.Length; idx++)
+            {
+                if (benefits[idx].Res.Def == def && benefits[idx].HexPos == hexPos && benefits[idx].BenefitTiming == benefitTiming)
+                {
+                    benefits[idx].Res.Value += value;
+                    return;
+                }
+            }
+
+            if (OnHoverBenefitsCount >= OnHoverBenefits.Count)
+            {
+                OnHoverBenefits.Add(new Data.Benefit(def, value, hexPos, benefitTiming));
+            }
+            else
+            {
+                OnHoverBenefits[OnHoverBenefitsCount] = new Data.Benefit(def, value, hexPos, benefitTiming);
+            }
+            OnHoverBenefitsCount++;
+        }
+
+        private void OnHoverChange(Data.DeckTileRef deckTile, Data.HexPos hexPos)
+        {
+            if (hexPos != Data.HexPos.INVALID)
+            {
+                // 3d Update - general
+                Visible = true;
+                Position = Convert.HexPosToWorld(hexPos);
+
+                // UI update - general
+                UI.TileInfo.Show();
+
+                // simulate placement
+                bool success = Logic.Actions.PlayTile(deckTile, hexPos, out Data.MapTileRef mapTile, out ReadOnlySpan<Logic.Production> onPlaceProduction);
+                if (success)
+                {
+                    // valid position
+                    Logic.Actions.EndTurn(out ReadOnlySpan<Logic.Production> OnEndTurnProduction);
+
+                    ClearOnHoverBenefits();
+                    for (int idx = 0; idx < onPlaceProduction.Length; idx++)
+                    {
+                        AddOnHoverBenefit(onPlaceProduction[idx].Total.Def, onPlaceProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                    }
+                    for (int idx = 0; idx < OnEndTurnProduction.Length; idx++)
+                    {
+                        AddOnHoverBenefit(OnEndTurnProduction[idx].Total.Def, OnEndTurnProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                    }
+
+                    // 3d Update
+                    _instance.Visible = true;
+
+                    //UI update
+                    Span<Data.Benefit> benefits = CollectionsMarshal.AsSpan(OnHoverBenefits).Slice(0, OnHoverBenefitsCount);
+                    UI.TileInfo.RefrehsForBenefits(deckTile, benefits);
+
+                    // undo EndTurn and PlayTile
+                    Logic.Actions.UndoTurn();
+                }
+                else
+                {
+                    // invalid position
+
+                    // 3d Update
+                    _instance.Visible = false;
+
+                    //UI update
+                    UI.TileInfo.RefrehsForEffects(_currentDeckTile);
+                }
+
+
+                GodotUI.UIMain.X.DebugText.SetText("$", $"{hexPos}");
+            }
+            else
+            {
+                // 3d Update
+                Visible = false;
+
+                //UI update
+                UI.TileInfo.Hide();
+            }
+        }
+
+        private void OnRightClick()
+        {
+
         }
     }
 }

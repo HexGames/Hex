@@ -42,7 +42,7 @@ namespace Hex
 
         public static void EndTurnResultHandler(ICommandResult commandResult)
         {
-            var result = GetResult<Play.PlayTileCommandResult>(commandResult);
+            var result = GetResult<Play.EndTurnCommandResult>(commandResult);
             if (result == null) return;
 
             Map.MapTiles.PlaceTile(result.MapTile);

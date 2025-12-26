@@ -5,16 +5,16 @@ namespace Hex.Data
 {
     public struct Res
     {
-        public readonly Hex.Def.ResRef Def;
+        public readonly Def.ResRef Def;
         public int Value;
 
-        public Res(Hex.Def.ResRef resDef)
+        public Res(Def.ResRef resDef)
         {
             Def = resDef;
             Value = 0;
         }
 
-        public Res(Hex.Def.ResRef resDef, int value)
+        public Res(Def.ResRef resDef, int value)
         {
             Def = resDef;
             Value = value;

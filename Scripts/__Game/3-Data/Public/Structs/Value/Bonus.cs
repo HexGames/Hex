@@ -1,8 +1,8 @@
 ﻿namespace Hex.Data
 {
-    public struct TileToTile
+    public struct Bonus
     {
-        public enum Bonus
+        public enum Type
         {
             None,
             Conditional,
@@ -14,13 +14,13 @@
         public readonly int ReceivingTileID;
         public readonly int BonusTileID;
 
-        public readonly Bonus BonusType;
+        public readonly Type BonusType;
 
         public int OriginalValue;
         public int BonusValue;
         public int ResultingValue;
 
-        public TileToTile(int receivingTileID, int bonusTileID, Bonus bonusType, int originalValue, int bonusValue, int resultingValue)
+        public Bonus(int receivingTileID, int bonusTileID, Type bonusType, int originalValue, int bonusValue, int resultingValue)
         {
             ReceivingTileID = receivingTileID;
             BonusTileID = bonusTileID;

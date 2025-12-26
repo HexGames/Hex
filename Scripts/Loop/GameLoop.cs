@@ -72,7 +72,7 @@
 
         public static void EndTurn()
         {
-            // Play.Game.AutoInputEndTurn();
+            Play.Game.AutoInputEndTurn();
 
             // play result.EndTurnPlaceBonusTree animations
 

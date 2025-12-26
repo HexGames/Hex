@@ -13,14 +13,14 @@ namespace Hex.Def
         public const int MAX_CONDITIONS = 4;
         public const int MAX_EFFECTS = 8;
 
-        public readonly int Starting;
-        public readonly int Level;
-        public readonly int Weight;
-        public readonly int Initiative;
+        public int Starting;
+        public int Level;
+        public int Weight;
+        public int Initiative;
         public TerrainTagArray TerrainTags;
-        public readonly BuildingTagArray BuildingTags;
-        public readonly ConditionArray Conditions;
-        public readonly EffectArray Effects;
+        public BuildingTagArray BuildingTags;
+        public ConditionArray Conditions;
+        public EffectArray Effects;
 
         public TileData(Tile tile)
         {
@@ -31,7 +31,7 @@ namespace Hex.Def
 
             TerrainTags = new TerrainTagArray(tile.TerrainTags);
 
-            BuildingTags = new BuildingTagArray(tile.TerrainTags);
+            BuildingTags = new BuildingTagArray(tile.BuildingTags);
 
             Conditions = new ConditionArray(tile.Conditions);
 
@@ -126,6 +126,18 @@ namespace Hex.Def
                 {
                     return Lib.GetTag(_array[i]);
                 }
+            }
+
+            public bool HasTag(in TagRef tag)
+            {
+                for (int idx = 0; idx < MAX_BUILDING_TAGS; idx++)
+                {
+                    if (_array[idx] == tag._id)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 

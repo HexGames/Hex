@@ -4,9 +4,9 @@ namespace Hex.Data
     {
         public Res Res;
         public HexPos HexPos;
-        public Hex.Def.Timing BenefitTiming = Hex.Def.Timing.PerTurn;
+        public Def.Timing BenefitTiming = Def.Timing.PerTurn;
 
-        public Benefit(Def.ResRef def, int value, HexPos hexPos, Hex.Def.Timing benefitTiming)
+        public Benefit(Def.ResRef def, int value, HexPos hexPos, Def.Timing benefitTiming)
         {
 
             Res = new Res(def, value);

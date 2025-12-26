@@ -14,10 +14,10 @@ namespace Hex.GodotUI
         [Export]
         private UIInfoSection _InfoSection;
 
-        public void Refresh(Hex.Data.DeckTile tile, List<UIInfoSection.Texts> titlesAndDescriptions)
+        public void Refresh(Data.DeckTileRef tile, List<UIInfoSection.Texts> titlesAndDescriptions)
         {
-            _Title.SetText("$name", tile.Def.UI_Title);
-            _Type.SetText("$type", string.Join(", ", tile.Def.BuildingTags));
+            _Title.SetText("$name", tile.Value.Def.UI_Title);
+            _Type.SetText("$type", string.Join(", ", tile.Value.Def.BuildingTags));
 
             _InfoSection.SetTexts(titlesAndDescriptions);
         }

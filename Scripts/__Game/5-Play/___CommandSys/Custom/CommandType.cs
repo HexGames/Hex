@@ -6,6 +6,7 @@
         PlaceTile,
         SkipTile,
         EndTurn,
+        StartTurn,
         //BuyTile,
         //UpdatedTile,
         //BuyAdvisor,

@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://u2f4h3gaqy3p"]
+[gd_scene load_steps=3 format=3 uid="uid://u2f4h3gaqy3p"]
 
 [ext_resource type="PackedScene" uid="uid://bvh078j5b0vda" path="res://Assets/Map/HexKit/building-archery.fbx" id="1_y6p7y"]
+[ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_va04e"]
 
 [node name="Archery" instance=ExtResource("1_y6p7y")]
+script = ExtResource("2_va04e")

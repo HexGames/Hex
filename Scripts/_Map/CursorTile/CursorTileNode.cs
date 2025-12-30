@@ -54,6 +54,8 @@ namespace Hex.GodotMap
 
             _instance.QueueFree();
             _instance = null;
+
+            _lastHexPos = Data.HexPos.INVALID;
         }
 
         public override void _Process(double delta)
@@ -82,7 +84,7 @@ namespace Hex.GodotMap
             }
             else
             {
-                if (_lastHexPos == Data.HexPos.INVALID) return; // no change
+                if (hexPos == Data.HexPos.INVALID) return; // no change
 
                 hexPos = Data.HexPos.INVALID;
             }

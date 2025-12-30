@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm5x6siil0ty5"]
+[gd_scene load_steps=3 format=3 uid="uid://bm5x6siil0ty5"]
 
 [ext_resource type="PackedScene" uid="uid://k83oj64ikthu" path="res://Assets/Map/HexKit/grass-forest.fbx" id="1_evmwy"]
+[ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_p5h1o"]
 
 [node name="grass-forest" instance=ExtResource("1_evmwy")]
+script = ExtResource("2_p5h1o")

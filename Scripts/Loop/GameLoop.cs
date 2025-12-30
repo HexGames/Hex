@@ -68,18 +68,13 @@
         public static void StartTurn()
         {
             Play.Game.AutoInputGetTileFromQueue();
+            Play.Game.AutoInputStartTurn();
         }
 
         public static void EndTurn()
         {
             Play.Game.AutoInputEndTurn();
-
-            // play result.EndTurnPlaceBonusTree animations
-
-            Main.DelayedCall(StartTurn, 0.5f);
         }
-
-
 
         public static void Update(double delta)
         {

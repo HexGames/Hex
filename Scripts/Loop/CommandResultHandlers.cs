@@ -9,6 +9,7 @@ namespace Hex
             CommandSys.RegisterResultHandler(Phase.Build, CommandType.GetTileFromQueue, GetTileFromQueueResultHandler);
             CommandSys.RegisterResultHandler(Phase.Build, CommandType.PlaceTile, PlaceTileResultHandler);
             CommandSys.RegisterResultHandler(Phase.Build, CommandType.EndTurn, EndTurnResultHandler);
+            CommandSys.RegisterResultHandler(Phase.Build, CommandType.StartTurn, StartTurnResultHandler);
         }
 
         public static void GetTileFromQueueResultHandler(ICommandResult commandResult)
@@ -18,6 +19,16 @@ namespace Hex
 
             Map.CursorTile.InitCursorTile(result.DeckTile);
             Play.Game.LockInput = false;
+
+            for (int idx = 0; idx < Data.MapTile.MAP_SIZE; idx++)
+            {
+                ref Data.MapTile mapTile = ref Data.Game.MapTiles[idx];
+                Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(idx);
+                if (Logic.Actions.CanPlaceTile(result.DeckTile, hexPos) == true)
+                {
+                    Map.MapTiles.SetAvailableToPlaceAtHexPos(hexPos);
+                }
+            }
         }
 
         public static void PlaceTileResultHandler(ICommandResult commandResult)
@@ -31,13 +42,13 @@ namespace Hex
                 return;
             }
 
+            Map.MapTiles.ClearAllAvailableForPlace();
             Map.CursorTile.ClearCursorTile();
             Map.MapTiles.PlaceTile(result.MapTile);
 
             // play result.OnPlaceBonusTree animations
 
             Main.DelayedCall(GameLoop.EndTurn, 0.5f);
-            // Main.DelayedCall(Play.Game.AutoInputEndTurn, 0.5f);
         }
 
         public static void EndTurnResultHandler(ICommandResult commandResult)
@@ -45,11 +56,15 @@ namespace Hex
             var result = GetResult<Play.EndTurnCommandResult>(commandResult);
             if (result == null) return;
 
-            Map.MapTiles.PlaceTile(result.MapTile);
-
             // play result.OnEndTurnBonusTree animations
 
-            Main.DelayedCall(GameLoop.EndTurn, 0.5f);
+            Main.DelayedCall(GameLoop.StartTurn, 0.5f);
+        }
+
+        public static void StartTurnResultHandler(ICommandResult commandResult)
+        {
+            var result = GetResult<Play.StartTurnCommandResult>(commandResult);
+            if (result == null) return;
         }
 
         // --------------------------------------------------------------------------------------------------- type check

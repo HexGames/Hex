@@ -10,13 +10,13 @@ namespace Hex.Data
         public sealed class MapTilesInterface
         {
         
-            //public ref MapTile this[int id]
-            //{
-            //    get
-            //    {
-            //        return ref _data.Turns.Array[_data.CurrentTurn].MapTiles.Array[id];
-            //    }
-            //}
+            public ref MapTile this[int id]
+            {
+                get
+                {
+                    return ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].MapTiles.Array[id];
+                }
+            }
         
             public ref MapTile this[HexPos hexPos]
             {

@@ -31,7 +31,7 @@ namespace Hex.Logic
             return true;
         }
 
-        private static bool CanPlaceTile(Data.DeckTileRef deckTile, Data.HexPos atHexPos)
+        public static bool CanPlaceTile(Data.DeckTileRef deckTile, Data.HexPos atHexPos)
         {
             if (atHexPos.DistanceTo(Data.HexPos.CENTER) > 3)
             {

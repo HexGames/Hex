@@ -53,6 +53,11 @@ namespace Hex.Play
             CommandSys.AddCommand(new Command(CommandType.GetTileFromQueue, new GetTileFromQueueCommandInfo()));
         }
 
+        public static void AutoInputStartTurn()
+        {
+            CommandSys.AddCommand(new Command(CommandType.StartTurn, new StartTurnCommandInfo()));
+        }
+
         public static void InputPlayTile(Data.HexPos atHexPos)
         {
             if (LockInput == true) return;

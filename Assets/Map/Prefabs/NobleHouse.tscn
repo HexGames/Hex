@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://y0rbfhcw04i7"]
+[gd_scene load_steps=6 format=4 uid="uid://y0rbfhcw04i7"]
 
+[ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="1_deicd"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="1_x45ld"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtbl2"]
@@ -43,6 +44,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q6klj")
 
 [node name="building-tower" type="Node3D"]
+script = ExtResource("1_deicd")
 
 [node name="building_tower" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_fchw2")

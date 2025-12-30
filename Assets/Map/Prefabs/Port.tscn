@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3gn48a1wtpn3"]
+[gd_scene load_steps=3 format=3 uid="uid://b3gn48a1wtpn3"]
 
 [ext_resource type="PackedScene" uid="uid://bhrvspq4ycq0" path="res://Assets/Map/HexKit/building-port.fbx" id="1_am55q"]
+[ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_ueajr"]
 
 [node name="Port" instance=ExtResource("1_am55q")]
+script = ExtResource("2_ueajr")

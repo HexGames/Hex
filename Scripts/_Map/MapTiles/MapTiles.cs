@@ -20,5 +20,15 @@ namespace Hex.Map
         {
             MapTilesSubsystem.SetPrefabAtHexPos(mapTile.Value.Def.Map_TilePrefab, mapTile.HexPos);
         }
+
+        public static void SetAvailableToPlaceAtHexPos(Data.HexPos coord)
+        {
+            MapTilesSubsystem.SetAvailableToPlaceAtHexPos(coord);
+        }
+
+        public static void ClearAllAvailableForPlace()
+        {
+            MapTilesSubsystem.ClearAllAvailableForPlace();
+        }
     }
 }

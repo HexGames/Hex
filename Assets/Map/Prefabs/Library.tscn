@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5003bgoiuf8j"]
+[gd_scene load_steps=4 format=3 uid="uid://c5003bgoiuf8j"]
 
 [ext_resource type="PackedScene" uid="uid://doafgp575tqjw" path="res://Assets/Map/HexKit/grass.fbx" id="1_omqwi"]
 [ext_resource type="PackedScene" uid="uid://fpteowtfdjuc" path="res://Assets/Map/HexKit/unit-house.fbx" id="2_iy56r"]
+[ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_xevwc"]
 
 [node name="Mausoleum" instance=ExtResource("1_omqwi")]
+script = ExtResource("2_xevwc")
 
 [node name="unit-house" parent="." index="0" instance=ExtResource("2_iy56r")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.0590633, 0)

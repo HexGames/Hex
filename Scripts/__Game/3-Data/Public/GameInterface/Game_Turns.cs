@@ -27,5 +27,10 @@ namespace Hex.Data
 
             GameData.Data.Turns.Array[GameData.Data.CurrentTurn] = GameData.Data.Turns.Array[GameData.Data.CurrentTurn - 1];
         }
+
+        public static int GetTurnCount()
+        {
+            return GameData.Data.CurrentTurn;
+        }
     }
 }

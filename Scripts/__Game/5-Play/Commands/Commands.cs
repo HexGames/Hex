@@ -9,6 +9,7 @@ namespace Hex.PlayInternal
             CommandSys.RegisterCommandHandler(Phase.Build, CommandType.GetTileFromQueue, GetTileFromQueueCommand.HandleCommand);
             CommandSys.RegisterCommandHandler(Phase.Build, CommandType.PlaceTile, PlayTileCommand.HandleCommand);
             CommandSys.RegisterCommandHandler(Phase.Build, CommandType.EndTurn, EndTurnCommand.HandleCommand);
+            CommandSys.RegisterCommandHandler(Phase.Build, CommandType.StartTurn, StartTurnCommand.HandleCommand);
 
             CommandSys.SetPhase(Phase.Build);
         }

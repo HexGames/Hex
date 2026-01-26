@@ -12,6 +12,9 @@ namespace Hex.Play
 
         public static void Init()
         {
+            Logic.BonusLinkPool.Init();
+            Logic.ProductionPools.Init();
+
             CommandsInit.Init();
 
             CommandSys.RegisterResultHandler(Phase.Build, CommandType.GetTileFromQueue, AutoInputGetTileFromQueueResultHandler);

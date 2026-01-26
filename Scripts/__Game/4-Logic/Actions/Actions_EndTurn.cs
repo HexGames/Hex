@@ -7,15 +7,14 @@ namespace Hex.Logic
     {
         public static void EndTurn(out ReadOnlySpan<Production> production)
         {
-            foreach (Production income in Production.OnEndTurnProduction) income.Clear();
-            Production.OnEndTurnProductionCount = 0;
+            ProductionPools.ClearOnEndTurnProduction();
 
             // calculate onPlaceBonusTree and production
-            if (Production.OnEndTurnProduction.Count <= 1) Production.OnEndTurnProduction.Add(new Production()); // hack
-            Production.OnEndTurnProduction[0].Total = new Data.Res(Def.Lib.GetResRef("Population"), 3); // hack
-            Production.OnEndTurnProductionCount++; // hack
+            //if (Production.OnEndTurnProduction.Count <= 1) Production.OnEndTurnProduction.Add(new Production()); // hack
+            ProductionPools.OnEndTurnProduction[0].Total = new Data.Res(Def.Lib.GetResRef("Population"), 3); // hack
+            ProductionPools.OnEndTurnProductionCount++; // hack
 
-            production = CollectionsMarshal.AsSpan(Production.OnEndTurnProduction).Slice(0, Production.OnEndTurnProductionCount);
+            production = null;
 
             // TO DO - implement end turn logic
 

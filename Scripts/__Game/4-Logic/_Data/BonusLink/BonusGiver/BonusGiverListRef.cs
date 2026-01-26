@@ -22,6 +22,8 @@ namespace Hex.Logic
         public int Count => BonusGiverBuffer.Count(this);
 
         public void Clear() => BonusGiverBuffer.Clear(this);
+
+        public bool IsValid() => Id >= 0;
     }
 }
 

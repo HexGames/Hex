@@ -3,24 +3,27 @@ namespace Hex.Logic
 {
     public static class ProductionPools
     {
-        internal static Production[] OnPlaceProduction = new Production[4];
+        internal static Production[] OnPlaceProduction = null;
         internal static int OnPlaceProductionCount;
-        internal static Production[] OnEndTurnProduction = new Production[16];
+        internal static Production[] OnEndTurnProduction = null;
         internal static int OnEndTurnProductionCount;
-        internal static Data.MapTileRef[] BonusQueue = new Data.MapTileRef[128];
+        internal static Data.MapTileRef[] BonusQueue = null;
         internal static int BonusQueueStart;
         internal static int BonusQueueEnd;
 
         public static void Init()
         {
+            OnPlaceProduction = new Production[4];
             for (int idx = 0; idx < OnPlaceProduction.Length; idx++)
             {
                 OnPlaceProduction[idx] = new Production();
             }
+            OnEndTurnProduction = new Production[16];
             for (int idx = 0; idx < OnEndTurnProduction.Length; idx++)
             {
                 OnEndTurnProduction[idx] = new Production();
             }
+            BonusQueue = new Data.MapTileRef[128];
         }
 
         internal static void GrowOnPlaceProduction()

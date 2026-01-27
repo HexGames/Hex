@@ -1,0 +1,231 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/xTools/DebugToolWindow.cs" id="1_debug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_warning"]
+bg_color = Color(0.8, 0.7, 0.1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[node name="DebugToolWindow" type="Window" node_paths=PackedStringArray("TabContainer", "BufferTree", "SnapshotButton", "PrevSnapshotButton", "NextSnapshotButton", "SnapshotLabel", "LoadSessionButton", "WarningPanel", "WarningLabel", "SessionSelector")]
+title = "Debug Tools (F1)"
+initial_position = 2
+size = Vector2i(650, 550)
+min_size = Vector2i(500, 400)
+visible = false
+script = ExtResource("1_debug")
+TabContainer = NodePath("MarginContainer/VBoxContainer/TabContainer")
+BufferTree = NodePath("MarginContainer/VBoxContainer/TabContainer/Buffer Inspector/VBoxContainer/Tree")
+SnapshotButton = NodePath("MarginContainer/VBoxContainer/Header/SnapshotButton")
+PrevSnapshotButton = NodePath("MarginContainer/VBoxContainer/SnapshotNav/PrevButton")
+NextSnapshotButton = NodePath("MarginContainer/VBoxContainer/SnapshotNav/NextButton")
+SnapshotLabel = NodePath("MarginContainer/VBoxContainer/SnapshotNav/SnapshotLabel")
+LoadSessionButton = NodePath("MarginContainer/VBoxContainer/SessionRow/LoadSessionButton")
+WarningPanel = NodePath("MarginContainer/VBoxContainer/WarningPanel")
+WarningLabel = NodePath("MarginContainer/VBoxContainer/WarningPanel/WarningLabel")
+SessionSelector = NodePath("MarginContainer/VBoxContainer/SessionRow/SessionSelector")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Debug Tools"
+theme_override_font_sizes/font_size = 18
+
+[node name="SnapshotButton" type="Button" parent="MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Snapshot (F2)"
+
+[node name="WarningPanel" type="Panel" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_warning")
+
+[node name="WarningLabel" type="Label" parent="MarginContainer/VBoxContainer/WarningPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.15, 0.1, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Warning: Viewing data from a previous session"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SnapshotNav" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+disabled = true
+text = "<"
+
+[node name="SnapshotLabel" type="Label" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "No snapshots"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+disabled = true
+text = ">"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SessionRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SessionLabel" type="Label" parent="MarginContainer/VBoxContainer/SessionRow"]
+layout_mode = 2
+text = "Session:"
+
+[node name="SessionSelector" type="OptionButton" parent="MarginContainer/VBoxContainer/SessionRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoadSessionButton" type="Button" parent="MarginContainer/VBoxContainer/SessionRow"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Load Session"
+
+[node name="Separator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buffer Inspector" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+column_titles_visible = true
+hide_root = false
+
+[node name="Future Feature 1" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coming Soon..."
+horizontal_alignment = 1
+
+[node name="Future Feature 2" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coming Soon..."
+horizontal_alignment = 1
+
+[node name="Future Feature 3" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coming Soon..."
+horizontal_alignment = 1
+
+[node name="Future Feature 4" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coming Soon..."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Header/SnapshotButton" to="." method="OnSnapshotPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SnapshotNav/PrevButton" to="." method="OnPrevSnapshotPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SnapshotNav/NextButton" to="." method="OnNextSnapshotPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SessionRow/LoadSessionButton" to="." method="OnLoadSessionPressed"]

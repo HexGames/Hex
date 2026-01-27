@@ -18,3 +18,6 @@ mono_crash.*.json
 # Big-files ignores
 .psd
 /.vs
+
+# Made by AI: Claude Opus 4.5 - Debug tool data folder
+_Debug/

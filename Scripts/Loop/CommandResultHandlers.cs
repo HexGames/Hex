@@ -47,6 +47,7 @@ namespace Hex
             Map.MapTiles.PlaceTile(result.MapTile);
 
             // play result.OnPlaceBonusTree animations
+            UI.BenefitAnimationLoop.PlayBenefitLoop(result.OnPlaceProduction);
 
             Main.DelayedCall(GameLoop.EndTurn, 0.5f);
         }

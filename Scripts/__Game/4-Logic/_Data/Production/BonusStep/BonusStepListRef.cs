@@ -19,7 +19,7 @@ namespace Hex.Logic
 
         public void Add(in BonusStep step) => BonusStepBuffer.Add(this, in step);
 
-        public int Count() => BonusStepBuffer.Count(this);
+        public int Count => BonusStepBuffer.Count(this);
 
         public void Clear() => BonusStepBuffer.Clear(this);
     }

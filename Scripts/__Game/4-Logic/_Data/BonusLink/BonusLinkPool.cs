@@ -12,5 +12,14 @@
                 BonusLinks[idx] = new BonusLink();
             }
         }
+
+        internal static void ClearBonusLinks()
+        {
+            for (int idx = 0; idx < BonusLinks.Length; idx++)
+            {
+                ref BonusLink bonusLink = ref BonusLinks[idx];
+                bonusLink.Clear();
+            }
+        }
     }
 }

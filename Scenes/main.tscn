@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene load_steps=88 format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -86,11 +86,13 @@
 [ext_resource type="Script" uid="uid://bdgagiwrlnukm" path="res://Scripts/_UI/_WorldUI/WorldUI.cs" id="83_55idt"]
 [ext_resource type="Script" uid="uid://cf6kmwgy7vpo8" path="res://Scripts/_UI/WorldUI/Godot/UITileInfo3D.cs" id="85_e6rcu"]
 [ext_resource type="Script" uid="uid://0qkjt7h5qhfb" path="res://Scripts/_UI/WorldUI/Benefit3D/Benefit3DControl.cs" id="85_k8rh3"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/DebugToolWindow.tscn" id="90_debug"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("Assets", "Colors")]
+[node name="Main" type="Node" node_paths=PackedStringArray("Assets", "Colors", "DebugToolWindow")]
 script = ExtResource("2_v2nl5")
 Assets = NodePath("AssetsLib")
 Colors = NodePath("ColorLib")
+DebugToolWindow = NodePath("DebugToolWindow")
 
 [node name="Autorun" type="Node" parent="."]
 script = ExtResource("1_kry3j")
@@ -527,3 +529,5 @@ script = ExtResource("49_xdkp6")
 [connection signal="pressed" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" to="UI/t_Win_VictoryUI" method="OnBackToMenu"]
 [connection signal="mouse_entered" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverEnter"]
 [connection signal="mouse_exited" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverExit"]
+
+[node name="DebugToolWindow" parent="." instance=ExtResource("90_debug")]

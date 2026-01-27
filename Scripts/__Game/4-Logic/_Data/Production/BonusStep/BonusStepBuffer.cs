@@ -115,6 +115,11 @@ namespace Hex.Logic.DataBuffer
         {
             ref BonusStepList list = ref _lists[handle.Id];
 
+            for (int idx = 0; idx < list.Count; idx++)
+            {
+                _buffer[list.Start + idx] = default;
+            }
+
             list.Count = 0;
         }
     }

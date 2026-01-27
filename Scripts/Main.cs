@@ -8,6 +8,10 @@ public partial class Main : Node
     public AssetLib Assets;
     [Export]
     public ColorLib Colors;
+    
+    // Made by AI: Claude Opus 4.5 - Debug tool window reference
+    [Export]
+    public Hex.Tools.DebugToolWindow DebugToolWindow;
 
     // --- private ---
     private SceneTree Tree = null;
@@ -54,6 +58,19 @@ public partial class Main : Node
         Hex.GameLoop.Update(delta);
 
         ProcessDelayedCalls(delta);
+    }
+
+    // Made by AI: Claude Opus 4.5 - Handle F1 key to toggle debug tool window
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+        {
+            if (keyEvent.Keycode == Key.F1)
+            {
+                DebugToolWindow?.Toggle();
+                GetViewport().SetInputAsHandled();
+            }
+        }
     }
 
     //public static void DelayedAction(Action<string> action, float delay, string context)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://y0rbfhcw04i7"]
+[gd_scene format=4 uid="uid://y0rbfhcw04i7"]
 
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="1_deicd"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="1_x45ld"]
@@ -43,9 +43,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q6klj")
 
-[node name="building-tower" type="Node3D"]
+[node name="building-tower" type="Node3D" unique_id=1809088553]
 script = ExtResource("1_deicd")
 
-[node name="building_tower" type="MeshInstance3D" parent="."]
+[node name="building_tower" type="MeshInstance3D" parent="." unique_id=624559438]
 mesh = SubResource("ArrayMesh_fchw2")
-skeleton = NodePath("")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://dq4ojgpswtj65"]
+[gd_scene format=4 uid="uid://dq4ojgpswtj65"]
 
 [ext_resource type="Script" uid="uid://3mx0x1jys7n2" path="res://Scripts/_UI/HUD/NextTile/UINextTileItem.cs" id="1_vhfxv"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="7_67oi2"]
@@ -43,13 +43,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2hi7i")
 
-[node name="NextTiles_Item" type="Control"]
+[node name="NextTiles_Item" type="Control" unique_id=729277737]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vhfxv")
 
-[node name="Button" type="Control" parent="."]
+[node name="Button" type="Control" parent="." unique_id=1185705141]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="BtnOffset" type="Control" parent="Button"]
+[node name="BtnOffset" type="Control" parent="Button" unique_id=87734427]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnPanel" type="NinePatchRect" parent="Button/BtnOffset"]
+[node name="BtnPanel" type="NinePatchRect" parent="Button/BtnOffset" unique_id=902535827]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -84,7 +84,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
+[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel" unique_id=791373644]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,7 +94,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Content" type="VBoxContainer" parent="Button/BtnOffset"]
+[node name="Content" type="VBoxContainer" parent="Button/BtnOffset" unique_id=1003567307]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,49 +104,48 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Gap_0" type="Control" parent="Button/BtnOffset/Content"]
+[node name="Gap_0" type="Control" parent="Button/BtnOffset/Content" unique_id=1415387010]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Button/BtnOffset/Content"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Button/BtnOffset/Content" unique_id=11109233]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Button/BtnOffset/Content/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Button/BtnOffset/Content/SubViewportContainer" unique_id=1327123609]
 handle_input_locally = false
 screen_space_aa = 1
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport" unique_id=2009626084]
 
-[node name="Camera3D" type="Camera3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=946903414]
 transform = Transform3D(0.707107, -0.473147, 0.525483, 0, 0.743145, 0.669131, -0.707107, -0.473147, 0.525483, 2.5, 3.6, 2.5)
 cull_mask = 2
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1852892663]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 visible = false
 layers = 2
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="HexParent" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="HexParent" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=184828991]
 
-[node name="building-castle" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent"]
+[node name="building-castle" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent" unique_id=1826861047]
 visible = false
 
-[node name="building_castle" type="MeshInstance3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle"]
+[node name="building_castle" type="MeshInstance3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle" unique_id=1576365415]
 layers = 2
 mesh = SubResource("ArrayMesh_pke2f")
-skeleton = NodePath("")
 
-[node name="Gap_2" type="Control" parent="Button/BtnOffset/Content"]
+[node name="Gap_2" type="Control" parent="Button/BtnOffset/Content" unique_id=1803211674]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2

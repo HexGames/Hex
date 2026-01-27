@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://h05cstyxjs54"]
+[gd_scene format=3 uid="uid://h05cstyxjs54"]
 
 [ext_resource type="PackedScene" uid="uid://doafgp575tqjw" path="res://Assets/Map/HexKit/grass.fbx" id="1_v188b"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_5jf0f"]
 [ext_resource type="PackedScene" uid="uid://fpteowtfdjuc" path="res://Assets/Map/HexKit/unit-house.fbx" id="2_sy3p8"]
 [ext_resource type="PackedScene" uid="uid://b5i5mnaovdyjc" path="res://Assets/Map/HexKit/unit-tree.fbx" id="3_5jf0f"]
 
-[node name="Mausoleum" instance=ExtResource("1_v188b")]
+[node name="Mausoleum" unique_id=101521479 instance=ExtResource("1_v188b")]
 script = ExtResource("2_5jf0f")
 
-[node name="unit-house" parent="." index="0" instance=ExtResource("2_sy3p8")]
+[node name="unit-house" parent="." index="0" unique_id=791761287 instance=ExtResource("2_sy3p8")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.0590633, 0)
 
-[node name="unit-tree" parent="." index="1" instance=ExtResource("3_5jf0f")]
+[node name="unit-tree" parent="." index="1" unique_id=950238287 instance=ExtResource("3_5jf0f")]
 transform = Transform3D(1.99993, -0.0168248, 0, 0.0168248, 1.99993, 0, 0, 0, 2, 0, 0.393548, 0)

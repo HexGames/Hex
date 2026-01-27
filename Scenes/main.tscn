@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cejyfoxfw42kv"]
+[gd_scene format=3 uid="uid://cejyfoxfw42kv"]
 
 [ext_resource type="Script" uid="uid://ckdc8hdispooa" path="res://Scripts/_Autorun.cs" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cv0s1kmhrp4fq" path="res://Scripts/Main.cs" id="2_v2nl5"]
@@ -88,16 +88,16 @@
 [ext_resource type="Script" uid="uid://0qkjt7h5qhfb" path="res://Scripts/_UI/WorldUI/Benefit3D/Benefit3DControl.cs" id="85_k8rh3"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/DebugToolWindow.tscn" id="90_debug"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("Assets", "Colors", "DebugToolWindow")]
+[node name="Main" type="Node" unique_id=784899465 node_paths=PackedStringArray("Assets", "Colors", "DebugToolWindow")]
 script = ExtResource("2_v2nl5")
 Assets = NodePath("AssetsLib")
 Colors = NodePath("ColorLib")
 DebugToolWindow = NodePath("DebugToolWindow")
 
-[node name="Autorun" type="Node" parent="."]
+[node name="Autorun" type="Node" parent="." unique_id=1967490550]
 script = ExtResource("1_kry3j")
 
-[node name="AssetsLib" type="Node" parent="."]
+[node name="AssetsLib" type="Node" parent="." unique_id=2117033502]
 script = ExtResource("3_k12tt")
 PrefabTiles = Dictionary[String, PackedScene]({
 "Amphiteather.tscn": ExtResource("4_qnggo"),
@@ -166,7 +166,7 @@ TexturesIcons = Dictionary[String, Texture2D]({
 "Worker_Busy.png": ExtResource("40_55idt")
 })
 
-[node name="ColorLib" type="Node" parent="."]
+[node name="ColorLib" type="Node" parent="." unique_id=2022412393]
 script = ExtResource("66_k8rh3")
 TimingTextColor = Dictionary[int, Color]({
 0: Color(0.627451, 0.8, 1, 1),
@@ -175,55 +175,54 @@ TimingTextColor = Dictionary[int, Color]({
 3: Color(1, 0.8, 0, 1)
 })
 
-[node name="3D" type="Node3D" parent="."]
+[node name="3D" type="Node3D" parent="." unique_id=450327290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0690838, 0)
 
-[node name="Bindings" type="Node" parent="3D" node_paths=PackedStringArray("MapTilesNode", "TileCursor")]
+[node name="Bindings" type="Node" parent="3D" unique_id=2113101076 node_paths=PackedStringArray("MapTilesNode", "TileCursor")]
 script = ExtResource("67_ihvwq")
 MapTilesNode = NodePath("../Origin/MapOrigin")
 TileCursor = NodePath("../Origin/CursorOrigin/Cursor")
 
-[node name="Camera3D" type="Camera3D" parent="3D"]
+[node name="Camera3D" type="Camera3D" parent="3D" unique_id=1379347920]
 transform = Transform3D(0.707107, 0.640856, -0.298836, 0, 0.422618, 0.906308, 0.707107, -0.640856, 0.298836, -5.5, 15, 5.5)
 cull_mask = 1
 fov = 30.0
 far = 250.0
 
-[node name="Origin" type="Node3D" parent="3D"]
+[node name="Origin" type="Node3D" parent="3D" unique_id=174194886]
 
-[node name="MapOrigin" type="Node3D" parent="3D/Origin"]
+[node name="MapOrigin" type="Node3D" parent="3D/Origin" unique_id=1082365037]
 
-[node name="CursorOrigin" type="Node3D" parent="3D/Origin"]
+[node name="CursorOrigin" type="Node3D" parent="3D/Origin" unique_id=568700302]
 
-[node name="Cursor" type="Node3D" parent="3D/Origin/CursorOrigin"]
+[node name="Cursor" type="Node3D" parent="3D/Origin/CursorOrigin" unique_id=895860669]
 script = ExtResource("47_2060n")
 
-[node name="HoveredHex" type="MeshInstance3D" parent="3D/Origin/CursorOrigin/Cursor"]
+[node name="HoveredHex" type="MeshInstance3D" parent="3D/Origin/CursorOrigin/Cursor" unique_id=52559048]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0.25, 0)
 mesh = ExtResource("68_tab3y")
-skeleton = NodePath("")
 
-[node name="WorldUI" type="Node3D" parent="3D/Origin" node_paths=PackedStringArray("ArrowsPool")]
+[node name="WorldUI" type="Node3D" parent="3D/Origin" unique_id=381026205 node_paths=PackedStringArray("ArrowsPool")]
 script = ExtResource("83_55idt")
 ArrowsPool = NodePath("Arrows")
 
-[node name="Arrows" type="Node3D" parent="3D/Origin/WorldUI" node_paths=PackedStringArray("_arrowPrototype")]
+[node name="Arrows" type="Node3D" parent="3D/Origin/WorldUI" unique_id=1933017921 node_paths=PackedStringArray("_arrowPrototype")]
 script = ExtResource("70_ihvwq")
 _arrowPrototype = NodePath("Arrow_0")
 
-[node name="Arrow_0" type="Node3D" parent="3D/Origin/WorldUI/Arrows"]
+[node name="Arrow_0" type="Node3D" parent="3D/Origin/WorldUI/Arrows" unique_id=2015286947]
 script = ExtResource("71_k8rh3")
 
-[node name="ArrowModel" parent="3D/Origin/WorldUI/Arrows/Arrow_0" instance=ExtResource("69_1tvlp")]
+[node name="ArrowModel" parent="3D/Origin/WorldUI/Arrows/Arrow_0" unique_id=1812739981 instance=ExtResource("69_1tvlp")]
 transform = Transform3D(2.08616e-07, 0, -1, 0, 1, 0, 1, 0, 2.08616e-07, -1.19209e-07, 0.225, -0.6)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D" unique_id=688819972]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 light_cull_mask = 4293918721
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "DebugText", "TileInfoPrototype", "Benefit3DPrototype")]
+[node name="UI" type="Control" parent="." unique_id=896585491 node_paths=PackedStringArray("Menu", "TileInfo", "NextTiles", "Resoruces", "Turn", "DebugText", "TileInfoPrototype", "Benefit3DPrototype")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,30 +241,30 @@ DebugText = NodePath("_debug_text")
 TileInfoPrototype = NodePath("WorldUI/TileInfos/TileInfo_0")
 Benefit3DPrototype = NodePath("WorldUI/TileBenefit/TileBenefit_0")
 
-[node name="MenuUI" parent="UI" instance=ExtResource("31_2daye")]
+[node name="MenuUI" parent="UI" unique_id=948959459 instance=ExtResource("31_2daye")]
 visible = false
 layout_mode = 1
 
-[node name="ResourcesUI" parent="UI" instance=ExtResource("33_2060n")]
+[node name="ResourcesUI" parent="UI" unique_id=434194402 instance=ExtResource("33_2060n")]
 layout_mode = 1
 offset_top = 1.0
 offset_bottom = 1.0
 
-[node name="GoalsUI" parent="UI" instance=ExtResource("47_f6rfp")]
+[node name="GoalsUI" parent="UI" unique_id=123839417 instance=ExtResource("47_f6rfp")]
 visible = false
 layout_mode = 1
 
-[node name="TurnUI" parent="UI" instance=ExtResource("55_e5peh")]
+[node name="TurnUI" parent="UI" unique_id=1777848771 instance=ExtResource("55_e5peh")]
 visible = false
 layout_mode = 1
 
-[node name="NextTilesUI" parent="UI" instance=ExtResource("74_qnggo")]
+[node name="NextTilesUI" parent="UI" unique_id=684635696 instance=ExtResource("74_qnggo")]
 layout_mode = 1
 
-[node name="TileInfoUI" parent="UI" instance=ExtResource("55_qax2n")]
+[node name="TileInfoUI" parent="UI" unique_id=645526927 instance=ExtResource("55_qax2n")]
 layout_mode = 1
 
-[node name="PopUps" type="Control" parent="UI"]
+[node name="PopUps" type="Control" parent="UI" unique_id=274028131]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -274,10 +273,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BenefitPopUp_0" type="Control" parent="UI/PopUps"]
+[node name="BenefitPopUp_0" type="Control" parent="UI/PopUps" unique_id=1421804367]
 anchors_preset = 0
 
-[node name="Text" type="RichTextLabel" parent="UI/PopUps/BenefitPopUp_0"]
+[node name="Text" type="RichTextLabel" parent="UI/PopUps/BenefitPopUp_0" unique_id=650169969]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -301,7 +300,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="WorldUI" type="Control" parent="UI"]
+[node name="WorldUI" type="Control" parent="UI" unique_id=28531309]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -310,7 +309,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TileInfos" type="Control" parent="UI/WorldUI"]
+[node name="TileInfos" type="Control" parent="UI/WorldUI" unique_id=1460894269]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,12 +318,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TileInfo_0" type="Control" parent="UI/WorldUI/TileInfos"]
+[node name="TileInfo_0" type="Control" parent="UI/WorldUI/TileInfos" unique_id=739866147]
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("85_e6rcu")
 
-[node name="Bg" type="PanelContainer" parent="UI/WorldUI/TileInfos/TileInfo_0"]
+[node name="Bg" type="PanelContainer" parent="UI/WorldUI/TileInfos/TileInfo_0" unique_id=381714816]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
@@ -340,7 +339,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Text" type="RichTextLabel" parent="UI/WorldUI/TileInfos/TileInfo_0/Bg"]
+[node name="Text" type="RichTextLabel" parent="UI/WorldUI/TileInfos/TileInfo_0/Bg" unique_id=1599554102]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -353,7 +352,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="TileBenefit" type="Control" parent="UI/WorldUI"]
+[node name="TileBenefit" type="Control" parent="UI/WorldUI" unique_id=687222371]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -362,12 +361,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TileBenefit_0" type="Control" parent="UI/WorldUI/TileBenefit"]
+[node name="TileBenefit_0" type="Control" parent="UI/WorldUI/TileBenefit" unique_id=90304160]
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("85_k8rh3")
 
-[node name="Bg" type="PanelContainer" parent="UI/WorldUI/TileBenefit/TileBenefit_0"]
+[node name="Bg" type="PanelContainer" parent="UI/WorldUI/TileBenefit/TileBenefit_0" unique_id=7407981]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
@@ -383,7 +382,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Text" type="RichTextLabel" parent="UI/WorldUI/TileBenefit/TileBenefit_0/Bg"]
+[node name="Text" type="RichTextLabel" parent="UI/WorldUI/TileBenefit/TileBenefit_0/Bg" unique_id=362638733]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -396,7 +395,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="t_Win_VictoryUI" type="Control" parent="UI"]
+[node name="t_Win_VictoryUI" type="Control" parent="UI" unique_id=851410775]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -407,7 +406,7 @@ offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VictoryPanel" type="Panel" parent="UI/t_Win_VictoryUI"]
+[node name="VictoryPanel" type="Panel" parent="UI/t_Win_VictoryUI" unique_id=1252904159]
 custom_minimum_size = Vector2(256, 192)
 layout_mode = 1
 anchors_preset = 8
@@ -422,7 +421,7 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/t_Win_VictoryUI/VictoryPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/t_Win_VictoryUI/VictoryPanel" unique_id=1319482348]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -433,7 +432,7 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer" unique_id=1841713811]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -442,17 +441,17 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="Gap" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="Gap" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer" unique_id=832588923]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="BackToMenu" type="Button" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer"]
+[node name="BackToMenu" type="Button" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer" unique_id=841026241]
 custom_minimum_size = Vector2(160, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 
-[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+[node name="Text" type="RichTextLabel" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" unique_id=2063882015]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -469,7 +468,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("49_xdkp6")
 
-[node name="Tooltip" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu"]
+[node name="Tooltip" type="Control" parent="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" unique_id=529807314]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -483,7 +482,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("50_54nrm")
 
-[node name="Tooltips" type="Control" parent="UI"]
+[node name="Tooltips" type="Control" parent="UI" unique_id=2062778321]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -492,7 +491,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="UITooltip" parent="UI/Tooltips" instance=ExtResource("9_6iyac")]
+[node name="UITooltip" parent="UI/Tooltips" unique_id=1420075998 instance=ExtResource("9_6iyac")]
 visible = false
 z_index = 220
 layout_mode = 0
@@ -504,7 +503,7 @@ offset_bottom = 0.0
 theme = null
 script = null
 
-[node name="_debug_text" type="RichTextLabel" parent="UI"]
+[node name="_debug_text" type="RichTextLabel" parent="UI" unique_id=1811261060]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -526,8 +525,8 @@ fit_content = true
 scroll_active = false
 script = ExtResource("49_xdkp6")
 
+[node name="DebugToolWindow" parent="." unique_id=1390135276 instance=ExtResource("90_debug")]
+
 [connection signal="pressed" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu" to="UI/t_Win_VictoryUI" method="OnBackToMenu"]
 [connection signal="mouse_entered" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverEnter"]
 [connection signal="mouse_exited" from="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" to="UI/t_Win_VictoryUI/VictoryPanel/VBoxContainer/BackToMenu/Tooltip" method="OnHoverExit"]
-
-[node name="DebugToolWindow" parent="." instance=ExtResource("90_debug")]

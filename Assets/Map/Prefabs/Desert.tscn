@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjo3a42ebvevw"]
+[gd_scene format=3 uid="uid://bjo3a42ebvevw"]
 
 [ext_resource type="PackedScene" uid="uid://d4f7j0o7821h1" path="res://Assets/Map/HexKit/sand.fbx" id="1_ef8kh"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_jabeh"]
 
-[node name="Desert" instance=ExtResource("1_ef8kh")]
+[node name="Desert" unique_id=1830027690 instance=ExtResource("1_ef8kh")]
 
-[node name="sand" parent="." index="0"]
+[node name="sand" parent="." index="0" unique_id=242612160]
 script = ExtResource("2_jabeh")

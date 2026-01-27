@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dfpw8lr6bbun2"]
+[gd_scene format=4 uid="uid://dfpw8lr6bbun2"]
 
 [ext_resource type="Script" uid="uid://drsujxettm5qv" path="res://Scripts/_UI/Windows/Draft/UIDraftChoice.cs" id="1_2vbbc"]
 [ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/_Base/UIAnims/AnimButton.cs" id="2_44vgl"]
@@ -50,13 +50,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2hi7i")
 
-[node name="Choice_0" type="Control"]
+[node name="Choice_0" type="Control" unique_id=1585386254]
 custom_minimum_size = Vector2(256, 448)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2vbbc")
 
-[node name="Button" type="Control" parent="." node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
+[node name="Button" type="Control" parent="." unique_id=1696115876 node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
 custom_minimum_size = Vector2(256, 448)
 layout_mode = 1
 anchors_preset = 15
@@ -71,7 +71,7 @@ PressedOverlays = [NodePath("BtnOffset/BtnPanel/PressedColor")]
 ActionOverlays = [NodePath("BtnOffset/BtnPanel/ActionColor")]
 Offset = NodePath("BtnOffset")
 
-[node name="BtnShadow" type="NinePatchRect" parent="Button"]
+[node name="BtnShadow" type="NinePatchRect" parent="Button" unique_id=1738356981]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -87,7 +87,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BtnOffset" type="Control" parent="Button"]
+[node name="BtnOffset" type="Control" parent="Button" unique_id=1494588610]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,7 +98,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnPanel" type="NinePatchRect" parent="Button/BtnOffset"]
+[node name="BtnPanel" type="NinePatchRect" parent="Button/BtnOffset" unique_id=366620295]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -114,7 +114,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
+[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel" unique_id=2062433082]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,7 +124,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
+[node name="PressedColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel" unique_id=1209526758]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -134,7 +134,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.8, 0, 0.25098)
 
-[node name="ActionColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel"]
+[node name="ActionColor" type="ColorRect" parent="Button/BtnOffset/BtnPanel" unique_id=1363126930]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -145,7 +145,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="BtnBorder" type="NinePatchRect" parent="Button/BtnOffset"]
+[node name="BtnBorder" type="NinePatchRect" parent="Button/BtnOffset" unique_id=1851749943]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -161,7 +161,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder"]
+[node name="BgColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder" unique_id=1033161195]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,7 +170,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder"]
+[node name="HoverColor" type="ColorRect" parent="Button/BtnOffset/BtnBorder" unique_id=1956624664]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -178,8 +178,8 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="Content" type="VBoxContainer" parent="Button/BtnOffset"]
-layout_mode = 2
+[node name="Content" type="VBoxContainer" parent="Button/BtnOffset" unique_id=374679246]
+layout_mode = 0
 offset_right = 256.0
 offset_bottom = 448.0
 grow_horizontal = 2
@@ -187,12 +187,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Gap_0" type="Control" parent="Button/BtnOffset/Content"]
+[node name="Gap_0" type="Control" parent="Button/BtnOffset/Content" unique_id=805737240]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Title" type="RichTextLabel" parent="Button/BtnOffset/Content"]
+[node name="Title" type="RichTextLabel" parent="Button/BtnOffset/Content" unique_id=534629076]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -204,7 +204,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("6_6gtx3")
 
-[node name="Type" type="RichTextLabel" parent="Button/BtnOffset/Content"]
+[node name="Type" type="RichTextLabel" parent="Button/BtnOffset/Content" unique_id=89095526]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -216,64 +216,63 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("6_6gtx3")
 
-[node name="Gap_1" type="Control" parent="Button/BtnOffset/Content"]
+[node name="Gap_1" type="Control" parent="Button/BtnOffset/Content" unique_id=443781363]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Button/BtnOffset/Content"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Button/BtnOffset/Content" unique_id=1999977802]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Button/BtnOffset/Content/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Button/BtnOffset/Content/SubViewportContainer" unique_id=892804121]
 handle_input_locally = false
 screen_space_aa = 1
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport" unique_id=1937565132]
 
-[node name="Camera3D" type="Camera3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=319299480]
 transform = Transform3D(0.707107, -0.473147, 0.525483, 0, 0.743145, 0.669131, -0.707107, -0.473147, 0.525483, 2.5, 3.6, 2.5)
 cull_mask = 2
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1516262530]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 visible = false
 layers = 2
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="HexParent" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="HexParent" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D" unique_id=171276323]
 
-[node name="building-castle" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent"]
+[node name="building-castle" type="Node3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent" unique_id=721600354]
 visible = false
 
-[node name="building_castle" type="MeshInstance3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle"]
+[node name="building_castle" type="MeshInstance3D" parent="Button/BtnOffset/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle" unique_id=1583541513]
 layers = 2
 mesh = SubResource("ArrayMesh_pke2f")
-skeleton = NodePath("")
 
-[node name="Gap_2" type="Control" parent="Button/BtnOffset/Content"]
+[node name="Gap_2" type="Control" parent="Button/BtnOffset/Content" unique_id=486619258]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="InfoSection" type="VBoxContainer" parent="Button/BtnOffset/Content"]
+[node name="InfoSection" type="VBoxContainer" parent="Button/BtnOffset/Content" unique_id=332264169]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 alignment = 1
 script = ExtResource("8_8c6ib")
 
-[node name="InfoBlock_0" type="VBoxContainer" parent="Button/BtnOffset/Content/InfoSection"]
+[node name="InfoBlock_0" type="VBoxContainer" parent="Button/BtnOffset/Content/InfoSection" unique_id=885236275]
 layout_mode = 2
 script = ExtResource("9_c4yu3")
 
-[node name="Title" type="RichTextLabel" parent="Button/BtnOffset/Content/InfoSection/InfoBlock_0"]
+[node name="Title" type="RichTextLabel" parent="Button/BtnOffset/Content/InfoSection/InfoBlock_0" unique_id=1870061610]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -285,7 +284,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("6_6gtx3")
 
-[node name="Description" type="RichTextLabel" parent="Button/BtnOffset/Content/InfoSection/InfoBlock_0"]
+[node name="Description" type="RichTextLabel" parent="Button/BtnOffset/Content/InfoSection/InfoBlock_0" unique_id=113881286]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4

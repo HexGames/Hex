@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj82taqgao0mw"]
+[gd_scene format=3 uid="uid://bj82taqgao0mw"]
 
 [ext_resource type="PackedScene" uid="uid://bdom2ooucnvp4" path="res://Assets/Map/HexKit/building-house.fbx" id="1_ty1gb"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_pmio3"]
 
-[node name="building-house" instance=ExtResource("1_ty1gb")]
+[node name="building-house" unique_id=1049526770 instance=ExtResource("1_ty1gb")]
 script = ExtResource("2_pmio3")

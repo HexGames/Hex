@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs7yko67yp2jm"]
+[gd_scene format=3 uid="uid://bs7yko67yp2jm"]
 
 [ext_resource type="Texture2D" uid="uid://hcwb6ofpsaos" path="res://Assets/Icons/Happiness.png" id="1_tatne"]
 [ext_resource type="Script" uid="uid://50vxx16faoo1" path="res://Scripts/_UI/_Base/UITooltips/UITooltipTrigger.cs" id="3_tatne"]
@@ -16,7 +16,7 @@ corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 
-[node name="GoalsUI" type="Control"]
+[node name="GoalsUI" type="Control" unique_id=2064169545]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Happiness" type="PanelContainer" parent="."]
+[node name="Happiness" type="PanelContainer" parent="." unique_id=597212265]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 0
 offset_left = 54.0
@@ -34,11 +34,11 @@ offset_right = 182.0
 offset_bottom = 160.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_v2nl5")
 
-[node name="Control" type="Control" parent="Happiness"]
+[node name="Control" type="Control" parent="Happiness" unique_id=1564482659]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Happiness/Control"]
+[node name="TextureRect" type="TextureRect" parent="Happiness/Control" unique_id=2104105949]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 1
 anchors_preset = -1
@@ -50,7 +50,7 @@ grow_horizontal = 2
 texture = ExtResource("1_tatne")
 expand_mode = 1
 
-[node name="Value" type="RichTextLabel" parent="Happiness/Control"]
+[node name="Value" type="RichTextLabel" parent="Happiness/Control" unique_id=802233754]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -66,7 +66,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("5_afojl")
 
-[node name="Income" type="RichTextLabel" parent="Happiness/Control"]
+[node name="Income" type="RichTextLabel" parent="Happiness/Control" unique_id=402415287]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -81,7 +81,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("5_afojl")
 
-[node name="Tooltip" type="Control" parent="Happiness/Control"]
+[node name="Tooltip" type="Control" parent="Happiness/Control" unique_id=1438829501]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +91,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_tatne")
 
-[node name="Goal" type="PanelContainer" parent="."]
+[node name="Goal" type="PanelContainer" parent="." unique_id=2062141337]
 custom_minimum_size = Vector2(128, 90)
 layout_mode = 0
 offset_left = 208.0
@@ -100,11 +100,11 @@ offset_right = 530.0
 offset_bottom = 142.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_v2nl5")
 
-[node name="Control2" type="Control" parent="Goal"]
+[node name="Control2" type="Control" parent="Goal" unique_id=90500383]
 custom_minimum_size = Vector2(512, 80)
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="Goal/Control2"]
+[node name="HBox" type="HBoxContainer" parent="Goal/Control2" unique_id=1115077138]
 custom_minimum_size = Vector2(320, 80)
 layout_mode = 1
 anchors_preset = 15
@@ -114,18 +114,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Goal/Control2/HBox"]
+[node name="TextureRect" type="TextureRect" parent="Goal/Control2/HBox" unique_id=1375897604]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("4_ixe4q")
 expand_mode = 1
 
-[node name="Gap_1" type="Control" parent="Goal/Control2/HBox"]
+[node name="Gap_1" type="Control" parent="Goal/Control2/HBox" unique_id=745505276]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="Text" type="RichTextLabel" parent="Goal/Control2/HBox"]
+[node name="Text" type="RichTextLabel" parent="Goal/Control2/HBox" unique_id=1910114776]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -137,12 +137,12 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("5_afojl")
 
-[node name="ValueBg" type="VBoxContainer" parent="Goal/Control2/HBox"]
+[node name="ValueBg" type="VBoxContainer" parent="Goal/Control2/HBox" unique_id=777264415]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="Value" type="RichTextLabel" parent="Goal/Control2/HBox/ValueBg"]
+[node name="Value" type="RichTextLabel" parent="Goal/Control2/HBox/ValueBg" unique_id=927231435]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -154,7 +154,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("5_afojl")
 
-[node name="Tooltip" type="Control" parent="Goal/Control2"]
+[node name="Tooltip" type="Control" parent="Goal/Control2" unique_id=2118452718]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcujexjsspq5a"]
+[gd_scene format=3 uid="uid://dcujexjsspq5a"]
 
 [ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="2_wahaa"]
 [ext_resource type="Script" uid="uid://nd2axteya2cl" path="res://Scripts/_UI/_Base/UITooltips/UITooltip.cs" id="2_xdy0g"]
@@ -12,7 +12,7 @@ bg_color = Color(0.380392, 0.14902, 0.109804, 0.752941)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uoqy0"]
 bg_color = Color(0.12549, 0.12549, 0.12549, 0.752941)
 
-[node name="UITooltip" type="PanelContainer"]
+[node name="UITooltip" type="PanelContainer" unique_id=639037350]
 custom_minimum_size = Vector2(256, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,19 +24,19 @@ theme = ExtResource("2_wahaa")
 theme_override_styles/panel = SubResource("StyleBoxFlat_10q71")
 script = ExtResource("2_xdy0g")
 
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="." unique_id=577887918]
 custom_minimum_size = Vector2(64, 24)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="TitleBG" type="Panel" parent="Container"]
+[node name="TitleBG" type="Panel" parent="Container" unique_id=1687337666]
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ixe2")
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/TitleBG"]
+[node name="MarginContainer" type="MarginContainer" parent="Container/TitleBG" unique_id=161298894]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 4
 
-[node name="Title" type="RichTextLabel" parent="Container/TitleBG/MarginContainer"]
+[node name="Title" type="RichTextLabel" parent="Container/TitleBG/MarginContainer" unique_id=531793515]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("2_wahaa")
@@ -57,7 +57,7 @@ bbcode_enabled = true
 text = "$value"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Container"]
+[node name="MarginContainer" type="MarginContainer" parent="Container" unique_id=1515523494]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
@@ -66,12 +66,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="Rows" type="VBoxContainer" parent="Container/MarginContainer"]
+[node name="Rows" type="VBoxContainer" parent="Container/MarginContainer" unique_id=892040895]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Left_1" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+[node name="Left_1" type="RichTextLabel" parent="Container/MarginContainer/Rows" unique_id=1668927849]
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
@@ -84,7 +84,7 @@ text = "$value
 fit_content = true
 scroll_active = false
 
-[node name="Right_1" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_1"]
+[node name="Right_1" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_1" unique_id=357941599]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,7 +99,7 @@ text = "[right]$value[/right]"
 fit_content = true
 scroll_active = false
 
-[node name="Line_1" type="Panel" parent="Container/MarginContainer/Rows"]
+[node name="Line_1" type="Panel" parent="Container/MarginContainer/Rows" unique_id=1315660676]
 visible = false
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
@@ -107,7 +107,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uoqy0")
 
-[node name="Left_2" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+[node name="Left_2" type="RichTextLabel" parent="Container/MarginContainer/Rows" unique_id=705786317]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
@@ -118,7 +118,7 @@ text = "$value"
 fit_content = true
 scroll_active = false
 
-[node name="Right_2" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_2"]
+[node name="Right_2" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_2" unique_id=563495557]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -134,7 +134,7 @@ text = "[right]$value[/right]"
 fit_content = true
 scroll_active = false
 
-[node name="Line_2" type="Panel" parent="Container/MarginContainer/Rows"]
+[node name="Line_2" type="Panel" parent="Container/MarginContainer/Rows" unique_id=1439327041]
 visible = false
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
@@ -142,7 +142,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uoqy0")
 
-[node name="Left_3" type="RichTextLabel" parent="Container/MarginContainer/Rows"]
+[node name="Left_3" type="RichTextLabel" parent="Container/MarginContainer/Rows" unique_id=1370181640]
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
@@ -155,7 +155,7 @@ text = "$value
 fit_content = true
 scroll_active = false
 
-[node name="Right_3" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_3"]
+[node name="Right_3" type="RichTextLabel" parent="Container/MarginContainer/Rows/Left_3" unique_id=1155711721]
 visible = false
 layout_mode = 1
 anchors_preset = 15

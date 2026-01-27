@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://f5ubdigheanb"]
+[gd_scene format=4 uid="uid://f5ubdigheanb"]
 
 [ext_resource type="Script" uid="uid://7q7ti8si5g6f" path="res://Scripts/_UI/HUD/NextTile/UINextTiles.cs" id="1_fhios"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
@@ -52,7 +52,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2hi7i")
 
-[node name="NextTilesUI" type="Control" node_paths=PackedStringArray("NextTiles")]
+[node name="NextTilesUI" type="Control" unique_id=416489396 node_paths=PackedStringArray("NextTiles")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +62,7 @@ grow_vertical = 2
 script = ExtResource("1_fhios")
 NextTiles = [NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2")]
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1952259404]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -75,13 +75,13 @@ grow_vertical = 0
 script = ExtResource("2_tkfwc")
 EntryAnimation = 1
 
-[node name="BG" type="ColorRect" parent="Panel"]
+[node name="BG" type="ColorRect" parent="Panel" unique_id=743093769]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.129412, 0.2, 0.215686, 0.878431)
 
-[node name="Border" type="NinePatchRect" parent="Panel"]
+[node name="Border" type="NinePatchRect" parent="Panel" unique_id=396385160]
 self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -93,26 +93,26 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=36587739]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=1233510865]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1529650013]
 custom_minimum_size = Vector2(32, 8)
 layout_mode = 2
 
-[node name="Deck" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Deck" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1180752690]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck" unique_id=1431057654]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="ViewDeckBtn" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck" node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
+[node name="ViewDeckBtn" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck" unique_id=2054368797 node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
 custom_minimum_size = Vector2(128, 48)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -122,7 +122,7 @@ PressedOverlays = [NodePath("../../Next/MarginContainer/SkipBtn/BtnOffset/BtnPan
 ActionOverlays = [NodePath("../../Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel/ActionColor")]
 Offset = NodePath("BtnOffset")
 
-[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn"]
+[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn" unique_id=382946252]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -138,7 +138,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn"]
+[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn" unique_id=1662430058]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,7 +149,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset"]
+[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset" unique_id=380182764]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -165,7 +165,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel" unique_id=650904812]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,7 +175,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.780392, 0.12549, 0.0901961, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel" unique_id=1814259801]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -185,7 +185,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel"]
+[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnPanel" unique_id=1904626442]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -196,7 +196,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset"]
+[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset" unique_id=1439821181]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -212,7 +212,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnBorder"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnBorder" unique_id=1611687337]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,7 +221,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnBorder"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnBorder" unique_id=920018751]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -229,7 +229,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset"]
+[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset" unique_id=1164163870]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 14
@@ -248,7 +248,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText" unique_id=241024987]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,7 +257,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText" unique_id=487573158]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -265,7 +265,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/ViewDeckBtn/BtnOffset/BtnText" unique_id=1362151200]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -275,12 +275,12 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Deck" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+[node name="Deck" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck" unique_id=1499283835]
 custom_minimum_size = Vector2(152, 152)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Shadow3" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="Shadow3" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=648863708]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -295,7 +295,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BgColor3" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="BgColor3" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=563511581]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -310,7 +310,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Shadow2" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="Shadow2" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=1632617601]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -325,7 +325,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BgColor2" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="BgColor2" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=1387834277]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -340,7 +340,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Shadow1" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="Shadow1" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=813864634]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -355,7 +355,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BgColor1" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck"]
+[node name="BgColor1" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck" unique_id=394550313]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -370,7 +370,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="RemainingTitles" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck/BgColor1"]
+[node name="RemainingTitles" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Deck/Deck/BgColor1" unique_id=1952411294]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
 anchors_preset = 14
@@ -390,15 +390,15 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck"]
+[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Deck" unique_id=820192057]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="Gap1" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Gap1" type="Control" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1136055003]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer/Gap1"]
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer/Gap1" unique_id=1244424619]
 custom_minimum_size = Vector2(24, 48)
 layout_mode = 1
 anchors_preset = -1
@@ -415,24 +415,24 @@ grow_vertical = 2
 texture = ExtResource("9_rt0yp")
 expand_mode = 1
 
-[node name="Next" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Next" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=179402715]
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("2_tkfwc")
 EntryAnimation = 1
 
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next" unique_id=301551623]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="MarginContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+[node name="MarginContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next" unique_id=1499064187]
 layout_mode = 2
 
-[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer"]
+[node name="Gap3" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" unique_id=1966020536]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer"]
+[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" unique_id=836162876]
 visible = false
 layout_mode = 2
 size_flags_vertical = 4
@@ -443,11 +443,11 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer"]
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" unique_id=649301546]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SkipBtn" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
+[node name="SkipBtn" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" unique_id=2145511415 node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
 custom_minimum_size = Vector2(128, 48)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -457,7 +457,7 @@ PressedOverlays = [NodePath("BtnOffset/BtnPanel/PressedColor"), NodePath("BtnOff
 ActionOverlays = [NodePath("BtnOffset/BtnPanel/ActionColor")]
 Offset = NodePath("BtnOffset")
 
-[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn"]
+[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn" unique_id=1905686660]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -473,7 +473,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn"]
+[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn" unique_id=1218100523]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -484,7 +484,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset"]
+[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset" unique_id=1463699690]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -500,7 +500,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel" unique_id=1445042723]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -510,7 +510,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.780392, 0.12549, 0.0901961, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel" unique_id=1706733739]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -520,7 +520,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel"]
+[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnPanel" unique_id=475478467]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -531,7 +531,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset"]
+[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset" unique_id=167596903]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -547,7 +547,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnBorder"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnBorder" unique_id=2011027001]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -556,7 +556,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnBorder"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnBorder" unique_id=405010417]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -564,7 +564,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset"]
+[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset" unique_id=321855183]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 14
@@ -583,7 +583,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText" unique_id=751813896]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -592,7 +592,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText" unique_id=104722104]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -600,7 +600,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer/SkipBtn/BtnOffset/BtnText" unique_id=293241926]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -610,30 +610,30 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer"]
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/MarginContainer" unique_id=332846182]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+[node name="Gap" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next" unique_id=1403551658]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next" unique_id=983013145]
 layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer" unique_id=663542153]
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="NextTile_0" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer"]
+[node name="NextTile_0" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=672759702]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
 script = ExtResource("6_ta0oi")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0" unique_id=1175081354]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -643,7 +643,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0"]
+[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0" unique_id=1563757873]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -654,49 +654,48 @@ mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content" unique_id=484678735]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer" unique_id=611407275]
 handle_input_locally = false
 screen_space_aa = 1
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport" unique_id=591553812]
 
-[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D" unique_id=906808609]
 transform = Transform3D(0.707107, -0.473147, 0.525483, 0, 0.743145, 0.669131, -0.707107, -0.473147, 0.525483, 2.5, 3.6, 2.5)
 cull_mask = 2
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1628215608]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 visible = false
 layers = 2
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1315008787]
 
-[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D/HexParent"]
+[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D/HexParent" unique_id=1299646659]
 visible = false
 
-[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle"]
+[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle" unique_id=457494871]
 layers = 2
 mesh = SubResource("ArrayMesh_pke2f")
-skeleton = NodePath("")
 
-[node name="NextTile_1" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer"]
+[node name="NextTile_1" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=1573359629]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
 script = ExtResource("6_ta0oi")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1" unique_id=1175613063]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -706,7 +705,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1"]
+[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1" unique_id=283109402]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -717,49 +716,48 @@ mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content" unique_id=641152939]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer" unique_id=799956764]
 handle_input_locally = false
 screen_space_aa = 1
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport" unique_id=1622688717]
 
-[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D" unique_id=369797333]
 transform = Transform3D(0.707107, -0.473147, 0.525483, 0, 0.743145, 0.669131, -0.707107, -0.473147, 0.525483, 2.5, 3.6, 2.5)
 cull_mask = 2
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1528166777]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 visible = false
 layers = 2
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1824131315]
 
-[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D/HexParent"]
+[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D/HexParent" unique_id=540306450]
 visible = false
 
-[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle"]
+[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle" unique_id=818626160]
 layers = 2
 mesh = SubResource("ArrayMesh_pke2f")
-skeleton = NodePath("")
 
-[node name="NextTile_2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer"]
+[node name="NextTile_2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=59877953]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
 script = ExtResource("6_ta0oi")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2" unique_id=2130910535]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -769,7 +767,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.67451, 0.584314, 0.321569, 1)
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/BgColor"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/BgColor" unique_id=1212945496]
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 1
 anchors_preset = 8
@@ -782,7 +780,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34902, 0.196078, 0.184314, 1)
 
-[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2"]
+[node name="Content" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2" unique_id=1664382064]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -793,44 +791,43 @@ mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content" unique_id=117433348]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer" unique_id=563360080]
 handle_input_locally = false
 screen_space_aa = 1
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport" unique_id=1001876228]
 
-[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D" unique_id=1878228215]
 transform = Transform3D(0.707107, -0.473147, 0.525483, 0, 0.743145, 0.669131, -0.707107, -0.473147, 0.525483, 2.5, 3.6, 2.5)
 cull_mask = 2
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D" unique_id=752306671]
 transform = Transform3D(1, 0, 0, 0, 0.725603, 0.688114, 0, -0.688114, 0.725603, 0, 2.21017, 2.34695)
 visible = false
 layers = 2
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D"]
+[node name="HexParent" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D" unique_id=413105797]
 
-[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D/HexParent"]
+[node name="building-castle" type="Node3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D/HexParent" unique_id=2065454758]
 visible = false
 
-[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle"]
+[node name="building_castle" type="MeshInstance3D" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2/Content/SubViewportContainer/SubViewport/Node3D/HexParent/building-castle" unique_id=177380980]
 layers = 2
 mesh = SubResource("ArrayMesh_pke2f")
-skeleton = NodePath("")
 
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/HBoxContainer" unique_id=974338195]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 

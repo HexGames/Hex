@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy04tkuafexhs"]
+[gd_scene format=3 uid="uid://cy04tkuafexhs"]
 
 [ext_resource type="Script" uid="uid://dscr7gvw4vsyl" path="res://Scripts/_UI/HUD/Turn/UITurn.cs" id="1_e2f4q"]
 [ext_resource type="Theme" uid="uid://beabbbghr0txh" path="res://Themes/Main.tres" id="2_xh2m1"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmwfrlqjf5hv1" path="res://Assets/Icons/Event.png" id="5_ajtri"]
 [ext_resource type="Texture2D" uid="uid://bkxnqyvityx6r" path="res://Assets/Icons/Draft.png" id="6_1h73q"]
 
-[node name="TurnUI" type="Control" node_paths=PackedStringArray("Text", "EventBtn", "DraftBtn", "EndTurnBtn")]
+[node name="TurnUI" type="Control" unique_id=1616032747 node_paths=PackedStringArray("Text", "EventBtn", "DraftBtn", "EndTurnBtn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ EventBtn = NodePath("Panel/HBoxContainer/Event")
 DraftBtn = NodePath("Panel/HBoxContainer/Draft")
 EndTurnBtn = NodePath("Panel/EndTurn")
 
-[node name="Panel" type="Control" parent="."]
+[node name="Panel" type="Control" parent="." unique_id=364924990]
 custom_minimum_size = Vector2(288, 128)
 layout_mode = 1
 anchors_preset = 3
@@ -36,7 +36,7 @@ offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1695225279]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -47,7 +47,7 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EndTurn" type="Button" parent="Panel"]
+[node name="EndTurn" type="Button" parent="Panel" unique_id=486664206]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 3
@@ -63,7 +63,7 @@ focus_mode = 0
 theme = ExtResource("2_xh2m1")
 theme_type_variation = &"ButtonRound"
 
-[node name="TextureRect" type="TextureRect" parent="Panel/EndTurn"]
+[node name="TextureRect" type="TextureRect" parent="Panel/EndTurn" unique_id=109382474]
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 1
 anchors_preset = -1
@@ -78,7 +78,7 @@ grow_vertical = 2
 texture = ExtResource("3_208td")
 expand_mode = 1
 
-[node name="TurnText" type="RichTextLabel" parent="Panel/EndTurn"]
+[node name="TurnText" type="RichTextLabel" parent="Panel/EndTurn" unique_id=1337710305]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -95,7 +95,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ihfet")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=849414783]
 custom_minimum_size = Vector2(192, 56)
 layout_mode = 1
 anchors_preset = -1
@@ -110,14 +110,14 @@ grow_vertical = 0
 theme_override_constants/separation = 12
 alignment = 2
 
-[node name="Event" type="Button" parent="Panel/HBoxContainer"]
+[node name="Event" type="Button" parent="Panel/HBoxContainer" unique_id=1388534009]
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("2_xh2m1")
 theme_type_variation = &"ButtonRound"
 
-[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Event"]
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Event" unique_id=1827666828]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -134,14 +134,14 @@ grow_vertical = 2
 texture = ExtResource("5_ajtri")
 expand_mode = 1
 
-[node name="Draft" type="Button" parent="Panel/HBoxContainer"]
+[node name="Draft" type="Button" parent="Panel/HBoxContainer" unique_id=1458377989]
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("2_xh2m1")
 theme_type_variation = &"ButtonRound"
 
-[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Draft"]
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Draft" unique_id=1026540230]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 8

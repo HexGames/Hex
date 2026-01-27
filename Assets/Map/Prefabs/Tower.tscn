@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://hpx0qnyra4j8"]
+[gd_scene format=3 uid="uid://hpx0qnyra4j8"]
 
 [ext_resource type="PackedScene" uid="uid://d4kn5fuaqrfd" path="res://Assets/Map/HexKit/building-tower.fbx" id="1_7f42r"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_1k2am"]
 
-[node name="Tower" instance=ExtResource("1_7f42r")]
+[node name="Tower" unique_id=1138711374 instance=ExtResource("1_7f42r")]
 script = ExtResource("2_1k2am")

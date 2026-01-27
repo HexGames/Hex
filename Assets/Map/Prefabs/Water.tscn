@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7w4jk7lnrj7w"]
+[gd_scene format=3 uid="uid://b7w4jk7lnrj7w"]
 
 [ext_resource type="PackedScene" uid="uid://b0x5ixinjcpmw" path="res://Assets/Map/HexKit/water.fbx" id="1_v1nun"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_048c0"]
 
-[node name="Water" instance=ExtResource("1_v1nun")]
+[node name="Water" unique_id=450164986 instance=ExtResource("1_v1nun")]
 script = ExtResource("2_048c0")

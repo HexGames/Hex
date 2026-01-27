@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjero1x3je5ga"]
+[gd_scene format=3 uid="uid://cjero1x3je5ga"]
 
 [ext_resource type="PackedScene" uid="uid://rtcpl111y1o0" path="res://Assets/Map/HexKit/building-farm.fbx" id="1_2515p"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_cku17"]
 
-[node name="building-farm" instance=ExtResource("1_2515p")]
+[node name="building-farm" unique_id=87062640 instance=ExtResource("1_2515p")]
 script = ExtResource("2_cku17")

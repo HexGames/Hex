@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://spjftejq1fhn"]
+[gd_scene format=3 uid="uid://spjftejq1fhn"]
 
 [ext_resource type="PackedScene" uid="uid://p3uyhrm84pmc" path="res://Assets/Map/HexKit/building-sheep.fbx" id="1_xyou1"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_mutq2"]
 
-[node name="Sheep" instance=ExtResource("1_xyou1")]
+[node name="Sheep" unique_id=1612399779 instance=ExtResource("1_xyou1")]
 script = ExtResource("2_mutq2")

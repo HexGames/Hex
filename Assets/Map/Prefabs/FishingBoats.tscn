@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://nm3c27g1cext"]
+[gd_scene format=3 uid="uid://nm3c27g1cext"]
 
 [ext_resource type="PackedScene" uid="uid://b0x5ixinjcpmw" path="res://Assets/Map/HexKit/water.fbx" id="1_pn6gj"]
 [ext_resource type="PackedScene" uid="uid://ba436ghofy1mw" path="res://Assets/Map/HexKit/unit-ship.fbx" id="2_lf7qh"]
 [ext_resource type="Script" uid="uid://bln7guxgcyprb" path="res://Scripts/_Map/MapTiles/MapTileNode.cs" id="2_nomog"]
 
-[node name="FishingBoats" instance=ExtResource("1_pn6gj")]
+[node name="FishingBoats" unique_id=1673986604 instance=ExtResource("1_pn6gj")]
 script = ExtResource("2_nomog")
 
-[node name="unit-ship" parent="." index="1" instance=ExtResource("2_lf7qh")]
+[node name="unit-ship" parent="." index="1" unique_id=2002491590 instance=ExtResource("2_lf7qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0719218, 0)

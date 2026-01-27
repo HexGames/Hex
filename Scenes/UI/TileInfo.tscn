@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hgnollckll75"]
+[gd_scene format=3 uid="uid://hgnollckll75"]
 
 [ext_resource type="Script" uid="uid://cl8uxlo2yhky8" path="res://Scripts/_UI/HUD/Godot/UITileInfo.cs" id="1_ldrw6"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b62yyvssf5j5" path="res://Scripts/_UI/_Base/UIInfoSection.cs" id="5_hbkke"]
 [ext_resource type="Script" uid="uid://bfr74daucxw7e" path="res://Scripts/_UI/_Base/UIInfoBlock.cs" id="6_tre6b"]
 
-[node name="TileInfoUI" type="Control" node_paths=PackedStringArray("_Title", "_Type", "_InfoSection")]
+[node name="TileInfoUI" type="Control" unique_id=2026050966 node_paths=PackedStringArray("_Title", "_Type", "_InfoSection")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ _Title = NodePath("Panel/VBoxContainer/VBoxContainer/Title")
 _Type = NodePath("Panel/VBoxContainer/VBoxContainer/Type")
 _InfoSection = NodePath("Panel/VBoxContainer/VBoxContainer/InfoSection")
 
-[node name="Panel" type="MarginContainer" parent="."]
+[node name="Panel" type="MarginContainer" parent="." unique_id=1824720584]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -36,11 +36,11 @@ grow_vertical = 2
 script = ExtResource("2_tkfwc")
 EntryAnimation = 1
 
-[node name="BG" type="ColorRect" parent="Panel"]
+[node name="BG" type="ColorRect" parent="Panel" unique_id=1376990215]
 layout_mode = 2
 color = Color(0.129412, 0.2, 0.215686, 0.878431)
 
-[node name="Border" type="NinePatchRect" parent="Panel"]
+[node name="Border" type="NinePatchRect" parent="Panel" unique_id=156644810]
 self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
 layout_mode = 2
 texture = ExtResource("3_ifsaa")
@@ -50,19 +50,19 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1591402890]
 layout_mode = 2
 
-[node name="Gap1" type="Control" parent="Panel/VBoxContainer"]
+[node name="Gap1" type="Control" parent="Panel/VBoxContainer" unique_id=1650529827]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=1827098255]
 layout_mode = 2
 script = ExtResource("2_tkfwc")
 EntryAnimation = 1
 
-[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer" unique_id=689703862]
 layout_mode = 2
 theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
@@ -71,7 +71,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Type" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Type" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer" unique_id=1476131897]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -84,12 +84,12 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer/VBoxContainer" unique_id=433329398]
 visible = false
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="Description" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer" unique_id=1759161195]
 visible = false
 layout_mode = 2
 mouse_filter = 2
@@ -99,21 +99,21 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Gap3" type="Control" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Gap3" type="Control" parent="Panel/VBoxContainer/VBoxContainer" unique_id=1415860822]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="InfoSection" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="InfoSection" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer" unique_id=384726917]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("5_hbkke")
 
-[node name="InfoBlock_0" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/InfoSection"]
+[node name="InfoBlock_0" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/InfoSection" unique_id=149616706]
 layout_mode = 2
 script = ExtResource("6_tre6b")
 
-[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer/InfoSection/InfoBlock_0"]
+[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer/InfoSection/InfoBlock_0" unique_id=322724857]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -125,7 +125,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Description" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer/InfoSection/InfoBlock_0"]
+[node name="Description" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer/InfoSection/InfoBlock_0" unique_id=1916624394]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -136,6 +136,6 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("4_ukdo0")
 
-[node name="Gap2" type="Control" parent="Panel/VBoxContainer"]
+[node name="Gap2" type="Control" parent="Panel/VBoxContainer" unique_id=397696237]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2

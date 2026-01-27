@@ -1,24 +1,24 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bh8ynhbjuq5pn"]
 
-[ext_resource type="Script" path="res://Scripts/xTools/DebugToolWindow.cs" id="1_debug"]
+[ext_resource type="Script" uid="uid://b55ykhd7w8dg8" path="res://Scripts/xTools/DebugToolWindow.cs" id="1_debug"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_warning"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
 bg_color = Color(0.8, 0.7, 0.1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
 
-[node name="DebugToolWindow" type="Window" node_paths=PackedStringArray("TabContainer", "BufferTree", "SnapshotButton", "PrevSnapshotButton", "NextSnapshotButton", "SnapshotLabel", "LoadSessionButton", "WarningPanel", "WarningLabel", "SessionSelector")]
+[node name="DebugToolWindow" type="Window" unique_id=1475410661 node_paths=PackedStringArray("TabContainer", "BufferTree", "SnapshotButton", "PrevSnapshotButton", "NextSnapshotButton", "SnapshotLabel", "LoadSessionButton", "WarningPanel", "WarningLabel", "SessionSelector")]
 title = "Debug Tools (F1)"
 initial_position = 2
 size = Vector2i(650, 550)
-min_size = Vector2i(500, 400)
 visible = false
+min_size = Vector2i(500, 400)
 script = ExtResource("1_debug")
 TabContainer = NodePath("MarginContainer/VBoxContainer/TabContainer")
 BufferTree = NodePath("MarginContainer/VBoxContainer/TabContainer/Buffer Inspector/VBoxContainer/Tree")
@@ -31,7 +31,7 @@ WarningPanel = NodePath("MarginContainer/VBoxContainer/WarningPanel")
 WarningLabel = NodePath("MarginContainer/VBoxContainer/WarningPanel/WarningLabel")
 SessionSelector = NodePath("MarginContainer/VBoxContainer/SessionRow/SessionSelector")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1123642542]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,30 +42,30 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1029852090]
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=278550576]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header" unique_id=1147116273]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Debug Tools"
 theme_override_font_sizes/font_size = 18
+text = "Debug Tools"
 
-[node name="SnapshotButton" type="Button" parent="MarginContainer/VBoxContainer/Header"]
+[node name="SnapshotButton" type="Button" parent="MarginContainer/VBoxContainer/Header" unique_id=523666776]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Snapshot (F2)"
 
-[node name="WarningPanel" type="Panel" parent="MarginContainer/VBoxContainer"]
+[node name="WarningPanel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=1418849948]
 visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_warning")
 
-[node name="WarningLabel" type="Label" parent="MarginContainer/VBoxContainer/WarningPanel"]
+[node name="WarningLabel" type="Label" parent="MarginContainer/VBoxContainer/WarningPanel" unique_id=679851789]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,59 +78,61 @@ text = "Warning: Viewing data from a previous session"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SnapshotNav" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SnapshotNav" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1835938760]
 layout_mode = 2
 
-[node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+[node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav" unique_id=2087109002]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 disabled = true
 text = "<"
 
-[node name="SnapshotLabel" type="Label" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+[node name="SnapshotLabel" type="Label" parent="MarginContainer/VBoxContainer/SnapshotNav" unique_id=1159202660]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "No snapshots"
 horizontal_alignment = 1
 
-[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/SnapshotNav" unique_id=1824425797]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 disabled = true
 text = ">"
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/SnapshotNav"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/SnapshotNav" unique_id=284203672]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SessionRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SessionRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=886824093]
 layout_mode = 2
 
-[node name="SessionLabel" type="Label" parent="MarginContainer/VBoxContainer/SessionRow"]
+[node name="SessionLabel" type="Label" parent="MarginContainer/VBoxContainer/SessionRow" unique_id=936120930]
 layout_mode = 2
 text = "Session:"
 
-[node name="SessionSelector" type="OptionButton" parent="MarginContainer/VBoxContainer/SessionRow"]
+[node name="SessionSelector" type="OptionButton" parent="MarginContainer/VBoxContainer/SessionRow" unique_id=216367408]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LoadSessionButton" type="Button" parent="MarginContainer/VBoxContainer/SessionRow"]
+[node name="LoadSessionButton" type="Button" parent="MarginContainer/VBoxContainer/SessionRow" unique_id=828798529]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Load Session"
 
-[node name="Separator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="Separator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1174787202]
 layout_mode = 2
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=723232745]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 
-[node name="Buffer Inspector" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Buffer Inspector" type="Control" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=481564728]
 layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector" unique_id=2123174981]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,18 +140,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector/VBoxContainer"]
+[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Buffer Inspector/VBoxContainer" unique_id=1484557653]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 column_titles_visible = true
-hide_root = false
 
-[node name="Future Feature 1" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Future Feature 1" type="Control" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1622549955]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 1"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 1" unique_id=1582782859]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -165,11 +167,12 @@ grow_vertical = 2
 text = "Coming Soon..."
 horizontal_alignment = 1
 
-[node name="Future Feature 2" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Future Feature 2" type="Control" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=915426202]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 2" unique_id=179891210]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -185,11 +188,12 @@ grow_vertical = 2
 text = "Coming Soon..."
 horizontal_alignment = 1
 
-[node name="Future Feature 3" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Future Feature 3" type="Control" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1918275397]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 3"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 3" unique_id=90310671]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -205,11 +209,12 @@ grow_vertical = 2
 text = "Coming Soon..."
 horizontal_alignment = 1
 
-[node name="Future Feature 4" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Future Feature 4" type="Control" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=556608512]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 4"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Future Feature 4" unique_id=1675148068]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

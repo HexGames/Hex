@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpbrlpqjj5dwf"]
+[gd_scene format=3 uid="uid://cpbrlpqjj5dwf"]
 
 [ext_resource type="Script" uid="uid://chp1oavv7ktol" path="res://Scripts/_UI/Menus/Godot/UIMainMenu.cs" id="1_dxfgg"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="2_t1b1y"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="7_dxfgg"]
 [ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="8_q0i46"]
 
-[node name="MenuUI" type="Control"]
+[node name="MenuUI" type="Control" unique_id=408138931]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dxfgg")
 
-[node name="Panel" type="Control" parent="."]
+[node name="Panel" type="Control" parent="." unique_id=338533299]
 custom_minimum_size = Vector2(320, 192)
 layout_mode = 1
 anchors_preset = 8
@@ -35,7 +35,7 @@ grow_vertical = 2
 script = ExtResource("2_ttkkf")
 EntryAnimation = 1
 
-[node name="BG" type="ColorRect" parent="Panel"]
+[node name="BG" type="ColorRect" parent="Panel" unique_id=912964383]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.129412, 0.2, 0.215686, 0.878431)
 
-[node name="Border" type="NinePatchRect" parent="Panel"]
+[node name="Border" type="NinePatchRect" parent="Panel" unique_id=1147843313]
 self_modulate = Color(0.67451, 0.584314, 0.321569, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -63,7 +63,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1648384943]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -74,12 +74,12 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=287679252]
 layout_mode = 2
 script = ExtResource("2_ttkkf")
 EntryAnimation = 1
 
-[node name="TestTitle" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="TestTitle" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer" unique_id=2033781880]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center][b]Welcome[/b][/center]"
@@ -87,7 +87,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("2_t1b1y")
 
-[node name="TestText" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="TestText" type="RichTextLabel" parent="Panel/VBoxContainer/VBoxContainer" unique_id=943900061]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -96,11 +96,11 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("2_t1b1y")
 
-[node name="Gap" type="Control" parent="Panel/VBoxContainer"]
+[node name="Gap" type="Control" parent="Panel/VBoxContainer" unique_id=1551073070]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="StartGameBtn" type="Control" parent="Panel/VBoxContainer" node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
+[node name="StartGameBtn" type="Control" parent="Panel/VBoxContainer" unique_id=1741701563 node_paths=PackedStringArray("HoverOverlays", "PressedOverlays", "ActionOverlays", "Offset")]
 custom_minimum_size = Vector2(128, 48)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -110,7 +110,7 @@ PressedOverlays = [NodePath("BtnOffset/BtnPanel/PressedColor"), NodePath("BtnOff
 ActionOverlays = [NodePath("BtnOffset/BtnPanel/ActionColor")]
 Offset = NodePath("BtnOffset")
 
-[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn"]
+[node name="BtnShadow" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn" unique_id=819129480]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -126,7 +126,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/StartGameBtn"]
+[node name="BtnOffset" type="Control" parent="Panel/VBoxContainer/StartGameBtn" unique_id=1028395865]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +137,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset"]
+[node name="BtnPanel" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset" unique_id=1607002215]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -153,7 +153,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel" unique_id=1803596931]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,7 +163,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.780392, 0.12549, 0.0901961, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel" unique_id=1380384786]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -173,7 +173,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel"]
+[node name="ActionColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnPanel" unique_id=1899991442]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -184,7 +184,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset"]
+[node name="BtnBorder" type="NinePatchRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset" unique_id=1304174177]
 clip_children = 1
 layout_mode = 1
 anchors_preset = -1
@@ -200,7 +200,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnBorder"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnBorder" unique_id=871380781]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,7 +209,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnBorder"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnBorder" unique_id=36286392]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -217,7 +217,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset"]
+[node name="BtnText" type="RichTextLabel" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset" unique_id=1575901998]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 14
@@ -236,7 +236,7 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("2_t1b1y")
 
-[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText"]
+[node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText" unique_id=1587090309]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,7 +245,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText"]
+[node name="HoverColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText" unique_id=1744379594]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -253,7 +253,7 @@ offset_bottom = 1.0
 mouse_filter = 2
 color = Color(1, 0.8, 0, 1)
 
-[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText"]
+[node name="PressedColor" type="ColorRect" parent="Panel/VBoxContainer/StartGameBtn/BtnOffset/BtnText" unique_id=1858597461]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

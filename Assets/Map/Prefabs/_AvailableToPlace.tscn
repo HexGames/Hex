@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://d1ynmosmtryfy"]
+[gd_scene format=4 uid="uid://d1ynmosmtryfy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkb4w"]
 resource_name = "colormap"
@@ -40,10 +40,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hn5da")
 
-[node name="AvailableToPlace" type="Node3D"]
+[node name="AvailableToPlace" type="Node3D" unique_id=1976284310]
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=880285897]
 transform = Transform3D(0.9, 0, 0, 0, 0.01, 0, 0, 0, 0.9, 0, 0.2, 0)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_766rv")
-skeleton = NodePath("")

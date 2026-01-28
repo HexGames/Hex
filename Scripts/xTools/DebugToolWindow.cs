@@ -14,6 +14,51 @@ namespace Hex.Tools
         [Export]
         private TabContainer TabContainer;
         
+        // Deck Inspector exports
+        [Export]
+        private Tree DeckTree;
+        
+        [Export]
+        private Button DeckPrevTurnButton;
+        
+        [Export]
+        private Button DeckNextTurnButton;
+        
+        [Export]
+        private Label DeckTurnLabel;
+        
+        [Export]
+        private Button DeckRefreshButton;
+        
+        [Export]
+        private Button DeckExpandAllButton;
+        
+        [Export]
+        private Button DeckCollapseAllButton;
+        
+        // Map Inspector exports
+        [Export]
+        private Tree MapTree;
+        
+        [Export]
+        private Button MapPrevTurnButton;
+        
+        [Export]
+        private Button MapNextTurnButton;
+        
+        [Export]
+        private Label MapTurnLabel;
+        
+        [Export]
+        private Button MapRefreshButton;
+        
+        [Export]
+        private Button MapExpandAllButton;
+        
+        [Export]
+        private Button MapCollapseAllButton;
+        
+        // Buffer Inspector exports
         [Export]
         private Tree BufferTree;
         
@@ -41,11 +86,24 @@ namespace Hex.Tools
         [Export]
         private OptionButton SessionSelector;
         
-        private TreeItem _rootItem;
+        // Buffer Inspector tree items
+        private TreeItem _bufferRootItem;
         private TreeItem _bonusGiverRoot;
         private TreeItem _bonusStepRoot;
         
+        // Deck Inspector tree items
+        private TreeItem _deckRootItem;
+        
+        // Map Inspector tree items
+        private TreeItem _mapRootItem;
+        
         private bool _isRefreshing = false;
+        
+        // Deck Inspector state
+        private int _currentDeckTurn = 0;
+        
+        // Map Inspector state
+        private int _currentMapTurn = 0;
         
         // Made by AI: Claude Opus 4.5 - Snapshot management
         private List<DebugDataManager.SnapshotInfo> _loadedSnapshots = new List<DebugDataManager.SnapshotInfo>();
@@ -61,19 +119,23 @@ namespace Hex.Tools
             Unresizable = false;
             CloseRequested += OnCloseRequested;
             
-            // Set up tabs - disable tabs 2-5 (indices 1-4)
+            // Set up tabs - disable future feature tabs (indices 3-4)
             if (TabContainer != null)
             {
-                for (int i = 1; i < TabContainer.GetTabCount(); i++)
+                TabContainer.SetTabTitle(0, "Deck Inspector");
+                TabContainer.SetTabTitle(1, "Map Inspector");
+                TabContainer.SetTabTitle(2, "Buffer Inspector");
+                for (int i = 3; i < TabContainer.GetTabCount(); i++)
                 {
                     TabContainer.SetTabDisabled(i, true);
-                    TabContainer.SetTabTitle(i, $"Future Feature {i}");
+                    TabContainer.SetTabTitle(i, $"Future Feature {i - 2}");
                 }
-                TabContainer.SetTabTitle(0, "Buffer Inspector");
             }
             
-            // Initialize the tree
-            InitializeTree();
+            // Initialize trees
+            InitializeDeckTree();
+            InitializeMapTree();
+            InitializeBufferTree();
             
             // Made by AI: Claude Opus 4.5 - Initialize snapshot system
             _loadedSessionId = DebugDataManager.CurrentSessionId;
@@ -85,7 +147,471 @@ namespace Hex.Tools
             RefreshSessionSelector();
         }
         
-        private void InitializeTree()
+        // ===== DECK INSPECTOR =====
+        
+        private void InitializeDeckTree()
+        {
+            if (DeckTree == null) return;
+            
+            DeckTree.Clear();
+            DeckTree.Columns = 2;
+            DeckTree.SetColumnTitle(0, "Index / Property");
+            DeckTree.SetColumnTitle(1, "Value");
+            DeckTree.ColumnTitlesVisible = true;
+            DeckTree.HideRoot = false;
+            
+            _deckRootItem = DeckTree.CreateItem();
+            _deckRootItem.SetText(0, "DeckTiles");
+            _deckRootItem.SetText(1, "");
+        }
+        
+        private void RefreshDeckInspector()
+        {
+            if (_isRefreshing || DeckTree == null) return;
+            _isRefreshing = true;
+            
+            try
+            {
+                // Get current turn from game data
+                int currentTurn = Hex.Data.Game.GetTurnCount();
+                
+                // Default to current turn when opening
+                _currentDeckTurn = currentTurn;
+                
+                UpdateDeckTurnNavigation();
+                PopulateDeckTiles();
+            }
+            finally
+            {
+                _isRefreshing = false;
+            }
+        }
+        
+        public void OnDeckPrevTurnPressed()
+        {
+            if (_currentDeckTurn > 0)
+            {
+                _currentDeckTurn--;
+                UpdateDeckTurnNavigation();
+                PopulateDeckTiles();
+            }
+        }
+        
+        public void OnDeckNextTurnPressed()
+        {
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            if (_currentDeckTurn < currentTurn)
+            {
+                _currentDeckTurn++;
+                UpdateDeckTurnNavigation();
+                PopulateDeckTiles();
+            }
+        }
+        
+        public void OnRefreshDeckPressed()
+        {
+            // Refresh to current turn
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            _currentDeckTurn = currentTurn;
+            UpdateDeckTurnNavigation();
+            PopulateDeckTiles();
+        }
+        
+        public void OnDeckExpandAllPressed()
+        {
+            if (_deckRootItem == null) return;
+            SetTreeItemsCollapsed(_deckRootItem, false);
+        }
+        
+        public void OnDeckCollapseAllPressed()
+        {
+            if (_deckRootItem == null) return;
+            SetTreeItemsCollapsed(_deckRootItem, true);
+        }
+        
+        private void UpdateDeckTurnNavigation()
+        {
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            
+            if (DeckPrevTurnButton != null)
+            {
+                DeckPrevTurnButton.Disabled = _currentDeckTurn <= 0;
+            }
+            
+            if (DeckNextTurnButton != null)
+            {
+                DeckNextTurnButton.Disabled = _currentDeckTurn >= currentTurn;
+            }
+            
+            if (DeckTurnLabel != null)
+            {
+                DeckTurnLabel.Text = $"{_currentDeckTurn} / {currentTurn}";
+            }
+        }
+        
+        private void PopulateDeckTiles()
+        {
+            if (DeckTree == null || _deckRootItem == null) return;
+            
+            // Clear existing children
+            var child = _deckRootItem.GetFirstChild();
+            while (child != null)
+            {
+                var next = child.GetNext();
+                _deckRootItem.RemoveChild(child);
+                child = next;
+            }
+            
+            try
+            {
+                // Get deck tiles for the selected turn
+                var deckTiles = Hex.Data.Game.DeckTiles.GetTileCollectionFromHistory(_currentDeckTurn);
+                int deckTileCount = Hex.Data.Game.DeckTiles.GetDeckTileCount(_currentDeckTurn);
+                
+                _deckRootItem.SetText(0, "DeckTiles");
+                _deckRootItem.SetText(1, $"Turn {_currentDeckTurn}, Count: {deckTileCount}");
+                
+                for (int i = 0; i < deckTiles.Length; i++)
+                {
+                    ref var tile = ref deckTiles[i];
+                    
+                    var tileItem = DeckTree.CreateItem(_deckRootItem);
+                    
+                    // Get tile name from Def if valid
+                    string tileName = tile.IsValid() ? tile.Def.Name : "(empty)";
+                    string stateStr = tile.IsValid() ? tile.State.ToString() : "";
+                    tileItem.SetText(0, $"[{i}] {tileName}");
+                    tileItem.SetText(1, tile.IsValid() ? $"State: {stateStr}" : "");
+                    
+                    if (tile.IsValid())
+                    {
+                        // Add State
+                        AddDeckTileInfoItem(tileItem, "State", tile.State.ToString());
+                        
+                        // Add DefData details
+                        var defDataItem = DeckTree.CreateItem(tileItem);
+                        defDataItem.SetText(0, "DefData");
+                        defDataItem.SetText(1, "");
+                        
+                        AddDeckTileInfoItem(defDataItem, "Starting", tile.DefData.Starting.ToString());
+                        AddDeckTileInfoItem(defDataItem, "Level", tile.DefData.Level.ToString());
+                        AddDeckTileInfoItem(defDataItem, "Weight", tile.DefData.Weight.ToString());
+                        AddDeckTileInfoItem(defDataItem, "Initiative", tile.DefData.Initiative.ToString());
+                        
+                        // Terrain Tags
+                        if (tile.DefData.TerrainTags.Count > 0)
+                        {
+                            var terrainItem = DeckTree.CreateItem(defDataItem);
+                            terrainItem.SetText(0, "TerrainTags");
+                            terrainItem.SetText(1, $"Count: {tile.DefData.TerrainTags.Count}");
+                            
+                            for (int t = 0; t < tile.DefData.TerrainTags.Count; t++)
+                            {
+                                var tag = tile.DefData.TerrainTags[t];
+                                AddDeckTileInfoItem(terrainItem, $"[{t}]", tag.Name);
+                            }
+                        }
+                        
+                        // Building Tags
+                        if (tile.DefData.BuildingTags.Count > 0)
+                        {
+                            var buildingItem = DeckTree.CreateItem(defDataItem);
+                            buildingItem.SetText(0, "BuildingTags");
+                            buildingItem.SetText(1, $"Count: {tile.DefData.BuildingTags.Count}");
+                            
+                            for (int b = 0; b < tile.DefData.BuildingTags.Count; b++)
+                            {
+                                var tag = tile.DefData.BuildingTags[b];
+                                AddDeckTileInfoItem(buildingItem, $"[{b}]", tag.Name);
+                            }
+                        }
+                        
+                        // Conditions
+                        if (tile.DefData.Conditions.Count > 0)
+                        {
+                            var conditionsItem = DeckTree.CreateItem(defDataItem);
+                            conditionsItem.SetText(0, "Conditions");
+                            conditionsItem.SetText(1, $"Count: {tile.DefData.Conditions.Count}");
+                            
+                            for (int c = 0; c < tile.DefData.Conditions.Count; c++)
+                            {
+                                ref var cond = ref tile.DefData.Conditions[c];
+                                AddDeckTileInfoItem(conditionsItem, $"[{c}]", cond.ToString());
+                            }
+                        }
+                        
+                        // Effects
+                        if (tile.DefData.Effects.Count > 0)
+                        {
+                            var effectsItem = DeckTree.CreateItem(defDataItem);
+                            effectsItem.SetText(0, "Effects");
+                            effectsItem.SetText(1, $"Count: {tile.DefData.Effects.Count}");
+                            
+                            for (int e = 0; e < tile.DefData.Effects.Count; e++)
+                            {
+                                ref var effect = ref tile.DefData.Effects[e];
+                                AddDeckTileInfoItem(effectsItem, $"[{e}]", effect.ToString());
+                            }
+                        }
+                        
+                        // Collapse defDataItem by default
+                        defDataItem.Collapsed = true;
+                    }
+                    
+                    // Collapse tileItem by default
+                    tileItem.Collapsed = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _deckRootItem.SetText(1, $"Error: {ex.Message}");
+            }
+        }
+        
+        private void AddDeckTileInfoItem(TreeItem parent, string name, string value)
+        {
+            var item = DeckTree.CreateItem(parent);
+            item.SetText(0, name);
+            item.SetText(1, value);
+        }
+        
+        // ===== MAP INSPECTOR =====
+        
+        private void InitializeMapTree()
+        {
+            if (MapTree == null) return;
+            
+            MapTree.Clear();
+            MapTree.Columns = 2;
+            MapTree.SetColumnTitle(0, "Index / Property");
+            MapTree.SetColumnTitle(1, "Value");
+            MapTree.ColumnTitlesVisible = true;
+            MapTree.HideRoot = false;
+            
+            _mapRootItem = MapTree.CreateItem();
+            _mapRootItem.SetText(0, "MapTiles");
+            _mapRootItem.SetText(1, "");
+        }
+        
+        private void RefreshMapInspector()
+        {
+            if (_isRefreshing || MapTree == null) return;
+            _isRefreshing = true;
+            
+            try
+            {
+                // Get current turn from game data
+                int currentTurn = Hex.Data.Game.GetTurnCount();
+                
+                // Default to current turn when opening
+                _currentMapTurn = currentTurn;
+                
+                UpdateMapTurnNavigation();
+                PopulateMapTiles();
+            }
+            finally
+            {
+                _isRefreshing = false;
+            }
+        }
+        
+        public void OnMapPrevTurnPressed()
+        {
+            if (_currentMapTurn > 0)
+            {
+                _currentMapTurn--;
+                UpdateMapTurnNavigation();
+                PopulateMapTiles();
+            }
+        }
+        
+        public void OnMapNextTurnPressed()
+        {
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            if (_currentMapTurn < currentTurn)
+            {
+                _currentMapTurn++;
+                UpdateMapTurnNavigation();
+                PopulateMapTiles();
+            }
+        }
+        
+        public void OnRefreshMapPressed()
+        {
+            // Refresh to current turn
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            _currentMapTurn = currentTurn;
+            UpdateMapTurnNavigation();
+            PopulateMapTiles();
+        }
+        
+        public void OnMapExpandAllPressed()
+        {
+            if (_mapRootItem == null) return;
+            SetTreeItemsCollapsed(_mapRootItem, false);
+        }
+        
+        public void OnMapCollapseAllPressed()
+        {
+            if (_mapRootItem == null) return;
+            SetTreeItemsCollapsed(_mapRootItem, true);
+        }
+        
+        private void SetTreeItemsCollapsed(TreeItem item, bool collapsed)
+        {
+            item.Collapsed = collapsed;
+            var child = item.GetFirstChild();
+            while (child != null)
+            {
+                SetTreeItemsCollapsed(child, collapsed);
+                child = child.GetNext();
+            }
+        }
+        
+        private void UpdateMapTurnNavigation()
+        {
+            int currentTurn = Hex.Data.Game.GetTurnCount();
+            
+            if (MapPrevTurnButton != null)
+            {
+                MapPrevTurnButton.Disabled = _currentMapTurn <= 0;
+            }
+            
+            if (MapNextTurnButton != null)
+            {
+                MapNextTurnButton.Disabled = _currentMapTurn >= currentTurn;
+            }
+            
+            if (MapTurnLabel != null)
+            {
+                MapTurnLabel.Text = $"{_currentMapTurn} / {currentTurn}";
+            }
+        }
+        
+        private void PopulateMapTiles()
+        {
+            if (MapTree == null || _mapRootItem == null) return;
+            
+            // Clear existing children
+            var child = _mapRootItem.GetFirstChild();
+            while (child != null)
+            {
+                var next = child.GetNext();
+                _mapRootItem.RemoveChild(child);
+                child = next;
+            }
+            
+            try
+            {
+                // Get map tiles for the selected turn
+                var mapTiles = Hex.Data.Game.MapTiles.GetTileCollectionFromHistory(_currentMapTurn);
+                
+                _mapRootItem.SetText(0, "MapTiles");
+                _mapRootItem.SetText(1, $"Turn {_currentMapTurn}, Count: {Hex.Data.MapTile.MAP_SIZE}");
+                
+                for (int i = 0; i < mapTiles.Length; i++)
+                {
+                    ref var tile = ref mapTiles[i];
+                    
+                    var tileItem = MapTree.CreateItem(_mapRootItem);
+                    
+                    // Get tile name from Def if valid
+                    string tileName = tile.IsValid() ? tile.Def.Name : "(empty)";
+                    tileItem.SetText(0, $"[{i}] {tileName}");
+                    tileItem.SetText(1, tile.IsValid() ? $"Level: {tile.DefData.Level}" : "");
+                    
+                    if (tile.IsValid())
+                    {
+                        // Add DefData details
+                        var defDataItem = MapTree.CreateItem(tileItem);
+                        defDataItem.SetText(0, "DefData");
+                        defDataItem.SetText(1, "");
+                        
+                        AddMapTileInfoItem(defDataItem, "Starting", tile.DefData.Starting.ToString());
+                        AddMapTileInfoItem(defDataItem, "Level", tile.DefData.Level.ToString());
+                        AddMapTileInfoItem(defDataItem, "Weight", tile.DefData.Weight.ToString());
+                        AddMapTileInfoItem(defDataItem, "Initiative", tile.DefData.Initiative.ToString());
+                        
+                        // Terrain Tags
+                        if (tile.DefData.TerrainTags.Count > 0)
+                        {
+                            var terrainItem = MapTree.CreateItem(defDataItem);
+                            terrainItem.SetText(0, "TerrainTags");
+                            terrainItem.SetText(1, $"Count: {tile.DefData.TerrainTags.Count}");
+                            
+                            for (int t = 0; t < tile.DefData.TerrainTags.Count; t++)
+                            {
+                                var tag = tile.DefData.TerrainTags[t];
+                                AddMapTileInfoItem(terrainItem, $"[{t}]", tag.Name);
+                            }
+                        }
+                        
+                        // Building Tags
+                        if (tile.DefData.BuildingTags.Count > 0)
+                        {
+                            var buildingItem = MapTree.CreateItem(defDataItem);
+                            buildingItem.SetText(0, "BuildingTags");
+                            buildingItem.SetText(1, $"Count: {tile.DefData.BuildingTags.Count}");
+                            
+                            for (int b = 0; b < tile.DefData.BuildingTags.Count; b++)
+                            {
+                                var tag = tile.DefData.BuildingTags[b];
+                                AddMapTileInfoItem(buildingItem, $"[{b}]", tag.Name);
+                            }
+                        }
+                        
+                        // Conditions
+                        if (tile.DefData.Conditions.Count > 0)
+                        {
+                            var conditionsItem = MapTree.CreateItem(defDataItem);
+                            conditionsItem.SetText(0, "Conditions");
+                            conditionsItem.SetText(1, $"Count: {tile.DefData.Conditions.Count}");
+                            
+                            for (int c = 0; c < tile.DefData.Conditions.Count; c++)
+                            {
+                                ref var cond = ref tile.DefData.Conditions[c];
+                                AddMapTileInfoItem(conditionsItem, $"[{c}]", cond.ToString());
+                            }
+                        }
+                        
+                        // Effects
+                        if (tile.DefData.Effects.Count > 0)
+                        {
+                            var effectsItem = MapTree.CreateItem(defDataItem);
+                            effectsItem.SetText(0, "Effects");
+                            effectsItem.SetText(1, $"Count: {tile.DefData.Effects.Count}");
+                            
+                            for (int e = 0; e < tile.DefData.Effects.Count; e++)
+                            {
+                                ref var effect = ref tile.DefData.Effects[e];
+                                AddMapTileInfoItem(effectsItem, $"[{e}]", effect.ToString());
+                            }
+                        }
+                        
+                        // Collapse defDataItem by default
+                        defDataItem.Collapsed = true;
+                    }
+                    
+                    // Collapse tileItem by default
+                    tileItem.Collapsed = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _mapRootItem.SetText(1, $"Error: {ex.Message}");
+            }
+        }
+        
+        private void AddMapTileInfoItem(TreeItem parent, string name, string value)
+        {
+            var item = MapTree.CreateItem(parent);
+            item.SetText(0, name);
+            item.SetText(1, value);
+        }
+        
+        // ===== BUFFER INSPECTOR =====
+        
+        private void InitializeBufferTree()
         {
             if (BufferTree == null) return;
             
@@ -96,9 +622,9 @@ namespace Hex.Tools
             BufferTree.ColumnTitlesVisible = true;
             BufferTree.HideRoot = false;
             
-            _rootItem = BufferTree.CreateItem();
-            _rootItem.SetText(0, "Buffers");
-            _rootItem.SetText(1, "");
+            _bufferRootItem = BufferTree.CreateItem();
+            _bufferRootItem.SetText(0, "Buffers");
+            _bufferRootItem.SetText(1, "");
         }
         
         // Made by AI: Claude Opus 4.5 - Take snapshot button handler
@@ -172,7 +698,7 @@ namespace Hex.Tools
             else
             {
                 _currentSnapshotIndex = -1;
-                ClearTree();
+                ClearBufferTree();
             }
             
             UpdateWarningVisibility();
@@ -184,7 +710,7 @@ namespace Hex.Tools
         {
             if (_currentSnapshotIndex < 0 || _currentSnapshotIndex >= _loadedSnapshots.Count)
             {
-                ClearTree();
+                ClearBufferTree();
                 return;
             }
             
@@ -199,19 +725,19 @@ namespace Hex.Tools
         }
         
         // Made by AI: Claude Opus 4.5 - Clear tree content
-        private void ClearTree()
+        private void ClearBufferTree()
         {
             if (BufferTree == null) return;
             
             // Remove children but keep root
             if (_bonusGiverRoot != null)
             {
-                _rootItem.RemoveChild(_bonusGiverRoot);
+                _bufferRootItem.RemoveChild(_bonusGiverRoot);
                 _bonusGiverRoot = null;
             }
             if (_bonusStepRoot != null)
             {
-                _rootItem.RemoveChild(_bonusStepRoot);
+                _bufferRootItem.RemoveChild(_bonusStepRoot);
                 _bonusStepRoot = null;
             }
         }
@@ -224,7 +750,7 @@ namespace Hex.Tools
             
             try
             {
-                ClearTree();
+                ClearBufferTree();
                 
                 // Populate BonusGiverBuffer data
                 PopulateBonusGiverBuffer(data.BonusGiverData);
@@ -243,13 +769,13 @@ namespace Hex.Tools
             // Made by AI: Claude Opus 4.5 - Added null check for debugData
             if (debugData == null)
             {
-                _bonusGiverRoot = BufferTree.CreateItem(_rootItem);
+                _bonusGiverRoot = BufferTree.CreateItem(_bufferRootItem);
                 _bonusGiverRoot.SetText(0, "BonusGiverBuffer");
                 _bonusGiverRoot.SetText(1, "(no data)");
                 return;
             }
             
-            _bonusGiverRoot = BufferTree.CreateItem(_rootItem);
+            _bonusGiverRoot = BufferTree.CreateItem(_bufferRootItem);
             _bonusGiverRoot.SetText(0, "BonusGiverBuffer");
             _bonusGiverRoot.SetText(1, $"Lists: {debugData.ListsCount}, Used: {debugData.UsedCapacity}");
             
@@ -258,9 +784,9 @@ namespace Hex.Tools
             infoItem.SetText(0, "Buffer Info");
             infoItem.SetText(1, "");
             
-            AddInfoItem(infoItem, "Buffer Length", debugData.BufferLength.ToString());
-            AddInfoItem(infoItem, "Lists Count", debugData.ListsCount.ToString());
-            AddInfoItem(infoItem, "Used Capacity", debugData.UsedCapacity.ToString());
+            AddBufferInfoItem(infoItem, "Buffer Length", debugData.BufferLength.ToString());
+            AddBufferInfoItem(infoItem, "Lists Count", debugData.ListsCount.ToString());
+            AddBufferInfoItem(infoItem, "Used Capacity", debugData.UsedCapacity.ToString());
             
             // Add lists - Made by AI: Claude Opus 4.5 - Added null check for Lists
             var listsItem = BufferTree.CreateItem(_bonusGiverRoot);
@@ -299,13 +825,13 @@ namespace Hex.Tools
             // Made by AI: Claude Opus 4.5 - Added null check for debugData
             if (debugData == null)
             {
-                _bonusStepRoot = BufferTree.CreateItem(_rootItem);
+                _bonusStepRoot = BufferTree.CreateItem(_bufferRootItem);
                 _bonusStepRoot.SetText(0, "BonusStepBuffer");
                 _bonusStepRoot.SetText(1, "(no data)");
                 return;
             }
             
-            _bonusStepRoot = BufferTree.CreateItem(_rootItem);
+            _bonusStepRoot = BufferTree.CreateItem(_bufferRootItem);
             _bonusStepRoot.SetText(0, "BonusStepBuffer");
             _bonusStepRoot.SetText(1, $"Lists: {debugData.ListsCount}, Used: {debugData.UsedCapacity}");
             
@@ -314,9 +840,9 @@ namespace Hex.Tools
             infoItem.SetText(0, "Buffer Info");
             infoItem.SetText(1, "");
             
-            AddInfoItem(infoItem, "Buffer Length", debugData.BufferLength.ToString());
-            AddInfoItem(infoItem, "Lists Count", debugData.ListsCount.ToString());
-            AddInfoItem(infoItem, "Used Capacity", debugData.UsedCapacity.ToString());
+            AddBufferInfoItem(infoItem, "Buffer Length", debugData.BufferLength.ToString());
+            AddBufferInfoItem(infoItem, "Lists Count", debugData.ListsCount.ToString());
+            AddBufferInfoItem(infoItem, "Used Capacity", debugData.UsedCapacity.ToString());
             
             // Add lists - Made by AI: Claude Opus 4.5 - Added null check for Lists
             var listsItem = BufferTree.CreateItem(_bonusStepRoot);
@@ -350,7 +876,7 @@ namespace Hex.Tools
             }
         }
         
-        private void AddInfoItem(TreeItem parent, string name, string value)
+        private void AddBufferInfoItem(TreeItem parent, string name, string value)
         {
             var item = BufferTree.CreateItem(parent);
             item.SetText(0, name);
@@ -451,6 +977,8 @@ namespace Hex.Tools
             else
             {
                 RefreshSessionSelector();
+                RefreshDeckInspector();
+                RefreshMapInspector();
                 Show();
                 MoveToCenter();
             }

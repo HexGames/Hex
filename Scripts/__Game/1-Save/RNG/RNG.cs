@@ -14,12 +14,14 @@ namespace Hex.RNG
 
         static RNG() // init
         {
-            var values = (ID[])Enum.GetValues(typeof(ID));
+            ID[] values = (ID[])Enum.GetValues(typeof(ID));
             _randoms = new Random[values.Length];
 
             foreach (var id in values)
             {
-                _randoms[(int)id] = new Random(HashCode.Combine(12345, id));
+                //int seed = HashCode.Combine(12345, id);
+                int seed = (int)id * 12345 + 13;
+                _randoms[(int)id] = new Random(seed);
             }
         }
 

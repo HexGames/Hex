@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Hex.Data
@@ -34,15 +34,15 @@ namespace Hex.Data
                 }
             }
         
-            //public ref MapTile GetTileFromHistory(int id, int turn)
-            //{
-            //    return ref _data.Turns.Array[turn].MapTiles.Array[id];
-            //}
+            public ref MapTile GetTileFromHistory(int id, int turn)
+            {
+                return ref GameData.Data.Turns.Array[turn].MapTiles.Array[id];
+            }
 
-            //public Span<MapTile> GetTileCollectionFromHistory(int id, int turn)
-            //{
-            //    return _data.Turns.Array[turn].MapTiles.Array;
-            //}
+            public Span<MapTile> GetTileCollectionFromHistory(int turn)
+            {
+                return GameData.Data.Turns.Array[turn].MapTiles.Array;
+            }
         
             public void InitMapTiles(List<Def.TileRef> tiles)
             {

@@ -177,7 +177,7 @@ namespace Hex.GodotMap
                     // 3d Update
                     _instance.Visible = true;
 
-                    //UI update
+                    // UI update - benefits
                     Span<Data.Benefit> benefits = CollectionsMarshal.AsSpan(OnHoverBenefits).Slice(0, OnHoverBenefitsCount);
                     UI.TileInfo.RefrehsForBenefits(deckTile, benefits);
 
@@ -191,8 +191,8 @@ namespace Hex.GodotMap
                     // 3d Update
                     _instance.Visible = false;
 
-                    //UI update
-                    UI.TileInfo.RefrehsForEffects(_currentDeckTile);
+                    // UI update - existing blocking mapTile
+                    UI.TileInfo.RefrehsForEffects(Data.Game.MapTiles[hexPos].FromDeckTile);
                 }
 
 
@@ -203,8 +203,8 @@ namespace Hex.GodotMap
                 // 3d Update
                 Visible = false;
 
-                //UI update
-                UI.TileInfo.Hide();
+                // UI update - current tile
+                UI.TileInfo.RefrehsForEffects(deckTile);
             }
         }
 

@@ -63,7 +63,25 @@ namespace Hex.UI
             GodotUI.UIInfoSection.Texts text = new GodotUI.UIInfoSection.Texts();
             
             text.Title = title;
-            text.Description = ""; //Logic.Effects.GetTileEddectsDescription(tile, timingFilter);
+            
+            for (int effectIdx = 0; effectIdx < tile.Value.DefData.Effects.Count; effectIdx++)
+            {
+                ref Def.Var effect = ref tile.Value.DefData.Effects[effectIdx];
+                if (effect.IsTiming(0) == true && effect.GetTiming(0) == timingFilter && effect.GetCount() > 1)
+                {
+                    if (effect.IsRes(1) == true)
+                    {
+                        Def.ResRef res = effect.GetRes(1);
+                        for (int idx = 2; idx < effect.GetCount(); idx++)
+                        {
+                            if (effect.IsInt(idx, 0) == true)
+                            {
+                                if (effect.Is)
+                            }
+                        }
+                    }
+                }
+            }
 
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
         }

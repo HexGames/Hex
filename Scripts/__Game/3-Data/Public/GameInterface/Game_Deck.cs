@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Hex.Data
@@ -9,33 +9,38 @@ namespace Hex.Data
     
         public sealed class DeckArrayInterface
         {
-            //public ref DeckTile this[int id]
-            //{
-            //    get
-            //    {
-            //        return ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles.Array[id];
-            //    }
-            //}
+            public ref DeckTile this[int id]
+            {
+                get
+                {
+                    return ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles.Array[id];
+                }
+            }
 
-            //public Span<DeckTile> span
-            //{
-            //    get
-            //    {
-            //        ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles;
-            //        return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
-            //    }
-            //}
+            public Span<DeckTile> Collection
+            {
+                get
+                {
+                    ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[GameData.Data.CurrentTurn].DeckTiles;
+                    return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
+                }
+            }
     
-            //public ref DeckTile GetTileFromHistory(int id, int turn)
-            //{
-            //    return ref GameData.Data.Turns.Array[turn].DeckTiles.Array[id];
-            //}
+            public ref DeckTile GetTileFromHistory(int id, int turn)
+            {
+                return ref GameData.Data.Turns.Array[turn].DeckTiles.Array[id];
+            }
     
-            //public Span<DeckTile> GetTileCollectionFromHistory(int id, int turn)
-            //{
-            //    ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[turn].DeckTiles;
-            //    return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
-            //}
+            public Span<DeckTile> GetTileCollectionFromHistory(int turn)
+            {
+                ref DeckTileArray deckTiles = ref GameData.Data.Turns.Array[turn].DeckTiles;
+                return ((Span<DeckTile>)deckTiles.Array).Slice(0, deckTiles.DeckTileCount);
+            }
+            
+            public int GetDeckTileCount(int turn)
+            {
+                return GameData.Data.Turns.Array[turn].DeckTiles.DeckTileCount;
+            }
     
             public void InitDeckTiles(List<Def.Tile> tiles)
             {

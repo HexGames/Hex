@@ -1,49 +1,48 @@
-Tile,Data,Data,Data,Data,Map,UI,UI,UI,Data,Data,Data,Data,Data,Data,Data,Data,Data,Data,Data,Data,Data,Data
-,Level,Upgrade,Weight,Starting,Prefab,Title,ToolTip,ToolTip,Tags,Tags,Tags,Terrain,PlaceCondition,PlaceCondition,PlaceCondition,DraftCondition,Effect,Effect,Effect,Stockpile,SelfUpgrade,UpgradeByToken
-,,,,,,,Title,Description,,,,,,,,,,,,,,
-Water,,,,,Water,Water,Water,It's a tile.,Unused,,,Water,,,,,,,,,,
-Grass,,,,,Grass,Grass,Grass,It's a tile.,Unused,,,Grass,,,,,,,,,,
-Desert,,,,,Desert,Desert,Desert,It's a tile.,Unused,,,Desert,,,,,,,,,,
-Forest,,,,,Forest,Forest,Forest,It's a tile.,Forrest,Unused,,Grass,,,,,,,,,,
-Mountain,,,,,Mountain,Mountain,Mountain,It's a tile.,Unused,,,Mountain,,,,,,,,,,
-Houses_I,1,Houses_II,10,6,House,Village,Village,It's a tile.,Building,Houses,Population,,IfTerrain:Grass:Desert,IfTag:Unused,,,OnPlace:Population:2:2*IfTerrain*Grass:2*IfAdjacent*Water,PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water,,Population,Population:25,
-Houses_II,2,Houses_III,2,,House,Town,Town,It's a tile.,Building,Houses,Population,,IfTerrain:Grass:Desert,IfTag:Unused,,,OnPlace:Population:25:10*IfTerrain*Grass:10*IfAdjacent*Water,PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water,,Population,Population:100,
-Houses_III,3,,1,,House,City,City,It's a tile.,Building,Houses,Population,,IfTerrain:Grass:Desert,IfTag:Unused,,,OnPlace:Population:100:20*IfTerrain*Grass:20*IfAdjacent*Water,PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water,,Population,,
-Fishing_I,1,Fishing_II,10,3,FishingBoats,FishingBoats,FishingBoats,It's a tile.,Fishing_Boats,Food,,,IfTerrain:Water,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:2,,,,,Yes
-Fishing_II,2,Fishing_III,10,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,Fishing_Boats,Food,,,IfTerrain:Water,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:3,,,,,Yes
-Fishing_III,3,,10,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,Fishing_Boats,Food,,,IfTerrain:Water,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:4,,,,,
-Farm_I,1,Farm_II,10,3,Farm,Small Farm,Small Farm,It's a tile.,Building,Farm,Food,,IfTerrain:Grass,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:2,,,,,Yes
-Farm_II,2,Farm_III,10,,Farm,Farm,Farm,It's a tile.,Building,Farm,Food,,IfTerrain:Grass,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:3,,,,,Yes
-Farm_III,3,,10,,Farm,Large Farm,Farm,It's a tile.,Building,Farm,Food,,IfTerrain:Grass,IfTag:Unused,,,Always:MultiplyAdjacent*Houses:4,,,,,
-Mill_I,2,Mill_II,5,3,Mill,Mill,Mill,It's a tile.,Building,Mill,Food,,IfTerrain:Grass:Desert,IfTag:Unused,,,Always:MultiplyAdjacent*Farm:2,,,,,Yes
-Mill_II,3,,5,,Mill,Mill,Mill,It's a tile.,Building,Mill,Food,,IfTerrain:Grass:Desert,IfTag:Unused,,,Always:MultiplyAdjacent*Farm:3,,,,,
-//Temple,3,,2,,Tower,Temple,Temple,It's a tile.,Building,Temple,,,On:Grass:Desert,,,,PerTurn:Gain:Gold:2*PerAdjacent*Farm:2*PerAdjacent*Workshop,Bonus:ReactivateAdjacent:Houses:1,Bonus:ReactivateAdjacent:Culture:1,,,
-//Mines_I,1,Mines_II,5,3,Mine,Mines,Mines,It's a tile.,Building,Mines,Gold,,On:Grass:Desert,,,,PerTurn:Gain:Gold:1:1*PerAdjacent*Mountain,,,,,Yes
-//Mines_II,2,Mines_III,5,,Mine,Mines,Mines,It's a tile.,Building,Mines,Gold,,On:Grass:Desert,,,,PerTurn:Gain:Gold:2:2*PerAdjacent*Mountain,,,,,Yes
-//Mines_III,3,,5,,Mine,Mines,Mines,It's a tile.,Building,Mines,Gold,,On:Grass:Desert,,,,PerTurn:Gain:Gold:3:3*PerAdjacent*Mountain,,,,,
-//Forge_I,2,Forge_II,5,,Forge,Forge,Forge,It's a tile.,Building,Forge,,,On:Grass:Desert,,,,Bonus:MultiplyAdjacent:Mines:2,Bonus:MultiplyAdjacent:Millitary:2,Bonus:MultiplyAdjacent:Workshop:2,,,Yes
-//Forge_II,3,,5,,Forge,Forge,Forge,It's a tile.,Building,Forge,,,On:Grass:Desert,,,,Bonus:MultiplyAdjacent:Mines:3,Bonus:MultiplyAdjacent:Millitary:3,Bonus:MultiplyAdjacent:Workshop:3,,,
-//Palace,3,,2,,NobleHouse,Palace,Palace,It's a tile.,Building,Palace,,,On:Grass:Desert,,,,PerTurn:Gain:Culture:1*IfAdjacent*Gardens,Bonus:ReactivateAdjacent:Castle:1,Bonus:ReactivateAdjacent:Temple:1,,,
-//Barraks_I,1,Barraks_II,5,3,Archery,MusteringGrounds,MusteringGrounds,It's a tile.,Millitary,Mustering_Grounds,,,On:Grass:Desert,,,,OnPlace:Gain:Soldiers:1,PerTurn:Gain:Soldiers:1*PerLevelAdjacent*Houses,OnLevelUp:Gain:Gold:10,Soldiers,Soldiers:10,
-//Barraks_II,2,Barraks_III,5,,Archery,MusteringGrounds,MusteringGrounds,It's a tile.,Millitary,Mustering_Grounds,,,On:Grass:Desert,,,,OnPlace:Gain:Soldiers:5,PerTurn:Gain:Soldiers:1*PerLevelAdjacent*Houses,OnLevelUp:Gain:Gold:50,Soldiers,Soldiers:25,
-//Barraks_III,3,,5,,Archery,MusteringGrounds,MusteringGrounds,It's a tile.,Millitary,Mustering_Grounds,,,On:Grass:Desert,,,,OnPlace:Gain:Soldiers:10,PerTurn:Gain:Soldiers:1*PerLevelAdjacent*Houses,,Soldiers,,
-//Stable_I,2,Stable_II,5,,Sheep,Stable,Stable,It's a tile.,Building,Millitary,Stable,,On:Grass,,,,PerTurn:Gain:Soldiers:2*PerAdjacent*Castle,Bonus:MultiplyAdjacent:MusteringGrounds:2*IfAdjacent*Farm,,,,Yes
-//Stable_II,3,,5,,Sheep,Stable,Stable,It's a tile.,Building,Millitary,Stable,,On:Grass,,,,PerTurn:Gain:Soldiers:4*PerAdjacent*Castle,Bonus:MultiplyAdjacent:MusteringGrounds:2*IfAdjacent*Farm,,,,
-//Castle,3,,2,,Castle,Castle,Castle,It's a tile.,Building,Millitary,Castle,,On:Grass:Desert,,,,Bonus:ReactivateAdjacent:Millitary:1,,,,,
-//Amphiteather_I,1,Amphiteather_II,5,3,Amphiteather,Amphiteather,Amphiteather,It's a tile.,Building,Culture,Amphiteather,,On:Grass:Desert,,,,PerTurn:Gain:Culture:1*PerAdjacent*Houses,,,,,Yes
-//Amphiteather_II,2,Amphiteather_III,5,,Amphiteather,Amphiteather,Amphiteather,It's a tile.,Building,Culture,Amphiteather,,On:Grass:Desert,,,,PerTurn:Gain:Culture:2*PerAdjacent*Houses,,,,,Yes
-//Amphiteather_III,3,,5,,Amphiteather,Amphiteather,Amphiteather,It's a tile.,Building,Culture,Amphiteather,,On:Grass:Desert,,,,PerTurn:Gain:Culture:3*PerAdjacent*Houses,,,,,
-//Mausoleum,2,,2,,Mausoleum,Mausoleum,Mausoleum,It's a tile.,Building,Culture,Mausoleum,,On:Grass:Desert,,,,Bonus:MultiplyAdjacent:Amphiteather:2,,,,,
-//Workshop_I,1,Workshop_II,5,3,Workshop,Workshop,Workshop,It's a tile.,Building,Trade,Workshop,,On:Grass:Desert,,,,PerTurn:Gain:Gold:1*PerAdjacent*Port:1*PerAdjacent*Market:1*PerLevelAdjacent*Houses,PerTurn:Gain:Trade:1*PerAdjacent*Forrest:,,,,Yes
-//Workshop_II,2,Workshop_III,5,,Workshop,Workshop,Workshop,It's a tile.,Building,Trade,Workshop,,On:Grass:Desert,,,,PerTurn:Gain:Gold:2*PerAdjacent*Port:2*PerAdjacent*Market:1*PerLevelAdjacent*Houses,PerTurn:Gain:Trade:1*PerAdjacent*Forrest:,,,,Yes
-//Workshop_III,3,,5,,Workshop,Workshop,Workshop,It's a tile.,Building,Trade,Workshop,,On:Grass:Desert,,,,PerTurn:Gain:Gold:3*PerAdjacent*Port:3*PerAdjacent*Market:1*PerLevelAdjacent*Houses,PerTurn:Gain:Trade:1*PerAdjacent*Forrest:,,,,
-//Market_I,2,Market_II,5,,Market,Market,Market,It's a tile.,Building,Trade,Market,,On:Grass:Desert,,Margin,,PerTurn:Gain:Trade:2:1*PerExisting*Workshop,,,,,Yes
-//Market_II,3,,5,,Market,Market,Market,It's a tile.,Building,Trade,Market,,On:Grass:Desert,,Margin,,PerTurn:Gain:Trade:3:2*PerExisting*Workshop,,,,,
-//Lighthouse,2,,2,,Lighthouse,Lighthouse,Lighthouse,It's a tile.,Building,Lighthouse,,,On:Sea,,,,Bonus:MultiplyAdjacent:Port:2,Bonus:MultiplyAdjacent:FishingBoats:2,,,,
-//Port_I,2,Port_II,5,,Port,Port,Port,It's a tile.,Building,Trade,Port,,On:Sea,,,,PerTurn:Gain:Trade:2:1*PerAdjacent*Houses,Bonus:MultiplyAdjacent:FishingBoats:2,,,,Yes
-//Port_II,3,,5,,Port,Port,Port,It's a tile.,Building,Trade,Port,,On:Sea,,,,PerTurn:Gain:Trade:4:1*PerLevelAdjacent*Houses,Bonus:MultiplyAdjacent:FishingBoats:3,,,,
-//Library_I,1,Library_II,2,3,Library,Library,Library,It's a tile.,Building,Science,Library,,On:Grass:Desert,,,,PerTurn:Gain:Science:1:1*PerAdjacent*Houses,,,Science,Science:10,
-//Library_II,2,Library_III,2,,Library,Library,Library,It's a tile.,Building,Science,Library,,On:Grass:Desert,,,,PerTurn:Gain:Science:2:1*PerAdjacent-Houses,,,Science,Science:25,
-//Library_III,3,,2,,Library,Library,Library,It's a tile.,Building,Science,Library,,On:Grass:Desert,,,,PerTurn:Gain:Science:3:1*PerAdjacent-Houses,,,Science,,
-//University,3,,2,,University,University,University,It's a tile.,Building,Science,University,,On:Grass:Desert,,,,Bonus:ReactivateAdjacent:Library:1,,,,,
-//Gardens,1,,2,,Garden,Gardens,Gardens,It's a tile.,Gardens,,,,On:Grass:Desert,,,,OnPlace:Gain:Gold:2*PerLevelAdjacent*House,OnPlace:Gain:Culture:1*PerLevelAdjacent*House,,,,
+Tile,Data,Data,Data,Data,Map,UI,UI,UI,Data,Data,Data,Data,Data,Data,Data,Data
+,Level,Upgrade,Weight,Starting,Prefab,Title,ToolTip,ToolTip,Tags,Terrain,PlaceCondition,DraftCondition,Effect,Stockpile,SelfUpgrade,UpgradeByToken
+,,,,,,,Title,Description,,,,,,,,
+Water,,,,,Water,Water,Water,It's a tile.,Unused,Water,,,,,,
+Grass,,,,,Grass,Grass,Grass,It's a tile.,Unused,Grass,,,,,,
+Desert,,,,,Desert,Desert,Desert,It's a tile.,Unused,Desert,,,,,,
+Forest,,,,,Forest,Forest,Forest,It's a tile.,Forrest,Grass,,,,,,
+,,,,,,,,,Unused,,,,,,,
+Mountain,,,,,Mountain,Mountain,Mountain,It's a tile.,Unused,Mountain,,,,,,
+Houses_I,1,Houses_II,10,6,House,Village,Village,It's a tile.,Building,,IfTerrain:Grass:Desert,,OnPlace:Production:Population:2,Population,Population:25,
+-,,,,,,,,,Houses,,IfTag:Unused,,OnPlace:Production:Population:2:IfTerrain:Grass,,,
+-,,,,,,,,,Population,,,,OnPlace:Production:Population:2:IfAdjacent:Water,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfTerrain:Grass,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfAdjacent:Water,,,
+Houses_II,2,Houses_III,2,,House,Town,Town,It's a tile.,Building,,IfTerrain:Grass:Desert,,OnPlace:Production:Population:25,Population,Population:100,
+-,,,,,,,,,Houses,,IfTag:Unused,,OnPlace:Production:Population:10:IfTerrain:Grass,,,
+-,,,,,,,,,Population,,,,OnPlace:Production:Population:10:IfAdjacent:Water,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfTerrain:Grass,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfAdjacent:Water,,,
+Houses_III,3,,1,,House,City,City,It's a tile.,Building,,IfTerrain:Grass:Desert,,OnPlace:Production:Population:100,Population,,
+-,,,,,,,,,Houses,,IfTag:Unused,,OnPlace:Production:Population:25:IfTerrain:Grass,,,
+-,,,,,,,,,Population,,,,OnPlace:Production:Population:25:IfAdjacent:Water,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfTerrain:Grass,,,
+-,,,,,,,,,,,,,PerTurn:Production:Population:1:IfAdjacent:Water,,,
+Fishing_I,1,Fishing_II,4,3,FishingBoats,FishingBoats,FishingBoats,It's a tile.,FishingBoats,,IfTerrain:Water,,Always:MultiplyAdjacent:Houses:2,,,Yes
+-,,,,,,,,,Food,,IfTag:Unused,,,,,
+Fishing_II,2,Fishing_III,2,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,FishingBoats,,IfTerrain:Water,,Always:MultiplyAdjacent:Houses:3,,,Yes
+-,,,,,,,,,Food,,IfTag:Unused,,,,,
+Fishing_III,3,,1,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,FishingBoats,,IfTerrain:Water,,Always:MultiplyAdjacent:Houses:4,,,Yes
+-,,,,,,,,,Food,,IfTag:Unused,,,,,
+Farm_I,1,Farm_II,4,3,Farm,Small Farm,Small Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:2,,,Yes
+-,,,,,,,,,Farm,,IfTag:Unused,,,,,
+-,,,,,,,,,Food,,,,,,,
+Farm_II,2,Farm_III,2,,Farm,Farm,Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:3,,,Yes
+-,,,,,,,,,Farm,,IfTag:Unused,,,,,
+-,,,,,,,,,Food,,,,,,,
+Farm_III,3,,1,,Farm,Large Farm,Large Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:4,,,Yes
+-,,,,,,,,,Farm,,IfTag:Unused,,,,,
+-,,,,,,,,,Food,,,,,,,
+Mill_I,2,Mill_II,3,3,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent*Farm:2,,,Yes
+-,,,,,,,,,Mill,,IfTag:Unused,,,,,
+-,,,,,,,,,Food,,,,,,,
+Mill_II,2,,1,,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent*Farm:3,,,Yes
+-,,,,,,,,,Mill,,IfTag:Unused,,,,,
+-,,,,,,,,,Food,,,,,,,

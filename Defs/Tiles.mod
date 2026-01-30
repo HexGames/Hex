@@ -1,4 +1,4 @@
-// 2026-01-28T11:49:13
+// 2026-01-28T17:44:28
 Tiles 
 {
 	Tile Water
@@ -82,7 +82,6 @@ Tiles
 		Data 
 		{
 			Tags Forrest
-			Tags Unused
 			Terrain Grass
 		}
 	}
@@ -120,8 +119,12 @@ Tiles
 			Tags Population
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
-			Effect OnPlace:Population:2:2*IfTerrain*Grass:2*IfAdjacent*Water
-			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
+			Effect OnPlace:Production:Population:2
+			Effect OnPlace:Production:Population:2:IfTerrain:Grass
+			Effect OnPlace:Production:Population:2:IfAdjacent:Water
+			Effect PerTurn:Production:Population:1
+			Effect PerTurn:Production:Population:1:IfTerrain:Grass
+			Effect PerTurn:Production:Population:1:IfAdjacent:Water
 			Stockpile Population
 			SelfUpgrade Population:25
 		}
@@ -151,8 +154,12 @@ Tiles
 			Tags Population
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
-			Effect OnPlace:Population:25:10*IfTerrain*Grass:10*IfAdjacent*Water
-			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
+			Effect OnPlace:Production:Population:25
+			Effect OnPlace:Production:Population:10:IfTerrain:Grass
+			Effect OnPlace:Production:Population:10:IfAdjacent:Water
+			Effect PerTurn:Production:Population:1
+			Effect PerTurn:Production:Population:1:IfTerrain:Grass
+			Effect PerTurn:Production:Population:1:IfAdjacent:Water
 			Stockpile Population
 			SelfUpgrade Population:100
 		}
@@ -181,8 +188,12 @@ Tiles
 			Tags Population
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
-			Effect OnPlace:Population:100:20*IfTerrain*Grass:20*IfAdjacent*Water
-			Effect PerTurn:Population:1:1*IfTerrain*Grass:1*IfAdjacent*Water
+			Effect OnPlace:Production:Population:100
+			Effect OnPlace:Production:Population:25:IfTerrain:Grass
+			Effect OnPlace:Production:Population:25:IfAdjacent:Water
+			Effect PerTurn:Production:Population:1
+			Effect PerTurn:Production:Population:1:IfTerrain:Grass
+			Effect PerTurn:Production:Population:1:IfAdjacent:Water
 			Stockpile Population
 		}
 		Map 
@@ -205,13 +216,13 @@ Tiles
 		{
 			Level 1
 			Upgrade Fishing_II
-			Weight 10
+			Weight 4
 			Starting 3
-			Tags Fishing_Boats
+			Tags FishingBoats
 			Tags Food
 			PlaceCondition IfTerrain:Water
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:2
+			Effect Always:MultiplyAdjacent:Houses:2
 			UpgradeByToken Yes
 		}
 		Map 
@@ -234,12 +245,12 @@ Tiles
 		{
 			Level 2
 			Upgrade Fishing_III
-			Weight 10
-			Tags Fishing_Boats
+			Weight 2
+			Tags FishingBoats
 			Tags Food
 			PlaceCondition IfTerrain:Water
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:3
+			Effect Always:MultiplyAdjacent:Houses:3
 			UpgradeByToken Yes
 		}
 		Map 
@@ -261,12 +272,13 @@ Tiles
 		Data 
 		{
 			Level 3
-			Weight 10
-			Tags Fishing_Boats
+			Weight 1
+			Tags FishingBoats
 			Tags Food
 			PlaceCondition IfTerrain:Water
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:4
+			Effect Always:MultiplyAdjacent:Houses:4
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -288,7 +300,7 @@ Tiles
 		{
 			Level 1
 			Upgrade Farm_II
-			Weight 10
+			Weight 4
 			Starting 3
 			Tags Building
 			Tags Farm
@@ -318,7 +330,7 @@ Tiles
 		{
 			Level 2
 			Upgrade Farm_III
-			Weight 10
+			Weight 2
 			Tags Building
 			Tags Farm
 			Tags Food
@@ -346,13 +358,14 @@ Tiles
 		Data 
 		{
 			Level 3
-			Weight 10
+			Weight 1
 			Tags Building
 			Tags Farm
 			Tags Food
 			PlaceCondition IfTerrain:Grass
 			PlaceCondition IfTag:Unused
 			Effect Always:MultiplyAdjacent*Houses:4
+			UpgradeByToken Yes
 		}
 		Map 
 		{
@@ -363,7 +376,7 @@ Tiles
 			Title Large_Farm
 			ToolTip 
 			{
-				Title Farm
+				Title Large_Farm
 				Description It's_a_tile.
 			}
 		}
@@ -374,7 +387,7 @@ Tiles
 		{
 			Level 2
 			Upgrade Mill_II
-			Weight 5
+			Weight 3
 			Starting 3
 			Tags Building
 			Tags Mill
@@ -402,14 +415,15 @@ Tiles
 	{
 		Data 
 		{
-			Level 3
-			Weight 5
+			Level 2
+			Weight 1
 			Tags Building
 			Tags Mill
 			Tags Food
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
 			Effect Always:MultiplyAdjacent*Farm:3
+			UpgradeByToken Yes
 		}
 		Map 
 		{

@@ -10,6 +10,7 @@ namespace Hex.Logic
         internal static Data.MapTileRef[] BonusQueue = null;
         internal static int BonusQueueStart;
         internal static int BonusQueueEnd;
+        internal static LocalStepListRef BonusLocalSteps;
 
         public static void Init()
         {
@@ -24,6 +25,7 @@ namespace Hex.Logic
                 OnEndTurnProduction[idx] = new Production();
             }
             BonusQueue = new Data.MapTileRef[128];
+            BonusLocalSteps = new LocalStepListRef();
         }
 
         internal static void GrowOnPlaceProduction()

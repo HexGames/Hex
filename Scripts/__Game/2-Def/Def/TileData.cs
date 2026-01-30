@@ -143,7 +143,7 @@ namespace Hex.Def
 
         public struct ConditionArray
         {
-            [InlineArray(MAX_CONDITIONS)] public struct ConditionInlineArray { private Var _element0; }
+            [InlineArray(MAX_CONDITIONS)] public struct ConditionInlineArray { private Effect _element0; }
             private ConditionInlineArray _array;
             public int _count;
 
@@ -154,34 +154,34 @@ namespace Hex.Def
                 {
                     if (idx < effects.Count)
                     {
-                        _array[idx] = new Var(effects[idx]);
+                        _array[idx] = new Effect(effects[idx]);
                     }
                     else
                     {
-                        _array[idx] = Var.INVALID;
+                        _array[idx] = Effect.INVALID;
                     }
                 }
             }
 
             public int Count => _count;
 
-            public ref Var this[int i]
+            public ref Effect this[int i]
             {
                 get => ref AsSpan()[i];
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private Span<Var> AsSpan()
+            private Span<Effect> AsSpan()
             {
                 return MemoryMarshal.CreateSpan(
-                    ref Unsafe.As<ConditionInlineArray, Var>(ref _array),
+                    ref Unsafe.As<ConditionInlineArray, Effect>(ref _array),
                     MAX_CONDITIONS);
             }
         }
 
         public struct EffectArray
         {
-            [InlineArray(MAX_EFFECTS)] public struct EffectInlineArray { private Var _element0; }
+            [InlineArray(MAX_EFFECTS)] public struct EffectInlineArray { private Effect _element0; }
             private EffectInlineArray _array;
             public int _count;
 
@@ -192,27 +192,27 @@ namespace Hex.Def
                 {
                     if (idx < conditions.Count)
                     {
-                        _array[idx] = new Var(conditions[idx]);
+                        _array[idx] = new Effect(conditions[idx]);
                     }
                     else
                     {
-                        _array[idx] = Var.INVALID;
+                        _array[idx] = Effect.INVALID;
                     }
                 }
             }
 
             public int Count => _count;
 
-            public ref Var this[int i]
+            public ref Effect this[int i]
             {
                 get => ref AsSpan()[i];
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private Span<Var> AsSpan()
+            private Span<Effect> AsSpan()
             {
                 return MemoryMarshal.CreateSpan(
-                    ref Unsafe.As<EffectInlineArray, Var>(ref _array),
+                    ref Unsafe.As<EffectInlineArray, Effect>(ref _array),
                     MAX_EFFECTS);
             }
         }

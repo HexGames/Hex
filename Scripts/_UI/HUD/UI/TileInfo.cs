@@ -66,24 +66,48 @@ namespace Hex.UI
             
             for (int effectIdx = 0; effectIdx < tile.Value.DefData.Effects.Count; effectIdx++)
             {
-                ref Def.Var effect = ref tile.Value.DefData.Effects[effectIdx];
-                if (effect.IsTiming(0) == true && effect.GetTiming(0) == timingFilter && effect.GetCount() > 1)
+                ref Def.Effect effect = ref tile.Value.DefData.Effects[effectIdx];
+                if (effect.GetTiming() == timingFilter)
                 {
-                    if (effect.IsRes(1) == true)
+                    if (effect.GetEffectType() == Def.EffectType.Production)
                     {
-                        Def.ResRef res = effect.GetRes(1);
-                        for (int idx = 2; idx < effect.GetCount(); idx++)
-                        {
-                            if (effect.IsInt(idx, 0) == true)
-                            {
-                                if (effect.Is)
-                            }
-                        }
+                        Def.ResRef res = effect.GetRes(2);
+                        int value = effect.GetInt(3);
+
+                        text.Description += $"+{value}{GodotUI.UIHelper.ResToString(res, value)}{res.Value.Title}";
+                        text = AddConditionText(text, effect);
+
+                        text.Description += "\n";
+                    }
+                    else if (effect.GetEffectType() == Def.EffectType.MultiplyAdjacent)
+                    {
+                        Def.TagRef bonusTag = effect.GetTag(2);
+                        int value = effect.GetInt(3);
+
+                        text.Description += $"*{value} to all {bonusTag}s";
+                        text = AddConditionText(text, effect);
+
+                        text.Description += "\n";
                     }
                 }
             }
 
             if (text.Description.Length > 0) _TitlesAndDescriptions.Add(text);
+        }
+
+        private static GodotUI.UIInfoSection.Texts AddConditionText(GodotUI.UIInfoSection.Texts text, Def.Effect effect)
+        {
+            if (effect.GetCount() == 6)
+            {
+                Def.TagRef tag = effect.GetTag(5);
+                if (effect.GetCondition(4) == Def.Condition.IfTerrain) text.Description += $" if on {tag.Value.Name}";
+                else if (effect.GetCondition(4) == Def.Condition.IfTag) text.Description += $" over an {tag.Value.Name}";
+                else if (effect.GetCondition(4) == Def.Condition.IfAdjacent) text.Description += $" if near {tag.Value.Name}";
+                else if (effect.GetCondition(4) == Def.Condition.PerAdjacent) text.Description += $" for each adjacent {tag.Value.Name}";
+                else if (effect.GetCondition(4) == Def.Condition.PerAdjacentLevel) text.Description += $" for each adjacent {tag.Value.Name} levels";
+            }
+
+            return text;
         }
     }
 }

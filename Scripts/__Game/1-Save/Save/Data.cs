@@ -513,7 +513,18 @@ namespace Hex.Save
                             bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
                             if (isInt) level3 = AddData(level2, tableHeadRow_3[colIdx], i);
                             else level3 = AddData(level2, tableHeadRow_3[colIdx], wordsOnRow[colIdx]);
-                            AddExtraData(extraRows, colIdx, level3);
+
+                            for (int extraIdx = 0; extraIdx < extraRows.Count; extraIdx++)
+                            {
+                                if (extraRows[extraIdx][colIdx] != "")
+                                {
+                                    bool isExtraInt = Int32.TryParse(extraRows[extraIdx][colIdx], out int eI);
+                                    if (isExtraInt) level3 = AddData(level2, tableHeadRow_3[colIdx], eI);
+                                    else level3 = AddData(level2, tableHeadRow_3[colIdx], extraRows[extraIdx][colIdx]);
+                                }
+                            }
+
+                            //AddExtraData(extraRows, colIdx, level3);
                         }
                         else if (tableHeadRow_2[colIdx] != "" && tableHeadRow_1[colIdx] != "")
                         {
@@ -524,7 +535,18 @@ namespace Hex.Save
                             bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
                             if (isInt) level2 = AddData(level1, tableHeadRow_2[colIdx], i);
                             else level2 = AddData(level1, tableHeadRow_2[colIdx], wordsOnRow[colIdx]);
-                            AddExtraData(extraRows, colIdx, level2);
+
+                            for (int extraIdx = 0; extraIdx < extraRows.Count; extraIdx++)
+                            {
+                                if (extraRows[extraIdx][colIdx] != "")
+                                {
+                                    bool isExtraInt = Int32.TryParse(extraRows[extraIdx][colIdx], out int eI);
+                                    if (isExtraInt) level2= AddData(level1, tableHeadRow_2[colIdx], eI);
+                                    else level2 = AddData(level1, tableHeadRow_2[colIdx], extraRows[extraIdx][colIdx]);
+                                }
+                            }
+
+                            //AddExtraData(extraRows, colIdx, level2);
                         }
                         else
                         {
@@ -532,7 +554,18 @@ namespace Hex.Save
                             bool isInt = Int32.TryParse(wordsOnRow[colIdx], out int i);
                             if (isInt) level1 = AddData(item, tableHeadRow_1[colIdx], i);
                             else level1 = AddData(item, tableHeadRow_1[colIdx], wordsOnRow[colIdx]);
-                            AddExtraData(extraRows, colIdx, level1);
+
+                            for (int extraIdx = 0; extraIdx < extraRows.Count; extraIdx++)
+                            {
+                                if (extraRows[extraIdx][colIdx] != "")
+                                {
+                                    bool isExtraInt = Int32.TryParse(extraRows[extraIdx][colIdx], out int eI);
+                                    if (isExtraInt) level1 = AddData(item, tableHeadRow_1[colIdx], eI);
+                                    else level1 = AddData(item, tableHeadRow_1[colIdx], extraRows[extraIdx][colIdx]);
+                                }
+                            }
+
+                            //AddExtraData(extraRows, colIdx, level1);
                         }
                     }
                 }
@@ -541,30 +574,31 @@ namespace Hex.Save
             return data;
         }
 
-        private static void AddExtraData(List<string[]> extraRows, int colIdx, Block parent)
-        {
-            for (int extraRowIdx = 0; extraRowIdx < extraRows.Count; extraRowIdx++)
-            {
-                if (extraRows[extraRowIdx][colIdx] != "")
-                {
-                    string[] split = extraRows[extraRowIdx][colIdx].Split('&');
-                    if (split.Length == 1)
-                    {
-                        AddData(parent, split[0]);
-                    }
-                    else if (split.Length == 2)
-                    {
-                        bool isInt = Int32.TryParse(split[1], out int i);
-                        if (isInt) AddData(parent, split[0], i);
-                        else AddData(parent, split[0], split[1]);
-                    }
-                    else
-                    {
-                        Debug.LogError("LoadCSV error: more than one & symbol not supported! Cell: " + extraRows[extraRowIdx][colIdx]);
-                    }
-                }
-            }
-        }
+        // deprecated
+        //private static void AddExtraData(List<string[]> extraRows, int colIdx, Block parent)
+        //{
+        //    for (int extraRowIdx = 0; extraRowIdx < extraRows.Count; extraRowIdx++)
+        //    {
+        //        if (extraRows[extraRowIdx][colIdx] != "")
+        //        {
+        //            string[] split = extraRows[extraRowIdx][colIdx].Split('&');
+        //            if (split.Length == 1)
+        //            {
+        //                AddData(parent, split[0]);
+        //            }
+        //            else if (split.Length == 2)
+        //            {
+        //                bool isInt = Int32.TryParse(split[1], out int i);
+        //                if (isInt) AddData(parent, split[0], i);
+        //                else AddData(parent, split[0], split[1]);
+        //            }
+        //            else
+        //            {
+        //                Debug.LogError("LoadCSV error: more than one & symbol not supported! Cell: " + extraRows[extraRowIdx][colIdx]);
+        //            }
+        //        }
+        //    }
+        //}
 
         // helper 
         private static string Helper_Tabs(int tabs)

@@ -6,7 +6,7 @@
         internal static void TestData()
         {
             // Check that the struct is an unbroken chunck of memory
-            EnsureUnmanaged<Var>();
+            EnsureUnmanaged<Effect>();
             EnsureUnmanaged<TileData>();
         }
     }

@@ -2,8 +2,9 @@
 
 namespace Hex.Def
 {
-    public enum Bonus
+    public enum EffectType
     {
+        Production,
         Add,
         AddAdjacent,
         MultiplyAdjacent,

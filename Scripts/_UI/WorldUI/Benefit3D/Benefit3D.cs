@@ -5,10 +5,16 @@ namespace Hex.UI
     public static class Benefit3D
     {
         private static List<GodotUI.Benefit3DControl> _benefit3DPool = new List<GodotUI.Benefit3DControl>();
-        private static Dictionary<Hex.Data.HexPos, List<int>> _benefit3DIdx = new Dictionary<Hex.Data.HexPos, List<int>>();
+        private static Dictionary<Data.HexPos, List<int>> _benefit3DIdx = new Dictionary<Data.HexPos, List<int>>();
 
         // ---------------------------------------------------------------------------------------------------
-        public static void Add(Hex.Data.HexPos forTile, Hex.Def.Timing timing, string text)
+        public static void Add(Data.HexPos forTile, Def.Timing timing, string text)
+        {
+            Add(forTile, timing, text, out int _);
+        }
+
+
+        public static void Add(Data.HexPos forTile, Def.Timing timing, string text, out int benefit3DID)
         {
             if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
             {
@@ -47,7 +53,7 @@ namespace Hex.UI
             }
         }
 
-        private static int GetNewBenefit(Hex.Data.HexPos forTile, Hex.Def.Timing timing, string text, int onTileIdx)
+        private static int GetNewBenefit(Data.HexPos forTile, Def.Timing timing, string text, int onTileIdx)
         {
             int benefitPopIdx = GetNewBenefitFromPool();
             GodotUI.Benefit3DControl tileInfo = _benefit3DPool[benefitPopIdx];
@@ -66,7 +72,7 @@ namespace Hex.UI
         //    }
         //}
 
-        public static void Pop(Hex.Data.HexPos forTile, Hex.Def.Timing timing)
+        public static void Pop(Data.HexPos forTile, Def.Timing timing)
         {
             if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
             {

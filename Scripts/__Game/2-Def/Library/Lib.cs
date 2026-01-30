@@ -46,7 +46,7 @@ namespace Hex.Def
         internal static void InitData()
         {
             // Check that the struct is an unbroken chunck of memory
-            EnsureUnmanaged<Var>();
+            EnsureUnmanaged<Effect>();
             EnsureUnmanaged<TileData>();
 
             InitTileData();

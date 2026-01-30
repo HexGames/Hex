@@ -15,7 +15,7 @@
                 {
                     ref Logic.BonusStep bonusStep = ref production.BonusList[bonusIdx];
                     Data.HexPos hesPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.Tile.ID);
-                    string text = bonusStep.Value.ToString();
+                    string text = bonusStep.Total.ToString();
                     Main.DelayedCall(() => Benefit3D.Add(hesPos, Def.Timing.OnPlace, text), timeOffset);
                     timeOffset++;
                 }

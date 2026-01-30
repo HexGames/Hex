@@ -34,7 +34,7 @@ namespace Hex.GodotUI
         //}
 
         private static readonly Dictionary<string, System.Reflection.MethodInfo> _methodCache = new();
-        public static string GetDescription(Def.Var effect)
+        public static string GetDescription(Def.Effect effect)
         {
             /*if (effect.EffectID == "Execute" || effect.EffectID == "GetDescription")
                 return null;

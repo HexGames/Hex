@@ -85,8 +85,8 @@ namespace Hex.Logic.DataBuffer
                                     TileId = buffer[idx].Tile.ID,
                                     SourceTileId = buffer[idx].SourceTile.ID,
                                     Depth = buffer[idx].Depth,
-                                    BonusType = buffer[idx].BonusType.ToString(),
-                                    Value = buffer[idx].Value
+                                    BonusType = buffer[idx].EffectType.ToString(),
+                                    Value = buffer[idx].Total
                                 };
                             }
                         }

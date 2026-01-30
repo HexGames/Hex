@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Scripts\__Game\3-Data\Public\NewFolder\" />
+    <Folder Include="Scripts\__Game\4-Logic\_Data\Production\LocalStep\" />
   </ItemGroup>
 </Project>

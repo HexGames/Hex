@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crg7657bg3ojj"
-path.s3tc="res://.godot/imported/round.png-22a41460fdde2ba295ffce71ac89cb83.s3tc.ctex"
+uid="uid://b7pwq8p4dgkcl"
+path.s3tc="res://.godot/imported/glowround.png-0231579525c2ca14d5eb46fb80793e53.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/round.png"
-dest_files=["res://.godot/imported/round.png-22a41460fdde2ba295ffce71ac89cb83.s3tc.ctex"]
+source_file="res://Assets/glowround.png"
+dest_files=["res://.godot/imported/glowround.png-0231579525c2ca14d5eb46fb80793e53.s3tc.ctex"]
 
 [params]
 

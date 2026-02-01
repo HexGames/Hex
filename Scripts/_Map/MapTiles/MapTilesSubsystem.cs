@@ -58,5 +58,15 @@ namespace Hex.GodotMap
                 existingNode.SetAvailableToPlace(false);
             }
         }
+
+        public static void TriggerBenefitHighlightAtHexPos(Data.HexPos coord)
+        {
+            Node3D mapTilesParentNode = MapBindings.X.MapTilesNode;
+            // Check if a tile already exists at this coordinate
+            if (_PlacedTiles.TryGetValue(coord, out MapTileNode existingNode))
+            {
+                existingNode.TriggerBenefitHighlight();
+            }
+        }
     }
 }

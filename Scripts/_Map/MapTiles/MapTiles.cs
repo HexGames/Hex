@@ -30,5 +30,11 @@ namespace Hex.Map
         {
             MapTilesSubsystem.ClearAllAvailableForPlace();
         }
+
+
+        public static void TriggerBenefitHighlightAtHexPos(Data.HexPos coord)
+        {
+            MapTilesSubsystem.TriggerBenefitHighlightAtHexPos(coord);
+        }
     }
 }

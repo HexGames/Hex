@@ -35,6 +35,7 @@ namespace Hex.Tools
             public DateTime Timestamp { get; set; }
             public Logic.DataBuffer.BonusGiverBufferDebug.BonusGiverBufferDebugData BonusGiverData { get; set; }
             public Logic.DataBuffer.BonusStepBufferDebug.BonusStepBufferDebugData BonusStepData { get; set; }
+            public Logic.DataBuffer.LocalStepBufferDebug.LocalStepBufferDebugData LocalStepData { get; set; }
         }
         
         public static string CurrentSessionId => _currentSessionId;
@@ -91,7 +92,8 @@ namespace Hex.Tools
                 SnapshotId = snapshotId,
                 Timestamp = DateTime.Now,
                 BonusGiverData = Logic.DataBuffer.BonusGiverBufferDebug.GetDebugData(),
-                BonusStepData = Logic.DataBuffer.BonusStepBufferDebug.GetDebugData()
+                BonusStepData = Logic.DataBuffer.BonusStepBufferDebug.GetDebugData(),
+                LocalStepData = Logic.DataBuffer.LocalStepBufferDebug.GetDebugData()
             };
             
             // Serialize and save

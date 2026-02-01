@@ -28,7 +28,7 @@ namespace Hex.UI
                 int resIncome = 0;
                 foreach (Data.Res sRes in stockpile)
                 {
-                    if (sRes.Def == resDef)
+                    if (sRes.ResDef == resDef)
                     {
                         resValue = res.Value;
                         break;
@@ -36,7 +36,7 @@ namespace Hex.UI
                 }
                 foreach (Data.Res iRes in income)
                 {
-                    if (iRes.Def == resDef)
+                    if (iRes.ResDef == resDef)
                     {
                         resIncome = res.Value;
                         break;

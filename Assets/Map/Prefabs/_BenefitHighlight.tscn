@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bjqu8kb2ap5g6"]
+
+[ext_resource type="Texture2D" uid="uid://b7pwq8p4dgkcl" path="res://Assets/glowround.png" id="1_ljrmi"]
+
+[sub_resource type="Gradient" id="Gradient_wgyr3"]
+offsets = PackedFloat32Array(0, 0.24140893, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_whgit"]
+gradient = SubResource("Gradient_wgyr3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2c3u"]
+emission_shape_scale = Vector3(0.1, 0.01, 0.1)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_whgit")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76uo6"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.73371536, 0.6572602, 1, 1)
+albedo_texture = ExtResource("1_ljrmi")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0fb8h"]
+material = SubResource("StandardMaterial3D_76uo6")
+orientation = 1
+
+[node name="BenefitHighlight" type="Node3D" unique_id=1976284310]
+
+[node name="VFX" type="GPUParticles3D" parent="." unique_id=1247478105]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_i2c3u")
+draw_pass_1 = SubResource("QuadMesh_0fb8h")

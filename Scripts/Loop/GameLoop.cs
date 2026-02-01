@@ -1,4 +1,4 @@
-﻿namespace Hex
+namespace Hex
 {
     public static class GameLoop
     {
@@ -50,17 +50,20 @@
             //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
             //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
 
-            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
+            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, out int trackingId1);
+            UI.Benefit3D.Show(in trackingId1, "+3");
 
-            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, "+3");
+            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, out int trackingId2);
+            UI.Benefit3D.Show(in trackingId2, "+3");
 
-            UI.Benefit3D.Add(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, "+2");
+            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, out int trackingId3);
+            UI.Benefit3D.Show(in trackingId3, "+2");
 
-            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 1.5f);
+            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId1), 1.5f);
 
-            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn), 3.0f);
+            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId3), 3.0f);
 
-            Main.DelayedCall(() => UI.Benefit3D.Pop(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace), 4.5f);
+            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId2), 4.5f);
 
             StartTurn();
         }

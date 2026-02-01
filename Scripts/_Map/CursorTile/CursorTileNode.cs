@@ -128,7 +128,7 @@ namespace Hex.GodotMap
             Span<Data.Benefit> benefits = CollectionsMarshal.AsSpan(OnHoverBenefits).Slice(0, OnHoverBenefitsCount);
             for (int idx = 0; idx < benefits.Length; idx++)
             {
-                if (benefits[idx].Res.Def == def && benefits[idx].HexPos == hexPos && benefits[idx].BenefitTiming == benefitTiming)
+                if (benefits[idx].Res.ResDef == def && benefits[idx].HexPos == hexPos && benefits[idx].BenefitTiming == benefitTiming)
                 {
                     benefits[idx].Res.Value += value;
                     return;
@@ -167,11 +167,11 @@ namespace Hex.GodotMap
                     ClearOnHoverBenefits();
                     for (int idx = 0; idx < onPlaceProduction.Length; idx++)
                     {
-                        AddOnHoverBenefit(onPlaceProduction[idx].Total.Def, onPlaceProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                        AddOnHoverBenefit(onPlaceProduction[idx].Total.ResDef, onPlaceProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
                     }
                     for (int idx = 0; idx < OnEndTurnProduction.Length; idx++)
                     {
-                        AddOnHoverBenefit(OnEndTurnProduction[idx].Total.Def, OnEndTurnProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                        AddOnHoverBenefit(OnEndTurnProduction[idx].Total.ResDef, OnEndTurnProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
                     }
 
                     // 3d Update

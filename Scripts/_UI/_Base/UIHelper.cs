@@ -55,7 +55,7 @@ namespace Hex.GodotUI
 
         public static string ResToString(Data.Res res, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)
         {
-            return ResToString(res.Def, res.Value, iconSize, precision, alwaysShowSign, redNegativeValues);
+            return ResToString(res.ResDef, res.Value, iconSize, precision, alwaysShowSign, redNegativeValues);
         }
 
         public static string ResToString(Def.ResRef resDef, int value, int iconSize = 24, int precision = 1, bool alwaysShowSign = false, bool redNegativeValues = false)

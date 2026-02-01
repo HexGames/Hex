@@ -31,18 +31,18 @@ Fishing_II,2,Fishing_III,2,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,
 -,,,,,,,,,Food,,IfTag:Unused,,,,,
 Fishing_III,3,,1,,FishingBoats,FishingBoats,FishingBoats,It's a tile.,FishingBoats,,IfTerrain:Water,,Always:MultiplyAdjacent:Houses:4,,,Yes
 -,,,,,,,,,Food,,IfTag:Unused,,,,,
-Farm_I,1,Farm_II,4,3,Farm,Small Farm,Small Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:2,,,Yes
+Farm_I,1,Farm_II,4,3,Farm,Small Farm,Small Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent:Houses:2,,,Yes
 -,,,,,,,,,Farm,,IfTag:Unused,,,,,
 -,,,,,,,,,Food,,,,,,,
-Farm_II,2,Farm_III,2,,Farm,Farm,Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:3,,,Yes
+Farm_II,2,Farm_III,2,,Farm,Farm,Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent:Houses:3,,,Yes
 -,,,,,,,,,Farm,,IfTag:Unused,,,,,
 -,,,,,,,,,Food,,,,,,,
-Farm_III,3,,1,,Farm,Large Farm,Large Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent*Houses:4,,,Yes
+Farm_III,3,,1,,Farm,Large Farm,Large Farm,It's a tile.,Building,,IfTerrain:Grass,,Always:MultiplyAdjacent:Houses:3,,,Yes
 -,,,,,,,,,Farm,,IfTag:Unused,,,,,
 -,,,,,,,,,Food,,,,,,,
-Mill_I,2,Mill_II,3,3,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent*Farm:2,,,Yes
+Mill_I,2,Mill_II,3,3,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent:Farm:2,,,Yes
 -,,,,,,,,,Mill,,IfTag:Unused,,,,,
 -,,,,,,,,,Food,,,,,,,
-Mill_II,2,,1,,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent*Farm:3,,,Yes
+Mill_II,2,,1,,Mill,Mill,Mill,It's a tile.,Building,,IfTerrain:Grass:Desert,,Always:MultiplyAdjacent:Farm:3,,,Yes
 -,,,,,,,,,Mill,,IfTag:Unused,,,,,
 -,,,,,,,,,Food,,,,,,,

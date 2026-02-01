@@ -1,0 +1,52 @@
+---
+description: Mark all AI code changes with a comment identifying the AI model
+globs: "**/*.{cs,gd,ts,tsx,js,jsx,py,java,cpp,c,h,hpp,rs,go,rb,php,swift,kt}"
+alwaysApply: false
+---
+
+# AI Change Markers
+
+When modifying existing code files, add a comment near each change indicating it was made by AI.
+
+## Comment Format
+
+Use the appropriate comment syntax for the file type:
+
+```
+// made by AI: [model name]
+```
+
+## Examples
+
+### C# / JavaScript / TypeScript / Java / C++
+
+```csharp
+// made by AI: Claude Opus 4.5
+public void NewMethod()
+{
+    // implementation
+}
+```
+
+### Python
+
+```python
+# made by AI: Claude Opus 4.5
+def new_function():
+    pass
+```
+
+### GDScript
+
+```gdscript
+# made by AI: Claude Opus 4.5
+func new_function():
+    pass
+```
+
+## Guidelines
+
+- Place the comment directly above the modified or added code block
+- For multi-line changes, one comment at the start is sufficient
+- For small inline changes, place the comment on the same line if practical
+- Use the actual model name (e.g., "Claude Opus 4.5", "GPT-4", etc.)

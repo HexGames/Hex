@@ -29,23 +29,38 @@ namespace Hex.Logic
                 CalculateBonusLink(currentMapTile);
             }
 
+            int totalValue = 0;
             // calculate onPlaceBonusTree and production
             for (int idx = 0; idx < mapTile.Value.DefData.Effects.Count; idx++) // for each effect
             {
                 ref readonly Def.Effect effect = ref mapTile.Value.DefData.Effects[idx];
                 if (effect.GetTiming() == Def.Timing.OnPlace && effect.GetEffectType() == Def.EffectType.Production) // is OnPlace production
                 {
-                    while (ProductionPools.OnPlaceProductionCount >= ProductionPools.OnPlaceProduction.Length) ProductionPools.GrowOnPlaceProduction(); // grow the pool
-
-                    int currentProductionIdx = ProductionPools.OnPlaceProductionCount;
-                    ProductionPools.OnPlaceProductionCount++;
+                    int currentProductionIdx = -1;
+                    int lastProductionIdx = ProductionPools.OnPlaceProductionCount - 1;
+                    if (lastProductionIdx >= 0)
+                    {
+                        ref Production lastProduction = ref ProductionPools.OnPlaceProduction[lastProductionIdx];
+                        if (lastProduction.Total.ResDef == effect.GetRes(2))
+                        {
+                            currentProductionIdx = lastProductionIdx;
+                        }
+                    }
+                    if (currentProductionIdx < 0)
+                    {
+                        // new production
+                        totalValue = 0;
+                        while (ProductionPools.OnPlaceProductionCount >= ProductionPools.OnPlaceProduction.Length) ProductionPools.GrowOnPlaceProduction(); // grow the pool
+                        currentProductionIdx = ProductionPools.OnPlaceProductionCount;
+                        ProductionPools.OnPlaceProductionCount++;
+                    }
 
                     ref Production productionItem = ref ProductionPools.OnPlaceProduction[currentProductionIdx];
-
+                    ref Data.Res productionTotal = ref productionItem.Total;
 
                     // get tile production with condition
                     Def.ResRef res = effect.GetRes(2);
-                    productionItem.Reset(mapTile, res); // clear previous data
+                    if (currentProductionIdx != lastProductionIdx) productionItem.Reset(mapTile, res); // clear previous data
                     int baseValue = effect.GetInt(3);
                     Def.Condition condition = Def.Condition.None;
                     bool conditionIsTrue = false;
@@ -73,7 +88,9 @@ namespace Hex.Logic
 
                                         for (int i = 0; i < factor; i++)
                                         {
-                                            productionItem.LocalList.Add(new LocalStep(adjacentMapTile, baseValue));
+                                            totalValue += baseValue;
+                                            productionItem.LocalList.Add(new LocalStep(adjacentMapTile, totalValue));
+                                            productionTotal.Value = totalValue;
                                         }
                                     }
                                 }
@@ -81,77 +98,139 @@ namespace Hex.Logic
                         }
                         else
                         {
-                            productionItem.LocalList.Add(new LocalStep(mapTile, baseValue));
+                            totalValue += baseValue;
+                            productionItem.LocalList.Add(new LocalStep(mapTile, totalValue));
+                            productionTotal.Value = totalValue;
                         }
                     }
+                }
+            }
 
-                    // calculate bonuses
-                    ProductionPools.ClearBonusQueue();
-                    ProductionPools.BonusEnqueue(mapTile);
-                    int depth = 1;
-                    while (ProductionPools.BonusQueueEnd - ProductionPools.BonusQueueStart > 0)
+            for (int productionIdx = 0; productionIdx < ProductionPools.OnPlaceProductionCount; productionIdx++)
+            {
+                ref Production productionItem = ref ProductionPools.OnPlaceProduction[productionIdx];
+
+                // calculate bonuses
+                ProductionPools.ClearBonusQueue();
+                ProductionPools.BonusEnqueue(mapTile);
+                int depth = 1;
+                while (ProductionPools.BonusQueueEnd - ProductionPools.BonusQueueStart > 0)
+                {
+                    ref Data.MapTileRef currentMapTile = ref ProductionPools.BonusDequeue();
+
+                    //process here
+                    for (int linkIdx = 0; linkIdx < BonusLinkPool.BonusLinks[currentMapTile.ID].Links.Count; linkIdx++)
                     {
-                        ref Data.MapTileRef currentMapTile = ref ProductionPools.BonusDequeue();
+                        ref readonly BonusGiver bonusGiver = ref BonusLinkPool.BonusLinks[currentMapTile.ID].Links[linkIdx];
 
-                        //process here
-                        for (int linkIdx = 0; linkIdx < BonusLinkPool.BonusLinks[currentMapTile.ID].Links.Count; linkIdx++)
+                        ref readonly Def.Effect bonusEffect = ref bonusGiver.MapTile.Value.DefData.Effects[bonusGiver.EffectIdx];
+                        Def.EffectType effectType = bonusEffect.GetEffectType();
+                        Def.TagRef bonusTag = bonusEffect.GetTag(2);
+                        int bonusTotalValue = 0;
+                        int bonusValue = bonusEffect.GetInt(3);
+                        Def.Condition bonusCondition = Def.Condition.None;
+                        bool bonusConditionIsTrue = false;
+                        Def.TagRef bonusConditionTag = Def.TagRef.INVALID;
+                        CheckEffectCondition(mapTile, bonusEffect, ref bonusCondition, ref bonusConditionIsTrue, ref bonusConditionTag);
+
+                        if (bonusConditionIsTrue == true)
                         {
-                            ref readonly BonusGiver bonusGiver = ref BonusLinkPool.BonusLinks[currentMapTile.ID].Links[linkIdx];
-
-                            ref readonly Def.Effect bonusEffect = ref bonusGiver.MapTile.Value.DefData.Effects[bonusGiver.EffectIdx];
-                            Def.EffectType effectType = bonusEffect.GetEffectType();
-                            Def.TagRef bonusTag = bonusEffect.GetTag(2);
-                            int bonusValue = bonusEffect.GetInt(3);
-                            int bonusTotalValue = 0;
-                            Def.Condition bonusCondition = Def.Condition.None;
-                            bool bonusConditionIsTrue = false;
-                            Def.TagRef bonusConditionTag = Def.TagRef.INVALID;
-                            CheckEffectCondition(mapTile, effect, ref bonusCondition, ref bonusConditionIsTrue, ref bonusConditionTag);
-
-                            if (bonusConditionIsTrue == true)
+                            if (bonusCondition == Def.Condition.PerAdjacent || bonusCondition == Def.Condition.PerAdjacentLevel)
                             {
-                                if (bonusCondition == Def.Condition.PerAdjacent || bonusCondition == Def.Condition.PerAdjacentLevel)
+                                for (int dirIdx = 0; dirIdx < Data.HexPos.Directions.Length; dirIdx++)
                                 {
-                                    for (int dirIdx = 0; dirIdx < Data.HexPos.Directions.Length; dirIdx++)
+                                    Data.HexPos adjacentHexCoord = mapTile.HexPos + Data.HexPos.Directions[dirIdx];
+                                    if (Data.MapHelper.IsHexPosOnMap(adjacentHexCoord) == true)
                                     {
-                                        Data.HexPos adjacentHexCoord = mapTile.HexPos + Data.HexPos.Directions[dirIdx];
-                                        if (Data.MapHelper.IsHexPosOnMap(adjacentHexCoord) == true)
+                                        Data.MapTileRef adjacentMapTile = Data.MapTileRef.FromID(Data.MapHelper.HexPosToMapTileID(adjacentHexCoord));
+                                        if (adjacentMapTile.Value.IsValid() == true
+                                            && adjacentMapTile.Value.DefData.TerrainTags.HasTag(bonusConditionTag) == true)
                                         {
-                                            Data.MapTileRef adjacentMapTile = Data.MapTileRef.FromID(Data.MapHelper.HexPosToMapTileID(adjacentHexCoord));
-                                            if (adjacentMapTile.Value.IsValid() == true
-                                                && adjacentMapTile.Value.DefData.TerrainTags.HasTag(tag) == true)
+                                            int factor = 1;
+                                            if (bonusCondition == Def.Condition.PerAdjacentLevel)
                                             {
-                                                int factor = 1;
-                                                if (bonusCondition == Def.Condition.PerAdjacentLevel)
-                                                {
-                                                    factor = adjacentMapTile.Value.DefData.Level;
-                                                }
+                                                factor = adjacentMapTile.Value.DefData.Level;
+                                            }
 
-                                                for (int i = 0; i < factor; i++)
-                                                {
-                                                    ProductionPools.BonusLocalSteps.Add(new LocalStep(adjacentMapTile, bonusValue));
-                                                    bonusTotalValue += bonusValue;
-                                                }
+                                            for (int i = 0; i < factor; i++)
+                                            {
+                                                bonusTotalValue += bonusValue;
+
+                                                ProductionPools.BonusLocalSteps.Add(new LocalStep(adjacentMapTile, bonusTotalValue));
                                             }
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    ProductionPools.BonusLocalSteps.Add(new LocalStep(bonusGiver.MapTile, bonusValue));
-                                    bonusTotalValue += bonusValue;
-                                }
                             }
-
-                            if (bonusTotalValue > 0)
+                            else
                             {
-                                productionItem.BonusList.Add(new BonusStep(mapTile, bonusGiver.MapTile, depth, bonusEffect.GetEffectType()));
-                                ProductionPools.BonusEnqueue(bonusGiver.MapTile);
+                                bonusTotalValue += bonusValue;
+                                ProductionPools.BonusLocalSteps.Add(new LocalStep(bonusGiver.MapTile, bonusTotalValue));
                             }
-                            ProductionPools.BonusLocalSteps.Clear();
                         }
 
-                        depth++;
+                        if (bonusTotalValue > 0)
+                        {
+                            productionItem.BonusList.Add(new BonusStep(mapTile, bonusGiver.MapTile, depth, bonusEffect.GetEffectType()));
+                            ref BonusStep bonusStep = ref productionItem.BonusList[productionItem.BonusList.Count - 1];
+                            for (int localStepIdx = 0; localStepIdx < ProductionPools.BonusLocalSteps.Count; localStepIdx++)
+                            {
+                                bonusStep.LocalList.Add(ProductionPools.BonusLocalSteps[localStepIdx]);
+                            }
+                            bonusStep.Total = bonusTotalValue;
+                            ProductionPools.BonusEnqueue(bonusGiver.MapTile);
+                        }
+                        ProductionPools.BonusLocalSteps.Clear();
+                    }
+
+                    depth++;
+                }
+            }
+
+            // calculate after bonuses total and target values
+            for (int productionIdx = 0; productionIdx < ProductionPools.OnPlaceProductionCount; productionIdx++)
+            {
+                ref Production productionItem = ref ProductionPools.OnPlaceProduction[productionIdx];
+                ref Data.Res productionTotal = ref productionItem.Total;
+                for (int bonusIdx = productionItem.BonusList.Count - 1; bonusIdx >= 0; bonusIdx--)
+                {
+                    ref BonusStep bonusStep = ref productionItem.BonusList[bonusIdx];
+                    if (bonusStep.TargetTile == productionItem.Tile)
+                    {
+                        if (bonusStep.EffectType == Def.EffectType.AddAdjacent)
+                        {
+                            productionTotal.Value += bonusStep.Total;
+                            bonusStep.TargetValue = productionTotal.Value;
+                        }
+                        else if (bonusStep.EffectType == Def.EffectType.MultiplyAdjacent)
+                        {
+                            productionTotal.Value *= bonusStep.Total;
+                            bonusStep.TargetValue = productionTotal.Value;
+                        }
+                        else if (bonusStep.EffectType == Def.EffectType.ReactivateAdjacent)
+                        {
+                            productionTotal.Value *= (1 + bonusStep.Total);
+                            bonusStep.TargetValue = productionTotal.Value;
+                        }
+                    }
+                    else
+                    {
+                        ref BonusStep targetBonusStep = ref GetTargetBonusStep(ref productionItem, ref bonusStep);
+                        if (bonusStep.EffectType == Def.EffectType.AddAdjacent)
+                        {
+                            targetBonusStep.Total += bonusStep.Total;
+                            bonusStep.TargetValue = targetBonusStep.Total;
+                        }
+                        else if (bonusStep.EffectType == Def.EffectType.MultiplyAdjacent)
+                        {
+                            targetBonusStep.Total *= bonusStep.Total;
+                            bonusStep.TargetValue = targetBonusStep.Total;
+                        }
+                        else if (bonusStep.EffectType == Def.EffectType.ReactivateAdjacent)
+                        {
+                            targetBonusStep.Total *= (1 + bonusStep.Total);
+                            bonusStep.TargetValue = targetBonusStep.Total;
+                        }
                     }
                 }
             }
@@ -238,6 +317,19 @@ namespace Hex.Logic
                     }
                 }
             }
+        }
+
+        private static ref BonusStep GetTargetBonusStep(ref Production production, ref BonusStep bonusStep)
+        {
+            for (int idx = 0; idx < production.BonusList.Count; idx++)
+            {
+                ref BonusStep targetBonusStep = ref production.BonusList[idx];
+                if (bonusStep.SourceTile == targetBonusStep.TargetTile)
+                {
+                    return ref targetBonusStep;
+                }
+            }
+            return ref bonusStep;
         }
 
         public static bool CanPlaceTile(Data.DeckTileRef deckTile, Data.HexPos atHexPos)

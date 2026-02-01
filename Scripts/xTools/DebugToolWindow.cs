@@ -90,6 +90,7 @@ namespace Hex.Tools
         private TreeItem _bufferRootItem;
         private TreeItem _bonusGiverRoot;
         private TreeItem _bonusStepRoot;
+        private TreeItem _localStepRoot;
         
         // Deck Inspector tree items
         private TreeItem _deckRootItem;
@@ -740,6 +741,11 @@ namespace Hex.Tools
                 _bufferRootItem.RemoveChild(_bonusStepRoot);
                 _bonusStepRoot = null;
             }
+            if (_localStepRoot != null)
+            {
+                _bufferRootItem.RemoveChild(_localStepRoot);
+                _localStepRoot = null;
+            }
         }
         
         // Made by AI: Claude Opus 4.5 - Populate tree from snapshot data (changed parameter type from struct to class)
@@ -757,6 +763,9 @@ namespace Hex.Tools
                 
                 // Populate BonusStepBuffer data
                 PopulateBonusStepBuffer(data.BonusStepData);
+                
+                // Populate LocalStepBuffer data
+                PopulateLocalStepBuffer(data.LocalStepData);
             }
             finally
             {
@@ -872,6 +881,62 @@ namespace Hex.Tools
                     var itemNode = BufferTree.CreateItem(listItem);
                     itemNode.SetText(0, $"BonusStep[{j}]");
                     itemNode.SetText(1, $"Tile: {item.TileId}, Src: {item.SourceTileId}, D: {item.Depth}, Type: {item.BonusType}, Val: {item.Value}");
+                }
+            }
+        }
+        
+        // Made by AI: Claude Opus 4.5 - Populate LocalStepBuffer data
+        private void PopulateLocalStepBuffer(Logic.DataBuffer.LocalStepBufferDebug.LocalStepBufferDebugData debugData)
+        {
+            if (debugData == null)
+            {
+                _localStepRoot = BufferTree.CreateItem(_bufferRootItem);
+                _localStepRoot.SetText(0, "LocalStepBuffer");
+                _localStepRoot.SetText(1, "(no data)");
+                return;
+            }
+            
+            _localStepRoot = BufferTree.CreateItem(_bufferRootItem);
+            _localStepRoot.SetText(0, "LocalStepBuffer");
+            _localStepRoot.SetText(1, $"Lists: {debugData.ListsCount}, Used: {debugData.UsedCapacity}");
+            
+            // Add buffer info
+            var infoItem = BufferTree.CreateItem(_localStepRoot);
+            infoItem.SetText(0, "Buffer Info");
+            infoItem.SetText(1, "");
+            
+            AddBufferInfoItem(infoItem, "Buffer Length", debugData.BufferLength.ToString());
+            AddBufferInfoItem(infoItem, "Lists Count", debugData.ListsCount.ToString());
+            AddBufferInfoItem(infoItem, "Used Capacity", debugData.UsedCapacity.ToString());
+            
+            // Add lists
+            var listsItem = BufferTree.CreateItem(_localStepRoot);
+            listsItem.SetText(0, "Lists");
+            listsItem.SetText(1, debugData.ListsCount.ToString());
+            
+            if (debugData.Lists == null || debugData.Lists.Length == 0)
+                return;
+            
+            for (int i = 0; i < debugData.Lists.Length; i++)
+            {
+                var list = debugData.Lists[i];
+                if (list == null) continue;
+                
+                var listItem = BufferTree.CreateItem(listsItem);
+                listItem.SetText(0, $"List[{i}]");
+                listItem.SetText(1, $"Count: {list.Count}, Start: {list.Start}, Cap: {list.Capacity}");
+                
+                // Add items in this list
+                if (list.Items == null) continue;
+                
+                for (int j = 0; j < list.Count && j < list.Items.Length; j++)
+                {
+                    var item = list.Items[j];
+                    if (item == null) continue;
+                    
+                    var itemNode = BufferTree.CreateItem(listItem);
+                    itemNode.SetText(0, $"LocalStep[{j}]");
+                    itemNode.SetText(1, $"Src: {item.SourceTileId}, Val: {item.Value}");
                 }
             }
         }

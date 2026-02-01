@@ -1,4 +1,4 @@
-// 2026-01-28T17:44:28
+// 2026-02-01T15:54:34
 Tiles 
 {
 	Tile Water
@@ -307,7 +307,7 @@ Tiles
 			Tags Food
 			PlaceCondition IfTerrain:Grass
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:2
+			Effect Always:MultiplyAdjacent:Houses:2
 			UpgradeByToken Yes
 		}
 		Map 
@@ -336,7 +336,7 @@ Tiles
 			Tags Food
 			PlaceCondition IfTerrain:Grass
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:3
+			Effect Always:MultiplyAdjacent:Houses:3
 			UpgradeByToken Yes
 		}
 		Map 
@@ -364,7 +364,7 @@ Tiles
 			Tags Food
 			PlaceCondition IfTerrain:Grass
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Houses:4
+			Effect Always:MultiplyAdjacent:Houses:3
 			UpgradeByToken Yes
 		}
 		Map 
@@ -394,7 +394,7 @@ Tiles
 			Tags Food
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Farm:2
+			Effect Always:MultiplyAdjacent:Farm:2
 			UpgradeByToken Yes
 		}
 		Map 
@@ -422,7 +422,7 @@ Tiles
 			Tags Food
 			PlaceCondition IfTerrain:Grass:Desert
 			PlaceCondition IfTag:Unused
-			Effect Always:MultiplyAdjacent*Farm:3
+			Effect Always:MultiplyAdjacent:Farm:3
 			UpgradeByToken Yes
 		}
 		Map 

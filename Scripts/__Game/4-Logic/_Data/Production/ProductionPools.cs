@@ -84,7 +84,6 @@ namespace Hex.Logic
 
         internal static void BonusEnqueue(Data.MapTileRef mapTileRef)
         {
-            BonusQueueEnd++;
             if (BonusQueueEnd >= BonusQueue.Length)
             {
                 int newSize = BonusQueue.Length + 128;
@@ -97,6 +96,7 @@ namespace Hex.Logic
             }
 
             BonusQueue[BonusQueueEnd] = mapTileRef;
+            BonusQueueEnd++;
         }
 
         internal static ref Data.MapTileRef BonusDequeue()

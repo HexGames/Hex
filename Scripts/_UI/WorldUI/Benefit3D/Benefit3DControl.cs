@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Hex;
 
 namespace Hex.GodotUI
@@ -16,6 +16,13 @@ namespace Hex.GodotUI
         [Export]
         private float _offsetDuration = 0.15f;
 
+        [Export]
+        private float _changeScaleUpDuration = 0.15f;
+        [Export]
+        private float _changeScaleDownDuration = 0.15f;
+        [Export]
+        private float _changeScalePeak = 1.3f;
+
         private UIText _text;
 
         private Hex.Data.HexPos _hexPos;
@@ -25,6 +32,7 @@ namespace Hex.GodotUI
         private Vector3 _tileWorldPos;
         private Tween _tween;
         private Tween _tweenForOffset;
+        private Tween _tweenForChange;
         private bool _isDone;
 
         public Hex.Def.Timing Timing => _timing;
@@ -36,7 +44,7 @@ namespace Hex.GodotUI
         }
 
         /// <param name="offset">Possible offset patterns are: {0} {-1, 1} {-2, 0, 2} {-3, -1, 1, 3} ...</param>
-        public void SetData(Hex.Data.HexPos hexPos, Hex.Def.Timing timing, string text, int offset)
+        public void SetData(Hex.Data.HexPos hexPos, Hex.Def.Timing timing, int offset)
         {
             _hexPos = hexPos;
             _timing = timing;
@@ -44,16 +52,14 @@ namespace Hex.GodotUI
             _offset = offset;
             _tileWorldPos = GodotMap.Convert.HexPosToWorld(_hexPos) + 0.3f * Vector3.Up;
             Position = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
-            _text.SetText("$", text);
-            _text.Modulate = ColorLib.GetColor_Text(_timing);
         }
 
-        public void Show(Hex.Data.HexPos atHexPos, string text)
+        public void Show(string text)
         {
-            Vector3 worldPos = GodotMap.Convert.HexPosToWorld(atHexPos) + 0.3f * Vector3.Up;
-            Vector2 screenPos = GodotMap.Convert.WorldToScreen(worldPos);
+            Vector2 screenPos = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
             Position = screenPos;
             _text.SetText("$", text);
+            _text.Modulate = ColorLib.GetColor_Text(_timing);
 
             // Reset state
             Scale = Vector2.One * 2.0f;
@@ -89,9 +95,22 @@ namespace Hex.GodotUI
             _tweenForOffset.TweenProperty(this, "position:y", newPosition.Y, _offsetDuration);
         }
 
-        public void Refresh(string text)
+        public void ChangeValue(string newText)
         {
-            _text.SetText("$", text);
+            _text.SetText("$", newText);
+
+            // Kill previous Change tween if any
+            _tweenForChange?.Kill();
+            _tweenForChange = CreateTween();
+            _tweenForChange.SetTrans(Tween.TransitionType.Quad);
+
+            // --- Scale up ---
+            _tweenForChange.TweenProperty(this, "scale", Vector2.One * _changeScalePeak, _changeScaleUpDuration)
+                .SetEase(Tween.EaseType.Out);
+
+            // --- Scale down ---
+            _tweenForChange.TweenProperty(this, "scale", Vector2.One, _changeScaleDownDuration)
+                .SetEase(Tween.EaseType.In);
         }
 
         public void Pop()

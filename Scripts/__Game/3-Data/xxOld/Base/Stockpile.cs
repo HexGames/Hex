@@ -10,7 +10,7 @@ namespace Hex.Logic
         {
             foreach (Data.Res stockRes in stockpilem)
             {
-                if (stockRes.Def == res)
+                if (stockRes.ResDef == res)
                 {
                     return stockRes.Value;
                 }
@@ -23,7 +23,7 @@ namespace Hex.Logic
         {
             for (int resIdx = 0; resIdx < stockpile.Count; resIdx++)
             {
-                if (stockpile[resIdx].Def == res.Def)
+                if (stockpile[resIdx].ResDef == res.ResDef)
                 {
                     Data.Res valueRes = stockpile[resIdx];
                     valueRes.Value += res.Value;

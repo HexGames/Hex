@@ -880,7 +880,7 @@ namespace Hex.Tools
                     
                     var itemNode = BufferTree.CreateItem(listItem);
                     itemNode.SetText(0, $"BonusStep[{j}]");
-                    itemNode.SetText(1, $"Tile: {item.TileId}, Src: {item.SourceTileId}, D: {item.Depth}, Type: {item.BonusType}, Val: {item.Value}");
+                    itemNode.SetText(1, $"Tile: {item.TileId}, Src: {item.SourceTileId}, D: {item.Depth}, Type: {item.BonusType}, LocalValue: {item.LocalValue}, TotalValue: {item.TotalValue}");
                 }
             }
         }

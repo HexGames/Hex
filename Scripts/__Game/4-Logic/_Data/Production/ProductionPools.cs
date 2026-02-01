@@ -56,7 +56,9 @@ namespace Hex.Logic
             {
                 ref Production production = ref OnPlaceProduction[idx];
                 production.BonusList.Clear();
-                production.Total = Data.Res.INVALID;
+                production.LocalValue = 0;
+                production.TotalValue = 0;
+                production.ResDef = Def.ResRef.INVALID;
             }
             OnPlaceProductionCount = 0;
         }
@@ -67,7 +69,9 @@ namespace Hex.Logic
             {
                 ref Production production = ref OnEndTurnProduction[idx];
                 production.BonusList.Clear();
-                production.Total = Data.Res.INVALID;
+                production.LocalValue = 0;
+                production.TotalValue = 0;
+                production.ResDef = Def.ResRef.INVALID;
             }
             OnEndTurnProductionCount = 0;
         }

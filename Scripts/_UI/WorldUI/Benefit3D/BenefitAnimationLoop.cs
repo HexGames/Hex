@@ -8,9 +8,25 @@ namespace Hex.UI
 
         private static Dictionary<Data.HexPos, int> _hexPosToBenefitID = new Dictionary<Data.HexPos, int>();
 
-        public static void PlayBenefitLoop(Logic.Production[] onPlaceProduction)
+        public static void PlayBenefitLoop(Logic.Production[] onPlaceProduction, out float delay)
         {
             float timeOffset = 0f;
+            float timeStep = TIME_STEP;
+
+            int steps = 0;
+            for (int productionIdx = 0; productionIdx < onPlaceProduction.Length; productionIdx++)
+            {
+                ref Logic.Production production = ref onPlaceProduction[productionIdx];
+                steps += production.LocalList.Count;
+                for (int bonusIdx = 0; bonusIdx < production.BonusList.Count; bonusIdx++)
+                {
+                    ref Logic.BonusStep bonusStep = ref production.BonusList[bonusIdx];
+                    steps += bonusStep.LocalList.Count;
+                }
+            }
+
+            timeStep = TIME_STEP * (0.1f + 0.9f * float.Clamp(5.0f / steps, 0.0f, 1.0f));
+
             for (int productionIdx = 0; productionIdx < onPlaceProduction.Length; productionIdx++)
             {
                 _hexPosToBenefitID.Clear();
@@ -33,7 +49,7 @@ namespace Hex.UI
                     {
                         Main.DelayedCall(() => Benefit3D.ChangeValue(in benefitID, text), timeOffset);
                     }
-                    timeOffset++;
+                    timeOffset += timeStep;
                 }
 
                 for (int bonusIdx = 0; bonusIdx < production.BonusList.Count; bonusIdx++)
@@ -57,7 +73,7 @@ namespace Hex.UI
                         {
                             Main.DelayedCall(() => Benefit3D.ChangeValue(in bonusBenefitID, text), timeOffset);
                         }
-                        timeOffset++;
+                        timeOffset += timeStep;
                     }
                 }
 
@@ -71,12 +87,14 @@ namespace Hex.UI
                         string text = $"{bonusStep.TargetValue.ToString()}";
                         Main.DelayedCall(() => Benefit3D.Pop(in sourceBenefitID), timeOffset);
                         Main.DelayedCall(() => Benefit3D.ChangeValue(in targetBenefitID, text), timeOffset);
-                        timeOffset++;
+                        timeOffset += timeStep;
                     }
                 }
 
                 Main.DelayedCall(() => Benefit3D.Pop(in benefitID), timeOffset);
             }
+
+            delay = timeOffset;
         }
     }
 }

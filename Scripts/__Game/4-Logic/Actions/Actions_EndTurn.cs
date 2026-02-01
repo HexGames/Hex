@@ -11,7 +11,8 @@ namespace Hex.Logic
 
             // calculate onPlaceBonusTree and production
             //if (Production.OnEndTurnProduction.Count <= 1) Production.OnEndTurnProduction.Add(new Production()); // hack
-            ProductionPools.OnEndTurnProduction[0].Total = new Data.Res(Def.Lib.GetResRef("Population"), 3); // hack
+            ProductionPools.OnEndTurnProduction[0].ResDef = Def.Lib.GetResRef("Population");
+            ProductionPools.OnEndTurnProduction[0].TotalValue = 3; // hack
             ProductionPools.OnEndTurnProductionCount++; // hack
 
             production = null;

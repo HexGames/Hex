@@ -16,7 +16,8 @@ namespace Hex.Logic.DataBuffer
             public int SourceTileId { get; set; }
             public int Depth { get; set; }
             public string BonusType { get; set; } = "";
-            public int Value { get; set; }
+            public int LocalValue { get; set; }
+            public int TotalValue { get; set; }
         }
         
         public class BonusStepListDebug
@@ -86,7 +87,8 @@ namespace Hex.Logic.DataBuffer
                                     SourceTileId = buffer[idx].SourceTile.ID,
                                     Depth = buffer[idx].Depth,
                                     BonusType = buffer[idx].EffectType.ToString(),
-                                    Value = buffer[idx].Total
+                                    LocalValue = buffer[idx].LocalValue,
+                                    TotalValue = buffer[idx].TotalValue,
                                 };
                             }
                         }

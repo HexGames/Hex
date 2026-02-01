@@ -41,7 +41,7 @@ namespace Hex.Logic
                     if (lastProductionIdx >= 0)
                     {
                         ref Production lastProduction = ref ProductionPools.OnPlaceProduction[lastProductionIdx];
-                        if (lastProduction.Total.ResDef == effect.GetRes(2))
+                        if (lastProduction.ResDef == effect.GetRes(2))
                         {
                             currentProductionIdx = lastProductionIdx;
                         }
@@ -56,7 +56,6 @@ namespace Hex.Logic
                     }
 
                     ref Production productionItem = ref ProductionPools.OnPlaceProduction[currentProductionIdx];
-                    ref Data.Res productionTotal = ref productionItem.Total;
 
                     // get tile production with condition
                     Def.ResRef res = effect.GetRes(2);
@@ -90,7 +89,8 @@ namespace Hex.Logic
                                         {
                                             totalValue += baseValue;
                                             productionItem.LocalList.Add(new LocalStep(adjacentMapTile, totalValue));
-                                            productionTotal.Value = totalValue;
+                                            productionItem.LocalValue = totalValue;
+                                            productionItem.TotalValue = totalValue;
                                         }
                                     }
                                 }
@@ -100,7 +100,8 @@ namespace Hex.Logic
                         {
                             totalValue += baseValue;
                             productionItem.LocalList.Add(new LocalStep(mapTile, totalValue));
-                            productionTotal.Value = totalValue;
+                            productionItem.LocalValue = totalValue;
+                            productionItem.TotalValue = totalValue;
                         }
                     }
                 }
@@ -126,12 +127,12 @@ namespace Hex.Logic
                         ref readonly Def.Effect bonusEffect = ref bonusGiver.MapTile.Value.DefData.Effects[bonusGiver.EffectIdx];
                         Def.EffectType effectType = bonusEffect.GetEffectType();
                         Def.TagRef bonusTag = bonusEffect.GetTag(2);
-                        int bonusTotalValue = 0;
+                        int bonusLocalValue = 0;
                         int bonusValue = bonusEffect.GetInt(3);
                         Def.Condition bonusCondition = Def.Condition.None;
                         bool bonusConditionIsTrue = false;
                         Def.TagRef bonusConditionTag = Def.TagRef.INVALID;
-                        CheckEffectCondition(mapTile, bonusEffect, ref bonusCondition, ref bonusConditionIsTrue, ref bonusConditionTag);
+                        CheckEffectCondition(currentMapTile, bonusEffect, ref bonusCondition, ref bonusConditionIsTrue, ref bonusConditionTag);
 
                         if (bonusConditionIsTrue == true)
                         {
@@ -139,7 +140,7 @@ namespace Hex.Logic
                             {
                                 for (int dirIdx = 0; dirIdx < Data.HexPos.Directions.Length; dirIdx++)
                                 {
-                                    Data.HexPos adjacentHexCoord = mapTile.HexPos + Data.HexPos.Directions[dirIdx];
+                                    Data.HexPos adjacentHexCoord = currentMapTile.HexPos + Data.HexPos.Directions[dirIdx];
                                     if (Data.MapHelper.IsHexPosOnMap(adjacentHexCoord) == true)
                                     {
                                         Data.MapTileRef adjacentMapTile = Data.MapTileRef.FromID(Data.MapHelper.HexPosToMapTileID(adjacentHexCoord));
@@ -154,9 +155,8 @@ namespace Hex.Logic
 
                                             for (int i = 0; i < factor; i++)
                                             {
-                                                bonusTotalValue += bonusValue;
-
-                                                ProductionPools.BonusLocalSteps.Add(new LocalStep(adjacentMapTile, bonusTotalValue));
+                                                bonusLocalValue += bonusValue;
+                                                ProductionPools.BonusLocalSteps.Add(new LocalStep(adjacentMapTile, bonusLocalValue));
                                             }
                                         }
                                     }
@@ -164,20 +164,21 @@ namespace Hex.Logic
                             }
                             else
                             {
-                                bonusTotalValue += bonusValue;
-                                ProductionPools.BonusLocalSteps.Add(new LocalStep(bonusGiver.MapTile, bonusTotalValue));
+                                bonusLocalValue += bonusValue;
+                                ProductionPools.BonusLocalSteps.Add(new LocalStep(bonusGiver.MapTile, bonusLocalValue));
                             }
                         }
 
-                        if (bonusTotalValue > 0)
+                        if (bonusLocalValue > 0)
                         {
-                            productionItem.BonusList.Add(new BonusStep(mapTile, bonusGiver.MapTile, depth, bonusEffect.GetEffectType()));
+                            productionItem.BonusList.Add(new BonusStep(currentMapTile, bonusGiver.MapTile, depth, bonusEffect.GetEffectType()));
                             ref BonusStep bonusStep = ref productionItem.BonusList[productionItem.BonusList.Count - 1];
                             for (int localStepIdx = 0; localStepIdx < ProductionPools.BonusLocalSteps.Count; localStepIdx++)
                             {
                                 bonusStep.LocalList.Add(ProductionPools.BonusLocalSteps[localStepIdx]);
                             }
-                            bonusStep.Total = bonusTotalValue;
+                            bonusStep.LocalValue = bonusLocalValue;
+                            bonusStep.TotalValue = bonusLocalValue;
                             ProductionPools.BonusEnqueue(bonusGiver.MapTile);
                         }
                         ProductionPools.BonusLocalSteps.Clear();
@@ -191,7 +192,6 @@ namespace Hex.Logic
             for (int productionIdx = 0; productionIdx < ProductionPools.OnPlaceProductionCount; productionIdx++)
             {
                 ref Production productionItem = ref ProductionPools.OnPlaceProduction[productionIdx];
-                ref Data.Res productionTotal = ref productionItem.Total;
                 for (int bonusIdx = productionItem.BonusList.Count - 1; bonusIdx >= 0; bonusIdx--)
                 {
                     ref BonusStep bonusStep = ref productionItem.BonusList[bonusIdx];
@@ -199,18 +199,18 @@ namespace Hex.Logic
                     {
                         if (bonusStep.EffectType == Def.EffectType.AddAdjacent)
                         {
-                            productionTotal.Value += bonusStep.Total;
-                            bonusStep.TargetValue = productionTotal.Value;
+                            productionItem.TotalValue += bonusStep.TotalValue;
+                            bonusStep.TargetValue = productionItem.TotalValue;
                         }
                         else if (bonusStep.EffectType == Def.EffectType.MultiplyAdjacent)
                         {
-                            productionTotal.Value *= bonusStep.Total;
-                            bonusStep.TargetValue = productionTotal.Value;
+                            productionItem.TotalValue += (bonusStep.TotalValue - 1) * productionItem.LocalValue;
+                            bonusStep.TargetValue = productionItem.TotalValue;
                         }
                         else if (bonusStep.EffectType == Def.EffectType.ReactivateAdjacent)
                         {
-                            productionTotal.Value *= (1 + bonusStep.Total);
-                            bonusStep.TargetValue = productionTotal.Value;
+                            productionItem.TotalValue *= (1 + bonusStep.TotalValue);
+                            bonusStep.TargetValue = productionItem.TotalValue;
                         }
                     }
                     else
@@ -218,18 +218,18 @@ namespace Hex.Logic
                         ref BonusStep targetBonusStep = ref GetTargetBonusStep(ref productionItem, ref bonusStep);
                         if (bonusStep.EffectType == Def.EffectType.AddAdjacent)
                         {
-                            targetBonusStep.Total += bonusStep.Total;
-                            bonusStep.TargetValue = targetBonusStep.Total;
+                            targetBonusStep.TotalValue += bonusStep.TotalValue;
+                            bonusStep.TargetValue = targetBonusStep.TotalValue;
                         }
                         else if (bonusStep.EffectType == Def.EffectType.MultiplyAdjacent)
                         {
-                            targetBonusStep.Total *= bonusStep.Total;
-                            bonusStep.TargetValue = targetBonusStep.Total;
+                            targetBonusStep.TotalValue += (bonusStep.TotalValue - 1) * targetBonusStep.LocalValue;
+                            bonusStep.TargetValue = targetBonusStep.TotalValue;
                         }
                         else if (bonusStep.EffectType == Def.EffectType.ReactivateAdjacent)
                         {
-                            targetBonusStep.Total *= (1 + bonusStep.Total);
-                            bonusStep.TargetValue = targetBonusStep.Total;
+                            targetBonusStep.TotalValue *= (1 + bonusStep.TotalValue);
+                            bonusStep.TargetValue = targetBonusStep.TotalValue;
                         }
                     }
                 }
@@ -324,7 +324,7 @@ namespace Hex.Logic
             for (int idx = 0; idx < production.BonusList.Count; idx++)
             {
                 ref BonusStep targetBonusStep = ref production.BonusList[idx];
-                if (bonusStep.SourceTile == targetBonusStep.TargetTile)
+                if (bonusStep.TargetTile == targetBonusStep.SourceTile)
                 {
                     return ref targetBonusStep;
                 }

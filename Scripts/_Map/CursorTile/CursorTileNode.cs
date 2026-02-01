@@ -167,11 +167,11 @@ namespace Hex.GodotMap
                     ClearOnHoverBenefits();
                     for (int idx = 0; idx < onPlaceProduction.Length; idx++)
                     {
-                        AddOnHoverBenefit(onPlaceProduction[idx].Total.ResDef, onPlaceProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                        AddOnHoverBenefit(onPlaceProduction[idx].ResDef, onPlaceProduction[idx].TotalValue, hexPos, Def.Timing.OnPlace);
                     }
                     for (int idx = 0; idx < OnEndTurnProduction.Length; idx++)
                     {
-                        AddOnHoverBenefit(OnEndTurnProduction[idx].Total.ResDef, OnEndTurnProduction[idx].Total.Value, hexPos, Def.Timing.OnPlace);
+                        AddOnHoverBenefit(OnEndTurnProduction[idx].ResDef, OnEndTurnProduction[idx].TotalValue, hexPos, Def.Timing.OnPlace);
                     }
 
                     // 3d Update

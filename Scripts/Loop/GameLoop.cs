@@ -26,45 +26,6 @@ namespace Hex
 
             Map.MapTiles.Refresh();
 
-            // add 0, 0 - production
-            // add ---- - add reactivate
-            // add 0, 1 - add multiply <- 
-            // add ---- - add additive <- 
-
-            // appear +2 at 0,0
-            // appear *2 at 0,1 arrow to 0,0
-            // appear +3 at 1,0 arrow to 0,0
-            // appear *2 at 2,0 arrow to 1,0
-
-            // process *2 at 2,0 -> make +6 at 1,0
-            // process +3 at 1,0 -> make +8 at 0,0
-            // process *2 at 0,1 -> make +16 at 0,0
-            // process +2 at 0,0 -> pop +16 at 0,0
-
-            // test example - TO DO - remove
-            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(0, 0), new Data.HexPos(0, 1));
-            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(2, -1));
-            //Map.WorldUI.ArrowsPool.AddArrow(new Data.HexPos(2, 0), new Data.HexPos(1, 0));
-
-            //UI.TileInfo.Add(new Data.HexPos(0, 0), "+2");
-            //UI.TileInfo.Add(new Data.HexPos(2, 0), "+2");
-            //UI.TileInfo.Add(new Data.HexPos(3, -1), "x2");
-
-            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, out int trackingId1);
-            UI.Benefit3D.Show(in trackingId1, "+3");
-
-            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.OnPlace, out int trackingId2);
-            UI.Benefit3D.Show(in trackingId2, "+3");
-
-            UI.Benefit3D.Create(new Hex.Data.HexPos(1, 0), Hex.Def.Timing.PerTurn, out int trackingId3);
-            UI.Benefit3D.Show(in trackingId3, "+2");
-
-            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId1), 1.5f);
-
-            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId3), 3.0f);
-
-            Main.DelayedCall(() => UI.Benefit3D.Pop(trackingId2), 4.5f);
-
             StartTurn();
         }
 

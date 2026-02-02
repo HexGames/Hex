@@ -47,7 +47,7 @@ namespace Hex.UI
                     if (benefitID < 0)
                     {
                         Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(production.Tile.ID);
-                        Benefit3D.Create(hexPos, Def.Timing.OnPlace, out benefitID);
+                        Benefit3D.Create(hexPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out benefitID);
                         Main.DelayedCall(() => Benefit3D.Show(in benefitID, text), timeOffset);
                         AddHexPosBenefit(hexPos, benefitID);
                     }
@@ -72,7 +72,7 @@ namespace Hex.UI
                         if (bonusBenefitID < 0)
                         {
                             Data.HexPos hesPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
-                            Benefit3D.Create(hesPos, Def.Timing.OnPlace, out bonusBenefitID);
+                            Benefit3D.Create(hesPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out bonusBenefitID);
                             Main.DelayedCall(() => Benefit3D.Show(in bonusBenefitID, text), timeOffset);
                             AddHexPosBenefit(hesPos, bonusBenefitID);
                         }
@@ -103,12 +103,15 @@ namespace Hex.UI
                     }
                 }
 
-                // extra time before popping the main production benefit
+                // extra time
                 timeOffset += 2 * timeStep;
 
                 Data.HexPos productionHexPos = Data.MapHelper.MapTileIDToHexPos(production.Tile.ID);
                 int benefitToPop = PopBenefitIDAtHexPos(productionHexPos);
                 Main.DelayedCall(() => Benefit3D.Pop(in benefitToPop), timeOffset);
+
+                // extra time
+                timeOffset += timeStep;
             }
 
             delay = timeOffset;

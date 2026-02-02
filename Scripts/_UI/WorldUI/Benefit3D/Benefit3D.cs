@@ -5,67 +5,28 @@ namespace Hex.UI
     public static class Benefit3D
     {
         private static List<GodotUI.Benefit3DControl> _benefit3DPool = new List<GodotUI.Benefit3DControl>();
-        private static Dictionary<Data.HexPos, List<int>> _benefit3DIdx = new Dictionary<Data.HexPos, List<int>>();
 
         // ---------------------------------------------------------------------------------------------------
-        public static void Create(Data.HexPos forTile, Def.Timing timing, out int benefitID)
+        public static void Create(Data.HexPos forTile, Def.Timing timing, int tileIdx, int tileCount, out int benefitID)
         {
-            if (_benefit3DIdx.TryGetValue(forTile, out List<int> poolIdxes) == true)
-            {
-                int idx = 0;
-                while (idx < poolIdxes.Count && _benefit3DPool[idx].Timing < timing)
-                {
-                    idx++;
-                }
+            benefitID = GetNewBenefit(forTile, timing, tileIdx);
 
-                int offsetStart = (poolIdxes.Count + 1) / 2;
-                int offset = offsetStart;
-                int newBenefitOffset = 0;
-                for (int otherIdx = 0; otherIdx < poolIdxes.Count; otherIdx++)
-                {
-                    if (_benefit3DPool[poolIdxes[otherIdx]].Visible == true)
-                    {
-                        if (otherIdx == idx)
-                        {
-                            newBenefitOffset = offsetStart + offset;
-                            offset += 2;
-                        }
-                        _benefit3DPool[poolIdxes[otherIdx]].MoveToOffset(offsetStart + offset);
-                        offset += 2;
-                    }
-                }
-
-                int benefitPopIdx = GetNewBenefit(forTile, timing, newBenefitOffset);
-
-                poolIdxes.Insert(idx, benefitPopIdx);
-
-                benefitID = benefitPopIdx;
-            }
-            else
-            {
-                int benefitPopIdx = GetNewBenefit(forTile, timing, 0);
-
-                poolIdxes = new List<int>();
-                poolIdxes.Add(benefitPopIdx);
-
-                _benefit3DIdx.Add(forTile, poolIdxes);
-
-                benefitID = benefitPopIdx;
-            }
+            _benefit3DPool[benefitID].Visible = true;
+            int offsetStart = (tileCount + 1) / 2;
+            _benefit3DPool[benefitID].MoveToOffset(offsetStart + tileIdx);
         }
 
-        private static int GetNewBenefit(Data.HexPos forTile, Def.Timing timing, int onTileIdx)
+        private static int GetNewBenefit(Data.HexPos forTile, Def.Timing timing, int tileIdx)
         {
             int benefitPopIdx = GetNewBenefitFromPool();
             GodotUI.Benefit3DControl tileInfo = _benefit3DPool[benefitPopIdx];
-            tileInfo.SetData(forTile, timing, onTileIdx);
-            tileInfo.Name = $"TileInfo_{forTile}_{onTileIdx}";
+            tileInfo.SetData(forTile, timing, tileIdx);
+            tileInfo.Name = $"TileInfo_{forTile}_{tileIdx}";
             return benefitPopIdx;
         }
 
         public static void Show(in int benefitID, string newText)
         {
-            _benefit3DPool[benefitID].Visible = true;
             _benefit3DPool[benefitID].Show(newText);
         }
 
@@ -77,21 +38,11 @@ namespace Hex.UI
         public static void FadeOut(in int benefitID)
         {
             _benefit3DPool[benefitID].FadeOut();
-            RemoveSelf(benefitID);
         }
 
         public static void Pop(in int benefitID)
         {
             _benefit3DPool[benefitID].Pop();
-            RemoveSelf(benefitID);
-        }
-
-        private static void RemoveSelf(int benefitID)
-        {
-            if (_benefit3DIdx.TryGetValue(_benefit3DPool[benefitID].HexPos, out List<int> poolIdxes) == true)
-            {
-                poolIdxes.Remove(benefitID);
-            }
         }
 
         //public static void Remove(Data.HexPos forTile, Def.Timing timing)

@@ -1,4 +1,4 @@
-﻿
+
 namespace Hex.Logic
 {
     public static class ProductionPools
@@ -30,22 +30,32 @@ namespace Hex.Logic
 
         internal static void GrowOnPlaceProduction()
         {
-            int newSize = OnPlaceProduction.Length + 4;
+            int oldSize = OnPlaceProduction.Length;
+            int newSize = oldSize + 4;
             Production[] newArray = new Production[newSize];
-            for (int i = 0; i < OnPlaceProduction.Length; i++)
+            for (int i = 0; i < oldSize; i++)
             {
                 newArray[i] = OnPlaceProduction[i];
+            }
+            for (int i = oldSize; i < newSize; i++)
+            {
+                newArray[i] = new Production();
             }
             OnPlaceProduction = newArray;
         }
 
         internal static void GrowOnEndTurnProduction()
         {
-            int newSize = OnEndTurnProduction.Length + 8;
+            int oldSize = OnEndTurnProduction.Length;
+            int newSize = oldSize + 8;
             Production[] newArray = new Production[newSize];
-            for (int i = 0; i < OnEndTurnProduction.Length; i++)
+            for (int i = 0; i < oldSize; i++)
             {
                 newArray[i] = OnEndTurnProduction[i];
+            }
+            for (int i = oldSize; i < newSize; i++)
+            {
+                newArray[i] = new Production();
             }
             OnEndTurnProduction = newArray;
         }
@@ -55,7 +65,9 @@ namespace Hex.Logic
             for (int idx = 0; idx < OnPlaceProductionCount; idx++)
             {
                 ref Production production = ref OnPlaceProduction[idx];
+                ClearBonusStepLocalLists(ref production);
                 production.BonusList.Clear();
+                production.LocalList.Clear();
                 production.LocalValue = 0;
                 production.TotalValue = 0;
                 production.ResDef = Def.ResRef.INVALID;
@@ -68,12 +80,22 @@ namespace Hex.Logic
             for (int idx = 0; idx < OnEndTurnProductionCount; idx++)
             {
                 ref Production production = ref OnEndTurnProduction[idx];
+                ClearBonusStepLocalLists(ref production);
                 production.BonusList.Clear();
+                production.LocalList.Clear();
                 production.LocalValue = 0;
                 production.TotalValue = 0;
                 production.ResDef = Def.ResRef.INVALID;
             }
             OnEndTurnProductionCount = 0;
+        }
+
+        private static void ClearBonusStepLocalLists(ref Production production)
+        {
+            for (int bonusIdx = 0; bonusIdx < production.BonusList.Count; bonusIdx++)
+            {
+                production.BonusList[bonusIdx].LocalList.Clear();
+            }
         }
 
         internal static void ClearBonusQueue()

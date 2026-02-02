@@ -6,15 +6,11 @@ namespace Hex.Play
 {
     public class EndTurnCommandResult : ICommandResult
     {
-        public Data.MapTileRef MapTile;
-        public readonly List<Data.Bonus> OnPlaceBonusTree = new List<Data.Bonus>();
-        public readonly Data.Res Production;
+        public readonly Logic.Production[] EndTurnProduction;
 
-        public EndTurnCommandResult(Data.MapTileRef mapTile, List<Data.Bonus> onPlaceBonusTree, Data.Res production)
+        public EndTurnCommandResult(ReadOnlySpan<Logic.Production> endTurnProduction)
         {
-            MapTile = mapTile;
-            OnPlaceBonusTree = onPlaceBonusTree;
-            Production = production;
+            EndTurnProduction = endTurnProduction.ToArray();
         }
     }
 }
@@ -36,7 +32,7 @@ namespace Hex.PlayInternal
             if (info == null) return null;
 
             Logic.Actions.EndTurn(out ReadOnlySpan<Logic.Production> productions);
-            Play.EndTurnCommandResult result = new Play.EndTurnCommandResult(Data.MapTileRef.FromID(-1), null, new Data.Res());
+            Play.EndTurnCommandResult result = new Play.EndTurnCommandResult(productions);
 
             return result;
         }

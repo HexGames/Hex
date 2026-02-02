@@ -49,6 +49,7 @@ namespace Hex
             // play result.OnPlaceBonusTree animations
             UI.BenefitAnimationLoop.PlayBenefitLoop(result.OnPlaceProduction, out float delay);
 
+            if (delay > 0.1f) delay += 2.0f;
             Main.DelayedCall(GameLoop.EndTurn, delay);
         }
 
@@ -59,7 +60,10 @@ namespace Hex
 
             // play result.OnEndTurnBonusTree animations
 
-            Main.DelayedCall(GameLoop.StartTurn, 0.5f);
+            UI.BenefitAnimationLoop.PlayBenefitLoop(result.EndTurnProduction, out float delay);
+
+            if (delay > 0.1f) delay += 2.0f;
+            Main.DelayedCall(GameLoop.StartTurn, delay);
         }
 
         public static void StartTurnResultHandler(ICommandResult commandResult)

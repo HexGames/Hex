@@ -23,13 +23,16 @@ namespace Hex.UI
                 int newBenefitOffset = 0;
                 for (int otherIdx = 0; otherIdx < poolIdxes.Count; otherIdx++)
                 {
-                    if (otherIdx == idx)
+                    if (_benefit3DPool[poolIdxes[otherIdx]].Visible == true)
                     {
-                        newBenefitOffset = offsetStart + offset;
+                        if (otherIdx == idx)
+                        {
+                            newBenefitOffset = offsetStart + offset;
+                            offset += 2;
+                        }
+                        _benefit3DPool[poolIdxes[otherIdx]].MoveToOffset(offsetStart + offset);
                         offset += 2;
                     }
-                    _benefit3DPool[poolIdxes[otherIdx]].MoveToOffset(offsetStart + offset);
-                    offset += 2;
                 }
 
                 int benefitPopIdx = GetNewBenefit(forTile, timing, newBenefitOffset);
@@ -57,12 +60,12 @@ namespace Hex.UI
             GodotUI.Benefit3DControl tileInfo = _benefit3DPool[benefitPopIdx];
             tileInfo.SetData(forTile, timing, onTileIdx);
             tileInfo.Name = $"TileInfo_{forTile}_{onTileIdx}";
-            tileInfo.Visible = true;
             return benefitPopIdx;
         }
 
         public static void Show(in int benefitID, string newText)
         {
+            _benefit3DPool[benefitID].Visible = true;
             _benefit3DPool[benefitID].Show(newText);
         }
 
@@ -71,9 +74,24 @@ namespace Hex.UI
             _benefit3DPool[benefitID].ChangeValue(newText);
         }
 
+        public static void FadeOut(in int benefitID)
+        {
+            _benefit3DPool[benefitID].FadeOut();
+            RemoveSelf(benefitID);
+        }
+
         public static void Pop(in int benefitID)
         {
             _benefit3DPool[benefitID].Pop();
+            RemoveSelf(benefitID);
+        }
+
+        private static void RemoveSelf(int benefitID)
+        {
+            if (_benefit3DIdx.TryGetValue(_benefit3DPool[benefitID].HexPos, out List<int> poolIdxes) == true)
+            {
+                poolIdxes.Remove(benefitID);
+            }
         }
 
         //public static void Remove(Data.HexPos forTile, Def.Timing timing)

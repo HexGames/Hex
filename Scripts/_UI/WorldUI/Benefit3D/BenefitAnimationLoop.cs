@@ -41,8 +41,8 @@ namespace Hex.UI
                 for (int localIdx = 0; localIdx < production.LocalList.Count; localIdx++)
                 {
                     ref Logic.LocalStep localStep = ref production.LocalList[localIdx];
-                    Data.HexPos sourceHesPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
-                    Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHesPos), timeOffset);
+                    Data.HexPos sourceHexPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
+                    Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHexPos), timeOffset);
                     string text = $"+{localStep.Value.ToString()}";
                     if (benefitID < 0)
                     {
@@ -66,20 +66,20 @@ namespace Hex.UI
                     for (int localIdx = 0; localIdx < bonusStep.LocalList.Count; localIdx++)
                     {
                         ref Logic.LocalStep localStep = ref bonusStep.LocalList[localIdx];
-                        Data.HexPos sourceHesPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
-                        Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHesPos), timeOffset);
+                        Data.HexPos sourceHexPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
+                        Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHexPos), timeOffset);
                         string text = $"*{localStep.Value.ToString()}";
                         if (bonusBenefitID < 0)
                         {
-                            Data.HexPos hesPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
-                            Benefit3D.Create(hesPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out bonusBenefitID);
+                            Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
+                            Benefit3D.Create(hexPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out bonusBenefitID);
                             Main.DelayedCall(() => Benefit3D.Show(in bonusBenefitID, text), timeOffset);
-                            AddHexPosBenefit(hesPos, bonusBenefitID);
+                            AddHexPosBenefit(hexPos, bonusBenefitID);
                         }
                         else
                         {
-                            Data.HexPos hesPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
-                            ApplyChangeValueToAllAtHexPos(hesPos, text, timeOffset);
+                            Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
+                            ApplyChangeValueToAllAtHexPos(hexPos, text, timeOffset);
                         }
                         timeOffset += timeStep;
                     }

@@ -125,6 +125,10 @@ namespace Hex.UI
                 _hexPosBenefits[_hexPosBenefitCount].BenefitID = benefitID;
                 _hexPosBenefitCount++;
             }
+            else
+            {
+                Debug.LogError($"[BenefitAnimationLoop] exceeded max entries of {MAX_ENTRIES}");
+            }
         }
 
         private static int PopBenefitIDAtHexPos(Data.HexPos hexPos)

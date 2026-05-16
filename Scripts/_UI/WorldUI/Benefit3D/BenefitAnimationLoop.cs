@@ -43,18 +43,19 @@ namespace Hex.UI
                     ref Logic.LocalStep localStep = ref production.LocalList[localIdx];
                     Data.HexPos sourceHexPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
                     Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHexPos), timeOffset);
-                    string text = $"+{localStep.Value.ToString()}";
+                    string valueText = localStep.Value.ToString();
+                    string suffix = GodotUI.UIHelper.GetIcon(production.ResDef.Value.Name);
                     if (benefitID < 0)
                     {
                         Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(production.Tile.ID);
                         Benefit3D.Create(hexPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out benefitID);
-                        Main.DelayedCall(() => Benefit3D.Show(in benefitID, text), timeOffset);
+                        Main.DelayedCall(() => Benefit3D.Show(in benefitID, "", valueText, suffix), timeOffset);
                         AddHexPosBenefit(hexPos, benefitID);
                     }
                     else
                     {
                         Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(production.Tile.ID);
-                        ApplyChangeValueToAllAtHexPos(hexPos, text, timeOffset);
+                        ApplyChangeValueToAllAtHexPos(hexPos, valueText, timeOffset);
                     }
                     timeOffset += timeStep;
                 }
@@ -68,18 +69,19 @@ namespace Hex.UI
                         ref Logic.LocalStep localStep = ref bonusStep.LocalList[localIdx];
                         Data.HexPos sourceHexPos = Data.MapHelper.MapTileIDToHexPos(localStep.SourceTile.ID);
                         Main.DelayedCall(() => Map.MapTiles.TriggerBenefitHighlightAtHexPos(sourceHexPos), timeOffset);
-                        string text = $"*{localStep.Value.ToString()}";
+                        string prefix = "x";
+                        string valueText = localStep.Value.ToString();
                         if (bonusBenefitID < 0)
                         {
                             Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
                             Benefit3D.Create(hexPos, Def.Timing.OnPlace, productionIdx, onPlaceProduction.Length, out bonusBenefitID);
-                            Main.DelayedCall(() => Benefit3D.Show(in bonusBenefitID, text), timeOffset);
+                            Main.DelayedCall(() => Benefit3D.Show(in bonusBenefitID, prefix, valueText, ""), timeOffset);
                             AddHexPosBenefit(hexPos, bonusBenefitID);
                         }
                         else
                         {
                             Data.HexPos hexPos = Data.MapHelper.MapTileIDToHexPos(bonusStep.SourceTile.ID);
-                            ApplyChangeValueToAllAtHexPos(hexPos, text, timeOffset);
+                            ApplyChangeValueToAllAtHexPos(hexPos, valueText, timeOffset);
                         }
                         timeOffset += timeStep;
                     }

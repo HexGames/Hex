@@ -1,16 +1,16 @@
 [gd_scene format=4 uid="uid://f5ubdigheanb"]
 
-[ext_resource type="Script" uid="uid://7q7ti8si5g6f" path="res://Scripts/_UI/HUD/NextTile/UINextTiles.cs" id="1_fhios"]
+[ext_resource type="Script" uid="uid://c273khm3msprv" path="res://Scripts/_UI/HUD/Godot/UINextTile.cs" id="1_mx2ya"]
 [ext_resource type="Script" uid="uid://crqvjunjhmatw" path="res://Scripts/_UI/_Base/UIAnims/AnimBase.cs" id="2_tkfwc"]
 [ext_resource type="Texture2D" uid="uid://crpin4njcbxqa" path="res://Assets/Panel/panel-border-027.png" id="3_ifsaa"]
 [ext_resource type="Script" uid="uid://ck3x2ijc8yiw2" path="res://Scripts/_UI/_Base/UIText.cs" id="4_ukdo0"]
 [ext_resource type="Script" uid="uid://bb3ytua4hmhvw" path="res://Scripts/_UI/_Base/UIAnims/AnimButton.cs" id="5_amitg"]
 [ext_resource type="Texture2D" uid="uid://bhsvghvmob0t3" path="res://Assets/Button/shadow.png" id="6_oxjkp"]
-[ext_resource type="Script" uid="uid://3mx0x1jys7n2" path="res://Scripts/_UI/HUD/NextTile/UINextTileItem.cs" id="6_ta0oi"]
 [ext_resource type="Texture2D" uid="uid://q5bo8uraogkm" path="res://Assets/Button/panel.png" id="7_6a3g4"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="7_eaql0"]
 [ext_resource type="Texture2D" uid="uid://gnerd14p3sua" path="res://Assets/Button/border.png" id="8_vlw24"]
 [ext_resource type="Texture2D" uid="uid://dwph7agk63w4r" path="res://Assets/right.png" id="9_rt0yp"]
+[ext_resource type="Script" uid="uid://crcxokk1pi2th" path="res://Scripts/_UI/HUD/Godot/UINextTileItem.cs" id="10_mx2ya"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t71gq"]
 resource_name = "colormap"
@@ -59,7 +59,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fhios")
+script = ExtResource("1_mx2ya")
 NextTiles = [NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1"), NodePath("Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2")]
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1952259404]
@@ -631,7 +631,7 @@ alignment = 1
 [node name="NextTile_0" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=672759702]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
-script = ExtResource("6_ta0oi")
+script = ExtResource("10_mx2ya")
 
 [node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_0" unique_id=1175081354]
 layout_mode = 1
@@ -693,7 +693,7 @@ mesh = SubResource("ArrayMesh_pke2f")
 [node name="NextTile_1" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=1573359629]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
-script = ExtResource("6_ta0oi")
+script = ExtResource("10_mx2ya")
 
 [node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_1" unique_id=1175613063]
 layout_mode = 1
@@ -755,7 +755,7 @@ mesh = SubResource("ArrayMesh_pke2f")
 [node name="NextTile_2" type="Control" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer" unique_id=59877953]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
-script = ExtResource("6_ta0oi")
+script = ExtResource("10_mx2ya")
 
 [node name="BgColor" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer/Next/HBoxContainer/HBoxContainer/NextTile_2" unique_id=2130910535]
 layout_mode = 1

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dq4ojgpswtj65"]
 
-[ext_resource type="Script" uid="uid://3mx0x1jys7n2" path="res://Scripts/_UI/HUD/NextTile/UINextTileItem.cs" id="1_vhfxv"]
+[ext_resource type="Script" uid="uid://crcxokk1pi2th" path="res://Scripts/_UI/HUD/Godot/UINextTileItem.cs" id="1_svfqi"]
 [ext_resource type="Texture2D" uid="uid://bk0p1xx2kca4e" path="res://Assets/Map/HexKit/Textures/colormap.png" id="7_67oi2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t71gq"]
@@ -47,7 +47,7 @@ shadow_mesh = SubResource("ArrayMesh_2hi7i")
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_vhfxv")
+script = ExtResource("1_svfqi")
 
 [node name="Button" type="Control" parent="." unique_id=1185705141]
 layout_mode = 1

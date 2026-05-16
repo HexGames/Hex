@@ -27,6 +27,8 @@ namespace Hex.GodotUI
         [Export]
         private float _changeScalePeak = 1.3f;
 
+        private string _prefix;
+        private string _suffix;
         private UIText _text;
 
         public Data.HexPos HexPos;
@@ -56,11 +58,17 @@ namespace Hex.GodotUI
             Position = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
         }
 
-        public void Show(string text)
+        public void RefreshTexts(string prefix, string valueText, string suffix)
+        {
+            _prefix = prefix;
+            _suffix = suffix;
+            _text.SetText("$", $"{prefix}{valueText}{suffix}");
+        }
+
+        public void ShowBenefit()
         {
             Vector2 screenPos = GodotMap.Convert.WorldToScreen(_tileWorldPos) + GetOffset2D(_offset);
             Position = screenPos;
-            _text.SetText("$", text);
             _text.Modulate = ColorLib.GetColor_Text(Timing);
 
             // Reset state
@@ -97,9 +105,9 @@ namespace Hex.GodotUI
             _tweenForOffset.TweenProperty(this, "position:y", newPosition.Y, _offsetDuration);
         }
 
-        public void ChangeValue(string newText)
+        public void ChangeValue(string newValue)
         {
-            _text.SetText("$", newText);
+            _text.SetText("$", $"{_prefix}{newValue}{_suffix}");
 
             // Kill previous Change tween if any
             _tweenForChange?.Kill();

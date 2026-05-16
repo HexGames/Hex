@@ -3,7 +3,7 @@ using Godot.Collections;
 
 namespace Hex.GodotUI
 {
-    public partial class UINextTiles : AnimControl
+    public partial class UINextTile : AnimControl
     {
         [Export]
         private Array<UINextTileItem> NextTiles;

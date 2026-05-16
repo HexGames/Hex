@@ -12,7 +12,7 @@ namespace Hex.GodotUI
         [Export]
         public UITileInfo TileInfo;
         [Export]
-        public UINextTiles NextTiles;
+        public UINextTile NextTiles;
         [Export]
         public UIResources Resoruces;
         [Export]

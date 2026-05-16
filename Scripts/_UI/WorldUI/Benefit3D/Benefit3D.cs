@@ -25,14 +25,15 @@ namespace Hex.UI
             return benefitPopIdx;
         }
 
-        public static void Show(in int benefitID, string newText)
+        public static void Show(in int benefitID, string prefix, string valueText, string suffix)
         {
-            _benefit3DPool[benefitID].Show(newText);
+            _benefit3DPool[benefitID].RefreshTexts(prefix, valueText, suffix);
+            _benefit3DPool[benefitID].ShowBenefit();
         }
 
-        public static void ChangeValue(in int benefitID, string newText)
+        public static void ChangeValue(in int benefitID, string valueText)
         {
-            _benefit3DPool[benefitID].ChangeValue(newText);
+            _benefit3DPool[benefitID].ChangeValue(valueText);
         }
 
         public static void FadeOut(in int benefitID)

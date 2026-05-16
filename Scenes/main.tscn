@@ -86,7 +86,7 @@
 [ext_resource type="Script" uid="uid://bdgagiwrlnukm" path="res://Scripts/_UI/_WorldUI/WorldUI.cs" id="83_55idt"]
 [ext_resource type="Script" uid="uid://cf6kmwgy7vpo8" path="res://Scripts/_UI/WorldUI/Godot/UITileInfo3D.cs" id="85_e6rcu"]
 [ext_resource type="Script" uid="uid://0qkjt7h5qhfb" path="res://Scripts/_UI/WorldUI/Benefit3D/Benefit3DControl.cs" id="85_k8rh3"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/DebugToolWindow.tscn" id="90_debug"]
+[ext_resource type="PackedScene" uid="uid://bh8ynhbjuq5pn" path="res://Scenes/UI/DebugToolWindow.tscn" id="90_debug"]
 
 [node name="Main" type="Node" unique_id=784899465 node_paths=PackedStringArray("Assets", "Colors", "DebugToolWindow")]
 script = ExtResource("2_v2nl5")

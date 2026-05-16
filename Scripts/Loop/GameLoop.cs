@@ -17,6 +17,9 @@ namespace Hex
         {
             UI.MainMenu.Hide();
 
+            UI.Resources.Show();
+            UI.NextTile.Show();
+
             Main.DelayedCall(OnStartRunDelayed, 0.5f);
         }
 
